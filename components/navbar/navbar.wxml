@@ -1,0 +1,12 @@
+<view class='nav-wrap' style='height: {{navbarHeight}}px;padding-top:{{navbarHeight-height}}px'>
+  <view class='nav-capsule' wx:if='{{navbarData.showCapsule}}'>
+      <view bindtap='_navback'>
+      <image src='/img/blue-back.png' mode='aspectFill' class='back-pre'></image>
+    </view>
+  </view>
+    <!-- // 导航栏 中间的标题 -->
+  <view class='nav-title'>
+    <image src='/img/titit.png'></image>
+  </view>
+  
+</view>

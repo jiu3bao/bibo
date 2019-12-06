@@ -1,0 +1,38 @@
+.banner-box {
+  height:200rpx;
+}
+.swiper-i {
+  width:100%;
+  height:100%;
+}
+.banner-box image {
+  width:100%;
+  height:100%;
+}
+.article {
+
+}
+.article-type {
+  display: flex;
+  align-items: center;
+  padding:0 30rpx 0 50rpx
+}
+.type-item {
+  flex-shrink: 0;
+  padding:10rpx;
+  margin-right:40rpx
+}
+.ac {
+  border-bottom:8rpx solid darkblue;
+  color:darkblue;
+  font-size:40rpx
+}
+.more {
+  width:100%;
+  display: flex;
+  justify-content: flex-end
+}
+.more image {
+  width:20rpx;
+  height:20rpx
+}

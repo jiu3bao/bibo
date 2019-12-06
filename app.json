@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/next/next"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "众诺亿美",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/img/titit.png",
+        "selectedIconPath": "/img/titit.png",
+        "text": "会员首页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/img/titit.png",
+        "selectedIconPath": "/img/titit.png",
+        "text": "加入合伙人"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/img/titit.png",
+        "selectedIconPath": "/img/titit.png",
+        "text": "个人中心"
+      }
+    ],
+    "backgroundColor": "#333",
+    "color": "#bfbfbf",
+    "selectedColor": "#3db3e6"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

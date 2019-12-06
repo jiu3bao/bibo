@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <swiper  class='banner-box'
+    current='{{tabBar}}'
+    duration='400'
+    indicator-dots='true'
+    autoplay="true"
+    indicator-color='#999'
+    indicator-active-color='#fff'
+    easing-function='{{"easeInOutCubic"}}'>
+    <swiper-item class='swiper-i' wx:for='{{bannerList}}' wx:key='{{item.id}}'> 
+      <image src='{{"http://ym.bibo80s.com"+item.pic_url}}'></image>
+    </swiper-item>
+  </swiper>
+  <view class='article'>
+    <view class='article-type'>
+      <view class='{{now_at_type===item.type?"type-item ac":"type-item"}}' 
+        wx:for='{{articleType}}'
+        bindtap="change_type"
+        data-type='{{item.type}}'>
+        {{item.name}}
+      </view>
+      <view class='more'>
+        更多
+        <image></image>
+      </view>
+    </view>
+  </view>
+</view>
