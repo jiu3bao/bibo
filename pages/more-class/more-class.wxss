@@ -1,0 +1,5 @@
+/* pages/more-class/more-class.wxss */
+.class-box {
+  height:100%;
+  box-sizing: border-box
+}

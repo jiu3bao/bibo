@@ -1,8 +1,18 @@
 {
   "pages": [
+    "pages/check-token/check-token",
     "pages/index/index",
+    "pages/login/login",
     "pages/logs/logs",
-    "pages/next/next"
+    "pages/next/next",
+    "pages/more-notice/more-notice",
+    "pages/more-class/more-class",
+    "pages/more-news/more-news",
+    "pages/join-partner/join-partner",
+    "pages/user/user",
+    "pages/set-user-info/set-user-info",
+    "pages/article-detail/article-detail",
+    "pages/goods-detail/goods-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,13 +30,13 @@
         "text": "会员首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/join-partner/join-partner",
         "iconPath": "/img/titit.png",
         "selectedIconPath": "/img/titit.png",
         "text": "加入合伙人"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/user/user",
         "iconPath": "/img/titit.png",
         "selectedIconPath": "/img/titit.png",
         "text": "个人中心"

@@ -1,0 +1,15 @@
+<!--pages/goods-detail/goods-detail.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <image src='{{"http://ym.bibo80s.com"+detail.pic_url}}'></image>
+
+  <view>
+    <view>
+      {{detail.name}}
+      ￥{{detail.price}}
+    </view>
+    <button>
+      立即加入
+    </button>
+  </view>
+</view>

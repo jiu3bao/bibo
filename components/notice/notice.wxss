@@ -1,0 +1,10 @@
+/* components/notice/notice.wxss */
+.notice-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notice-item image {
+  width:50rpx;
+  height:50rpx;
+}

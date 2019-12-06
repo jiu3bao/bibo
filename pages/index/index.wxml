@@ -21,10 +21,23 @@
         data-type='{{item.type}}'>
         {{item.name}}
       </view>
-      <view class='more'>
+      <view class='more' bindtap="to_more">
         更多
         <image></image>
       </view>
     </view>
+    <swiper class='content-slider' 
+      current='{{now_at_type===0?0:now_at_type===1?2:1}}'
+      bindchange='slide'>
+      <swiper-item class='content-slider-item'>
+        <news news-list='{{newsList}}'></news>
+      </swiper-item>
+      <swiper-item class='content-slider-item'>
+        <notice notice-list='{{noticeList}}'></notice>
+      </swiper-item>
+      <swiper-item class='content-slider-item'>
+        <class class-list='{{classList}}'></class>
+      </swiper-item>
+    </swiper>
   </view>
 </view>

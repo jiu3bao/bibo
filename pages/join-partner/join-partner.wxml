@@ -1,0 +1,10 @@
+<!--pages/join-partner/join-partner.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <view class='project' wx:for='{{list}}' wx:key="{{item.id}}"
+    data-id='{{item.id}}'
+    bindtap="todetail">
+    <image src='{{"http://ym.bibo80s.com"+item.pic_url}}' ></image>
+  </view>
+</view>

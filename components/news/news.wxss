@@ -1,0 +1,38 @@
+/* components/news/news.wxss */
+.news-box {
+  height:800rpx
+}
+.first-news {
+  position: relative;
+  width:100%;
+  height:300rpx;
+  margin-bottom:50rpx;
+}
+.first-news image {
+  width:100%;
+  height:100%;
+}
+.float {
+  position: absolute;
+  bottom:0;
+  left:0;
+  background:rgba(0,0,0,.3);
+}
+.anther-news {
+  width:100%;
+  height:200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.anther-news .text {
+  height:100%;
+}
+.anther-news image {
+  width:170rpx;
+  height:170rpx;
+}
+.anther-news .note {
+  height:100rpx;
+  color:rebeccapurple;
+}

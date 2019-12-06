@@ -1,0 +1,24 @@
+<!--components/news/news.wxml-->
+<view class='news-box'>
+  <view class='first-news'>
+    <image src='{{"http://ym.bibo80s.com"+first.pic_url}}'></image>
+    <view class='float'>
+      <view class='float-title'>{{first.title}}</view>
+      <view class='float-note'>{{first.summary}}</view>
+    </view>
+  </view>
+  <view class='anther-news' 
+    wx:for='{{another}}' wx:key="{{item.id}}"
+    bindtap="todetail"
+    data-id='{{item.id}}'>
+    <view class='text'>
+      <view class='title'>
+      {{item.title}}
+      </view>
+      <view class='note'>
+      {{item.summary}}
+      </view>
+    </view>
+    <image src='{{"http://ym.bibo80s.com"+item.pic_url}}'></image>
+  </view>
+</view>

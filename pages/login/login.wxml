@@ -1,0 +1,13 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <view>
+    手机号<input value='{{mobile}}' bindinput='set_mobile'></input>
+  </view>
+  <view>
+    验证码<input type='number' value='{{code}}' bindinput='set_code'></input>
+    <button bindtap="get_code" >{{time===0?"获取验证码":time+"s后重新获取"}}</button>
+  </view>
+  
+  <button bindtap="login">登录/注册</button>
+</view>

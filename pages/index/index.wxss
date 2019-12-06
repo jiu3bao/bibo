@@ -1,3 +1,7 @@
+.contain {
+  height:100%;
+  box-sizing: border-box
+}
 .banner-box {
   height:200rpx;
 }
@@ -10,7 +14,7 @@
   height:100%;
 }
 .article {
-
+  height:100%
 }
 .article-type {
   display: flex;
@@ -35,4 +39,10 @@
 .more image {
   width:20rpx;
   height:20rpx
+}
+.content-slider {
+  height:100%
+}
+.content-slider-item {
+  height:100%
 }

@@ -1,0 +1,11 @@
+<!--components/notice/notice.wxml-->
+<view class='notice-box'>
+  <view class='notice-item' wx:for='{{noticeList}}' wx:key='{{item.id}}'>
+    <image></image>
+    <view>
+      <view>{{item.title}}</view>
+      <view>{{item.summary}}</view>
+    </view>
+    
+  </view>
+</view>

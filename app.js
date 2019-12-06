@@ -62,11 +62,6 @@ App({
       console.log('error', error);
       console.log('rect', rect);
     }
-    // wx.getSystemInfo({
-    //   success: (res) => {
-    //     this.globalData.height = res.statusBarHeight
-    //   }
-    // })
   },
 
   globalData: {

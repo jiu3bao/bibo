@@ -1,0 +1,14 @@
+/* pages/more-notice/more-notice.wxss */
+.notice-box {
+  height:100%;
+  box-sizing: border-box
+}
+.notice-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notice-item image {
+  width:50rpx;
+  height:50rpx;
+}
