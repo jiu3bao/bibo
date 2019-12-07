@@ -17,27 +17,35 @@ Page({
     fnList:[{
       name:'我的钱包',
       img:'',
-      auth:1
+      auth:1,
+      redirect:''
     }, {
         name: '推广任务',
         img: '',
-        auth: 1
+        auth: 1,
+        redirect:''
       }, {
         name: '微课培训',
         img: '',
-        auth: 0
+        auth: 0,
+        redirect:''
       }, {
         name: '我的消费',
         img: '',
-        auth: 1
+        auth: 1,
+        redirect: "/pages/my-pay-detail/my-pay-detail"
+
       }, {
         name: '会员管理',
         img: '',
-        auth: 0
+        auth: 0,
+        redirect: "/pages/member-manage/member-manage"
+
       }, {
         name: '联系我们',
         img: '',
-        auth: 1
+        auth: 1,
+        redirect:''
       }],
     baseInfo:{},
     moneyInfo:{}
@@ -45,6 +53,24 @@ Page({
   toset() {
     wx.navigateTo({
       url: '/pages/set-user-info/set-user-info',
+      events: {
+        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        acceptDataFromOpenedPage: function (data) {
+          console.log(data)
+        },
+        someEvent: function (data) {
+          console.log(data)
+        }
+      },
+      success: (res)=> {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.baseInfo })
+      }
+    })
+  },
+  redirect(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
     })
   },
   get_base_info() {

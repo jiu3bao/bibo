@@ -1,8 +1,8 @@
-// pages/set-user-info/set-user-info.js
-
+// pages/article-detail/article-detail.js
 import service from '../../utils/api.js'
-
 const app = getApp()
+
+var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
 
@@ -12,26 +12,50 @@ Page({
   data: {
     nvabarData: {
       showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
-      title: '登录', //导航栏 中间的标题
+      title: '我的主页', //导航栏 中间的标题
     },
+    // 此页面 页面内容距最顶部的距离
     navbarHeight: app.globalData.navbarHeight,
-    info:{}
+    detail: {}
   },
+  get_detail(id) {
+    service('/GetArticlesDetail', { id: id })
+      .then(r => {
+        var that = this;
+        const html = that.htmlEscape(r.data.data.detail)
+        this.setData({
+          detail: r.data.data
+        })
+        WxParse.wxParse('article', 'html', html, that, 5);
+      })
+      .catch(err => {
 
+      })
+  },
+  htmlEscape(html) {
+    console.log(html)
+    const reg = /(&lt;)|(&gt;)|(&amp;)|(&quot;)|(&nbsp;)/g;
+    return html.replace(reg, function (match) {
+      switch (match) {
+        case "&lt;":
+          return "<";
+        case "&gt;":
+          return ">";
+        case "&amp;":
+          return "&";
+        case "&nbsp;":
+          return " ";
+        case "&quot;":
+          return "\""
+
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const eventChannel = this.getOpenerEventChannel()
-    // eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
-    // eventChannel.emit('someEvent', { data: 'test' });
-    // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
-    eventChannel.on('acceptDataFromOpenerPage', (data) =>{
-      console.log(data)
-      this.setData({
-        info:data.data
-      })
-    })
+    this.get_detail(options.id)
   },
 
   /**

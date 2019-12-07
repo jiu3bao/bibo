@@ -18,7 +18,9 @@
       <view class='{{now_at_type===item.type?"type-item ac":"type-item"}}' 
         wx:for='{{articleType}}'
         bindtap="change_type"
-        data-type='{{item.type}}'>
+        data-type='{{item.type}}'
+        wx:if='{{item.type!==1?true:isAgent?true:false}}'
+        >
         {{item.name}}
       </view>
       <view class='more' bindtap="to_more">
@@ -35,7 +37,7 @@
       <swiper-item class='content-slider-item'>
         <notice notice-list='{{noticeList}}'></notice>
       </swiper-item>
-      <swiper-item class='content-slider-item'>
+      <swiper-item class='content-slider-item' wx:if='{{isAgent}}'>
         <class class-list='{{classList}}'></class>
       </swiper-item>
     </swiper>

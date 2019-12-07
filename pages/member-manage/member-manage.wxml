@@ -1,0 +1,49 @@
+<!--pages/member-manage/member-manage.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <view class='tab'>
+    <view class='{{type===0?"ac":""}}' bindtap="changetype" data-type='0'>
+      会员
+    </view>
+    <view class='{{type===1?"ac":""}}' bindtap="changetype" data-type='1'>
+      合伙人/高级合伙人
+    </view>
+  </view>
+  <view class='head'>
+    <view>会员信息</view>
+    <view>奖励收益</view>
+  </view>
+  <swiper class='swiper' bindchange='slide' current='{{type}}'>
+    <swiper-item class='swiper-item'>
+      <view class='item' wx:for='{{vipList}}' wx:key='{{item.id}}' 
+        data-id='{{item.id}}'
+        bindtap="todetail">
+        <view>
+          <image></image>
+          xxx
+          <image></image>
+          (会员编号)
+        </view>
+        <view>
+          <view>vip会员</view>
+          <view>+$2000</view>
+        </view>
+      </view>
+    
+    </swiper-item>
+    <swiper-item class='swiper-item'>
+      <view class='item'>
+        <view>
+          <image></image>
+          xxx
+          <image></image>
+        </view>
+        <view>
+          <view>合伙人</view>
+          <view>+$2000</view>
+        </view>
+      </view>
+    
+    </swiper-item>
+  </swiper>
+</view>

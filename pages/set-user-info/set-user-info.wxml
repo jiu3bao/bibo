@@ -2,5 +2,46 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <view class='head'>
+    <image></image>
+    <view>
+      头像
+    </view>
+  </view>
+  <view class='radio'>
+    <radio value='1'>男性</radio>
+    <radio value='0' checked>女性</radio>
+  </view>
+  <view class='info'>
+    <view>
+      <view>会员编号</view>
+      <view>{{info.account_name}}</view>
+    </view>
+    <view>
+      <view>会员到期时间</view>
+      <view>{{info.member_expire}}</view>
+    </view>
+    <view>
+      <view>真实姓名</view>
+      <input value='{{info.bank_name}}'></input>
+    </view>
+    <view>
+      <view>电话</view>
+      <input value='{{info.mobile}}'></input>
+    </view>
+    <view>
+      <view>年龄</view>
+      <input></input>
+    </view>
+    <view>
+      <view>身份证号</view>
+      <input></input>
+    </view>
+    <view>
+      <view>微信号</view>
+      <input></input>
+    </view>
+  </view>
 
+  <button>保存</button>
 </view>

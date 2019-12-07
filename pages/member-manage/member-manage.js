@@ -1,9 +1,7 @@
-// pages/set-user-info/set-user-info.js
-
+// pages/member-manage/member-manage.js
 import service from '../../utils/api.js'
 
 const app = getApp()
-
 Page({
 
   /**
@@ -11,27 +9,39 @@ Page({
    */
   data: {
     nvabarData: {
-      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      showCapsule: 0, //是否显示左上角图标   1表示显示    0表示不显示
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-    info:{}
+    type:0,
+    vipList:[],
+    partnerList:[]
   },
+  slide(e) {
+    this.setData({
+      type: e.detail.current
+    })
+  },
+  changetype(e) {
+    this.setData({
+      type: e.currentTarget.dataset.type
+    })
+  },
+  get_member_list() {
+    service('/GetMyMember',{Token:wx.getStorageSync('user').Token})
+      .then(r => {
+        let total_arr = r.data.data
+        //区分两种会员
+      })
+      .catch(err => {
 
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const eventChannel = this.getOpenerEventChannel()
-    // eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
-    // eventChannel.emit('someEvent', { data: 'test' });
-    // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
-    eventChannel.on('acceptDataFromOpenerPage', (data) =>{
-      console.log(data)
-      this.setData({
-        info:data.data
-      })
-    })
+    this.get_member_list()
   },
 
   /**

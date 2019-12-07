@@ -3,7 +3,7 @@
   box-sizing: border-box
 }
 .banner-box {
-  height:200rpx;
+  height:700rpx;
 }
 .swiper-i {
   width:100%;

@@ -43,7 +43,7 @@
     </view>
   </view>
   <view class='function-list'>
-    <view wx:for='{{fnList}}' wx:key='item.name' class='function-item'>
+    <view wx:for='{{fnList}}' wx:key='item.name' class='function-item' bindtap='redirect' data-url='{{item.redirect}}'>
       <image></image>
       <text>{{item.name}}</text>
     </view>

@@ -12,7 +12,11 @@
     "pages/user/user",
     "pages/set-user-info/set-user-info",
     "pages/article-detail/article-detail",
-    "pages/goods-detail/goods-detail"
+    "pages/goods-detail/goods-detail",
+    "pages/member-manage/member-manage",
+    "pages/class-detail/class-detail",
+    "pages/member-detail/member-detail",
+    "pages/my-pay-detail/my-pay-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

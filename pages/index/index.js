@@ -33,7 +33,9 @@ Page({
 
     newsList:[],
     noticeList:[],
-    classList:[]
+    classList:[],
+
+    isAgent:false
   },
   get_banner() {
     service('/GetBannersList',{}).then(r => {
@@ -120,9 +122,11 @@ Page({
           newsList: r.data.data
         })
       })
-    // service('/RequestCheckToken',{Token:'123465'}).then(r => {
-
-    // })
+    console.log(wx.getStorageSync('user').type > 1)
+    this.setData({
+      isAgent:true
+      // isAgent:wx.getStorageSync('user').type>1
+    })
   },
   to() {
     wx.navigateTo({

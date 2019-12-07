@@ -1,1 +1,26 @@
 /* pages/set-user-info/set-user-info.wxss */
+.contain {
+  height:100%;
+  box-sizing:border-box;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:200rpx;
+}
+.head image {
+  width:60rpx;
+  height:60rpx;
+  border-radius: 50%;
+}
+.radio {
+  display: flex;
+  align-items: center;
+}
+.info {
+
+}
+.info>view {
+  display: flex;
+}

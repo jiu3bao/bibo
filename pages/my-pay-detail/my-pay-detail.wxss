@@ -1,0 +1,38 @@
+/* pages/member-manage/member-manage.wxss */
+.contain {
+  height:100%;
+  box-sizing: border-box;
+}
+.tab {
+  display: flex;
+}
+.tab view {
+  width:50%
+}
+.tab .ac {
+  background:blue;
+  color:#fff
+}
+.head {
+  display: flex;
+  justify-content: space-between
+}
+.swiper {
+  height:100%;
+}
+.swiper-item {
+  height:100%   
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.head {
+  display:flex;
+  align-items: center;
+}
+.rank-item {
+  display:flex;
+  align-items: center
+}

@@ -1,5 +1,4 @@
-// pages/set-user-info/set-user-info.js
-
+// pages/member-detail/member-detail.js
 import service from '../../utils/api.js'
 
 const app = getApp()
@@ -15,23 +14,21 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-    info:{}
+
+  },
+  todetail(e) {
+    const id = e.currentTarget.dataset.id
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/member-detail/member-detail?id=' + id,
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const eventChannel = this.getOpenerEventChannel()
-    // eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
-    // eventChannel.emit('someEvent', { data: 'test' });
-    // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
-    eventChannel.on('acceptDataFromOpenerPage', (data) =>{
-      console.log(data)
-      this.setData({
-        info:data.data
-      })
-    })
+
   },
 
   /**
