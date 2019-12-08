@@ -40,6 +40,20 @@ Page({
   set_notice(page = 1) {
     this.get_notice(page)
       .then(r => {
+        console.log(r)
+        if (r.data.error_code === 6) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+            success: () => {
+              console.log(12123123)
+            },
+            fail:(e) => {
+              console.log(e)
+            }
+          },
+          )
+          return 
+        } 
         if (r.data.error_code!==0) {
           console.log(r.data.message)
           return 

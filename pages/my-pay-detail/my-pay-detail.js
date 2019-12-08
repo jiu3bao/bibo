@@ -85,6 +85,11 @@ Page({
     service('/GetPoolandIndex', { Token: wx.getStorageSync('user').Token})
       .then(r => {
         // const arr = this.data.rankList
+        if (r.data.error_code === 6) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        } 
         this.setData({
           rankinfo:r.data.data
         })
@@ -102,6 +107,11 @@ Page({
     }
     service('/GetMedicalRecordSequence',data)
     .then(r => {
+      if (r.data.error_code === 6) {
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+      } 
       if(r.data.data.length===0) {
         this.setData({
           islastpage2:true
@@ -123,6 +133,11 @@ Page({
   onLoad: function (options) {
     this.get_pay_list(1, this.data.pagesize,0)
       .then(r=> {
+        if (r.data.error_code === 6) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        } 
         const { notget, geted} = this.data.payList
         this.setData({
           payList: { notget: [...r.data.data], geted }
@@ -133,6 +148,11 @@ Page({
       })
     this.get_pay_list(this.data.page1, 10, 1)
       .then(r => {
+        if (r.data.error_code === 6) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        } 
         if(r.data.data.length===0) {
           this.setData({
             islastpage1:true 

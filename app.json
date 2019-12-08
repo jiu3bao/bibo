@@ -16,7 +16,9 @@
     "pages/member-manage/member-manage",
     "pages/class-detail/class-detail",
     "pages/member-detail/member-detail",
-    "pages/my-pay-detail/my-pay-detail"
+    "pages/my-pay-detail/my-pay-detail",
+    "pages/extension-service/extension-service",
+    "pages/extension-detail/extension-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -122,15 +122,16 @@ Page({
           newsList: r.data.data
         })
       })
-    console.log(wx.getStorageSync('user').type > 1)
     this.setData({
-      isAgent:true
-      // isAgent:wx.getStorageSync('user').type>1
+      // isAgent:true
+      isAgent:wx.getStorageSync('user').type>1
     })
+    this.test_openid()
   },
-  to() {
-    wx.navigateTo({
-      url: '/pages/next/next',
+  test_openid() {
+    service('/GetWXXcxOpenid', { code:'wxa95f4d38ecc653d5'})
+    .then(r => {
+      console.log(r)
     })
   }
 })

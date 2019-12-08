@@ -30,6 +30,11 @@ Page({
   get_member_list() {
     service('/GetMyMember',{Token:wx.getStorageSync('user').Token})
       .then(r => {
+        if (r.data.error_code === 6) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        } 
         let total_arr = r.data.data
         //区分两种会员
       })

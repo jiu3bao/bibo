@@ -15,35 +15,40 @@ Page({
     },
     // 此页面 页面内容距最顶部的距离
     navbarHeight: app.globalData.navbarHeight,
-    detail: {}
+    list: [],
+    page:1,
+    islastpage:false
 
   },
-  get_detail(id) {
+  get_list(p) {
     const data = {
-      id:id,
-      Token:wx.getStorageSync('user').Token
+      Param: 1,
+      Page:p,
+      PageSize:10
     }
-    service('/GetGoodsDetail',data)
+    service('/GetPublicArticlesList', data)
       .then(r => {
-        if (r.data.error_code===6) {
-          wx.navigateTo({
-            url: '/pages/login/login',
-          })
-        } 
-        if (r.data.error_code !==0) return 
+        if(!!!r.data.data.length) return 
+        const arr = this.data.list
         this.setData({
-          detail:r.data.data
+          list: [...arr,...r.data.data]
         })
       })
       .catch(err => {
 
       })
   },
+  todetail(e) {
+    const id=e.currentTarget.dataset.id  
+    wx.navigateTo({
+      url: '/pages/extension-detail/extension-detail?id='+id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get_detail(options.id)
+    this.get_list(1)
   },
 
   /**
@@ -85,13 +90,18 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.islastpage) return
+    const p = this.data.page+1
+    this.setData({
+      page:p
+    })
+    this.get_list(p)
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    
   }
 })

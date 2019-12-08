@@ -23,7 +23,7 @@ Page({
         name: '推广任务',
         img: '',
         auth: 1,
-        redirect:''
+        redirect:'/pages/extension-service/extension-service'
       }, {
         name: '微课培训',
         img: '',

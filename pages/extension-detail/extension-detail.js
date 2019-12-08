@@ -1,5 +1,6 @@
-// pages/check-token/check-token.js
+// pages/article-detail/article-detail.js
 import service from '../../utils/api.js'
+const app = getApp()
 
 Page({
 
@@ -7,39 +8,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '我的主页', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    navbarHeight: app.globalData.navbarHeight,
+    detail: {}
   },
+  get_detail(id) {
+    service('/GetArticlesDetail', { id: id })
+      .then(r => {
+        var that = this;
+        this.setData({
+          detail: r.data.data
+        })
+      })
+      .catch(err => {
 
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const userinfo = wx.getStorageSync('user')
-    if(userinfo.Token) {
-      service('/RequestCheckToken',
-        { Token: userinfo.Token})
-        .then(r => {
-          if (r.data.error_code!==0) {
-            console.log(r.data.message)
-          }
-          wx.switchTab({
-            url: '/pages/index/index'
-          })
-        })
-    }else {
-      try {
-        wx.removeStorageSync('user')
-      } catch (e) {
-        // Do something when catch error
-      }
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
-      // wx.navigateTo({
-      //   url: '/pages/login/login',
-      // })
-    }
-
+    this.get_detail(options.id)
   },
 
   /**
