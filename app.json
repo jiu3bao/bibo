@@ -18,7 +18,10 @@
     "pages/member-detail/member-detail",
     "pages/my-pay-detail/my-pay-detail",
     "pages/extension-service/extension-service",
-    "pages/extension-detail/extension-detail"
+    "pages/extension-detail/extension-detail",
+    "pages/wallet/wallet",
+    "pages/bankcard-list/backcard-list",
+    "pages/qrcode/qrcode"
   ],
   "window": {
     "backgroundTextStyle": "light",

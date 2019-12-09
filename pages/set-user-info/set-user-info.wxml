@@ -2,8 +2,8 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view class='head'>
-    <image></image>
+  <view class='head' bindtap='chooseimage'>
+    <image mode="aspecFill" src='{{head_img}}'></image>
     <view>
       头像
     </view>
@@ -43,5 +43,5 @@
     </view>
   </view>
 
-  <button>保存</button>
+  <button bindtap="save">保存</button>
 </view>

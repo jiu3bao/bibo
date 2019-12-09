@@ -1,0 +1,6 @@
+<!--pages/qrcode/qrcode.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+
+</view>

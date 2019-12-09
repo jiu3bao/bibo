@@ -2,18 +2,19 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <view class='tab'>
-    <view class='{{type===0?"ac":""}}' bindtap="changetype" data-type='0'>
-      会员
-    </view>
-    <view class='{{type===1?"ac":""}}' bindtap="changetype" data-type='1'>
-      合伙人/高级合伙人
+    <view class='{{now_at_type===item.type?"ac":""}}' 
+        wx:for='{{type}}'
+        bindtap="change_type"
+        data-type='{{item.type}}'
+        >
+        {{item.name}}
     </view>
   </view>
   <view class='head'>
     <view>会员信息</view>
     <view>奖励收益</view>
   </view>
-  <swiper class='swiper' bindchange='slide' current='{{type}}'>
+  <swiper class='swiper' bindchange='slide' current='{{now_at_type}}'>
     <swiper-item class='swiper-item'>
       <view class='item' wx:for='{{vipList}}' wx:key='{{item.id}}' 
         data-id='{{item.id}}'

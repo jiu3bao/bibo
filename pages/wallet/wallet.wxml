@@ -1,0 +1,83 @@
+<!--pages/wallet/wallet.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <view class='money' style='top:{{navbarHeight}}px'>
+    <view>
+      我的余额
+    </view>
+    <view>
+      <text>￥</text>
+      <input value='{{money}}' type='number' bindinput='input_money' disabled='{{true}}'></input>
+    </view>
+    <view>
+      提现手续费为6%，将于7个工作日转到您绑定的银行卡
+    </view>
+  </view>
+  <button class='btn' bindtap="apply_money" disabled='{{money<100}}'>提现</button>
+  <view class='add-card'>
+    <text>+</text>
+    <text>添加银行卡</text>
+  </view>
+  <view class='tip'>
+    收益账单
+  </view>
+  <view class='box'>
+    <view class='type'>
+      <view class='{{now_at_type===item.type?"active":""}}' 
+          wx:for='{{type}}'
+          bindtap="change_type"
+          data-type='{{item.type}}'
+          >
+          {{item.name}}
+      </view>
+    </view>
+    <swiper current='{{now_at_type}}'
+      bindchange='slide'>
+      <swiper-item>
+        <view class='total'>
+          <view>总计</view>
+          <view>78945</view>
+        </view>
+        <view class='item'>
+          <view>
+            <image></image>
+            werwer
+          </view>
+          <view>
+          11-21 19:00
+          </view>
+          <view>
+            +￥2000
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class='total'>
+          <view>总计</view>
+          <view>78945</view>
+        </view>
+        <view class='item'>
+          <view>
+            <image></image>
+            werwer
+          </view>
+          <view>
+          11-21 19:00
+          </view>
+          <view>
+            +￥2000
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class='flex'>
+          <view>11-21 19:00</view>
+          <view>返现 $2000</view>
+        </view>
+        
+      </swiper-item>
+    </swiper>
+  </view>
+  <button>明细</button>
+</view>

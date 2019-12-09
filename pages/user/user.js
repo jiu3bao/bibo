@@ -18,8 +18,13 @@ Page({
       name:'我的钱包',
       img:'',
       auth:1,
-      redirect:''
+      redirect:'/pages/wallet/wallet'
     }, {
+        name: '我的推广码',
+        img: '',
+        auth: 1,
+        redirect: '/pages/qrcode/qrcode'
+      },{
         name: '推广任务',
         img: '',
         auth: 1,
@@ -80,6 +85,7 @@ Page({
           wx.navigateTo({
             url: '/pages/login/login',
           })
+          return 
         } 
         if (r.data.error_code !==0) {
           console.log(r.data.message)

@@ -1,0 +1,77 @@
+/* pages/wallet/wallet.wxss */
+.contain {
+  height:100%;
+  box-sizing: border-box
+}
+.money {
+  background:purple;
+  width:90%;
+  margin:20rpx auto;
+  color:#fff;
+  position: fixed;
+  top:0;
+  left:0;
+  height:300rpx
+}
+.btn {
+  width:200rpx;
+  line-height:70rpx;
+  border-radius: 35rpx;
+  text-align: center;
+  color:#fff;
+  background:purple;
+  position: fixed;
+  top:300rpx;
+  left:0
+}
+.add-card {
+  width:90%;
+  margin:20rpx auto;
+  text-align: center;
+  line-height:100rpx;
+  position: fixed;
+  top:370rpx;
+  left:0
+}
+.tip {
+  position: fixed;
+  top:470rpx;
+  left:0
+}
+.box {
+  height:100%;
+  padding-top:470rpx;
+  box-sizing: border-box;
+  background:lightblue;
+}
+.type {
+  display:flex;
+  align-items: center;
+}
+.type view {
+  width:33.33%;
+  text-align: center;
+}
+.type .active {
+  background:lightblue;
+  color:#fff;
+}
+.total {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  height:70rpx;
+}
+.item {
+  display:flex;
+  justify-content: space-between;
+}
+.item image {
+  width:40rpx;
+  height:40rpx;
+  border-radius: 50%
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}

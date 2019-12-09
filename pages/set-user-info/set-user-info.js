@@ -15,9 +15,76 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-    info:{}
+    info:{},
+    head_img:''
   },
+  chooseimage() {
+    const that = this
+    wx.chooseImage({
+      count:1,
+      sizeType: ['compressed'],
+      success(res) {
+        console.log(res)
+        that.setData({
+          head_img: res.tempFilePaths
+        })
+        that.up_img(res.tempFilePaths)
+        .then(r => {
+          console.log(r)
+          const i = that.data.info
+          that.setData({
+            info: { ...i, head: r.data.file_url}
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      },
+      fail(err) {
+        console.log(err)
+      }
+    })
+  },
+  up_img(path) {
+    console.log(path)
+    return new Promise((resolve,reject) => {
+      wx.uploadFile({
+        url: 'https://ym.bibo80s.com/Main/UploadFile',
+        filePath: path[0],
+        name:'img',
+        success(res) {
+          resolve(res)
+        },
+        fail(err) {
+          console.log(err)
+          reject(err)
+        }
+      })
+    })
+    
+  },
+  save() {
+    const data = {
 
+    }
+    service('/SetMyInfo',data)
+    .then(r => {
+      if (r.data.error_code===6){
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+        return
+      }
+      if(r.data.error_code!==0) {
+        console.log(r.data.message)
+        return
+      }
+      wx.navigateBack()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
