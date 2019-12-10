@@ -1,1 +1,4 @@
 /* pages/qrcode/qrcode.wxss */
+canvas {
+  display: block !important
+}

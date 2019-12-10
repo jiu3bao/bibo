@@ -2,5 +2,7 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-
+  <image src='data:image/jpeg;base64,{{qrcode}}'></image>
+  <canvas id='canvas'></canvas>
+  {{qrcode}}
 </view>

@@ -14,43 +14,69 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-
+    qrcode:'eyJNZXNzYWdlIjoi5q2k6LWE5rqQ5LiN5pSv5oyB6K+35rGC5a6e5L2T55qE5aqS5L2T57G75Z6L4oCcaW1hZ2UvanBlZ+KAneOAgiJ9'
   },
-  get_access_token() {
+  get_qrcode() {
+    const data = { Param:'id='+wx.getStorageSync('user').id}
     return new Promise((resolve,reject) => {
       wx.request({
-        url: 'https://api.weixin.qq.com/cgi-bin/token', //仅为示例，并非真实的接口地址
-        data: {
-          grant_type:'client_credential',
-          appid:'wxa95f4d38ecc653d5',
-          secret:''
-        },
-        method:'GET',
-        success(res) {
-          resolve(res)
+        url:'https://ym.bibo80s.com/API/API/GetXcxUnlimited',
+        method: "POST",
+        data,
+        responseType: 'arraybuffer', 
+        header: { 'content-type':'image/jpeg'},
+        success(r){
+          resolve(r)
+          
         },
         fail(err) {
           reject(err)
         }
       })
     })
-    
   },
-  get_qrcode(access_token) {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit', //仅为示例，并非真实的接口地址
-        data: {
-          access_token: access_token,
-          scene:{reference_id:wx.getStorageSync('user').id}
+  base64_to_file(base64) {
+    return new Promise((resolve,reject) => {
+      wx.getFileSystemManager().writeFile({
+        filePath: filePath,
+        data: base64,
+        encoding: 'binary',
+        success: () => {
+          console.log('写入成功, 路径: ', filePath);
+          resolve(filePath);
         },
-        method: 'POST',
-        success(res) {
-          resolve(res)
+        fail: err => {
+          reject('写入失败：', err);
         },
-        fail(err) {
-          reject(err)
-        }
+      });
+    })
+  },
+  draw_in_canvas(filePath) {
+    return new Promise((resolve,reject) => {
+      var ctx = wx.createCanvasContext('canvas');
+      ctx.drawImage(filePath, 0, 0, 300, 300);
+      ctx.draw(false, () => {
+        wx.canvasToTempFilePath({
+          canvasId: 'canvas',
+          success: res => {
+            let saveFilePath = res.tempFilePath;
+            console.log(res.tempFilePath)
+            // /// 删除写入的数据
+            // wx.getFileSystemManager().unlink({
+            //   filePath: filePath,
+            //   success: res => {
+            //     console.log('删除成功, 路径: ', filePath);
+            //     resolve(saveFilePath);
+            //   },
+            //   fail: err => {
+            //     reject('删除失败：', err);
+            //   }
+            // })
+          },
+          fail: err => {
+            reject('保存图片到本地失败：', err);
+          }
+        })
       })
     })
   },
@@ -58,7 +84,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.get_qrcode()
+    .then(r => {
+      console.log(r.data, wx.arrayBufferToBase64(r.data))
+      const src =  wx.arrayBufferToBase64(r.data)
+      // this.setData({
+      //   qrcode: src
+      // })
+      return this.base64_to_file(r.data)
+    })
+    .then(r1 => {
+      this.draw_in_canvas(r1)
+    })
+    .catch(err => {
+      
+    })
   },
 
   /**
