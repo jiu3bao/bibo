@@ -13,6 +13,7 @@ Page({
     },
     // 此页面 页面内容距最顶部的距离
     navbarHeight: app.globalData.navbarHeight,
+    src_url: app.globalData.src_url,
     //
     bannerList:[],
 

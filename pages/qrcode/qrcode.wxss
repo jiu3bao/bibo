@@ -1,4 +1,12 @@
 /* pages/qrcode/qrcode.wxss */
-canvas {
-  display: block !important
+.contain {
+  height:100%;
+  box-sizing: border-box;
+}
+.canvas {
+  width:100%;
+  height:100%;
+  position: fixed;
+  top:9999999rpx;
+  z-index:-1;
 }

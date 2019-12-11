@@ -14,20 +14,39 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-    qrcode:'eyJNZXNzYWdlIjoi5q2k6LWE5rqQ5LiN5pSv5oyB6K+35rGC5a6e5L2T55qE5aqS5L2T57G75Z6L4oCcaW1hZ2UvanBlZ+KAneOAgiJ9'
+    qrcode:''
   },
   get_qrcode() {
-    const data = { Param:'id='+wx.getStorageSync('user').id}
     return new Promise((resolve,reject) => {
-      wx.request({
-        url:'https://ym.bibo80s.com/API/API/GetXcxUnlimited',
-        method: "POST",
-        data,
-        responseType: 'arraybuffer', 
-        header: { 'content-type':'image/jpeg'},
-        success(r){
-          resolve(r)
-          
+      const data = {
+        Param: 'id=' + wx.getStorageSync('user').id,
+        Token: wx.getStorageSync('user').Token
+      }
+      service('/GetXcxUnlimited', data)
+        .then(r => {
+          if (r.data.error_code === 6) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+            return
+          }
+          if (r.data.error_code !== 0) {
+            console.log(r.data.message)
+          }
+          resolve(app.globalData.src_url +r.data.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
+    
+  },
+  downLoadImg(url) {
+    return new Promise((resolve,reject) => {
+      wx.getImageInfo({
+        src: url,    //请求的网络图片路径
+        success(res) {
+          resolve(res.path)
         },
         fail(err) {
           reject(err)
@@ -35,48 +54,40 @@ Page({
       })
     })
   },
-  base64_to_file(base64) {
-    return new Promise((resolve,reject) => {
-      wx.getFileSystemManager().writeFile({
-        filePath: filePath,
-        data: base64,
-        encoding: 'binary',
-        success: () => {
-          console.log('写入成功, 路径: ', filePath);
-          resolve(filePath);
+  made_canvas_img(path) {
+    const that = this
+    const ctx = wx.createCanvasContext('myCanvas')
+    ctx.save()
+    // 设置矩形边框
+    ctx.setStrokeStyle('#fff')
+    // 设置矩形宽高
+    ctx.strokeRect(0, 0, 400, 200)
+    let background = '../../img/titit.png'
+    ctx.drawImage(background, 0, 0, 400, 1000)
+    // 设置文字大小
+    ctx.setFontSize(12)
+    // 设置文字颜色
+    ctx.fillStyle = '#000'
+
+    const str = "hhhhhh就是偶发哈"
+    ctx.fillText(str, 100, 200)
+
+    ctx.drawImage(path, 200, 410, 80, 80)
+    console.log(ctx)
+    ctx.draw(false, function () {
+      console.log(123456)
+      wx.canvasToTempFilePath({
+        canvasId: 'myCanvas',
+        success (res) {
+          console.log(res.tempFilePath)
+          that.setData({
+            qrcode: res.tempFilePath,
+            hidden: false
+          })
         },
-        fail: err => {
-          reject('写入失败：', err);
-        },
-      });
-    })
-  },
-  draw_in_canvas(filePath) {
-    return new Promise((resolve,reject) => {
-      var ctx = wx.createCanvasContext('canvas');
-      ctx.drawImage(filePath, 0, 0, 300, 300);
-      ctx.draw(false, () => {
-        wx.canvasToTempFilePath({
-          canvasId: 'canvas',
-          success: res => {
-            let saveFilePath = res.tempFilePath;
-            console.log(res.tempFilePath)
-            // /// 删除写入的数据
-            // wx.getFileSystemManager().unlink({
-            //   filePath: filePath,
-            //   success: res => {
-            //     console.log('删除成功, 路径: ', filePath);
-            //     resolve(saveFilePath);
-            //   },
-            //   fail: err => {
-            //     reject('删除失败：', err);
-            //   }
-            // })
-          },
-          fail: err => {
-            reject('保存图片到本地失败：', err);
-          }
-        })
+        fail(err) {
+          console.log(err)
+        }
       })
     })
   },
@@ -86,18 +97,15 @@ Page({
   onLoad: function (options) {
     this.get_qrcode()
     .then(r => {
-      console.log(r.data, wx.arrayBufferToBase64(r.data))
-      const src =  wx.arrayBufferToBase64(r.data)
-      // this.setData({
-      //   qrcode: src
-      // })
-      return this.base64_to_file(r.data)
+      console.log(r)
+      return this.downLoadImg(r)
     })
     .then(r1 => {
-      this.draw_in_canvas(r1)
+      console.log(r1)
+      this.made_canvas_img(r1)
     })
     .catch(err => {
-      
+      console.log(err)
     })
   },
 

@@ -1,14 +1,16 @@
 <!--pages/goods-detail/goods-detail.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <image src='{{"http://ym.bibo80s.com"+detail.pic_url}}'></image>
+  <image src='{{src_url+detail.pic_url}}'></image>
+  <import src="../../wxParse/wxParse.wxml"/>
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 
   <view>
     <view>
       {{detail.name}}
       ￥{{detail.price}}
     </view>
-    <button>
+    <button bindtap="create_order">
       立即加入
     </button>
   </view>

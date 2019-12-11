@@ -10,7 +10,7 @@
     indicator-active-color='#fff'
     easing-function='{{"easeInOutCubic"}}'>
     <swiper-item class='swiper-i' wx:for='{{bannerList}}' wx:key='{{item.id}}'> 
-      <image src='{{"http://ym.bibo80s.com"+item.pic_url}}'></image>
+      <image src='{{src_url+item.pic_url}}'></image>
     </swiper-item>
   </swiper>
   <view class='article'>

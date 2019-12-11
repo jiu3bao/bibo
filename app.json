@@ -21,7 +21,8 @@
     "pages/extension-detail/extension-detail",
     "pages/wallet/wallet",
     "pages/bankcard-list/backcard-list",
-    "pages/qrcode/qrcode"
+    "pages/qrcode/qrcode",
+    "pages/set-bank/set-bank"
   ],
   "window": {
     "backgroundTextStyle": "light",

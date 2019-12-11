@@ -13,7 +13,7 @@ Page({
       title: '我的主页', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-
+    src_url: app.globalData.src_url,
     classList: [],
     page: 1,
     pageSize: 10,
@@ -53,6 +53,13 @@ Page({
       .catch(err => {
 
       })
+  },
+  todetail(e) {
+    const id = e.currentTarget.dataset.id
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/class-detail/class-detail?id=' + id,
+    })
   },
   /**
    * 生命周期函数--监听页面加载

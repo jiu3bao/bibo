@@ -14,6 +14,7 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
+    src_url: app.globalData.src_url,
     fnList:[{
       name:'我的钱包',
       img:'',
@@ -33,7 +34,7 @@ Page({
         name: '微课培训',
         img: '',
         auth: 0,
-        redirect:''
+        redirect:'/pages/more-class/more-class'
       }, {
         name: '我的消费',
         img: '',
@@ -124,8 +125,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get_base_info()
-    this.get_money_info()
+    
   },
 
   /**
@@ -139,7 +139,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.get_base_info()
+    this.get_money_info()
   },
 
   /**

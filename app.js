@@ -67,7 +67,9 @@ App({
   globalData: {
     share: false,  // 分享默认为false
     height: 0,
-    navbarHeight:0
+    navbarHeight:0,
+    src_url: "http://ym.bibo80s.com"
+
   }
 
 })

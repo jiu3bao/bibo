@@ -1,13 +1,13 @@
 <!--pages/bankcard-list/backcard-list.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view>
+  <view bindtap="toset">
     +添加银行卡
   </view>
-  <view>
-    <view>中国建设银行</view>
+  <view wx:if='{{!!!detail.bank_card.length||!!!detail.bank_name.length||!!!detail.account_name.length}}'>
+    <view>{{detail.bank_name}}</view>
     <view>
-      6222 **** **** 0009
+      {{detail.bank_card}}
     </view>
     <view>
       提现手续费为6%，将于7个工作日转到您绑定的银行卡

@@ -6,3 +6,4 @@
   <import src="../../wxParse/wxParse.wxml"/>
   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>
+<!-- <web-view src="{{'https://ym.bibo80s.com/Main/ArticlesDetail?id='+id}}"></web-view> -->

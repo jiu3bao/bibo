@@ -3,7 +3,7 @@
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <view class='base-info' bindtap="toset">
-    <image src='{{"http://ym.bibo80s.com"+baseInfo.head}}' class='head'></image>
+    <image src='{{src_url+baseInfo.head}}' class='head'></image>
     <view class='info'>
       <view>{{baseInfo.name}}</view>
       <view>会员编号{{baseInfo.account_name}}</view>

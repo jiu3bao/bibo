@@ -14,7 +14,7 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-
+    src_url: app.globalData.src_url,
     list:[],
     page: 1,
     pageSize: 10,
@@ -43,14 +43,7 @@ Page({
         console.log(r)
         if (r.data.error_code === 6) {
           wx.navigateTo({
-            url: '/pages/login/login',
-            success: () => {
-              console.log(12123123)
-            },
-            fail:(e) => {
-              console.log(e)
-            }
-          },
+            url: '/pages/login/login'}
           )
           return 
         } 
@@ -100,7 +93,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (this.data.list.length===0) {
+      this.set_notice()
+    }
   },
 
   /**

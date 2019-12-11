@@ -16,7 +16,8 @@ Page({
     },
     // 此页面 页面内容距最顶部的距离
     navbarHeight: app.globalData.navbarHeight,
-    detail:{}
+    detail:{},
+    id:''
   },
   get_detail(id) {
     service('/GetArticlesDetail',{id:id})
@@ -34,7 +35,7 @@ Page({
   },
   htmlEscape(html) {
     console.log(html)
-    const reg = /(&lt;)|(&gt;)|(&amp;)|(&quot;)|(&nbsp;)/g;
+    const reg = /(&lt;)|(&gt;)|(&amp;)|(&quot;)|(&nbsp;)|(src=\")|(src=\')/g;
     return html.replace(reg, function (match) {
       switch (match) {
         case "&lt;":
@@ -46,8 +47,11 @@ Page({
         case "&nbsp;":
           return " ";
         case "&quot;":
-          return "\""
-        
+          return "\"";
+        case "src=\"":
+          return "src=\"" + app.globalData.src_url;
+        case "src=\'":
+          return "src=\'" + app.globalData.src_url;
       }
     });
   },
@@ -55,6 +59,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      id: options.id
+    })
     this.get_detail(options.id)
   },
 
@@ -68,8 +75,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (options) {
+    console.log(options)
   },
 
   /**

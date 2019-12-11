@@ -1,4 +1,6 @@
 // components/news/news.js
+const app = getApp()
+
 Component({
   /**
    * 组件的属性列表
@@ -23,7 +25,8 @@ Component({
    */
   data: {
     first:{},
-    another:[]
+    another:[],
+    src_url: app.globalData.src_url,
   },
 
   /**

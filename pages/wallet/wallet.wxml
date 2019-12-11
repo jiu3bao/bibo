@@ -15,7 +15,7 @@
     </view>
   </view>
   <button class='btn' bindtap="apply_money" disabled='{{money<100}}'>提现</button>
-  <view class='add-card'>
+  <view class='add-card' bindtap="to_bank">
     <text>+</text>
     <text>添加银行卡</text>
   </view>

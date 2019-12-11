@@ -4,7 +4,7 @@
   <view class='class-item' wx:for='{{classList}}' wx:key='{{item.id}}' 
     bindtap="todetail"
     data-id='{{item.id}}'>
-    <image src='{{"http://ym.bibo80s.com"+item.pic_url}}'></image>
+    <image src='{{src_url+item.pic_url}}'></image>
     <view>
       <view>{{item.title}}</view>
       <view>{{item.summary}}</view>

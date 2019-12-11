@@ -23,6 +23,7 @@ Page({
       .then(r => {
         var that = this;
         const html = that.htmlEscape(r.data.data.detail)
+        console.log(html)
         this.setData({
           detail: r.data.data
         })
@@ -34,7 +35,7 @@ Page({
   },
   htmlEscape(html) {
     console.log(html)
-    const reg = /(&lt;)|(&gt;)|(&amp;)|(&quot;)|(&nbsp;)/g;
+    const reg = /(&lt;)|(&gt;)|(&amp;)|(&quot;)|(&nbsp;)|(src=\")|(src=\')/g;
     return html.replace(reg, function (match) {
       switch (match) {
         case "&lt;":
@@ -46,8 +47,11 @@ Page({
         case "&nbsp;":
           return " ";
         case "&quot;":
-          return "\""
-
+          return "\"";
+        case "src=\"":
+          return "src=\"" + app.globalData.src_url;
+        case "src=\'":
+          return "src=\'" + app.globalData.src_url;
       }
     });
   },

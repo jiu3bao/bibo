@@ -149,6 +149,11 @@ Page({
 
     })
   },
+  to_bank() {
+    wx.navigateTo({
+      url: '/pages/bankcard-list/backcard-list',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

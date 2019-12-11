@@ -1,7 +1,8 @@
 <!--components/news/news.wxml-->
 <view class='news-box'>
-  <view class='first-news'>
-    <image src='{{"http://ym.bibo80s.com"+first.pic_url}}'></image>
+  <view class='first-news' bindtap="todetail"
+    data-id='{{first.id}}'>
+    <image src='{{src_url+first.pic_url}}'></image>
     <view class='float'>
       <view class='float-title'>{{first.title}}</view>
       <view class='float-note'>{{first.summary}}</view>
@@ -19,6 +20,6 @@
       {{item.summary}}
       </view>
     </view>
-    <image src='{{"http://ym.bibo80s.com"+item.pic_url}}'></image>
+    <image src='{{src_url+item.pic_url}}'></image>
   </view>
 </view>

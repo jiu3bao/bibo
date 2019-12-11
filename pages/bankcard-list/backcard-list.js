@@ -14,14 +14,18 @@ Page({
     },
     // 此页面 页面内容距最顶部的距离
     navbarHeight: app.globalData.navbarHeight,
-    bankList:[]
+    detail:{}
   },
-
+  toset() {
+    wx.navigateTo({
+      url: '/pages/set-bank/set-bank',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -35,7 +39,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const { bank_name, bank_card, accout_name } = wx.getStorageSync('user')
+    this.setData({
+      detail: { bank_name, bank_card, accout_name }
+    })
   },
 
   /**
