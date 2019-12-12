@@ -69,29 +69,56 @@ Page({
     });
   },
   create_order() {
-    Promise.all([this.get_order_id(),this.get_openid()])
-    .then(res => {
-      return this.get_pay_param(...res)
-    })
-    .then(r => {
-      console.log(r)
-      wx.requestPayment({
-        timeStamp: r.timestamp,
-        nonceStr: r.nonceStr,
-        package: r.prepay_id,
-        signType: r.signType,
-        paySign: r.paySign,
-        success(res) { 
-          console.log(res)
-        },
-        fail(res) { 
-          console.log(res)
-        }
-      })
-    })
-    .catch(err=> {
+    if(wx.getStorageSync('openid')) {
+      this.get_order_id()
+        .then(res => {
+          return this.get_pay_param(res, wx.getStorageSync('openid'))
+        })
+        .then(r => {
+          console.log(r)
+          wx.requestPayment({
+            timeStamp: r.timestamp,
+            nonceStr: r.nonceStr,
+            package: 'prepay_id=' + r.prepay_id,
+            signType: r.signType,
+            paySign: r.paySign,
+            success(res) {
+              console.log(res)
+            },
+            fail(res) {
+              console.log(res)
+            }
+          })
+        })
+        .catch(err => {
 
-    })
+        })
+    } else {
+      Promise.all([this.get_order_id(), this.get_openid()])
+        .then(res => {
+          return this.get_pay_param(...res)
+        })
+        .then(r => {
+          console.log(r)
+          wx.requestPayment({
+            timeStamp: r.timestamp,
+            nonceStr: r.nonceStr,
+            package:  'prepay_id=' +r.prepay_id ,
+            signType: r.signType,
+            paySign: r.paySign,
+            success(res) {
+              console.log(res)
+            },
+            fail(res) {
+              console.log(res)
+            }
+          })
+        })
+        .catch(err => {
+
+        })
+    }
+    
   },
   get_order_id() {
     return new Promise((resolve,reject) => {

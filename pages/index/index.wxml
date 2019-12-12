@@ -24,8 +24,8 @@
         {{item.name}}
       </view>
       <view class='more' bindtap="to_more">
-        更多
-        <image></image>
+        更多>
+        <!-- <image></image> -->
       </view>
     </view>
     <swiper class='content-slider' 

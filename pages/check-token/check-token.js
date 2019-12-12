@@ -9,36 +9,60 @@ Page({
   data: {
 
   },
+  get_openid() {
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success(res) {
+          if (res.code) {
+            service('/GetWXXcxOpenid', {
+              code: res.code
+            })
+              .then(r => {
+                resolve(r.data.data.openid)
+              })
+          } else {
+            console.log('登录失败！' + res.errMsg)
+            reject(res.errMsg)
+          }
+        }
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const userinfo = wx.getStorageSync('user')
-    if(userinfo.Token) {
-      service('/RequestCheckToken',
-        { Token: userinfo.Token})
-        .then(r => {
-          if (r.data.error_code!==0) {
-            console.log(r.data.message)
-          }
-          wx.switchTab({
-            url: '/pages/index/index'
+    this.get_openid()
+    .then(r => {
+      wx.setStorageSync('openid', r)
+      const userinfo = wx.getStorageSync('user')
+      if (userinfo.Token) {
+        service('/RequestCheckToken',
+          { Token: userinfo.Token })
+          .then(r => {
+            if (r.data.error_code !== 0) {
+              console.log(r.data.message)
+            }
+            wx.switchTab({
+              url: '/pages/index/index'
+            })
           })
+      } else {
+        try {
+          wx.removeStorageSync('user')
+        } catch (e) {
+          // Do something when catch error
+        }
+        wx.switchTab({
+          url: '/pages/index/index'
         })
-    }else {
-      try {
-        wx.removeStorageSync('user')
-      } catch (e) {
-        // Do something when catch error
+        // wx.navigateTo({
+        //   url: '/pages/login/login',
+        // })
       }
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
-      // wx.navigateTo({
-      //   url: '/pages/login/login',
-      // })
-    }
+    })
+    
 
   },
 

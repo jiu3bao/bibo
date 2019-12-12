@@ -3,7 +3,7 @@
   box-sizing: border-box
 }
 .banner-box {
-  height:700rpx;
+  height:460rpx;
 }
 .swiper-i {
   width:100%;
@@ -19,29 +19,35 @@
 .article-type {
   display: flex;
   align-items: center;
-  padding:0 30rpx 0 50rpx
+  padding:25rpx 30rpx 20rpx 50rpx
 }
 .type-item {
   flex-shrink: 0;
   padding:10rpx;
-  margin-right:40rpx
+  margin-right:40rpx;
+  color:#959595;
+  font-size:25rpx;
+
 }
 .ac {
-  border-bottom:8rpx solid darkblue;
-  color:darkblue;
-  font-size:40rpx
+  border-bottom:4rpx solid #5c629e;
+  color:#5c629e;
+  font-size:29rpx
 }
 .more {
   width:100%;
   display: flex;
-  justify-content: flex-end
+  justify-content: flex-end;
+  color:#959595;
+  font-size:25rpx;
 }
 .more image {
   width:20rpx;
   height:20rpx
 }
 .content-slider {
-  height:100%
+  height:100%;
+  padding:0 30rpx;
 }
 .content-slider-item {
   height:100%
