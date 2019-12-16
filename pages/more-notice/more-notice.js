@@ -39,7 +39,11 @@ Page({
     this.get_notice(page)
       .then(r => {
         if (r.data.data.length === 0) {
-          console.log('no more')
+          wx.showToast({
+            title: '已经到底了',
+            duration: 2000,
+            icon: 'none'
+          })
           this.setData({
             islastpage: true
           })
@@ -51,7 +55,11 @@ Page({
         })
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   /**
@@ -101,7 +109,11 @@ Page({
    */
   onReachBottom: function () {
     if(this.data.islastpage) {
-      console.log('no more')
+      wx.showToast({
+        title: '已经到底了',
+        duration: 2000,
+        icon: 'none'
+      })
       return 
     }
     let p = this.data.page  

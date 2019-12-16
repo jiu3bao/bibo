@@ -35,24 +35,24 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "/img/titit.png",
-        "selectedIconPath": "/img/titit.png",
+        "iconPath": "/img/shouye_2.png",
+        "selectedIconPath": "/img/shouye_1.png",
         "text": "会员首页"
       },
       {
         "pagePath": "pages/join-partner/join-partner",
-        "iconPath": "/img/titit.png",
-        "selectedIconPath": "/img/titit.png",
+        "iconPath": "/img/jiaru_2.png",
+        "selectedIconPath": "/img/jiaru_1.png",
         "text": "加入合伙人"
       },
       {
         "pagePath": "pages/user/user",
-        "iconPath": "/img/titit.png",
-        "selectedIconPath": "/img/titit.png",
+        "iconPath": "/img/geren_2.png",
+        "selectedIconPath": "/img/geren_1.png",
         "text": "个人中心"
       }
     ],
-    "backgroundColor": "#333",
+    "backgroundColor": "#f5f5f5",
     "color": "#bfbfbf",
     "selectedColor": "#3db3e6"
   },

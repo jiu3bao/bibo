@@ -33,7 +33,12 @@ Page({
   //获取验证码
   get_code() {
     if (this.data.mobile.length!==11) {
-      console.log('手机号违法')
+      wx.showToast({
+        title: '手机号违法',
+        duration: 2000,
+        icon:'none'
+      })
+      // console.log('手机号违法')
       return 
     }
     if(this.data.time !==0) return
@@ -43,13 +48,26 @@ Page({
     service('/RequestCode',data)
       .then (r => {
         if (r.data.error_code !==0) {
-          console.log(r.data.message)
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          // console.log(r.data.message)
           return 
         }
+        wx.showToast({
+          title: '发送成功',
+          duration: 2000,
+        })
         this.set_timer()
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
 
   },
@@ -86,28 +104,50 @@ Page({
     }
     service('/LoginByMobile',data)
       .then(r=>{
-        console.log(r)
         if (r.data.error_code!==0) {
-          console.log(r.data.message)
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          // console.log(r.data.message)
           return 
         }
+        wx.showToast({
+          title: '登录成功',
+          duration: 2000
+        })
         wx.setStorageSync('user', r.data.data)
         wx.switchTab({
           url: '/pages/index/index'
         })
       })
       .catch(r => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   //check
   check() {
     if (this.data.mobile.length!==11) {
-      console.log('手机号违法')
+      // console.log('手机号违法')
+      wx.showToast({
+        title: '手机号违法',
+        duration: 2000,
+        icon: 'none'
+      })
       return false
     }
     if(this.data.code.length===0) {
-      console.log('没有验证码')
+      // console.log('没有验证码')
+      wx.showToast({
+        title: '没有验证码',
+        duration: 2000,
+        icon: 'none'
+      })
       return false
     }
     return true

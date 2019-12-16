@@ -33,7 +33,14 @@ Page({
           })
           return
         } 
-        if (r.data.error_code !==0) return 
+        if (r.data.error_code !==0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          return
+        } 
         var that = this;
         const html = that.htmlEscape(r.data.data.introduce)
         console.log(html)
@@ -43,11 +50,14 @@ Page({
         WxParse.wxParse('article', 'html', html, that, 5);
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   htmlEscape(html) {
-    console.log(html)
     const reg = /(&lt;)|(&gt;)|(&amp;)|(&quot;)|(&nbsp;)|(src=\")|(src=\')/g;
     return html.replace(reg, function (match) {
       switch (match) {
@@ -75,7 +85,6 @@ Page({
           return this.get_pay_param(res, wx.getStorageSync('openid'))
         })
         .then(r => {
-          console.log(r)
           wx.requestPayment({
             timeStamp: r.timestamp,
             nonceStr: r.nonceStr,
@@ -86,12 +95,20 @@ Page({
               console.log(res)
             },
             fail(res) {
-              console.log(res)
+              wx.showToast({
+                title: res,
+                duration: 2000,
+                icon: 'none'
+              })
             }
           })
         })
         .catch(err => {
-
+          wx.showToast({
+            title: '网络错误',
+            duration: 2000,
+            icon: 'none'
+          })
         })
     } else {
       Promise.all([this.get_order_id(), this.get_openid()])
@@ -99,7 +116,6 @@ Page({
           return this.get_pay_param(...res)
         })
         .then(r => {
-          console.log(r)
           wx.requestPayment({
             timeStamp: r.timestamp,
             nonceStr: r.nonceStr,
@@ -110,12 +126,20 @@ Page({
               console.log(res)
             },
             fail(res) {
-              console.log(res)
+              wx.showToast({
+                title: res,
+                duration: 2000,
+                icon: 'none'
+              })
             }
           })
         })
         .catch(err => {
-
+          wx.showToast({
+            title: '网络错误',
+            duration: 2000,
+            icon: 'none'
+          })
         })
     }
     
@@ -135,7 +159,11 @@ Page({
             return
           }
           if (r.data.error_code !== 0) {
-            console.log(r.data.message)
+            wx.showToast({
+              title: r.data.message,
+              duration: 2000,
+              icon: 'none'
+            })
             return
           }
           resolve(r.data.data)

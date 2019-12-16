@@ -2,7 +2,9 @@
 App({
   onLaunch: function (options) {
     // 判断是否由分享进入小程序
-    if (options.scene == 1007 || options.scene == 1008) {
+    console.log(options.scene)
+    const scene = options.scene
+    if (typeof options.scene === 'Number') {
       this.globalData.share = true
     } else {
       this.globalData.share = false

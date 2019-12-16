@@ -19,7 +19,6 @@ Page({
     account_name:''
   },
   input(e) {
-    console.log(e)
     const type = e.currentTarget.dataset.type
     const val = e.detail.value
     console.log(type,val)
@@ -34,7 +33,6 @@ Page({
       bank_card: this.data.bank_card,
       account_name: this.data.account_name
     }
-    console.log(data)
     service('/SetUserBank',data)
     .then(r => {
       if (r.data.error_code===6) {
@@ -43,7 +41,14 @@ Page({
         })
         return 
       }
-      if (r.data.error_code !== 0) return 
+      if (r.data.error_code !== 0) {
+        wx.showToast({
+          title: r.data.message,
+          duration: 2000,
+          icon: 'none'
+        })
+        return 
+      } 
       const user = wx.getStorageSync('user')
       user.bank_name = this.data.bank_name
       user.bank_card = this.data.bank_card
@@ -52,7 +57,11 @@ Page({
       wx.navigateBack()
     })
     .catch(err => {
-      console.log(err)
+      wx.showToast({
+        title: '网络错误',
+        duration: 2000,
+        icon: 'none'
+      })
     })
   },
   /**

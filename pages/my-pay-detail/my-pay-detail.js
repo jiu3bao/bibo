@@ -13,6 +13,7 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
+    img_root: app.globalData.src_url,
     type: 0,
     payList: {notget:[],geted:[]},
     rankList: [],
@@ -35,31 +36,69 @@ Page({
     })
     if (e.currentTarget.dataset.type===0) {
       if (!!!this.data.payList.notget.length && !!!this.data.payList.geted.length) {
+        //未返还
         this.get_pay_list(1, this.data.pagesize,0)
           .then(r => {
+            if(r.error_code===6) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+              return
+            }
+            if(r.error_code !==0) {
+              wx.showToast({
+                title: r.data.message,
+                duration: 2000,
+                icon: 'none'
+              })
+              return
+            }
             const { notget, geted } = this.data.payList
             this.setData({
               payList: { notget: [...r.data.data], geted }
             })
           })
           .catch(err => {
-
+            wx.showToast({
+              title: '网络错误',
+              duration: 2000,
+              icon: 'none'
+            })
           })
-        this.get_pay_list(this.data.page1, 10, 1)
+          //已返还
+        this.get_pay_list(this.data.page1, 10, 2)
           .then(r => {
+            if (r.error_code === 6) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+              return
+            }
+            if (r.error_code !== 0) {
+              wx.showToast({
+                title: r.data.message,
+                duration: 2000,
+                icon: 'none'
+              })
+              return
+            }
             const { notget, geted } = this.data.payList
             this.setData({
               payList: { notget, geted: [...geted, ...r.data.data] }
             })
           })
           .catch(err => {
-
+            wx.showToast({
+              title: '网络错误',
+              duration: 2000,
+              icon: 'none'
+            })
           })
       }
     } else {
       if(!!!this.data.rankList.length) {
         this.get_rank_info()
-        this.get_rank_list(1)
+        this.get_rank_list(this.data.page2)
       }
     }
   },
@@ -89,13 +128,26 @@ Page({
           wx.navigateTo({
             url: '/pages/login/login',
           })
-        } 
+          return
+        }
+        if (r.data.error_code !== 0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          return
+        }
         this.setData({
           rankinfo:r.data.data
         })
       })
       .catch(err => {
-        
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   get_rank_list(p) {
@@ -111,7 +163,16 @@ Page({
         wx.navigateTo({
           url: '/pages/login/login',
         })
-      } 
+        return
+      }
+      if (r.data.error_code !== 0) {
+        wx.showToast({
+          title: r.data.message,
+          duration: 2000,
+          icon: 'none'
+        })
+        return
+      }
       if(r.data.data.length===0) {
         this.setData({
           islastpage2:true
@@ -124,35 +185,65 @@ Page({
       })
     })
     .catch(err => {
-
+      wx.showToast({
+        title: '网络错误',
+        duration: 2000,
+        icon: 'none'
+      })
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(123123)
     this.get_pay_list(1, this.data.pagesize,0)
       .then(r=> {
         if (r.data.error_code === 6) {
           wx.navigateTo({
             url: '/pages/login/login',
           })
-        } 
+          return
+        }
+        if (r.data.error_code !== 0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          return
+        }
+        console.log(r,789798)
         const { notget, geted} = this.data.payList
         this.setData({
           payList: { notget: [...r.data.data], geted }
+        },() => {
+          console.log(this.data.payList,1231232)
         })
       })
       .catch(err => {
-        
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
-    this.get_pay_list(this.data.page1, 10, 1)
+    this.get_pay_list(this.data.page1, 10, 2)
       .then(r => {
-        if (r.data.error_code === 6) {
+        if (r.error_code === 6) {
           wx.navigateTo({
             url: '/pages/login/login',
           })
-        } 
+          return
+        }
+        if (r.error_code !== 0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          return
+        }
         if(r.data.data.length===0) {
           this.setData({
             islastpage1:true 
@@ -165,7 +256,11 @@ Page({
         })
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
 
@@ -214,7 +309,7 @@ Page({
       this.setData({
         page1:p
       })
-      this.get_pay_list(p, 10, 1)
+      this.get_pay_list(p, 10, 2)
         .then(r => {
           const { notget, geted } = this.data.payList
           this.setData({

@@ -3,5 +3,6 @@
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <image src='{{qrcode}}'></image>
-  <canvas canvas-id='myCanvas' class='canvas'></canvas>
+  <canvas canvas-id='myCanvas' class='canvas' sytle='width:{{width}}px;height:{{height}}px'></canvas>
+  <button bindtap='save_img'>保存图片到相册</button>
 </view>

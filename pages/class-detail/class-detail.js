@@ -23,18 +23,20 @@ Page({
       .then(r => {
         var that = this;
         const html = that.htmlEscape(r.data.data.detail)
-        console.log(html)
         this.setData({
           detail: r.data.data
         })
         WxParse.wxParse('article', 'html', html, that, 5);
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   htmlEscape(html) {
-    console.log(html)
     const reg = /(&lt;)|(&gt;)|(&amp;)|(&quot;)|(&nbsp;)|(src=\")|(src=\')/g;
     return html.replace(reg, function (match) {
       switch (match) {

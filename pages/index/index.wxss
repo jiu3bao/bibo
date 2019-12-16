@@ -50,5 +50,5 @@
   padding:0 30rpx;
 }
 .content-slider-item {
-  height:100%
+  height:auto
 }

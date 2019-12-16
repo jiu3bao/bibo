@@ -52,7 +52,11 @@ Page({
         })
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   format_news_by_day(arr) {
@@ -74,7 +78,6 @@ Page({
       result.push(v)
     })
     
-    console.log(result)
     return result
   },
   format_day(time) {
@@ -83,7 +86,6 @@ Page({
     const y = now.getFullYear()
     const m = now.getMonth() + 1 < 10 ? '0' + now.getMonth() : now.getMonth()
     const d = now.getDate() < 10 ? '0' + now.getDate() : now.getDate()
-    console.log(m)
     let today = y + '-' + m + '-' + d
     if (time === today){
       today ='今天'

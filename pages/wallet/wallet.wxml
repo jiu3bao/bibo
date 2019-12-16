@@ -3,23 +3,24 @@
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <view class='money' style='top:{{navbarHeight}}px'>
-    <view>
+    <view class='ye'>
       我的余额
     </view>
-    <view>
+    <view class='mo'>
       <text>￥</text>
       <input value='{{money}}' type='number' bindinput='input_money' disabled='{{true}}'></input>
     </view>
-    <view>
+    <view class='tx'>
       提现手续费为6%，将于7个工作日转到您绑定的银行卡
     </view>
   </view>
-  <button class='btn' bindtap="apply_money" disabled='{{money<100}}'>提现</button>
+  <view class='btn' bindtap="apply_money" disabled='{{money<100}}'>提现</view>
   <view class='add-card' bindtap="to_bank">
     <text>+</text>
     <text>添加银行卡</text>
   </view>
   <view class='tip'>
+    <view class='dot'></view>
     收益账单
   </view>
   <view class='box'>
@@ -32,52 +33,59 @@
           {{item.name}}
       </view>
     </view>
-    <swiper current='{{now_at_type}}'
+    <view wx:if='{{now_at_type===type[0].type}}'>
+      <view class='total'>
+        <view>总计</view>
+        <view>{{money_info.fx}}</view>
+      </view>
+      <view class='item' wx:for='{{vipPayList}}' wx:key='{{item.id}}'>
+        <view>
+          会员编号{{item.user_id}}
+        </view>
+        <view class='grey'>
+          {{item.time}}
+        </view>
+        <view class='blue'>
+          +￥{{item.bonus}}
+        </view>
+      </view>
+    </view>
+    <view wx:if='{{now_at_type===type[1].type}}'>
+      <view class='total'>
+        <view>总计</view>
+        <view>{{money_info.zs}}</view>
+      </view>
+      <view class='item' wx:for='{{extensionList}}'>
+        <view>
+          会员编号{{item.user_id}}
+        </view>
+        <view class='grey'>
+          {{item.time}}
+        </view>
+        <view class='blue'>
+          +￥{{item.bonus}}
+        </view>
+      </view>
+    </view>
+    <view wx:if='{{now_at_type===type[2].type}}'>
+      <view class='item' wx:for='{{myPayList}}'>
+        <view>{{item.time}}</view>
+        <view class='blue'>返现 ￥{{item.bonus}}</view>
+      </view>
+    </view>
+    <!-- <swiper current='{{now_at_type}}'
       bindchange='slide'>
       <swiper-item>
-        <view class='total'>
-          <view>总计</view>
-          <view>78945</view>
-        </view>
-        <view class='item'>
-          <view>
-            <image></image>
-            werwer
-          </view>
-          <view>
-          11-21 19:00
-          </view>
-          <view>
-            +￥2000
-          </view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view class='total'>
-          <view>总计</view>
-          <view>78945</view>
-        </view>
-        <view class='item'>
-          <view>
-            <image></image>
-            werwer
-          </view>
-          <view>
-          11-21 19:00
-          </view>
-          <view>
-            +￥2000
-          </view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view class='flex'>
-          <view>11-21 19:00</view>
-          <view>返现 $2000</view>
-        </view>
         
       </swiper-item>
-    </swiper>
+      <swiper-item>
+        
+      </swiper-item>
+      <swiper-item>
+        
+        
+      </swiper-item>
+    </swiper> -->
   </view>
   <button>明细</button>
 </view>

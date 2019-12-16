@@ -18,7 +18,7 @@
 }
 .nav-title image {
   height:40rpx;
-  width:50rpx
+  width:188rpx
 }
 
 .nav-capsule {

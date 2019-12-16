@@ -39,13 +39,29 @@ Page({
     isAgent:false
   },
   get_banner() {
-    service('/GetBannersList',{}).then(r => {
+    service('/GetBannersList',{})
+    .then(r => {
       this.setData({
         bannerList:r.data.data
-      },() => {
-        
       })
     })
+    .catch(e => {
+      wx.showToast({
+        title: '网络错误',
+        duration: 2000,
+        icon: 'none'
+      })
+    })
+  },
+  todetail(e) {
+    console.log(e.currentTarget.dataset)
+    const item = e.currentTarget.dataset.item
+    if (item.to_link.length>0) {
+      const id = item.to_link.split('?')[1]
+      wx.navigateTo({
+        url: '/pages/goods-detail/goods-detail?id='+id,
+      })
+    }
   },
   change_type(e,type) {
     const t = e?e.target.dataset.type:type
@@ -75,7 +91,11 @@ Page({
         
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
 
   },
@@ -123,16 +143,16 @@ Page({
           newsList: r.data.data
         })
       })
+      .catch(err => {
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
+      })
     this.setData({
       // isAgent:true
       isAgent:wx.getStorageSync('user').type>1
     })
-    this.test_openid()
   },
-  test_openid() {
-    service('/GetWXXcxOpenid', { code:'wxa95f4d38ecc653d5'})
-    .then(r => {
-      console.log(r)
-    })
-  }
 })

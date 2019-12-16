@@ -5,17 +5,17 @@
   <view class='base-info' bindtap="toset">
     <image src='{{src_url+baseInfo.head}}' class='head'></image>
     <view class='info'>
-      <view>{{baseInfo.name}}</view>
-      <view>会员编号{{baseInfo.account_name}}</view>
-      <view>{{baseInfo.mobile}}</view>
-      <view>
+      <view class='name'>{{baseInfo.name}}</view>
+      <view class='id'>会员编号{{baseInfo.id}}</view>
+      <view class='phone'>{{baseInfo.mobile}}</view>
+      <view class='type'>
         <view>
-          <image></image>
+          <image src='../../img/vip@2x.png' wx:if='{{baseInfo.is_member===1}}'></image>
           <view wx:if='{{baseInfo.is_member===0}}'>普通用户</view>
-          <view wx:if='{{baseInfo.is_member===1}}'>VIP会员</view>
+          <view wx:if='{{baseInfo.is_member===1}}'>{{baseInfo.notover?'VIP会员':'会员已过期'}}</view>
         </view>
         <view wx:if='{{baseInfo.type===2||baseInfo.type===3}}'>
-          <image></image>
+          <image src='../../img/hehuoren@2x.png'></image>
           <view wx:if='{{baseInfo.type===2}}'>普通合伙人</view>
           <view wx:if='{{baseInfo.type===3}}'>高级合伙人</view>
         </view>
@@ -27,24 +27,32 @@
       <view>累计收益</view>
       <view>{{moneyInfo.total}}</view>
     </view>
+    
     <view class='detail'>
       <view>
-        <text>{{moneyInfo.zs}}</text>
+        <text class='blue'>{{moneyInfo.zs}}</text>
         <text>推广收益</text>
       </view>
+      <view class='line'></view>
       <view>
-        <text>{{moneyInfo.fx}}</text>
+        <text class='red'>{{moneyInfo.fx}}</text>
         <text>会员消费收益</text>
       </view>
+      <view class='line'></view>
       <view>
-        <text>{{moneyInfo.xf}}</text>
+        <text class='purple'>{{moneyInfo.xf}}</text>
         <text>消费返现</text>
       </view>
     </view>
   </view>
   <view class='function-list'>
-    <view wx:for='{{fnList}}' wx:key='item.name' class='function-item' bindtap='redirect' data-url='{{item.redirect}}'>
-      <image></image>
+    <view wx:for='{{fnList}}' wx:key='item.name' 
+      class='function-item' 
+      bindtap='redirect' 
+      data-url='{{item.redirect}}'
+      wx:if='{{item.auth!==0||baseInfo.type>1}}'>
+      <image src='{{item.img}}'
+      ></image>
       <text>{{item.name}}</text>
     </view>
   </view>

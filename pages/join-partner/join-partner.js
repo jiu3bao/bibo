@@ -48,11 +48,20 @@ Page({
           return 
         } 
         if (r.data.error_code!==0) {
-          console.log(r.data.message)
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
           return 
         }
         if (r.data.data.list.length === 0) {
           console.log('no more')
+          wx.showToast({
+            title: '已经到底了',
+            duration: 2000,
+            icon: 'none'
+          })
           this.setData({
             islastpage: true
           })
@@ -64,7 +73,11 @@ Page({
         })
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   todetail(e) {
@@ -93,9 +106,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.list.length===0) {
-      this.set_notice()
-    }
+    // if (this.data.list.length===0) {
+    //   this.set_notice()
+    // }
   },
 
   /**

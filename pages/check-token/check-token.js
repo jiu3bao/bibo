@@ -42,10 +42,22 @@ Page({
           { Token: userinfo.Token })
           .then(r => {
             if (r.data.error_code !== 0) {
-              console.log(r.data.message)
+              // console.log(r.data.message)
+              wx.showToast({
+                title: r.data.message,
+                duration: 2000,
+                icon: 'none'
+              })
             }
             wx.switchTab({
               url: '/pages/index/index'
+            })
+          })
+          .catch(e => {
+            wx.showToast({
+              title: '网络错误',
+              duration: 2000,
+              icon: 'none'
             })
           })
       } else {
@@ -57,9 +69,6 @@ Page({
         wx.switchTab({
           url: '/pages/index/index'
         })
-        // wx.navigateTo({
-        //   url: '/pages/login/login',
-        // })
       }
     })
     

@@ -8,10 +8,10 @@
       头像
     </view>
   </view>
-  <view class='radio'>
-    <radio value='1'>男性</radio>
-    <radio value='0' checked>女性</radio>
-  </view>
+  <radio-group class='radio' bindchange="radioChange">
+    <radio value='男' checked='{{info.sex === "男"}}'>男性</radio>
+    <radio value='女' checked='{{info.sex === "女"}}'>女性</radio>
+  </radio-group>
   <view class='info'>
     <view>
       <view>会员编号</view>
@@ -23,23 +23,23 @@
     </view>
     <view>
       <view>真实姓名</view>
-      <input value='{{info.bank_name}}'></input>
+      <input value='{{info.name}}' bindinput="set_info" data-type='name'></input>
     </view>
     <view>
       <view>电话</view>
-      <input value='{{info.mobile}}'></input>
+      <input value='{{info.mobile}}' bindinput="set_info" data-type='mobile'></input>
     </view>
     <view>
       <view>年龄</view>
-      <input></input>
+      <input value='{{info.birthday}}' bindinput="set_info" data-type='birthday'></input>
     </view>
     <view>
       <view>身份证号</view>
-      <input></input>
+      <input value='{{info.sfzh}}' bindinput="set_info" data-type='sfzh'></input>
     </view>
     <view>
       <view>微信号</view>
-      <input></input>
+      <input value='{{info.wx_open_id}}' bindinput="set_info" data-type='wx_open_id'></input>
     </view>
   </view>
 

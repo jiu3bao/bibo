@@ -2,16 +2,7 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 
 <view class='class-box' style='padding-top:{{navbarHeight}}px'>
-  <view class='class-item' 
-    wx:for='{{classList}}' 
-    wx:key='{{item.id}}' 
-    bindtap="todetail"
-    data-id='{{item.id}}'>
-    <image src='{{src_url+item.pic_url}}'></image>
-    <view>
-      <view>{{item.title}}</view>
-      <view>{{item.summary}}</view>
-    </view>
-    
+  <view class='block'>
+    <class class-list='{{classList}}'></class>
   </view>
 </view>

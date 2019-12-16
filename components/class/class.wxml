@@ -5,7 +5,7 @@
     bindtap="todetail"
     data-id='{{item.id}}'>
     <image src='{{src_url+item.pic_url}}'></image>
-    <view>
+    <view class='content'>
       <view>{{item.title}}</view>
       <view>{{item.summary}}</view>
     </view>

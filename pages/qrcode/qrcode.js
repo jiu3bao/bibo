@@ -14,7 +14,9 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-    qrcode:''
+    qrcode:'',
+    width:0,
+    height:0,
   },
   get_qrcode() {
     return new Promise((resolve,reject) => {
@@ -56,26 +58,28 @@ Page({
   },
   made_canvas_img(path) {
     const that = this
+    
+    console.log(123)
     const ctx = wx.createCanvasContext('myCanvas')
     ctx.save()
     // 设置矩形边框
     ctx.setStrokeStyle('#fff')
     // 设置矩形宽高
     ctx.strokeRect(0, 0, 400, 200)
-    let background = '../../img/titit.png'
-    ctx.drawImage(background, 0, 0, 400, 1000)
+    let background = '../../img/qrbg.jpg'
+    console.log(that.data.width, that.data.height)
+    ctx.drawImage(background, 0, 0, that.data.width, that.data.height)
     // 设置文字大小
-    ctx.setFontSize(12)
+    ctx.setFontSize(24)
     // 设置文字颜色
-    ctx.fillStyle = '#000'
+    ctx.fillStyle = '#fff'
 
-    const str = "hhhhhh就是偶发哈"
-    ctx.fillText(str, 100, 200)
-
-    ctx.drawImage(path, 200, 410, 80, 80)
+    const str = "hhhhhh"
+    ctx.fillText(str, 180, 200)
+    ctx.fillText('hufisuh', 180, 250)
+    ctx.drawImage(path, 160, 370, 200, 200)
     console.log(ctx)
     ctx.draw(false, function () {
-      console.log(123456)
       wx.canvasToTempFilePath({
         canvasId: 'myCanvas',
         success (res) {
@@ -91,21 +95,39 @@ Page({
       })
     })
   },
+  save_img() {
+    wx.saveImageToPhotosAlbum({
+      filePath:this.data.qrcode,
+      success(res) {
+        wx.showToast({
+          title: '保存成功',
+          duration:2000
+        })
+       }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const app_info = wx.getSystemInfoSync()
+    this.setData({
+      width: app_info.windowWidth,
+      height: app_info.windowHeight
+    })
     this.get_qrcode()
     .then(r => {
-      console.log(r)
       return this.downLoadImg(r)
     })
     .then(r1 => {
-      console.log(r1)
       this.made_canvas_img(r1)
     })
     .catch(err => {
-      console.log(err)
+      wx.showToast({
+        title: '网络错误',
+        duration: 2000,
+        icon: 'none'
+      })
     })
   },
 

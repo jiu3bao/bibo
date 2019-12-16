@@ -18,6 +18,22 @@ Page({
     info:{},
     head_img:''
   },
+  set_info(e) {
+    const type = e.currentTarget.dataset.type
+    this.setData({
+      info:{...this.data.info,
+          [type]: e.detail.value
+          }
+    })
+  },
+  radioChange(e) {
+    this.setData({
+      info: {
+        ...this.data.info,
+        sex: e.detail.value
+      }
+    })
+  },
   chooseimage() {
     const that = this
     wx.chooseImage({
@@ -33,15 +49,23 @@ Page({
           console.log(r)
           const i = that.data.info
           that.setData({
-            info: { ...i, head: r.data.file_url}
+            info: { ...i, head: JSON.parse(r.data).file_url}
           })
         })
         .catch(err => {
-          console.log(err)
+          wx.showToast({
+            title: '网络错误',
+            duration: 2000,
+            icon: 'none'
+          })
         })
       },
       fail(err) {
-        console.log(err)
+        wx.showToast({
+          title: '选择图片失败',
+          duration: 2000,
+          icon: 'none'
+        })
       }
     })
   },
@@ -64,8 +88,11 @@ Page({
     
   },
   save() {
+    console.log(this.data.info,789798)
+    this.data.info.birthday = new Date().getFullYear()-this.data.info.birthday
     const data = {
-
+      ...this.data.info,
+      Token:wx.getStorageSync('user').Token,
     }
     service('/SetMyInfo',data)
     .then(r => {
@@ -82,7 +109,11 @@ Page({
       wx.navigateBack()
     })
     .catch(err => {
-      console.log(err)
+      wx.showToast({
+        title: '网络错误',
+        duration: 2000,
+        icon: 'none'
+      })
     })
   },
   /**
@@ -94,9 +125,11 @@ Page({
     // eventChannel.emit('someEvent', { data: 'test' });
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
     eventChannel.on('acceptDataFromOpenerPage', (data) =>{
-      console.log(data)
       this.setData({
-        info:data.data
+        head_img: app.globalData.src_url +data.data.head
+      })
+      this.setData({
+        info: data.data
       })
     })
   },

@@ -3,8 +3,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-radius: 5rpx;
+  background:#f9f9ff;
+  height:130rpx;
+  margin-bottom:10rpx;
+  padding:0 28rpx;
 }
 .notice-item image {
-  width:50rpx;
-  height:50rpx;
+  width:88rpx;
+  height:88rpx;
+  margin-right:26rpx;
+  flex-shrink: 0;
+}
+.notice-item view {
+  width:100%
+}
+.title {
+  font-size:25rpx;
+  color:#5c629e;
+  margin:10rpx;
+}
+.content {
+  font-size:21rpx;
+  color:#535353;
+  margin:10rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }

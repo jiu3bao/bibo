@@ -1,1 +1,8 @@
 /* pages/join-partner/join-partner.wxss */
+.project {
+  margin-bottom:20rpx;
+}
+.project image {
+  width:100%;
+  height:550rpx;
+}

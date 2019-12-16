@@ -6,22 +6,26 @@
     <view>
       银行
     </view>
-    <input value='{{bank_name}}' bindinput='input' data-type='bank_name'></input>
+    <input value='{{bank_name}}' 
+      bindinput='input' data-type='bank_name'
+      placeholder="请输入所属银行"></input>
     
   </view>
   <view>
     <view>
       银行卡号
     </view>
-    <input value='{{bank_card}}' bindinput='input' data-type='bank_card'></input>
+    <input value='{{bank_card}}' bindinput='input' data-type='bank_card'
+      placeholder="请输入银行卡号"></input>
     
   </view>
   <view>
     <view>
       姓名
     </view>
-    <input value='{{account_name}}' bindinput='input' data-type='account_name'></input>
+    <input value='{{account_name}}' bindinput='input' data-type='account_name'
+    placeholder="请输入您的姓名"></input>
     
   </view>
-  <button bindtap="save">确定</button>
+  <view bindtap="save" class='button'>确定</view>
 </view>

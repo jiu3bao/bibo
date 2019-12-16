@@ -1,15 +1,15 @@
 <!--pages/bankcard-list/backcard-list.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view bindtap="toset">
-    +添加银行卡
+  <view bindtap="toset" class='btn'>
+    +   添加银行卡
   </view>
-  <view wx:if='{{!!!detail.bank_card.length||!!!detail.bank_name.length||!!!detail.account_name.length}}'>
-    <view>{{detail.bank_name}}</view>
-    <view>
+  <view class='card'>
+    <view class='ye'>{{detail.bank_name}}</view>
+    <view  class='mo'>
       {{detail.bank_card}}
     </view>
-    <view>
+    <view class='tx'>
       提现手续费为6%，将于7个工作日转到您绑定的银行卡
     </view>
   </view>

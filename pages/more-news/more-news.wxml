@@ -1,8 +1,10 @@
 <!--pages/more-news/more-news.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='news-contain' style='padding-top:{{navbarHeight}}px'>
-  <view wx:for='{{newsList}}' wx:key="{{index}}">
-    {{item[0].day}}
-    <news news-list='{{item}}' ></news>
+  <view wx:for='{{newsList}}' wx:key="{{index}}" >
+    <view class='time'>{{item[0].day}}</view>
+    <view class='block'>
+      <news news-list='{{item}}' ></news>
+    </view>
   </view>
 </view>

@@ -39,7 +39,11 @@ Page({
     this.get_notice(page)
       .then(r => {
         if (r.data.data.length === 0) {
-          console.log('no more')
+          wx.showToast({
+            title: '已经到底了',
+            duration: 2000,
+            icon: 'none'
+          })
           this.setData({
             islastpage: true
           })
@@ -51,7 +55,11 @@ Page({
         })
       })
       .catch(err => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   todetail(e) {

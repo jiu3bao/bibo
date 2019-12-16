@@ -5,13 +5,13 @@
   <import src="../../wxParse/wxParse.wxml"/>
   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 
-  <view>
+  <view class='bottom'>
     <view>
       {{detail.name}}
-      ￥{{detail.price}}
+      <text>￥{{detail.price}}</text>
     </view>
-    <button bindtap="create_order">
+    <view bindtap="create_order" class='button'>
       立即加入
-    </button>
+    </view>
   </view>
 </view>

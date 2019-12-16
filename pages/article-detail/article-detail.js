@@ -30,7 +30,11 @@ Page({
         WxParse.wxParse('article', 'html', html, that, 5);
       })
       .catch(err=> {
-
+        wx.showToast({
+          title: 网络错误,
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   htmlEscape(html) {

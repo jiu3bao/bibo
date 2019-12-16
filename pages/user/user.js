@@ -17,39 +17,39 @@ Page({
     src_url: app.globalData.src_url,
     fnList:[{
       name:'我的钱包',
-      img:'',
+      img:'../../img/qianbao@2x.png',
       auth:1,
       redirect:'/pages/wallet/wallet'
     }, {
         name: '我的推广码',
-        img: '',
+        img: '../../img/tuiguangma@2x.png',
         auth: 1,
         redirect: '/pages/qrcode/qrcode'
       },{
         name: '推广任务',
-        img: '',
+        img: '../../img/tuiguangrenwu@2x.png',
         auth: 1,
         redirect:'/pages/extension-service/extension-service'
       }, {
         name: '微课培训',
-        img: '',
+        img: '../../img/weike@2x.png',
         auth: 0,
         redirect:'/pages/more-class/more-class'
       }, {
         name: '我的消费',
-        img: '',
+        img: '../../img/xiaofei@2x.png',
         auth: 1,
         redirect: "/pages/my-pay-detail/my-pay-detail"
 
       }, {
         name: '会员管理',
-        img: '',
+        img: '../../img/guanli@2x.png',
         auth: 0,
         redirect: "/pages/member-manage/member-manage"
 
       }, {
         name: '联系我们',
-        img: '',
+        img: '../../img/lianxi@2x.png',
         auth: 1,
         redirect:''
       }],
@@ -77,6 +77,19 @@ Page({
   redirect(e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url,
+      events: {
+        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        acceptDataFromOpenedPage: function (data) {
+          console.log(data)
+        },
+        someEvent: function (data) {
+          console.log(data)
+        }
+      },
+      success: (res) => {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.moneyInfo })
+      }
     })
   },
   get_base_info() {
@@ -89,15 +102,24 @@ Page({
           return 
         } 
         if (r.data.error_code !==0) {
-          console.log(r.data.message)
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
           return 
         }
+        r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
         this.setData({
           baseInfo:r.data.data
         })
       })
       .catch(err=> {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   get_money_info() {
@@ -109,7 +131,11 @@ Page({
           })
         }
         if (r.data.error_code !== 0) {
-          console.log(r.data.message)
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
           return
         }
         r.data.data.total = r.data.data.xf + r.data.data.fx + r.data.data.zs
@@ -118,7 +144,11 @@ Page({
         })
       })
       .catch(r => {
-
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
   /**

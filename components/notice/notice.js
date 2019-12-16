@@ -8,7 +8,11 @@ Component({
       type:Array,
       value:[],
       observer:function(newv,oldv) {
-        // console.log(newv)
+        console.log(newv)
+        if (newv === oldv) return
+        this.setData({
+          notice:newv
+        })
       }
     }
   },

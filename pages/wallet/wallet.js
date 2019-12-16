@@ -29,6 +29,7 @@ Page({
     }],
     now_at_type: 0,
     money:0,
+    money_info:{},
     vipPayList:[],
     extensionList:[],
     myPayList:[],
@@ -62,7 +63,11 @@ Page({
         return
       }
       if(r.data.error_code!==0) {
-        console.log(r.data.message)
+        wx.showToast({
+          title: r.data.message,
+          duration: 2000,
+          icon: 'none'
+        })
         return 
       }
       let arr = []
@@ -85,7 +90,11 @@ Page({
       
     })
     .catch(err => {
-      console.log(err)
+      wx.showToast({
+        title: '网络错误',
+        duration: 2000,
+        icon: 'none'
+      })
     })
     
   },
@@ -125,7 +134,11 @@ Page({
         return 
       }
       if(r.data.error_code!==0) {
-        console.log(r.dat.message)
+        wx.showToast({
+          title: r.data.message,
+          duration: 2000,
+          icon: 'none'
+        })
         return 
       }
       return service('/GetUserInfo',{ Token: token})
@@ -138,7 +151,11 @@ Page({
         return
       }
       if (r.data.error_code !== 0) {
-        console.log(r.data.message)
+        wx.showToast({
+          title: r.data.message,
+          duration: 2000,
+          icon: 'none'
+        })
         return
       }
       this.setData({
@@ -146,7 +163,11 @@ Page({
       })
     })
     .catch(err=> {
-
+      wx.showToast({
+        title: '网络错误',
+        duration: 2000,
+        icon: 'none'
+      })
     })
   },
   to_bank() {
@@ -158,7 +179,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- 
+    const eventChannel = this.getOpenerEventChannel()
+    // eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
+    // eventChannel.emit('someEvent', { data: 'test' });
+    // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
+    eventChannel.on('acceptDataFromOpenerPage', (data) => {
+      this.setData({
+        money_info:data.data
+      })
+    })
     service('/GetUserInfo', { Token: wx.getStorageSync('user').Token })
     .then(r => {
       if (r.data.error_code === 6) {
@@ -168,7 +197,11 @@ Page({
         return
       }
       if (r.data.error_code !== 0) {
-        console.log(r.data.message)
+        wx.showToast({
+          title: r.data.message,
+          duration: 2000,
+          icon: 'none'
+        })
         return
       }
       this.setData({
@@ -176,7 +209,11 @@ Page({
       })
     })
     .catch(err=> {
-
+      wx.showToast({
+        title: '网络错误',
+        duration: 2000,
+        icon: 'none'
+      })
     })
 
 
@@ -195,7 +232,11 @@ Page({
           return
         }
         if (r.data.error_code !== 0) {
-          console.log(r.data.message)
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
           return
         }
         this.setData({
@@ -204,7 +245,11 @@ Page({
 
       })
       .catch(err => {
-        console.log(err)
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
 
@@ -247,6 +292,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    const t = this.data.now_at_type
     const p = this.data['page' + t] + 1
     this.setData({
       ['page' + t]:p
@@ -266,7 +312,11 @@ Page({
           return
         }
         if (r.data.error_code !== 0) {
-          console.log(r.data.message)
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
           return
         }
         let arr = []
@@ -289,7 +339,11 @@ Page({
 
       })
       .catch(err => {
-        console.log(err)
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
 

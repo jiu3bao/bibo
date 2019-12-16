@@ -13,6 +13,7 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
+    img_root: app.globalData.src_url,
     type: [{
       type: 0,
       name: '会员'
@@ -24,12 +25,8 @@ Page({
     now_at_type: 0,
     vipList:[],
     partnerList:[],
-    page0:1,
-    page1:1,
-    pagesize:30
   },
   slide(e) {
-    console.log(e)
     const type = this.data.type[e.detail.current].type
     this.change_type(null, type)
   },
@@ -38,50 +35,10 @@ Page({
     //没做切换直接return
     if (this.data.now_at_type === t) return
     this.setData({ now_at_type: t })
-    console.log(t)
-    //有数据则不再获取
-    if (t === 0 && this.data.vipList.length !== 0) return
-    if (t === 1 && this.data.partnerList.length !== 0) return
-    //获取数据
-    const data = {
-      Page: this.data['page' + t],
-      PageSize: this.data.pagesize,
-      Param: t,
-      Token: wx.getStorageSync('user').Token
-    }
-    this.get_list(data)
-      .then(r => {
-        if (r.data.error_code) {
-          wx.navigateTo({
-            url: '/pages/login/login'
-          })
-          return
-        }
-        if (r.data.error_code !== 0) {
-          console.log(r.data.message)
-          return
-        }
-        let arr = []
-        if (t === 0) {
-          arr = this.data.vipList
-          this.setData({
-            vipList: [...arr, ...r.data.data]
-          })
-        } else if (t === 1) {
-          arr = this.data.partnerList
-          this.setData({
-            partnerList: [...arr, ...r.data.data]
-          })
-        } 
-
-      })
-      .catch(err => {
-        console.log(err)
-      })
   },
   get_list(data) {
     return new Promise((resolve, reject) => {
-      service('/GetMyBonusRecord', data)
+      service('/GetMyMember', data)
         .then(r => {
           resolve(r)
         })
@@ -95,9 +52,6 @@ Page({
    */
   onLoad: function (options) {
     const data = {
-      Page: 1,
-      PageSize: this.data.pagesize,
-      Param: 0,
       Token: wx.getStorageSync('user').Token
     }
     this.get_list(data)
@@ -109,16 +63,40 @@ Page({
           return
         }
         if (r.data.error_code !== 0) {
-          console.log(r.data.message)
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
           return
         }
+        let vip=[],partner=[]
+        r.data.data.map(item => {
+          if(item.type===2||item.type===3) {
+            partner.push(item)
+          }
+          if (item.is_member === 0) {
+            if (item.type !== 2 && item.type !== 3) {
+              item.notover = new Date(item.member_expire).getTime() > Date.now()
+              vip.push(item)
+            }
+          } else {
+            item.notover = new Date(item.member_expire).getTime() > Date.now()
+            vip.push(item)
+          }
+        })
         this.setData({
-          vipList: r.data.data
+          vipList: vip,
+          partnerList: partner
         })
 
       })
       .catch(err => {
-        console.log(err)
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
       })
   },
 

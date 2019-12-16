@@ -1,6 +1,6 @@
 /* components/news/news.wxss */
 .news-box {
-  height:800rpx
+  /* height:800rpx */
 }
 .first-news {
   position: relative;
