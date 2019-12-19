@@ -2,8 +2,12 @@
 .flex {
   display: flex;
   padding:0 30rpx;
-  border-bottom:1rpx solid #e6e6e6;
+  border-top:1rpx solid #e6e6e6;
   height:60rpx;
+  align-items: center
+}
+.between {
+  justify-content: space-between
 }
 input {
   border:1rpx solid #e6e6e6;
@@ -29,4 +33,21 @@ input {
 .pic {
   width:80rpx;
   height:80rpx;
+}
+.convers-pic {
+  border-top:1rpx solid #e6e6e6;
+}
+.icon {
+  width:30rpx;
+  height:30rpx;
+}
+.head_pic {
+  width:50rpx;
+  height:50rpx;
+}
+.info {
+  display: flex;
+  align-items: center;
+  padding-left:50rpx;
+  height:160rpx;
 }

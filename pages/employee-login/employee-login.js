@@ -46,10 +46,7 @@ Page({
           // console.log(r.data.message)
           return
         }
-        wx.showToast({
-          title: '登录成功',
-          duration: 2000
-        })
+        
         if (r.data.data.pop !== 100) {
           wx.showToast({
             title: '非平台用户',
@@ -58,8 +55,12 @@ Page({
           })
           return
         }
+        wx.showToast({
+          title: '登录成功',
+          duration: 2000
+        })
         wx.setStorageSync('user', r.data.data)       
-        wx.switchTab({
+        wx.navigateTo({
           url: '/pages/staff-page/staff-page'
         })
       })

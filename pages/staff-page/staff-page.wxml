@@ -2,18 +2,29 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'> 
-  <view class='flex'>
+  <view class='flex between'>
     <view>会员手机号</view>
     <view class='flex'>
       <input value="{{phone}}" bindinput="set_phone"></input>
       <view bindtap="confiry_phone">验证手机号</view>
     </view>
   </view>
-  <view class='flex'>
+  <view class='info flex' wx:if='{{base_info.id}}'>
+    <image class='head_pic' src=''></image>
+    <view class='content'>
+      <view class='name'>{{base_info.name}}<text>会员编号{{base_info.id}}</text></view>
+      <view>手机号{{phone}}</view>
+      <view>
+        <image src='../../img/vip@2x.png' class='icon'></image>
+        VIP会员
+      </view>
+    </view>
+  </view>
+  <view class='flex between'>
     <view>日期</view>
     <view class='blue'>2019-05-06</view>
   </view>
-  <view class='flex'>
+  <view class='flex between'>
     <view>消费医院</view>
     <view>
       <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital'>
@@ -23,11 +34,11 @@
       </picker>
     </view>
   </view>
-  <view class='flex'>
+  <view class='flex between'>
     <view>项目</view>
     <view class='flex' bindtap="add_a_item">添加项目<image src='../../img/blue-back.png' class='icon'></image></view>
   </view>
-  <view class='flex' wx:for='{{add_item}}' wx:key='{{index}}'>
+  <view class='flex between' wx:for='{{add_item}}' wx:key='{{index}}'>
     <picker mode="multiSelector" 
     bindchange="bindMultiPickerChange" 
     bindcolumnchange="bindMultiPickerColumnChange"
@@ -43,16 +54,16 @@
       </view>
     </picker>
   
-    <view class='flex'>
+    <view class='flex '>
       <input value='{{add_item[index].price}}' data-index='{{index}}' bindinput="input_price" bindblur="count_price"></input>
       <image src='../../img/blue-back.png' class='icon' data-index='{{index}}' bindtap="delete_a_item"></image>
     </view>
   </view>
-  <view class='flex'>
+  <view class='flex between'>
     <view>消费总额</view>
     <view class='blue'>￥{{total_money}}</view>
   </view>
-  <view>
+  <view class='convers-pic'>
     <view>证据图</view>
     <image src='{{pic&&pic.length>0?src_url + pic:"../../img/fangda@2x.png"}}'class='pic' bindtap="chooseimage"></image>
   </view>

@@ -1,13 +1,13 @@
 <!--pages/flow-detail/flow-detail.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view class='list'>
+  <view class='list' wx:for="{{list}}">
     <view>
-      <view>希金斯积分</view>
-      <view class='time'>2019-05-05 11：22</view>
+      <view>{{item.text}}</view>
+      <view class='time'>{{item.time}}</view>
     </view>
     <view class='blue'>
-      +4000
+      +{{item.bonus}}
     </view>
   </view>
 </view>

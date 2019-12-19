@@ -43,13 +43,13 @@
         <view>{{money_info.fx}}</view>
       </view>
       <view class='item' wx:for='{{vipPayList}}' wx:key='{{item.id}}'>
-        <view>
-          会员编号{{item.user_id}}
-        </view>
-        <view class='grey'>
-          {{item.time}}
+        <view class='flex'>
+          <image src='{{img_root+item.from_user_head}}' class='head'></image>
+          {{item.from_user_name}}
+          会员编号<text class='grey'>({{item.user_id}})</text>
         </view>
         <view class='blue'>
+          <text class='grey'>{{item.time}}</text>
           +￥{{item.bonus}}
         </view>
       </view>
@@ -60,20 +60,20 @@
         <view>{{money_info.zs}}</view>
       </view>
       <view class='item' wx:for='{{extensionList}}'>
-        <view>
-          会员编号{{item.user_id}}
-        </view>
-        <view class='grey'>
-          {{item.time}}
+        <view class='flex'>
+          <image src='{{img_root+item.from_user_head}}' class='head'></image>
+          {{item.from_user_name}}
+          会员编号<text class='grey'>({{item.user_id}})</text>
         </view>
         <view class='blue'>
+          <text class='grey'>{{item.time}}</text>
           +￥{{item.bonus}}
         </view>
       </view>
     </view>
     <view wx:if='{{now_at_type===type[2].type}}'>
       <view class='item' wx:for='{{myPayList}}'>
-        <view>{{item.time}}</view>
+        <view class='grey'>{{item.time}}</view>
         <view class='blue'>返现 ￥{{item.bonus}}</view>
       </view>
     </view>

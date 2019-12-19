@@ -49,9 +49,16 @@ Page({
                 icon: 'none'
               })
             }
-            wx.switchTab({
-              url: '/pages/index/index'
-            })
+            if(wx.getStorageSync('user').pop==100) {
+              wx.navigateTo({
+                url: '/pages/staff-page/staff-page'
+              })
+            } else {
+              wx.switchTab({
+                url: '/pages/index/index'
+              })
+            }
+            
           })
           .catch(e => {
             wx.showToast({

@@ -8,8 +8,8 @@
       <view class='name'>{{info.name}}<text>会员编号({{info.id}})</text></view>
       <view class='yellow'>收益￥{{money}}</view>
       <view class='type'>
-        <image src='../../img/vip@2x.png'></image>
-        vip会员
+        <image src='../../img/hehuoren@2x.png'></image>
+        {{item.type==2?'合伙人':'高级合伙人'}}
       </view>
     </view>
   </view>

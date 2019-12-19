@@ -14,7 +14,7 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-
+    img_root: app.globalData.src_url,
     type: [{
       type: 0,
       name: '会员消费收益'

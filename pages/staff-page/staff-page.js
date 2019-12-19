@@ -22,7 +22,8 @@ Page({
     add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio:''}],
     total_money:0,
     phone:'',
-    pic:''
+    pic:'',
+    base_info:{}
   },
   set_phone(e) {
     this.setData({
@@ -33,7 +34,24 @@ Page({
     service('/GetUserInfoByMobile',
       { mobile:this.data.phone})
       .then(r => {
-
+        if(r.data.error_code !==0) {
+          this.setData({
+            base_info: null
+          })
+          wx.showToast({
+            title: r.data.message,
+            icon:'none',
+            duration:3000
+          })
+          return 
+        }
+        this.setData({
+          base_info:r.data.data
+        })
+        wx.showToast({
+          title: '验证成功',
+          duration: 3000
+        })
       })
   },
   get_hos() {
@@ -82,8 +100,8 @@ Page({
     const old = this.data.add_item
     const multiIndex = e.detail.value
     console.log(this.data.item_list[multiIndex[0]])
-    const { item, item_type } = { ...this.data.item_list[multiIndex[0]].children[multiIndex[1]]}
-    old[item_index] = {...old[item_index],item,item_type}
+    const { item, item_type, medical_code, ratio} = { ...this.data.item_list[multiIndex[0]].children[multiIndex[1]]}
+    old[item_index] = { ...old[item_index], item, item_type, medical_code, ratio}
     this.setData({
       multiIndex: e.detail.value,
       add_item: old,
@@ -206,6 +224,7 @@ Page({
 
   },
   submit() {
+    if (!this.check()) return
     const data ={
       Token:wx.getStorageSync('user').Token,
       mobile:this.data.phone,
@@ -216,11 +235,65 @@ Page({
     }
     service('/AddProRecord',data)
     .then(r => {
-
+      if(r.data.error_code!==0) {
+        wx.showToast({
+          title: r.data.message,
+          icon:'none',
+          duration:3000
+        })
+        return 
+      }
+      wx.showToast({
+        title: '上传成功',
+        icon: 'none',
+        duration: 3000
+      })
+      this.setData({
+        phone: '',
+        hos: {},
+        pic:'',
+        add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio: '' }],
+        total_money:0,
+        base_info:null
+      })
     })
     .catch(err => {
-
+      
+      
     })
+  },
+  check() {
+    if(!this.data.base_info.id) {
+      wx.showToast({
+        title: '请验证手机号',
+        duration: 2000,
+        icon: 'none'
+      })
+      return false
+    } else if (this.data.phone.length !==11) {
+      wx.showToast({
+        title: '请输入手机号',
+        duration: 2000,
+        icon: 'none'
+      })
+      return false
+    } else if (!this.data.hos.id) {
+      wx.showToast({
+        title: '请选择医院',
+        duration: 2000,
+        icon: 'none'
+      })
+      return false
+    } else if (!this.data.add_item[0].medical_code) {
+      wx.showToast({
+        title: '请选择项目',
+        duration: 2000,
+        icon: 'none'
+      })
+      return false
+    } else {
+      return true
+    }
   },
   /**
    * 生命周期函数--监听页面加载

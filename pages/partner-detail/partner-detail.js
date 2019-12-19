@@ -16,40 +16,40 @@ Page({
     navbarHeight: app.globalData.navbarHeight,
     img_root: app.globalData.src_url,
     list: [],
-    id:'',
-    info:{},
-    money:0,
-    page:1,
-    pagesize:10,
-    islastpage:false
+    id: '',
+    info: {},
+    money: 0,
+    page: 1,
+    pagesize: 10,
+    islastpage: false
   },
   get_list() {
     const data = {
-      Page:this.data.page,
-      PageSize:this.data.pagesize,
-      Token:wx.getStorageSync('user').Token,
-      id:this.data.id
+      Page: this.data.page,
+      PageSize: this.data.pagesize,
+      Token: wx.getStorageSync('user').Token,
+      id: this.data.id
     }
-    service('/GetMyMemberMedicalRecordList',data)
-    .then(r => {
-      r.data.data.list.map(i => {
-        try{
-          i.item_list = JSON.parse(i.item)
-        } catch(e) {
+    service('/GetMyMemberMedicalRecordList', data)
+      .then(r => {
+        r.data.data.list.map(i => {
+          try {
+            i.item_list = JSON.parse(i.item)
+          } catch (e) {
+            // i.item_list = i.item
+          }
           // i.item_list = i.item
-        }
-        // i.item_list = i.item
-      })
-      this.setData({
-        list:[...this.data.list,...r.data.data.list],
-        money: r.data.data.sum_bonus
-      })
-      if(r.data.data.list.length===0) {
-        this.setData({
-          islastpage:true
         })
-      }
-    })
+        this.setData({
+          list: [...this.data.list, ...r.data.data.list],
+          money: r.data.data.sum_bonus
+        })
+        if (r.data.data.list.length === 0) {
+          this.setData({
+            islastpage: true
+          })
+        }
+      })
   },
 
   /**
@@ -66,8 +66,8 @@ Page({
       })
     })
     this.setData({
-      id:options.id
-    },() => {
+      id: options.id
+    }, () => {
       this.get_list()
     })
   },
@@ -111,10 +111,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(this.data.islastpage) return
+    if (this.data.islastpage) return
     this.setData({
-      page:this.data.page+1
-    },() => {
+      page: this.data.page + 1
+    }, () => {
       this.get_list()
     })
   },
