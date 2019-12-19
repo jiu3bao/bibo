@@ -26,3 +26,7 @@ input {
   width:30rpx;
   height:30rpx;
 }
+.pic {
+  width:80rpx;
+  height:80rpx;
+}

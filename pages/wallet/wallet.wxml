@@ -14,6 +14,7 @@
     <view class='tx'>
       提现手续费为6%，将于7个工作日转到您绑定的银行卡
     </view>
+    <image src='../../img/mingxi@2x.png' class='mx' bindtap="tomx"></image>
   </view>
   <view class='btn' bindtap="apply_money" disabled='{{money<100}}'>
     <image src='../../img/anniudaizi@2x.png'></image>
@@ -90,5 +91,4 @@
       </swiper-item>
     </swiper> -->
   </view>
-  <button>明细</button>
 </view>

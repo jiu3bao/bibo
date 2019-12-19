@@ -1,0 +1,19 @@
+/* pages/flow-detail/flow-detail.wxss */
+.list {
+  display: flex;
+  align-items: center;
+  height:100rpx;
+  justify-content: space-between;
+  padding:0 50rpx;
+  border-top:1rpx solid #e6e6e6;
+}
+.blue {
+  color:#2373ff;
+}
+.red {
+  color:#ff3131
+}
+.time {
+  font-size:21rpx;
+  color:#313131
+}

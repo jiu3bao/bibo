@@ -25,33 +25,38 @@
   </view>
   <view class='flex'>
     <view>项目</view>
-    <view class='flex'>添加项目<image src='../../img/blue-back.png' class='icon'></image></view>
+    <view class='flex' bindtap="add_a_item">添加项目<image src='../../img/blue-back.png' class='icon'></image></view>
   </view>
-  <view class='flex'>
+  <view class='flex' wx:for='{{add_item}}' wx:key='{{index}}'>
     <picker mode="multiSelector" 
     bindchange="bindMultiPickerChange" 
     bindcolumnchange="bindMultiPickerColumnChange"
+    bindcancel='cancel_picker'
+    data-index='{{index}}'
     value="{{multiIndex}}" range="{{multiArray}}" range-key="item"
     >
-      <view class='blue'>
-        {{multiArray[0][multiIndex[0]].item}}-{{multiArray[1][multiIndex[1]].item}}
+      <view class='blue' wx:if='{{add_item[index].item_type.length>0}}'>
+        {{add_item[index].item_type}}-{{add_item[index].item}}
+      </view>
+      <view wx:else class='blue'>
+        请选择项目
       </view>
     </picker>
   
     <view class='flex'>
-      <input></input>
-      <image src='../../img/blue-back.png' class='icon'></image>
+      <input value='{{add_item[index].price}}' data-index='{{index}}' bindinput="input_price" bindblur="count_price"></input>
+      <image src='../../img/blue-back.png' class='icon' data-index='{{index}}' bindtap="delete_a_item"></image>
     </view>
   </view>
   <view class='flex'>
     <view>消费总额</view>
-    <view class='blue'>￥2000</view>
+    <view class='blue'>￥{{total_money}}</view>
   </view>
   <view>
     <view>证据图</view>
-    <image></image>
+    <image src='{{pic&&pic.length>0?src_url + pic:"../../img/fangda@2x.png"}}'class='pic' bindtap="chooseimage"></image>
   </view>
-  <view class='submit'>
+  <view class='submit' bindtap="submit">
     <image src='../../img/anniudaizi@2x.png'></image>
   </view>
 </view>

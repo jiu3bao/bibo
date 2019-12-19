@@ -1,8 +1,8 @@
 {
   "pages": [
-      "pages/staff-page/staff-page",
+    "pages/wallet/wallet",
+    "pages/staff-page/staff-page",
     "pages/check-token/check-token",
-    
     "pages/login/login",
     "pages/index/index",
     "pages/logs/logs",
@@ -21,11 +21,11 @@
     "pages/my-pay-detail/my-pay-detail",
     "pages/extension-service/extension-service",
     "pages/extension-detail/extension-detail",
-    "pages/wallet/wallet",
     "pages/bankcard-list/backcard-list",
     "pages/qrcode/qrcode",
     "pages/set-bank/set-bank",
-    "pages/employee-login/employee-login"
+    "pages/employee-login/employee-login",
+    "pages/flow-detail/flow-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

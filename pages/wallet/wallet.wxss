@@ -140,3 +140,10 @@
   height:40rpx;
   border-radius: 50%
 } */
+.money .mx {
+  width:140rpx;
+  height:65rpx;
+  position: absolute;
+  left:542rpx;
+  top:40rpx;
+}

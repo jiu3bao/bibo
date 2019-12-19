@@ -13,14 +13,16 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
+    src_url: app.globalData.src_url,
     date:'',
     hos_list:[],
     hos:{},
     item_list:[],
-    multiIndex:[0,0],
-    add_item:[],
+    multiIndex:[],
+    add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio:''}],
     total_money:0,
-    phone:''
+    phone:'',
+    pic:''
   },
   set_phone(e) {
     this.setData({
@@ -75,10 +77,20 @@ Page({
     })
   },
   bindMultiPickerChange(e) {
+    console.log(e)
+    const item_index = e.currentTarget.dataset.index 
+    const old = this.data.add_item
+    const multiIndex = e.detail.value
+    console.log(this.data.item_list[multiIndex[0]])
+    const { item, item_type } = { ...this.data.item_list[multiIndex[0]].children[multiIndex[1]]}
+    old[item_index] = {...old[item_index],item,item_type}
     this.setData({
-      multiIndex: e.detail.value
+      multiIndex: e.detail.value,
+      add_item: old,
+      // total_money: old.reduce((total, curval) => total + curval.price)
     })
   },
+  //二级联动
   bindMultiPickerColumnChange(e) {
     const data = {
       multiArray: this.data.multiArray,
@@ -103,13 +115,112 @@ Page({
         }
     }
   },
-  add_a_item() {
+  cancel_picker(e) {
     this.setData({
-      add_item:[...this.data.add_a_item,{}]
+      multiIndex:[]
+    })
+  },
+  input_price(e) {
+    const all_item = this.data.add_item
+    const item = all_item[e.currentTarget.dataset.index]
+    item.price = e.detail.value 
+    this.setData({
+      add_item: all_item
+    })
+  },
+  add_a_item() {
+    const old = this.data.add_item
+    this.setData({
+      add_item: [...old, { item: '', item_type: '', price: 0, medical_code: '', ratio: ''}]
     })
   },
   delete_a_item(e) {
+    const old = this.data.add_item
+    const index = e.currentTarget.dataset.index
+    old.splice(index,1)
+    const t = old.reduce((total, curval) => total + parseFloat(curval.price), 0)
+    this.setData({
+      add_item:old,
+      total_money: t.toFixed(2)
+    })
+  },
+  count_price() {
+    const old = this.data.add_item
+    const t = old.reduce((total, curval) => total + parseFloat(curval.price),0)
+    this.setData({
+      total_money:t.toFixed(2)
+    })
+  },
 
+  chooseimage() {
+    const that = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      success(res) {
+        console.log(res)
+        that.setData({
+          head_img: res.tempFilePaths
+        })
+        that.up_img(res.tempFilePaths)
+          .then(r => {
+            console.log(r)
+            const i = that.data.info
+            that.setData({
+              pic: JSON.parse(r.data).file_url
+            })
+          })
+          .catch(err => {
+            wx.showToast({
+              title: '网络错误',
+              duration: 2000,
+              icon: 'none'
+            })
+          })
+      },
+      fail(err) {
+        wx.showToast({
+          title: '选择图片失败',
+          duration: 2000,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  up_img(path) {
+    console.log(path)
+    return new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: 'https://ym.bibo80s.com/Main/UploadFile',
+        filePath: path[0],
+        name: 'img',
+        success(res) {
+          resolve(res)
+        },
+        fail(err) {
+          console.log(err)
+          reject(err)
+        }
+      })
+    })
+
+  },
+  submit() {
+    const data ={
+      Token:wx.getStorageSync('user').Token,
+      mobile:this.data.phone,
+      hospital_id: this.data.hos.id,
+      pic_url:this.data.pic,
+      item:this.data.add_item,
+
+    }
+    service('/AddProRecord',data)
+    .then(r => {
+
+    })
+    .catch(err => {
+
+    })
   },
   /**
    * 生命周期函数--监听页面加载
