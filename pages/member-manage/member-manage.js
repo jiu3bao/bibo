@@ -47,6 +47,26 @@ Page({
         })
     })
   },
+  todetail(e) {
+    const id = e.currentTarget.dataset.id
+    const item = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: '/pages/member-detail/member-detail?id='+id,
+      events: {
+        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        acceptDataFromOpenedPage: function (data) {
+          console.log(data)
+        },
+        someEvent: function (data) {
+          console.log(data)
+        }
+      },
+      success: (res) => {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: item })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -76,10 +96,10 @@ Page({
             partner.push(item)
           }
           if (item.is_member === 0) {
-            if (item.type !== 2 && item.type !== 3) {
-              item.notover = new Date(item.member_expire).getTime() > Date.now()
-              vip.push(item)
-            }
+            // if (item.type !== 2 && item.type !== 3) {
+            //   item.notover = new Date(item.member_expire).getTime() > Date.now()
+            //   vip.push(item)
+            // }
           } else {
             item.notover = new Date(item.member_expire).getTime() > Date.now()
             vip.push(item)

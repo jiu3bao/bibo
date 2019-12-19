@@ -1,8 +1,10 @@
 {
   "pages": [
+      "pages/staff-page/staff-page",
     "pages/check-token/check-token",
-    "pages/index/index",
+    
     "pages/login/login",
+    "pages/index/index",
     "pages/logs/logs",
     "pages/next/next",
     "pages/more-notice/more-notice",
@@ -22,7 +24,8 @@
     "pages/wallet/wallet",
     "pages/bankcard-list/backcard-list",
     "pages/qrcode/qrcode",
-    "pages/set-bank/set-bank"
+    "pages/set-bank/set-bank",
+    "pages/employee-login/employee-login"
   ],
   "window": {
     "backgroundTextStyle": "light",

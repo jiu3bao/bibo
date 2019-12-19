@@ -1,0 +1,57 @@
+<!--pages/staff-page/staff-page.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='contain' style='padding-top:{{navbarHeight}}px'> 
+  <view class='flex'>
+    <view>会员手机号</view>
+    <view class='flex'>
+      <input value="{{phone}}" bindinput="set_phone"></input>
+      <view bindtap="confiry_phone">验证手机号</view>
+    </view>
+  </view>
+  <view class='flex'>
+    <view>日期</view>
+    <view class='blue'>2019-05-06</view>
+  </view>
+  <view class='flex'>
+    <view>消费医院</view>
+    <view>
+      <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital'>
+        <view>
+          {{hos.hospital?hos.hospital:'请选择医院'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class='flex'>
+    <view>项目</view>
+    <view class='flex'>添加项目<image src='../../img/blue-back.png' class='icon'></image></view>
+  </view>
+  <view class='flex'>
+    <picker mode="multiSelector" 
+    bindchange="bindMultiPickerChange" 
+    bindcolumnchange="bindMultiPickerColumnChange"
+    value="{{multiIndex}}" range="{{multiArray}}" range-key="item"
+    >
+      <view class='blue'>
+        {{multiArray[0][multiIndex[0]].item}}-{{multiArray[1][multiIndex[1]].item}}
+      </view>
+    </picker>
+  
+    <view class='flex'>
+      <input></input>
+      <image src='../../img/blue-back.png' class='icon'></image>
+    </view>
+  </view>
+  <view class='flex'>
+    <view>消费总额</view>
+    <view class='blue'>￥2000</view>
+  </view>
+  <view>
+    <view>证据图</view>
+    <image></image>
+  </view>
+  <view class='submit'>
+    <image src='../../img/anniudaizi@2x.png'></image>
+  </view>
+</view>

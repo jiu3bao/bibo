@@ -1,0 +1,16 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='contain' style='padding-top:{{navbarHeight}}px'> 
+  <view class='title'>内部管理登录</view>
+  <view class='input-box'>
+    <view>工号</view>
+    <input value='{{mobile}}' bindinput='set_mobile'></input>
+  </view>
+  <view class='input-box'>
+    <view>密码</view>
+    <input type='number' value='{{code}}' bindinput='set_code'></input>
+  </view>
+  <view>{{extension_id}}</view>
+  <button bindtap="login">登录</button>
+  <view class='to' bindtap="toemp">平台用户登录</view>
+</view>

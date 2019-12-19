@@ -14,13 +14,27 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-
+    img_root: app.globalData.src_url,
+    list: [],
+    id:'',
+    info:{},
+    money:0,
+    page:1,
+    pagesize:10
   },
-  todetail(e) {
-    const id = e.currentTarget.dataset.id
-    console.log(e)
-    wx.navigateTo({
-      url: '/pages/member-detail/member-detail?id=' + id,
+  get_list() {
+    const data = {
+      Page:this.data.page,
+      PageSize:this.data.pagesize,
+      Token:wx.getStorageSync('user').Token,
+      id:this.data.id
+    }
+    service('/GetMyMemberMedicalRecordList',data)
+    .then(r => {
+      this.setData({
+        list:r.data.data.list,
+        money: r.data.data.sum_bonus
+      })
     })
   },
 
@@ -28,7 +42,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const eventChannel = this.getOpenerEventChannel()
+    // eventChannel.emit('acceptDataFromOpenedPage', { data: 'test' });
+    // eventChannel.emit('someEvent', { data: 'test' });
+    // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
+    eventChannel.on('acceptDataFromOpenerPage', (data) => {
+      this.setData({
+        info: data.data
+      })
+    })
+    this.setData({
+      id:options.id
+    },() => {
+      this.get_list()
+    })
   },
 
   /**

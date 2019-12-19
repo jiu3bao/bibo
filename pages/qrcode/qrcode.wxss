@@ -17,4 +17,21 @@ image {
 button {
   position: relative;
   bottom:135rpx;
+  background: #229aff;
+  color:#fff;
+}
+.pre{
+  position: absolute;
+  top:600rpx;
+  left:50rpx;
+  
+}
+.pre image,.next image {
+  width:80rpx;
+  height:80rpx;
+}
+.next {
+  position: absolute;
+  top:600rpx;
+  right:50rpx;
 }

@@ -16,7 +16,7 @@
   font-size:25rpx;
 }
 .tab .ac {
-  background:blue;
+  background:#229aff;
   color:#fff
 }
 .head {

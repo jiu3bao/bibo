@@ -13,12 +13,8 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
-    time:0,
-    timer:null,
-    mobile:'',
-    code:'',
-    reference_id:'',
-    extension_id:''
+    mobile: '',
+    code: '',
   },
   //双向绑定
   set_mobile(e) {
@@ -31,94 +27,30 @@ Page({
       code: e.detail.value
     })
   },
-  //获取验证码
-  get_code() {
-    if (this.data.mobile.length!==11) {
-      wx.showToast({
-        title: '手机号违法',
-        duration: 2000,
-        icon:'none'
-      })
-      // console.log('手机号违法')
-      return 
-    }
-    if(this.data.time !==0) return
-    const data = {
-      mobile:this.data.mobile
-    }
-    service('/RequestCode',data)
-      .then (r => {
-        if (r.data.error_code !==0) {
-          wx.showToast({
-            title: r.data.message,
-            duration: 2000,
-            icon: 'none'
-          })
-          // console.log(r.data.message)
-          return 
-        }
-        wx.showToast({
-          title: '发送成功',
-          duration: 2000,
-        })
-        this.set_timer()
-      })
-      .catch(err => {
-        wx.showToast({
-          title: '网络错误',
-          duration: 2000,
-          icon: 'none'
-        })
-      })
-
-  },
-  //设置计时器
-  set_timer() {
-    if (this.data.time === 0) {
-      let t = 30
-      this.setData({
-        time: t
-      }, () => {
-        const timer = setInterval(() => {
-          this.setData({
-            timer: timer
-          })
-          t--
-          this.setData({
-            time: t
-          })
-          if (t === 0) {
-            clearInterval(timer)
-          }
-        }, 1000)
-      })
-    }
-  },
   //登录
   login() {
     const checked = this.check()
-    if(!checked) return 
+    if (!checked) return
     const data = {
-      mobile:this.data.mobile,
+      mobile: this.data.mobile,
       code: this.data.code,
-      reference_id: this.data.reference_id
     }
-    service('/LoginByMobile',data)
-      .then(r=>{
-        if (r.data.error_code!==0) {
+    service('/LoginByMobile', data)
+      .then(r => {
+        if (r.data.error_code !== 0) {
           wx.showToast({
             title: r.data.message,
             duration: 2000,
             icon: 'none'
           })
           // console.log(r.data.message)
-          return 
+          return
         }
         wx.showToast({
           title: '登录成功',
           duration: 2000
         })
-        if (r.data.data.pop !== 0) {
+        if (r.data.data.pop !== 100) {
           wx.showToast({
             title: '非平台用户',
             icon: "none",
@@ -126,10 +58,9 @@ Page({
           })
           return
         }
-        wx.setStorageSync('user', r.data.data)
-        
+        wx.setStorageSync('user', r.data.data)       
         wx.switchTab({
-          url: '/pages/index/index'
+          url: '/pages/staff-page/staff-page'
         })
       })
       .catch(r => {
@@ -142,19 +73,19 @@ Page({
   },
   //check
   check() {
-    if (this.data.mobile.length!==11) {
+    if (this.data.mobile.length === 0) {
       // console.log('手机号违法')
       wx.showToast({
-        title: '手机号违法',
+        title: '请输入工号',
         duration: 2000,
         icon: 'none'
       })
       return false
     }
-    if(this.data.code.length===0) {
+    if (this.data.code.length === 0) {
       // console.log('没有验证码')
       wx.showToast({
-        title: '没有验证码',
+        title: '请输入密码',
         duration: 2000,
         icon: 'none'
       })
@@ -163,17 +94,13 @@ Page({
     return true
   },
   toemp() {
-    wx.navigateTo({
-      url: '/pages/employee-login/employee-login',
-    })
+    wx.navigateBack()
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      extension_id: wx.getStorageSync('extension_id')
-    })
+  
   },
 
   /**
@@ -203,7 +130,7 @@ Page({
   onUnload: function () {
     clearInterval(this.data.timer)
     this.setData({
-      timer:null
+      timer: null
     })
   },
 

@@ -2,7 +2,8 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view class='money' style='top:{{navbarHeight}}px'>
+  <view class='money'>
+    <image src='../../img/qianbao_bg@2x.png'></image>
     <view class='ye'>
       我的余额
     </view>
@@ -14,7 +15,9 @@
       提现手续费为6%，将于7个工作日转到您绑定的银行卡
     </view>
   </view>
-  <view class='btn' bindtap="apply_money" disabled='{{money<100}}'>提现</view>
+  <view class='btn' bindtap="apply_money" disabled='{{money<100}}'>
+    <image src='../../img/anniudaizi@2x.png'></image>
+  </view>
   <view class='add-card' bindtap="to_bank">
     <text>+</text>
     <text>添加银行卡</text>

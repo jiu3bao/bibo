@@ -16,7 +16,8 @@ Page({
     },
     navbarHeight: app.globalData.navbarHeight,
     info:{},
-    head_img:''
+    head_img:'',
+    nowdate:''
   },
   set_info(e) {
     const type = e.currentTarget.dataset.type
@@ -87,9 +88,18 @@ Page({
     })
     
   },
+  set_birthday(e) {
+    console.log(e.detail)
+    this.setData({
+      info: {
+        ...this.data.info,
+        birthday: e.detail.value
+      }
+    })
+  },
   save() {
     console.log(this.data.info,789798)
-    this.data.info.birthday = new Date().getFullYear()-this.data.info.birthday
+    // this.data.info.birthday = new Date().getFullYear()-this.data.info.birthday
     const data = {
       ...this.data.info,
       Token:wx.getStorageSync('user').Token,
@@ -131,6 +141,15 @@ Page({
       this.setData({
         info: data.data
       })
+    })
+    const now = new Date()
+    let year = now.getFullYear()
+    let month = now.getMonth()+1
+    let day = now.getDate()
+    month = month<10?'0'+month:month
+    day = day<10?'0'+day:day
+    this.setData({
+      nowdate:year+'-'+month+'-'+day
     })
   },
 

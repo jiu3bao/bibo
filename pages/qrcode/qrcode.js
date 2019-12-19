@@ -17,6 +17,23 @@ Page({
     qrcode:'',
     width:0,
     height:0,
+    bg_list:[],
+    bg_index:0,
+    qr_local_path:''
+  },
+  get_bg() {
+    return new Promise((resolve,reject) => {
+      service('/GetPopularizeImg', {
+        "Page": 1,
+        "PageSize": 100
+      })
+      .then(r => {
+        resolve(r.data.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
   },
   get_qrcode() {
     return new Promise((resolve,reject) => {
@@ -58,15 +75,13 @@ Page({
   },
   made_canvas_img(path) {
     const that = this
-    
-    console.log(123)
     const ctx = wx.createCanvasContext('myCanvas')
     ctx.save()
     // 设置矩形边框
     ctx.setStrokeStyle('#fff')
     // 设置矩形宽高
     ctx.strokeRect(0, 0, 400, 200)
-    let background = '../../img/qrbg.jpg'
+    let background = path[0]
     console.log(that.data.width, that.data.height)
     ctx.drawImage(background, 0, 0, that.data.width, that.data.height)
     // 设置文字大小
@@ -77,20 +92,21 @@ Page({
     const str = "hhhhhh"
     ctx.fillText(str, 180, 200)
     ctx.fillText('hufisuh', 180, 250)
-    ctx.drawImage(path, 160, 370, 200, 200)
+    ctx.drawImage(path[1], 160, 370, 160, 160)
     console.log(ctx)
     ctx.draw(false, function () {
       wx.canvasToTempFilePath({
         canvasId: 'myCanvas',
         success (res) {
-          console.log(res.tempFilePath)
           that.setData({
             qrcode: res.tempFilePath,
             hidden: false
           })
+          wx.hideLoading()
         },
         fail(err) {
           console.log(err)
+          wx.showLoading()
         }
       })
     })
@@ -106,20 +122,53 @@ Page({
        }
     })
   },
+  prepic() {
+    if (this.data.bg_index===0) return 
+    wx.showLoading()
+    this.setData({
+      bg_index: this.data.bg_index-1
+    },() =>{
+      this.downLoadImg(this.data.bg_list[this.data.bg_index].pic_url)
+      .then(r => {
+        this.made_canvas_img([r, this.data.qr_local_path])
+      })
+    })
+  },
+  nextpic() {
+    if (this.data.bg_index === this.data.bg_list.length-1) return 
+    wx.showLoading()
+    this.setData({
+      bg_index: this.data.bg_index + 1
+    }, () => {
+      console.log(this.data.bg_list[this.data.bg_index].pic_url)
+      this.downLoadImg(this.data.bg_list[this.data.bg_index].pic_url)
+        .then(r => {
+          console.log(r)
+          this.made_canvas_img([r, this.data.qr_local_path])
+        })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading()
     const app_info = wx.getSystemInfoSync()
     this.setData({
       width: app_info.windowWidth,
       height: app_info.windowHeight
     })
-    this.get_qrcode()
+    Promise.all([this.get_bg(), this.get_qrcode()])
     .then(r => {
-      return this.downLoadImg(r)
+      this.setData({
+        bg_list:r[0],
+      })
+      return Promise.all([this.downLoadImg(r[0][0].pic_url), this.downLoadImg(r[1])])
     })
     .then(r1 => {
+      this.setData({
+        qr_local_path: r1[1]
+      })
       this.made_canvas_img(r1)
     })
     .catch(err => {

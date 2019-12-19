@@ -41,7 +41,7 @@
       </view>
       <view class='convice'>
         <view>证据图</view>
-        <image src='{{img_root+item.head}}'></image>
+        <image src='{{img_root+item.pic_url}}'></image>
       </view>
     </view>   
     <view class='tip'>
@@ -78,7 +78,7 @@
       </view>
       <view class='convice'>
         <view>证据图</view>
-        <image src='{{img_root+item.head}}'></image>
+        <image src='{{img_root+item.pic_url}}'></image>
       </view>
     </view> 
   </view>

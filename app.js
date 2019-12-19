@@ -3,9 +3,11 @@ App({
   onLaunch: function (options) {
     // 判断是否由分享进入小程序
     console.log(options.scene)
-    const scene = options.scene
-    if (typeof options.scene === 'Number') {
+    const scene = decodeURIComponent(options.scene)
+    if (scene.indexOf('id')>-1) {
       this.globalData.share = true
+      const id = scene.split("=")[1]
+      wx.setStorageSync('extension_id', id)
     } else {
       this.globalData.share = false
     };

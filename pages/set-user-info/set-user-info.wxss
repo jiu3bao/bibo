@@ -58,3 +58,7 @@ button {
   background:linear-gradient(to right, #69dec1 , #44cbed);
   margin-top:40rpx;
 }
+.picker view {
+  width:300rpx;
+  height:100rpx;
+}

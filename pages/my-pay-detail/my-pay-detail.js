@@ -39,19 +39,24 @@ Page({
         //未返还
         this.get_pay_list(1, this.data.pagesize,0)
           .then(r => {
-            if(r.error_code===6) {
+            if(r.data.error_code===6) {
               wx.navigateTo({
                 url: '/pages/login/login',
               })
               return
             }
-            if(r.error_code !==0) {
+            if(r.data.error_code !==0) {
               wx.showToast({
                 title: r.data.message,
                 duration: 2000,
                 icon: 'none'
               })
               return
+            }
+            if(r.data.data.length===0) {
+              this.setData({
+                islastpage1:true
+              })
             }
             const { notget, geted } = this.data.payList
             this.setData({
@@ -68,13 +73,14 @@ Page({
           //已返还
         this.get_pay_list(this.data.page1, 10, 2)
           .then(r => {
-            if (r.error_code === 6) {
+            console.log(r,4444444)
+            if (r.data.error_code === 6) {
               wx.navigateTo({
                 url: '/pages/login/login',
               })
               return
             }
-            if (r.error_code !== 0) {
+            if (r.data.error_code !== 0) {
               wx.showToast({
                 title: r.data.message,
                 duration: 2000,
@@ -85,6 +91,8 @@ Page({
             const { notget, geted } = this.data.payList
             this.setData({
               payList: { notget, geted: [...geted, ...r.data.data] }
+            },() => {
+              console.log(this.data.payList)
             })
           })
           .catch(err => {
@@ -230,13 +238,13 @@ Page({
       })
     this.get_pay_list(this.data.page1, 10, 2)
       .then(r => {
-        if (r.error_code === 6) {
+        if (r.data.error_code === 6) {
           wx.navigateTo({
             url: '/pages/login/login',
           })
           return
         }
-        if (r.error_code !== 0) {
+        if (r.data.error_code !== 0) {
           wx.showToast({
             title: r.data.message,
             duration: 2000,
@@ -244,12 +252,7 @@ Page({
           })
           return
         }
-        if(r.data.data.length===0) {
-          this.setData({
-            islastpage1:true 
-          })
-          return 
-        }
+        
         const { notget, geted } = this.data.payList
         this.setData({
           payList: { notget, geted: [...geted, ...r.data.data] }
@@ -305,12 +308,34 @@ Page({
   onReachBottom: function () {
     if(this.data.type===0) {//获取消费详情
       if(this.data.islastpage1) return
+      
       const p = this.data.page1+1
       this.setData({
         page1:p
       })
       this.get_pay_list(p, 10, 2)
         .then(r => {
+          console.log(r.data.data.length)
+          if (r.data.error_code === 6) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+            return
+          }
+          if (r.data.error_code !== 0) {
+            wx.showToast({
+              title: r.data.message,
+              duration: 2000,
+              icon: 'none'
+            })
+            return
+          }
+          if (r.data.data.length === 0) {
+            this.setData({
+              islastpage1: true
+            })
+            return
+          }
           const { notget, geted } = this.data.payList
           this.setData({
             payList: { notget, geted: [...geted, ...r.data.data] }

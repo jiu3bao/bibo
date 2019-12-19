@@ -22,7 +22,7 @@
   border-right:0
 }
 .tab .ac {
-  background:blue;
+  background:#229aff;
   color:#fff;
 }
 .head {
@@ -45,7 +45,7 @@
 .dot {
   width:10rpx;
   height:10rpx;
-  background: blue;
+  background: #229aff;
   margin-right:10rpx;
   border-radius: 50%
 }

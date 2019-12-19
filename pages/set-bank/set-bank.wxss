@@ -18,7 +18,7 @@ input {
 .contain .button {
   width:90%;
   padding:0;
-  background: blue;
+  background: #229aff;
   color:#fff;
   text-align: center;
   line-height: 86rpx;

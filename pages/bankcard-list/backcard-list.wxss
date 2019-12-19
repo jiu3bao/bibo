@@ -6,24 +6,31 @@
   width:90%;
   line-height:86rpx;
   margin:20rpx auto;
-  background: blue;
+  background: #229aff;
   color:#fff;
   border-radius: 5rpx;
   font-size:25rpx;
   text-align: center;
 }
 .card {
-  background:purple;
   width:90%;
   margin:20rpx auto;
   color:#fff;
-  border-radius: 10rpx;
   padding:50rpx 0 50rpx 50rpx;
   height:300rpx;
   box-sizing: border-box;
+  position: relative
+}
+.card image {
+  width:100%;
+  height:100%;
+  position: absolute;
+  left:0;
+  top:0
 }
 .ye {
   font-size:29rpx;
+  position: relative
 }
 .mo {
   font-size:33rpx;
@@ -32,8 +39,10 @@
   align-items: flex-end;
   width:480rpx;
   line-height:90rpx;
-  margin: 25rpx 0 20rpx 0
+  margin: 25rpx 0 20rpx 0;
+  position: relative
 }
 .tx {
   font-size:25rpx;
+  position: relative
 }

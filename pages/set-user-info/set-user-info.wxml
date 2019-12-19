@@ -30,8 +30,16 @@
       <input value='{{info.mobile}}' bindinput="set_info" data-type='mobile'></input>
     </view>
     <view>
-      <view>年龄</view>
-      <input value='{{info.birthday}}' bindinput="set_info" data-type='birthday'></input>
+      <view>出生日期</view>
+      <picker mode="date" value="{{info.birthday}}" start="1900-01-01" end="{{nowdate}}" bindchange="set_birthday">
+        <view class="picker">
+          {{info.birthday?info.birthday:'尚未选择'}}
+        </view>
+      </picker>
+      <!-- <picker  mode='{{data}}' bindchange='set_birthday' class='picker' value="{{info.birthday}}" start="1900-01-01" end="2020-09-01">
+        <view>看快乐健康{{info.birthday}}</view>
+      </picker> -->
+      <!-- <input value='{{info.birthday}}' bindinput="set_info" data-type='birthday'></input> -->
     </view>
     <view>
       <view>身份证号</view>
@@ -44,4 +52,5 @@
   </view>
 
   <button bindtap="save">保存</button>
+  
 </view>
