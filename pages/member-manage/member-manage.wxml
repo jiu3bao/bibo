@@ -22,7 +22,8 @@
       wx:if='{{now_at_type ===type[0].type}}'>
       <view>
         <image src='{{img_root+item.head}}' class='head_img'></image>
-        {{item.mobile}}
+        {{item.name}}
+        <text class='grey'>会员编号({{item.id}})</text>
         <image src='../../img/vip@2x.png' class='pai'></image>
         <!-- <view class='{{item.is_member===0?"yellow":"grey"}}'>{{item.is_member===1?'vip会员':'普通会员'}}</view> -->
       </view>
@@ -34,7 +35,8 @@
       data-id='{{item.id}}'>
       <view bindtap="topartner_detail" data-id='{{item.id}}' data-item='{{item}}'>
         <image src='{{img_root+item.head}}' class='head_img'></image>
-        {{item.mobile}}
+        {{item.name}}
+        <text class='grey'>会员编号({{item.id}})</text>
         <image src='../../img/hehuoren@2x.png'></image>
       </view>
         

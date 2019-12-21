@@ -200,7 +200,7 @@ Page({
           })
           .catch(err => {
             wx.showToast({
-              title: '网络错误',
+              title: err,
               duration: 2000,
               icon: 'none'
             })
@@ -240,7 +240,12 @@ Page({
       }
       service('/SaveMissonRecord',data)
       .then(r => {
-        resolve(r)
+        if(r.data.error_code===0) {
+          resolve(r)
+        } else {
+          reject(r.data.message)
+        }
+        
       })
       .catch(err =>{
         reject(err)

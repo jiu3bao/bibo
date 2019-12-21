@@ -47,6 +47,7 @@
   height:80rpx;
   padding:0 30rpx;
   border-bottom:1rpx solid #e6e6e6;
+  font-size:26rpx;
 }
 .item > view {
   display: flex;
@@ -78,10 +79,14 @@
 }
 .grey {
   color:#707070;
-  font-size:22rpx
+  font-size:22rpx;
+  margin-left:10rpx;
 }
 .blue {
   color:#2373ff
+}
+.red {
+  color:#ff3131;
 }
 .time {
   font-size:25rpx;
@@ -92,4 +97,7 @@
 }
 .over {
   filter: grayscale(100%);
+}
+.pai {
+  margin-left:30rpx;
 }

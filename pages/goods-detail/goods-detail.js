@@ -156,7 +156,7 @@ Page({
             wx, wx.navigateTo({
               url: '/pages/login/login',
             })
-            return
+            reject(r.data.message)
           }
           if (r.data.error_code !== 0) {
             wx.showToast({
@@ -164,7 +164,7 @@ Page({
               duration: 2000,
               icon: 'none'
             })
-            return
+            reject(r.data.message)
           }
           resolve(r.data.data)
         })

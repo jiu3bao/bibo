@@ -119,14 +119,14 @@ Page({
           title: '登录成功',
           duration: 2000
         })
-        if (r.data.data.pop !== 0) {
-          wx.showToast({
-            title: '非平台用户',
-            icon: "none",
-            duration: 3000
-          })
-          return
-        }
+        // if (r.data.data.pop !== 0) {
+        //   wx.showToast({
+        //     title: '非平台用户',
+        //     icon: "none",
+        //     duration: 3000
+        //   })
+        //   return
+        // }
         wx.setStorageSync('user', r.data.data)
         
         wx.switchTab({

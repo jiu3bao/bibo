@@ -57,10 +57,15 @@ page {
 .done {
   display: absolute;
   right:0;
-  width:60rpx;
   top:30rpx;
+  line-height:35rpx;
   color:#fff;
   padding:10rpx 20rpx;
   background:#999;
   border-radius: 5rpx;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

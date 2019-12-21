@@ -33,19 +33,22 @@
       wx:if='{{now_at_type===1}}'
       bindtap="todetail"
       data-type='done'
-      class='list'>
-      <view class='title'>
-        <text>推广任务</text>
+      class='list flex'>
+      <view>
+        <view class='title'>
+          <text>推广任务</text>
+        </view>
+        <!-- <view>将此条信息转发到微信群朋友圈</view> -->
+        <!-- <view>
+          <image src='{{img_root+item.}}'></image>
+        </view> -->
+        <view>{{item.title}}</view>
+        <view>{{item.time}}</view>
       </view>
-      <!-- <view>将此条信息转发到微信群朋友圈</view> -->
-      <!-- <view>
-        <image src='{{img_root+item.}}'></image>
-      </view> -->
-      <view>{{item.title}}</view>
-      <view>{{item.time}}</view>
+
       <view class='done'>
-      已完成
-    </view>
+        已完成
+      </view>
     </view>
     
   </view>

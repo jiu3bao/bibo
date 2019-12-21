@@ -6,9 +6,12 @@
     <view>
       银行
     </view>
-    <input value='{{bank_name}}' 
+    <picker bindchange='chose_bank' range='{{all_bank}}'>
+      {{bank_name?bank_name:'请选择银行'}}
+    </picker>
+    <!-- <input value='{{bank_name}}' 
       bindinput='input' data-type='bank_name'
-      placeholder="请输入所属银行"></input>
+      placeholder="请输入所属银行"></input> -->
     
   </view>
   <view>

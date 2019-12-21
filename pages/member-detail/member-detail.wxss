@@ -1,4 +1,7 @@
 /* pages/member-detail/member-detail.wxss */
+page {
+  font-size:26rpx
+}
 .tip {
   padding:10rpx 30rpx;
   font-size:25rpx;
@@ -26,7 +29,7 @@
   padding:30rpx 0 0rpx 50rpx;
 }
 .info >view view {
-  font-size:33rpx;
+  /* font-size:33rpx; */
   margin-right:60rpx;
 }
 
@@ -35,7 +38,7 @@
 }
 .convice {
   padding:10rpx 50rpx;
-  font-size:33rpx;
+  /* font-size:33rpx; */
   color:#313131;
 }
 .convice image {
@@ -59,10 +62,20 @@
   border-radius: 50%
 }
 .name {
-
+  color:#1b1b1b;
+  font-size:28rpx;
 }
 .name text {
-
+  font-size:24rpx;
+  margin-left:10rpx;
+}
+.phone {
+  color:#707070;
+  font-size:24rpx;
+  margin:15rpx 0;
+}
+.type {
+  font-size:26rpx;
 }
 .type image{
   width:30rpx;
@@ -70,4 +83,8 @@
 }
 .blue {
   color:#2373ff
+}
+.yellow {
+  color:#ff9c00;
+  font-size:26rpx;
 }

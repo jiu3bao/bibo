@@ -4,7 +4,7 @@
 <view class='contain' style='padding-top:{{navbarHeight}}px'> 
   <view class='flex between'>
     <view>会员手机号</view>
-    <view class='flex'>
+    <view class='flex check'>
       <input value="{{phone}}" bindinput="set_phone"></input>
       <view bindtap="confiry_phone">验证手机号</view>
     </view>
@@ -28,7 +28,7 @@
     <view>消费医院</view>
     <view>
       <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital'>
-        <view>
+        <view class='blue'>
           {{hos.hospital?hos.hospital:'请选择医院'}}
         </view>
       </picker>
@@ -36,7 +36,7 @@
   </view>
   <view class='flex between'>
     <view>项目</view>
-    <view class='flex' bindtap="add_a_item">添加项目<image src='../../img/blue-back.png' class='icon'></image></view>
+    <view class='flex red check' bindtap="add_a_item">添加项目<image src='../../img/添加1.png' class='icon'></image></view>
   </view>
   <view class='flex between' wx:for='{{add_item}}' wx:key='{{index}}'>
     <picker mode="multiSelector" 
@@ -54,9 +54,9 @@
       </view>
     </picker>
   
-    <view class='flex '>
+    <view class='flex check'>
       <input value='{{add_item[index].price}}' data-index='{{index}}' bindinput="input_price" bindblur="count_price"></input>
-      <image src='../../img/blue-back.png' class='icon' data-index='{{index}}' bindtap="delete_a_item"></image>
+      <image src='../../img/减少.png' class='icon' data-index='{{index}}' bindtap="delete_a_item"></image>
     </view>
   </view>
   <view class='flex between'>
@@ -68,6 +68,6 @@
     <image src='{{pic&&pic.length>0?src_url + pic:"../../img/添加.png"}}'class='pic' bindtap="chooseimage"></image>
   </view>
   <view class='submit' bindtap="submit">
-    <image src='../../img/anniudaizi@2x.png'></image>
+    提交
   </view>
 </view>

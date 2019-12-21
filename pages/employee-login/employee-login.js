@@ -35,7 +35,7 @@ Page({
       mobile: this.data.mobile,
       code: this.data.code,
     }
-    service('/LoginByMobile', data)
+    service('/AdminLogin', data)
       .then(r => {
         if (r.data.error_code !== 0) {
           wx.showToast({
@@ -43,13 +43,12 @@ Page({
             duration: 2000,
             icon: 'none'
           })
-          // console.log(r.data.message)
           return
         }
         
         if (r.data.data.pop !== 100) {
           wx.showToast({
-            title: '非平台用户',
+            title: '非员工',
             icon: "none",
             duration: 3000
           })

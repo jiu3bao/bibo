@@ -131,26 +131,24 @@ Page({
         wx.navigateTo({
           url: '/pages/login/login',
         })
-        return 
+        return new Promise((resolve,reject) => 
+        { reject(r.data.message)}
+        )
       }
       if(r.data.error_code!==0) {
-        wx.showToast({
-          title: r.data.message,
-          duration: 2000,
-          icon: 'none'
-        })
-        return 
+        return new Promise((resolve, reject) => { reject(r.data.message) }
+        ) 
       }
       return service('/GetUserInfo',{ Token: token})
     })
     .then(r1 => {
-      if (r.data.error_code === 6) {
+      if (r1.data.error_code === 6) {
         wx.navigateTo({
           url: '/pages/login/login',
         })
         return
       }
-      if (r.data.error_code !== 0) {
+      if (r1.data.error_code !== 0) {
         wx.showToast({
           title: r.data.message,
           duration: 2000,
@@ -159,12 +157,13 @@ Page({
         return
       }
       this.setData({
-        money: r.data.data.money
+        money: r1.data.data.money
       })
     })
     .catch(err=> {
+      console.log(err)
       wx.showToast({
-        title: '网络错误',
+        title: err,
         duration: 2000,
         icon: 'none'
       })

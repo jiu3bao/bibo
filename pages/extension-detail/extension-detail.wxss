@@ -6,11 +6,11 @@
   border-top:1rpx solid #e6e6e6;
   padding:20rpx 50rpx;
   background: #fff;
-  font-size:24rpx;
+  font-size:26rpx;
 }
 .pic {
-  width:100rpx;
-  height:100rpx;
+  width:112rpx;
+  height:112rpx;
   margin-top:10rpx;
 }
 .bottom {
@@ -21,14 +21,15 @@
 }
 .save {
   display: flex;
-  margin-bottom:20rpx;
+  /* margin-bottom:20rpx; */
 }
 .save view {
   width:50%;
   text-align: center;
   line-height: 80rpx;
   background:linear-gradient(to right, #3cb5fe , #42d4fd);
-  color:#fff
+  color:#fff;
+  font-size:26rpx;
 }
 .title {
   font-size:33rpx;

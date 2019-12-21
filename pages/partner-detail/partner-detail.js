@@ -30,16 +30,16 @@ Page({
       Token: wx.getStorageSync('user').Token,
       id: this.data.id
     }
-    service('/GetMyMemberMedicalRecordList', data)
+    service('/GetMemberBonusList', data)
       .then(r => {
         r.data.data.list.map(i => {
-          try {
-            i.item_list = JSON.parse(i.item)
-          } catch (e) {
-            // i.item_list = i.item
+          if(i.order_type=="2"){
+            i.type='合伙人'
+          } else if (i.order_type == "3") {
+            i.type='高级代理'
           }
-          // i.item_list = i.item
         })
+        console.log(r.data.data.list)
         this.setData({
           list: [...this.data.list, ...r.data.data.list],
           money: r.data.data.sum_bonus

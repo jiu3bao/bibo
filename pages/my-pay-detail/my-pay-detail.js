@@ -59,6 +59,13 @@ Page({
               })
             }
             const { notget, geted } = this.data.payList
+            r.data.data.map(i => {
+              try {
+                i.item_list = JSON.parse(i.item)
+              } catch (e) {
+                // i.item_list = i.item
+              }
+            })
             this.setData({
               payList: { notget: [...r.data.data], geted }
             })
@@ -73,7 +80,6 @@ Page({
           //已返还
         this.get_pay_list(this.data.page1, 10, 2)
           .then(r => {
-            console.log(r,4444444)
             if (r.data.error_code === 6) {
               wx.navigateTo({
                 url: '/pages/login/login',
@@ -89,6 +95,13 @@ Page({
               return
             }
             const { notget, geted } = this.data.payList
+            r.data.data.map(i => {
+              try {
+                i.item_list = JSON.parse(i.item)
+              } catch (e) {
+                // i.item_list = i.item
+              }
+            })
             this.setData({
               payList: { notget, geted: [...geted, ...r.data.data] }
             },() => {

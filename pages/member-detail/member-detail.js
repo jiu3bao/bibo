@@ -38,7 +38,6 @@ Page({
         } catch(e) {
           // i.item_list = i.item
         }
-        // i.item_list = i.item
       })
       this.setData({
         list:[...this.data.list,...r.data.data.list],
