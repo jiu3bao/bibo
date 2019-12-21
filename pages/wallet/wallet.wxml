@@ -40,7 +40,7 @@
     <view wx:if='{{now_at_type===type[0].type}}'>
       <view class='total'>
         <view>总计</view>
-        <view>{{money_info.fx}}</view>
+        <view>￥{{money_info.fx}}</view>
       </view>
       <view class='item' wx:for='{{vipPayList}}' wx:key='{{item.id}}'>
         <view class='flex'>
@@ -57,7 +57,7 @@
     <view wx:if='{{now_at_type===type[1].type}}'>
       <view class='total'>
         <view>总计</view>
-        <view>{{money_info.zs}}</view>
+        <view>￥{{money_info.zs}}</view>
       </view>
       <view class='item' wx:for='{{extensionList}}'>
         <view class='flex'>

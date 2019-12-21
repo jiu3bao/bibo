@@ -15,23 +15,83 @@ Page({
     },
     // 此页面 页面内容距最顶部的距离
     navbarHeight: app.globalData.navbarHeight,
+    img_root: app.globalData.src_url,
     list: [],
-    page:1,
-    islastpage:false
-
+    page0:1,
+    page1:1,
+    islastpage1:false,
+    islastpage0:false,
+    type: [{
+      type: 0,
+      name: '未完成'
+    },
+    {
+      type: 1,
+      name: '已完成'
+    }],
+    now_at_type: 0,
+    notdone_list:[],
+    done_list:[]
   },
-  get_list(p) {
-    const data = {
-      Param: 1,
-      Page:p,
-      PageSize:10
+  change_type(e, type) {
+    const t = e ? e.target.dataset.type : type
+    //没做切换直接return
+    if (this.data.now_at_type === t) return
+    this.setData({ now_at_type: t })
+    if(t===0) {
+      if (this.data.notdone_list.length===0) {
+        this.get_not_done_list(1)
+      } 
+    } else {
+      if (this.data.done_list.length === 0) {
+        this.get_done_list(1)
+      } 
     }
-    service('/GetPublicArticlesList', data)
+  },
+  get_not_done_list(p) {
+    const data = {
+      Page: p,
+      PageSize: 10,
+      Token: wx.getStorageSync('user').Token
+    }
+    service('/GetMissonList', data)
       .then(r => {
-        if(!!!r.data.data.length) return 
+        if (!!!r.data.data.length) {
+          this.setData({
+            islastpage: true
+          })
+          return
+        }
         const arr = this.data.list
         this.setData({
-          list: [...arr,...r.data.data]
+          notdone_list: [...arr, ...r.data.data]
+        })
+      })
+      .catch(err => {
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
+      })
+  },
+  get_done_list(p) {
+    const data = {
+      Page:p,
+      PageSize:10,
+      Token:wx.getStorageSync('user').Token
+    }
+    service('/GetMissCompleteList', data)
+      .then(r => {
+        if(!!!r.data.data.length) {
+          this.setData({
+            islastpage:true
+          })
+          return 
+        } 
+        const arr = this.data.list
+        this.setData({
+          done_list: [...arr,...r.data.data]
         })
       })
       .catch(err => {
@@ -44,15 +104,16 @@ Page({
   },
   todetail(e) {
     const id=e.currentTarget.dataset.id  
+    const type = e.currentTarget.dataset.type  
     wx.navigateTo({
-      url: '/pages/extension-detail/extension-detail?id='+id,
+      url: '/pages/extension-detail/extension-detail?id=' + id + '&isdone=' + type,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get_list(1)
+    
   },
 
   /**
@@ -66,7 +127,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.get_not_done_list(1)
   },
 
   /**
@@ -94,12 +155,22 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.islastpage) return
-    const p = this.data.page+1
-    this.setData({
-      page:p
-    })
-    this.get_list(p)
+    if (this.data.now_at_type===0) {
+      if (this.data.islastpage0) return
+      const p = this.data.page0 + 1
+      this.setData({
+        page0: p
+      })
+      this.get_not_done_list(p)
+    } else {
+      if (this.data.islastpage1) return
+      const p = this.data.page1 + 1
+      this.setData({
+        page1: p
+      })
+      this.get_done_list(p)
+    }
+    
   },
 
   /**

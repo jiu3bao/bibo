@@ -10,7 +10,7 @@
     </view>
   </view>
   <view class='info flex' wx:if='{{base_info.id}}'>
-    <image class='head_pic' src=''></image>
+    <image class='head_pic' src='{{src_url+base_info.head}}'></image>
     <view class='content'>
       <view class='name'>{{base_info.name}}<text>会员编号{{base_info.id}}</text></view>
       <view>手机号{{phone}}</view>
@@ -65,7 +65,7 @@
   </view>
   <view class='convers-pic'>
     <view>证据图</view>
-    <image src='{{pic&&pic.length>0?src_url + pic:"../../img/fangda@2x.png"}}'class='pic' bindtap="chooseimage"></image>
+    <image src='{{pic&&pic.length>0?src_url + pic:"../../img/添加.png"}}'class='pic' bindtap="chooseimage"></image>
   </view>
   <view class='submit' bindtap="submit">
     <image src='../../img/anniudaizi@2x.png'></image>

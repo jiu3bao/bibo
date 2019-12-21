@@ -2,8 +2,9 @@
 App({
   onLaunch: function (options) {
     // 判断是否由分享进入小程序
-    console.log(options.scene)
+    console.log(options)
     const scene = decodeURIComponent(options.scene)
+    wx.setStorageSync('scene', scene)
     if (scene.indexOf('id')>-1) {
       this.globalData.share = true
       const id = scene.split("=")[1]

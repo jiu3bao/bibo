@@ -18,7 +18,8 @@ Page({
     mobile:'',
     code:'',
     reference_id:'',
-    extension_id:''
+    extension_id:'',
+    scene: wx.getStorageSync('scene')
   },
   //双向绑定
   set_mobile(e) {

@@ -291,7 +291,14 @@ Page({
         icon: 'none'
       })
       return false
-    } else {
+    } else if (!this.data.pic||this.data.pic.length===0) {
+      wx.showToast({
+        title: '请上传证据图',
+        duration: 2000,
+        icon: 'none'
+      })
+      return false
+    }else {
       return true
     }
   },

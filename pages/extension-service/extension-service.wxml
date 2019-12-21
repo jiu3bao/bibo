@@ -1,16 +1,53 @@
 <!--pages/goods-detail/goods-detail.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view wx:for='{{list}}' wx:key='{{item.id}}' 
-    data-id="{{item.id}}"
-    bindtap="todetail">
-    <view>
-      <text>推广任务</text>
+  <view class='tab'>
+    <view class='{{now_at_type===item.type?"ac":""}}' 
+        wx:for='{{type}}'
+        bindtap="change_type"
+        data-type='{{item.type}}'
+        >
+        {{item.name}}
     </view>
-    <view>将此条信息转发到微信群朋友圈</view>
-    <view>
-      <image></image>
-    </view>
-    <view>{{item.summary}}</view>
   </view>
+  <view class='box'>
+    <view wx:for='{{notdone_list}}' wx:key='{{item.articles_id}}' 
+      data-id="{{item.articles_id}}"
+      bindtap="todetail"
+      data-type='notdone'
+      wx:if='{{now_at_type===0}}'
+      class='list'>
+      <view class='dot' wx:if='{{item.misson_status===-1}}'>1</view>
+      <view class='title'>
+        <text>推广任务</text>
+      </view>
+      <!-- <view>将此条信息转发到微信群朋友圈</view> -->
+      <!-- <view>
+        <image src='{{img_root+item.}}'></image>
+      </view> -->
+      <view>{{item.title}}</view>
+      <view>{{item.time}}</view>
+    </view>
+    <view wx:for='{{done_list}}' wx:key='{{item.misson_id}}' 
+      data-id="{{item.misson_id}}"
+      wx:if='{{now_at_type===1}}'
+      bindtap="todetail"
+      data-type='done'
+      class='list'>
+      <view class='title'>
+        <text>推广任务</text>
+      </view>
+      <!-- <view>将此条信息转发到微信群朋友圈</view> -->
+      <!-- <view>
+        <image src='{{img_root+item.}}'></image>
+      </view> -->
+      <view>{{item.title}}</view>
+      <view>{{item.time}}</view>
+      <view class='done'>
+      已完成
+    </view>
+    </view>
+    
+  </view>
+
 </view>
