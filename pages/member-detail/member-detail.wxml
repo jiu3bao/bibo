@@ -6,7 +6,7 @@
     <image class='head' src='{{img_root+info.head}}'></image>
     <view>
       <view class='name'>{{info.name}}<text>会员编号({{info.id}})</text></view>
-      <view class='phone'>收益<text>￥{{money}}</text></view>
+      <view class='phone'>收益<text class='yellow'>￥{{money}}</text></view>
       <view class='type'>
         <image src='../../img/vip@2x.png'></image>
         vip会员

@@ -13,8 +13,8 @@
     <image class='head_pic' src='{{src_url+base_info.head}}'></image>
     <view class='content'>
       <view class='name'>{{base_info.name}}<text>会员编号{{base_info.id}}</text></view>
-      <view>手机号{{phone}}</view>
-      <view>
+      <view class='phone'>手机号{{phone}}</view>
+      <view class='flex no-border'>
         <image src='../../img/vip@2x.png' class='icon'></image>
         VIP会员
       </view>
@@ -28,8 +28,9 @@
     <view>消费医院</view>
     <view>
       <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital'>
-        <view class='blue'>
+        <view class='blue hos'>
           {{hos.hospital?hos.hospital:'请选择医院'}}
+          <image src='../../img/向下.png' class='down'></image>
         </view>
       </picker>
     </view>
@@ -38,27 +39,30 @@
     <view>项目</view>
     <view class='flex red check' bindtap="add_a_item">添加项目<image src='../../img/添加1.png' class='icon'></image></view>
   </view>
-  <view class='flex between' wx:for='{{add_item}}' wx:key='{{index}}'>
-    <picker mode="multiSelector" 
-    bindchange="bindMultiPickerChange" 
-    bindcolumnchange="bindMultiPickerColumnChange"
-    bindcancel='cancel_picker'
-    data-index='{{index}}'
-    value="{{multiIndex}}" range="{{multiArray}}" range-key="item"
-    >
-      <view class='blue' wx:if='{{add_item[index].item_type.length>0}}'>
-        {{add_item[index].item_type}}-{{add_item[index].item}}
+  <view class='add_item'>
+    <view class='flex between bt-none' wx:for='{{add_item}}' wx:key='{{index}}'>
+      <picker mode="multiSelector" 
+      bindchange="bindMultiPickerChange" 
+      bindcolumnchange="bindMultiPickerColumnChange"
+      bindcancel='cancel_picker'
+      data-index='{{index}}'
+      value="{{multiIndex}}" range="{{multiArray}}" range-key="item"
+      >
+        <view class='blue' wx:if='{{add_item[index].item_type.length>0}}'>
+          {{add_item[index].item_type}}-{{add_item[index].item}}
+        </view>
+        <view wx:else class='blue'>
+          请选择项目
+        </view>
+      </picker>
+    
+      <view class='flex check bt-none'>
+        <input value='{{add_item[index].price}}' data-index='{{index}}' bindinput="input_price" bindblur="count_price" type='digit'></input>
+        <image src='../../img/减少.png' class='icon' data-index='{{index}}' bindtap="delete_a_item"></image>
       </view>
-      <view wx:else class='blue'>
-        请选择项目
-      </view>
-    </picker>
-  
-    <view class='flex check'>
-      <input value='{{add_item[index].price}}' data-index='{{index}}' bindinput="input_price" bindblur="count_price"></input>
-      <image src='../../img/减少.png' class='icon' data-index='{{index}}' bindtap="delete_a_item"></image>
     </view>
   </view>
+
   <view class='flex between'>
     <view>消费总额</view>
     <view class='blue'>￥{{total_money}}</view>

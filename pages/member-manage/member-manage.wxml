@@ -12,7 +12,7 @@
   </view>
   <view class='head'>
     <view>会员信息</view>
-    <view>到期时间</view>
+    <view>{{now_at_type ===type[0].type?'到期时间':'代理级别'}}</view>
   </view>
   <view>
     <view class='{{item.notover?"item":"item over"}}' wx:for='{{vipList}}' wx:key='{{item.id}}' 
@@ -37,14 +37,14 @@
         <image src='{{img_root+item.head}}' class='head_img'></image>
         {{item.name}}
         <text class='grey'>会员编号({{item.id}})</text>
-        <image src='../../img/hehuoren@2x.png'></image>
+        <image src='../../img/hehuoren@2x.png' class='pai'></image>
       </view>
         
       <view class='time'>
         <view class="{{item.type===2?'blue':'red'}}">{{item.type===2?'合伙人':'高级合伙人'}}</view>
-        <view class='blue'>
+        <!-- <view class='blue'>
           {{item.member_expire}}
-        </view>
+        </view> -->
       </view>
     </view>
   </view>

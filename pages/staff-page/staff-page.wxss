@@ -28,7 +28,7 @@ input {
   border-radius: 5rpx;
 }
 .submit {
-  width:80%;
+  width:60%;
   line-height:60rpx;
   margin:40rpx auto;
   color:#fff;
@@ -47,9 +47,9 @@ input {
   color:#ff3131;
 }
 .icon {
-  width:40rpx;
-  height:40rpx;
-  margin-left:10rpx;
+  width:30rpx;
+  height:30rpx;
+  margin-right:10rpx;
 }
 .pic {
   width:120rpx;
@@ -63,12 +63,49 @@ input {
 
 }
 .head_pic {
-  width:50rpx;
-  height:50rpx;
+  width:100rpx;
+  height:100rpx;
+  border-radius: 50%;
+  margin-right:30rpx;
 }
 .info {
   display: flex;
   align-items: center;
   padding-left:50rpx;
   height:160rpx;
+}
+.name {
+  color:#1b1b1b;
+  font-size:28rpx;
+}
+.name text {
+  font-size:22rpx;
+  margin-left:10rpx;
+}
+.phone {
+  color:#707070;
+  font-size:24rpx;
+  margin:8rpx 0;
+}
+.no-border {
+  border:none;
+  padding:0;
+  height:auto;
+  font-size: 24rpx;
+}
+.bt-none{
+  border:none;
+}
+.add_item{
+  padding-bottom:40rpx;
+  background: #fff;
+}
+.down {
+  width:30rpx;
+  height:30rpx;
+  margin-left:8rpx;
+}
+.hos {
+  display: flex;
+  align-items: center
 }
