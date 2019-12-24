@@ -28,6 +28,17 @@ Page({
     return new Promise((resolve,reject) => {
       service('/GetMyBonusRecord',data)
       .then(r => {
+        if(r.data.error_code === 6) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+          reject(r.data.message)
+          return
+        }
+        if (r.data.error_code!==0) {
+          reject(r.data.message)
+          return
+        }
         resolve(r)
       })
       .catch(err => {

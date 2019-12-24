@@ -56,6 +56,20 @@ Page({
     }
     service('/GetMissonList', data)
       .then(r => {
+        if(r.data.error_code===6) {
+          wx.navigateTo({
+            url: 'pages/login/login',
+          })
+          return 
+        } 
+        if (r.data.error_code!==0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          return
+        }
         if (!!!r.data.data.length) {
           this.setData({
             islastpage: true
@@ -83,6 +97,20 @@ Page({
     }
     service('/GetMissCompleteList', data)
       .then(r => {
+        if (r.data.error_code === 6) {
+          wx.navigateTo({
+            url: 'pages/login/login',
+          })
+          return
+        }
+        if (r.data.error_code !== 0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          return
+        }
         if(!!!r.data.data.length) {
           this.setData({
             islastpage:true

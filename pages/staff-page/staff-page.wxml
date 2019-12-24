@@ -74,4 +74,5 @@
   <view class='submit' bindtap="submit">
     提交
   </view>
+  <view class='tologin' bindtap="tologin">切换账号</view>
 </view>

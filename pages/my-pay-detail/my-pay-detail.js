@@ -66,6 +66,7 @@ Page({
                 // i.item_list = i.item
               }
             })
+            console.log(r.data.data)
             this.setData({
               payList: { notget: [...r.data.data], geted }
             })
@@ -234,6 +235,13 @@ Page({
           })
           return
         }
+        r.data.data.map(i => {
+          try {
+            i.item_list = JSON.parse(i.item)
+          } catch (e) {
+            // i.item_list = i.item
+          }
+        })
         console.log(r,789798)
         const { notget, geted} = this.data.payList
         this.setData({

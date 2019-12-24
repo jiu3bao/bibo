@@ -6,8 +6,8 @@
       <view>{{item.text}}</view>
       <view class='time'>{{item.time}}</view>
     </view>
-    <view class='blue'>
-      +{{item.bonus}}
+    <view class='{{item.bonus>0?"blue":"red"}}'>
+      {{item.bonus>0?"+":""}}{{item.bonus}}
     </view>
   </view>
 </view>

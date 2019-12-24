@@ -138,7 +138,6 @@
 }
 .info >view view {
   font-size:33rpx;
-  color:#313131;
   margin-right:60rpx;
 }
 .info >view view+view {
@@ -156,4 +155,7 @@
   width:80rpx;
   height:80rpx;
   margin-top:10rpx;
+}
+.blue {
+  color:#2373ff;
 }

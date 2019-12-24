@@ -28,6 +28,7 @@ Page({
         "PageSize": 100
       })
       .then(r => {
+        if(r.data.error_code!==0) {reject(r.data.message)}
         resolve(r.data.data)
       })
       .catch(err => {
@@ -38,7 +39,7 @@ Page({
   get_qrcode() {
     return new Promise((resolve,reject) => {
       const data = {
-        Param: 'id=' + wx.getStorageSync('user').id,
+        Param: wx.getStorageSync('user').id,
         Token: wx.getStorageSync('user').Token
       }
       service('/GetXcxUnlimited', data)
@@ -50,12 +51,13 @@ Page({
             return
           }
           if (r.data.error_code !== 0) {
-            console.log(r.data.message)
+            reject(r.data.message)
+            return 
           }
           resolve(app.globalData.src_url +r.data.data)
         })
         .catch(err => {
-          console.log(err)
+          reject(err)
         })
     })
     
@@ -89,10 +91,10 @@ Page({
     // 设置文字颜色
     ctx.fillStyle = '#fff'
 
-    const str = "hhhhhh"
-    ctx.fillText(str, 180, 200)
-    ctx.fillText('hufisuh', 180, 250)
-    ctx.drawImage(path[1], 160, 370, 160, 160)
+    // const str = "hhhhhh"
+    // ctx.fillText(str, 180, 200)
+    // ctx.fillText('hufisuh', 180, 250)
+    ctx.drawImage(path[1], 180, 400, 150, 150)
     console.log(ctx)
     ctx.draw(false, function () {
       wx.canvasToTempFilePath({
@@ -105,8 +107,12 @@ Page({
           wx.hideLoading()
         },
         fail(err) {
-          console.log(err)
-          wx.showLoading()
+          wx.showToast({
+            title: err,
+            icon: 'none',
+            duration: 3000
+          })
+          wx.hideLoading()
         }
       })
     })
@@ -131,6 +137,14 @@ Page({
       this.downLoadImg(this.data.bg_list[this.data.bg_index].pic_url)
       .then(r => {
         this.made_canvas_img([r, this.data.qr_local_path])
+        })
+      .catch(err => {
+        wx.hideLoading()
+        wx.showToast({
+          title: err,
+          icon: 'none',
+          duration: 3000
+        })
       })
     })
   },
@@ -140,11 +154,17 @@ Page({
     this.setData({
       bg_index: this.data.bg_index + 1
     }, () => {
-      console.log(this.data.bg_list[this.data.bg_index].pic_url)
       this.downLoadImg(this.data.bg_list[this.data.bg_index].pic_url)
         .then(r => {
-          console.log(r)
           this.made_canvas_img([r, this.data.qr_local_path])
+        })
+        .catch(err=> {
+          wx.hideLoading()
+          wx.showToast({
+            title: err,
+            icon:'none',
+            duration:3000
+          })
         })
     })
   },
@@ -173,7 +193,7 @@ Page({
     })
     .catch(err => {
       wx.showToast({
-        title: '网络错误',
+        title: err,
         duration: 2000,
         icon: 'none'
       })

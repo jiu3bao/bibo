@@ -42,12 +42,13 @@ input {
   border-left:1rpx solid #e6e6e6;
   z-index:8
 }
-button {
+.botton {
   width:80%;
   margin-top:70rpx;
-  height:55rpx;
+  line-height:55rpx;
   border-radius: 55rpx;
   color:#fff;
+  text-align: center;
   background:linear-gradient(to right, #3cb5fe , #42d4fd);
 }
 .to {
@@ -59,4 +60,34 @@ button {
   text-decoration: underline;
   color:#313131;
   font-size:31rpx;
+}
+.reference {
+  width:80%;
+  background: #fff;
+  margin:0 auto;
+  border: 1px solid #e6e6e6;
+  border-radius: 5rpx;
+}
+.tt {
+  padding:20rpx 30rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  font-size:28rpx;
+}
+.refe_info {
+  display: flex;
+  padding:20rpx 30rpx;
+}
+.refe_info image {
+  width:100rpx;
+  height:100rpx;
+  border-radius: 5rpx;
+  margin-right:20rpx;
+}
+.refe_info view {
+  color:#313131;
+  font-size:26rpx;
+}
+.grey {
+  color:#d1d1d1;
+  margin-top:20rpx;
 }

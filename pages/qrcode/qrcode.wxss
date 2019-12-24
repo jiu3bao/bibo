@@ -22,9 +22,9 @@ button {
 }
 .pre{
   position: absolute;
-  top:600rpx;
+  top:50%;
   left:50rpx;
-  
+  z-index:8
 }
 .pre image,.next image {
   width:80rpx;

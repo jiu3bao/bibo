@@ -35,15 +35,13 @@ Page({
         const srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
         const imgReg = /<img.*?(?:>|\/>)/gi
         const img = r.data.data.detail.match(imgReg)
-        const video_list = video.map(i => i.match(srcReg))
-        const img_list = img.map(i => i.match(srcReg))
+        const video_list = video?video.map(i => i.match(srcReg)):[]
+        const img_list = img?img.map(i => i.match(srcReg)):[]
         this.setData({
           video_list: video_list,
           img_list: img_list,
           pic: r.data.data.misson_pic_url
         })
-        console.log(video_list,img_list)
-        console.log(html,video)
         this.setData({
           detail: r.data.data
         })
@@ -51,7 +49,7 @@ Page({
       })
       .catch(err => {
         wx.showToast({
-          title: '网络错误',
+          title: err,
           duration: 2000,
           icon: 'none'
         })
@@ -79,6 +77,7 @@ Page({
     });
   },
   save_video() {
+    if (this.data.video_list.length===0) return 
     function wxsave(path) {
       return new Promise((resolve,reject) => {
         wx.saveVideoToPhotosAlbum({
@@ -106,6 +105,7 @@ Page({
     })
   },
   save_img() {
+    if (this.data.img_list.length === 0) return 
     function wxsave(path) {
       return new Promise((resolve, reject) => {
         wx.saveImageToPhotosAlbum({
@@ -242,6 +242,11 @@ Page({
       .then(r => {
         if(r.data.error_code===0) {
           resolve(r)
+        } else if (r.data.error_code===6){
+          wx.navigateTo({
+            url:'pages/login/login'
+          })
+          reject(r.data.message)
         } else {
           reject(r.data.message)
         }
@@ -250,6 +255,11 @@ Page({
       .catch(err =>{
         reject(err)
       })
+    })
+  },
+  errImg() {
+    this.setData({
+      pic:'../../img/添加.png'
     })
   },
   /**

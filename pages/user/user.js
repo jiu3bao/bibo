@@ -102,11 +102,7 @@ Page({
           return 
         } 
         if (r.data.error_code !==0) {
-          wx.showToast({
-            title: r.data.message,
-            duration: 2000,
-            icon: 'none'
-          })
+          reject(r.data.message)
           return 
         }
         r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
@@ -116,7 +112,7 @@ Page({
       })
       .catch(err=> {
         wx.showToast({
-          title: '网络错误',
+          title: err,
           duration: 2000,
           icon: 'none'
         })
@@ -150,6 +146,11 @@ Page({
           icon: 'none'
         })
       })
+  },
+  tologin() {
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
   },
   /**
    * 生命周期函数--监听页面加载

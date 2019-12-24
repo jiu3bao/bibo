@@ -56,4 +56,7 @@
       <text>{{item.name}}</text>
     </view>
   </view>
+  <view class='tologin' bindtap='tologin'>
+    切换账号
+  </view>
 </view>

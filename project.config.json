@@ -58,7 +58,7 @@
 					"id": 0,
 					"name": "pages/index/index",
 					"pathName": "pages/check-token/check-token",
-					"query": "scene=id=8",
+					"query": "",
 					"scene": null
 				}
 			]

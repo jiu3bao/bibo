@@ -109,3 +109,10 @@ input {
   display: flex;
   align-items: center
 }
+.tologin {
+  margin-top:30rpx;
+  float: right;
+  margin-right:20rpx;
+  font-size:33rpx;
+  text-decoration: underline
+}

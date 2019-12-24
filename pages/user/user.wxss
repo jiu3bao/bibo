@@ -136,3 +136,12 @@
 .function-item:nth-child(n+5) {
   border-bottom:none
 }
+.tologin {
+  width:482rpx;
+  line-height:70rpx;
+  margin: 50rpx auto 0 auto;
+  color:#fff;
+  text-align: center;
+  background:linear-gradient(to right, #3cb5fe , #42d4fd);
+  border-radius: 30rpx;
+}

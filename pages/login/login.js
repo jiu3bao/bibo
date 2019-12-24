@@ -13,13 +13,13 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
+    img_src: app.globalData.src_url,
     time:0,
     timer:null,
     mobile:'',
     code:'',
-    reference_id:'',
-    extension_id:'',
-    scene: wx.getStorageSync('scene')
+    reference_id: wx.getStorageSync('scene'),
+    reference_info:{}
   },
   //双向绑定
   set_mobile(e) {
@@ -34,16 +34,17 @@ Page({
   },
   //获取验证码
   get_code() {
+    
     if (this.data.mobile.length!==11) {
       wx.showToast({
         title: '手机号违法',
         duration: 2000,
         icon:'none'
       })
-      // console.log('手机号违法')
       return 
     }
     if(this.data.time !==0) return
+    wx.showLoading()
     const data = {
       mobile:this.data.mobile
     }
@@ -55,16 +56,17 @@ Page({
             duration: 2000,
             icon: 'none'
           })
-          // console.log(r.data.message)
           return 
         }
         wx.showToast({
           title: '发送成功',
           duration: 2000,
         })
+        wx.hideLoading()
         this.set_timer()
       })
       .catch(err => {
+        wx.hideLoading()
         wx.showToast({
           title: '网络错误',
           duration: 2000,
@@ -168,13 +170,28 @@ Page({
       url: '/pages/employee-login/employee-login',
     })
   },
+  get_reference_info() {
+    service('/GetReferenceInfo', { id: wx.getStorageSync('scene')})
+    .then(r => {
+      this.setData({
+        reference_info:r.data.data
+      })
+    })
+    .catch(err => {
+      wx.showToast({
+        title: err,
+        icon:'none',
+        duration:3000
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      extension_id: wx.getStorageSync('extension_id')
-    })
+    if (wx.getStorageSync('scene')) {
+      this.get_reference_info()
+    }
   },
 
   /**

@@ -156,12 +156,15 @@ Page({
         })
         return
       }
+      wx.showToast({
+        title: '申请成功',
+        duration: 3000
+      })
       this.setData({
         money: r1.data.data.money
       })
     })
     .catch(err=> {
-      console.log(err)
       wx.showToast({
         title: err,
         duration: 2000,

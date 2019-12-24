@@ -7,6 +7,9 @@
   padding:0 50rpx;
   border-top:1rpx solid #e6e6e6;
 }
+.contain:last-child{
+  border-bottom:1rpx solid #e6e6e6;
+}
 .blue {
   color:#2373ff;
 }

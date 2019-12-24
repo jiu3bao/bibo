@@ -13,8 +13,16 @@
       <view bindtap="get_code">{{time===0?"发送验证码":time+"s后重新获取"}}</view>
     </view>
   </view>
-  <button bindtap="login">登录/注册</button>
+  <view class='reference' wx:if='{{reference_id}}'>
+    <view class='tt'>本次推荐人</view>
+    <view class='refe_info'>
+      <image src='{{img_src+reference_info.head}}'></image>
+      <view>
+        <view>{{reference_info.name}}</view>
+        <view class='grey'>{{reference_info.mobile}}</view>
+      </view>
+    </view>
+  </view>
+  <view bindtap="login" class='botton'>登录/注册</view>
   <view class='to' bindtap="toemp">员工内部登录</view>
-    <view>{{extension_id}}</view>
-  <view>{{scene}}</view>
 </view>
