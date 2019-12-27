@@ -44,7 +44,7 @@ input {
 }
 .botton {
   width:80%;
-  margin-top:70rpx;
+  margin:70rpx auto 0 auto;
   line-height:55rpx;
   border-radius: 55rpx;
   color:#fff;

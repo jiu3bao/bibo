@@ -307,6 +307,11 @@ Page({
       url: '/pages/login/login',
     })
   },
+  tofail(){
+    wx.navigateTo({
+      url: '/pages/fail-records/fail-records',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

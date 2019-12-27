@@ -45,10 +45,10 @@
       <view>身份证号</view>
       <input value='{{info.sfzh}}' bindinput="set_info" data-type='sfzh'></input>
     </view>
-    <view>
+    <!-- <view>
       <view>微信号</view>
       <input value='{{info.wx_open_id}}' bindinput="set_info" data-type='wx_open_id'></input>
-    </view>
+    </view> -->
   </view>
 
   <button bindtap="save">保存</button>

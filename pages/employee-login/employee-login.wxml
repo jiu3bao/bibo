@@ -7,10 +7,13 @@
     <input value='{{mobile}}' bindinput='set_mobile'></input>
   </view>
   <view class='input-box'>
-    <view class='name'>密码</view>
-    <input type='number' value='{{code}}' bindinput='set_code'></input>
+    <view class='name'>验证码</view>
+    <view class='flex'>
+      <input type='number' value='{{code}}' bindinput='set_code'></input>
+      <view bindtap="get_code">{{time===0?"发送验证码":time+"s后重新获取"}}</view>
+    </view>
   </view>
   <view>{{extension_id}}</view>
   <button bindtap="login">登录</button>
-  <view class='to' bindtap="toemp">平台用户登录</view>
+  <!-- <view class='to' bindtap="toemp">平台用户登录</view> -->
 </view>

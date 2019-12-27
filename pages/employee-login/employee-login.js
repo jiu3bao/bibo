@@ -13,8 +13,13 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
+    img_src: app.globalData.src_url,
+    time: 0,
+    timer: null,
     mobile: '',
     code: '',
+    reference_id: wx.getStorageSync('scene'),
+    reference_info: {}
   },
   //双向绑定
   set_mobile(e) {
@@ -27,15 +32,23 @@ Page({
       code: e.detail.value
     })
   },
-  //登录
-  login() {
-    const checked = this.check()
-    if (!checked) return
-    const data = {
-      mobile: this.data.mobile,
-      code: this.data.code,
+  //获取验证码
+  get_code() {
+
+    if (this.data.mobile.length === 0) {
+      wx.showToast({
+        title: '请输入工号',
+        duration: 2000,
+        icon: 'none'
+      })
+      return
     }
-    service('/AdminLogin', data)
+    if (this.data.time !== 0) return
+    wx.showLoading()
+    const data = {
+      mobile: this.data.mobile
+    }
+    service('/RequestCode', data)
       .then(r => {
         if (r.data.error_code !== 0) {
           wx.showToast({
@@ -45,20 +58,79 @@ Page({
           })
           return
         }
-        
-        if (r.data.data.pop !== 100) {
-          wx.showToast({
-            title: '非员工',
-            icon: "none",
-            duration: 3000
+        wx.showToast({
+          title: '发送成功',
+          duration: 2000,
+        })
+        wx.hideLoading()
+        this.set_timer()
+      })
+      .catch(err => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
+      })
+
+  },
+  //设置计时器
+  set_timer() {
+    if (this.data.time === 0) {
+      let t = 30
+      this.setData({
+        time: t
+      }, () => {
+        const timer = setInterval(() => {
+          this.setData({
+            timer: timer
           })
+          t--
+          this.setData({
+            time: t
+          })
+          if (t === 0) {
+            clearInterval(timer)
+          }
+        }, 1000)
+      })
+    }
+  },
+  //登录
+  login() {
+    const checked = this.check()
+    if (!checked) return
+    const data = {
+      mobile: this.data.mobile,
+      code: this.data.code,
+      reference_id: this.data.reference_id
+    }
+    service('/AdminLogin', data)
+      .then(r => {
+        if (r.data.error_code !== 0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          // console.log(r.data.message)
           return
         }
         wx.showToast({
           title: '登录成功',
           duration: 2000
         })
-        wx.setStorageSync('user', r.data.data)       
+        // if (r.data.data.pop !== 0) {
+        //   wx.showToast({
+        //     title: '非平台用户',
+        //     icon: "none",
+        //     duration: 3000
+        //   })
+        //   return
+        // }
+        wx.setStorageSync('user', r.data.data)
+
         wx.navigateTo({
           url: '/pages/staff-page/staff-page'
         })
@@ -85,7 +157,7 @@ Page({
     if (this.data.code.length === 0) {
       // console.log('没有验证码')
       wx.showToast({
-        title: '请输入密码',
+        title: '没有验证码',
         duration: 2000,
         icon: 'none'
       })
@@ -94,13 +166,32 @@ Page({
     return true
   },
   toemp() {
-    wx.navigateBack()
+    wx.navigateTo({
+      url: '/pages/employee-login/employee-login',
+    })
+  },
+  get_reference_info() {
+    service('/GetReferenceInfo', { id: wx.getStorageSync('scene') })
+      .then(r => {
+        this.setData({
+          reference_info: r.data.data
+        })
+      })
+      .catch(err => {
+        wx.showToast({
+          title: err,
+          icon: 'none',
+          duration: 3000
+        })
+      })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    if (wx.getStorageSync('scene')) {
+      this.get_reference_info()
+    }
   },
 
   /**

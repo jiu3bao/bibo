@@ -1,0 +1,20 @@
+<!--pages/fail-records/fail-records.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <view class='item' wx:for='{{list}}' wx:key='{{item.id}}' 
+    data-item='{{item}}'>
+    <view bindtap="to_detail" data-id='{{item.id}}' data-item='{{item}}'>
+      <image src='{{img_root+item.head}}' class='head_img'></image>
+      {{item.name}}
+      <text class='grey'>￥{{item.money}}</text>
+      <image src='../../img/vip@2x.png' class='pai'></image>
+    </view>
+      
+    <view class='time'>
+      <view class="blue">{{item.detail}}</view>
+      <!-- <view class='blue'>
+        {{item.member_expire}}
+      </view> -->
+    </view>
+  </view>
+</view>

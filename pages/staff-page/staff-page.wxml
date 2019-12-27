@@ -75,4 +75,5 @@
     提交
   </view>
   <view class='tologin' bindtap="tologin">切换账号</view>
+  <view class='tologin' bindtap="tofail">未通过审核</view>
 </view>

@@ -21,7 +21,6 @@ Page({
     islastpage: false
   },
   get_notice(page = 1, pagesize = 10) {
-    console.log(wx.getStorageSync('user'))
     return new Promise((resolve, reject) => {
       const data = {
         page: page,
@@ -84,7 +83,7 @@ Page({
       })
       .catch(err => {
         wx.showToast({
-          title: '网络错误',
+          title: err,
           duration: 2000,
           icon: 'none'
         })
@@ -102,7 +101,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.set_notice()
+    
   },
 
   /**
@@ -116,9 +115,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // if (this.data.list.length===0) {
-    //   this.set_notice()
-    // }
+    // this.set_notice()
+    if (this.data.list.length===0) {
+      this.set_notice()
+    }
   },
 
   /**
