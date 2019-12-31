@@ -112,6 +112,7 @@ Page({
         }
         let vip=[],partner=[]
         r.data.data.map(item => {
+          item.default_head='../../img/头像.png'
           if(item.type===2||item.type===3) {
             partner.push(item)
           }

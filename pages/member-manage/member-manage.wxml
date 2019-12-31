@@ -21,7 +21,7 @@
       bindtap="todetail"
       wx:if='{{now_at_type ===type[0].type}}'>
       <view>
-        <image src='{{img_root+item.head}}' class='head_img'></image>
+        <image src='{{item.head?img_root+item.head:item.default_head}}' class='head_img'></image>
         {{item.name}}
         <text class='grey'>会员编号({{item.id}})</text>
         <image src='../../img/vip@2x.png' class='pai'></image>

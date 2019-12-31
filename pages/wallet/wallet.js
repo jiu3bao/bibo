@@ -20,11 +20,11 @@ Page({
       name: '会员消费收益'
     },
     {
-      type: 1,
+      type: 2,
       name: '推广收益'
     },
     {
-      type: 2,
+      type: 1,
       name: '我的消费返现'
     }],
     now_at_type: 0,
@@ -36,7 +36,10 @@ Page({
     page0:1,
     page1:1,
     page2:1,
-    pagesize:20
+    pagesize:20,
+    islastpage0:false,
+    islastpage1: false,
+    islastpage2: false,
   },
   change_type(e, type) {
     const t = e ? e.target.dataset.type : type
@@ -45,8 +48,8 @@ Page({
     this.setData({ now_at_type: t })
     //有数据则不再获取
     if (t === 0 && this.data.vipPayList.length !== 0) return
-    if (t === 1 && this.data.extensionList.length !== 0) return
-    if (t === 2 && this.data.myPayList.length !== 0) return
+    if (t === 2 && this.data.extensionList.length !== 0) return
+    if (t === 1 && this.data.myPayList.length !== 0) return
     //获取数据
     const data = {
       Page:this.data['page'+t],
@@ -71,12 +74,21 @@ Page({
         return 
       }
       let arr = []
+      if(r.data.data.length===0) {
+        this.setData({
+          ['islastpage'+t]:true
+        })
+        return
+      }
+      r.data.data.map(i => {
+        i.default_head = '../../img/头像.png'
+      })
       if(t===0) {
         arr = this.data.vipPayList
         this.setData({
           vipPayList: [...arr,...r.data.data]
         })
-      } else if(t===1){
+      } else if(t===2){
         arr = this.data.extensionList
         this.setData({
           extensionList: [...arr, ...r.data.data]
@@ -246,6 +258,15 @@ Page({
           })
           return
         }
+        if (r.data.data.length === 0) {
+          this.setData({
+            islastpage0: true
+          })
+          return
+        }
+        r.data.data.map(i => {
+          i.default_head = '../../img/头像.png'
+        })
         this.setData({
           vipPayList: r.data.data
         })
@@ -300,6 +321,8 @@ Page({
    */
   onReachBottom: function () {
     const t = this.data.now_at_type
+    console.log(this.data['islastpage' + t])
+    if(this.data['islastpage'+t]) return
     const p = this.data['page' + t] + 1
     this.setData({
       ['page' + t]:p
@@ -326,13 +349,22 @@ Page({
           })
           return
         }
+        if (r.data.data.length === 0) {
+          this.setData({
+            ['islastpage' + t]: true
+          })
+          return
+        }
+        r.data.data.map(i => {
+          i.default_head = '../../img/头像.png'
+        })
         let arr = []
         if (t === 0) {
           arr = this.data.vipPayList
           this.setData({
             vipPayList: [...arr, ...r.data.data]
           })
-        } else if (t === 1) {
+        } else if (t === 2) {
           arr = this.data.extensionList
           this.setData({
             extensionList: [...arr, ...r.data.data]

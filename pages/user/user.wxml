@@ -3,7 +3,7 @@
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <view class='base-info' bindtap="toset">
-    <image src='{{src_url+baseInfo.head}}' class='head'></image>
+    <image src='{{baseInfo.head&&baseInfo.head.length>0?src_url+baseInfo.head:baseInfo.default_head}}' class='head' binderror="errImg"></image>
     <view class='info'>
       <view class='name'>{{baseInfo.name}}</view>
       <view class='id'>会员编号{{baseInfo.id}}</view>

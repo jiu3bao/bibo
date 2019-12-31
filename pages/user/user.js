@@ -152,6 +152,11 @@ Page({
       url: '/pages/login/login',
     })
   },
+  errImg() {
+    this.setData({
+      baseInfo: { ...this.data.baseInfo, default_head:'../../img/头像.png'}
+    })    
+  },
   /**
    * 生命周期函数--监听页面加载
    */

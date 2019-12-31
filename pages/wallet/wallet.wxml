@@ -44,9 +44,9 @@
       </view>
       <view class='item' wx:for='{{vipPayList}}' wx:key='{{item.id}}'>
         <view class='flex'>
-          <image src='{{img_root+item.from_user_head}}' class='head'></image>
+          <image src='{{item.from_user_head&&item.from_user_head.length>0?img_root+item.from_user_head:item.default_head}}' class='head'></image>
           {{item.from_user_name}}
-          会员编号<text class='grey'>({{item.user_id}})</text>
+          会员编号<text class='grey'>({{item.from_user}})</text>
         </view>
         <view class='blue'>
           <text class='grey'>{{item.time}}</text>
@@ -61,9 +61,9 @@
       </view>
       <view class='item' wx:for='{{extensionList}}'>
         <view class='flex'>
-          <image src='{{img_root+item.from_user_head}}' class='head'></image>
+          <image src='{{item.from_user_head&&item.from_user_head.length>0?img_root+item.from_user_head:item.default_head}}' class='head'></image>
           {{item.from_user_name}}
-          会员编号<text class='grey'>({{item.user_id}})</text>
+          会员编号<text class='grey'>({{item.from_user}})</text>
         </view>
         <view class='blue'>
           <text class='grey'>{{item.time}}</text>

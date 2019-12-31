@@ -133,7 +133,8 @@
   border-bottom:1rpx solid #e6e6e6;
 }
 .grey {
-  color:#707070
+  color:#707070;
+  margin-right:10rpx;
 }
 .blue {
   color:#2373ff;
