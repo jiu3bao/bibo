@@ -19,7 +19,8 @@ Page({
     mobile:'',
     code:'',
     reference_id: wx.getStorageSync('scene'),
-    reference_info:{}
+    reference_info:{},
+    canback:false
   },
   //双向绑定
   set_mobile(e) {
@@ -130,10 +131,16 @@ Page({
         //   return
         // }
         wx.setStorageSync('user', r.data.data)
+
+        if(this.data.canback) {
+          wx.navigateBack()
+        } else {
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
+        }
         
-        wx.switchTab({
-          url: '/pages/index/index'
-        })
+        
       })
       .catch(r => {
         wx.showToast({
@@ -192,6 +199,14 @@ Page({
     if (wx.getStorageSync('scene')) {
       this.get_reference_info()
     }
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('acceptDataFromOpenerPage', (data) => {
+      console.log(data)
+      this.setData({
+        canback: data.canBack,
+        nvabarData: { ...this.data.nvabarData, showCapsule:true}
+      })
+    })
   },
 
   /**
