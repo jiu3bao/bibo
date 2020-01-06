@@ -5,9 +5,9 @@
   <view class='base-info' bindtap="toset">
     <image src='{{baseInfo.head&&baseInfo.head.length>0?src_url+baseInfo.head:baseInfo.default_head}}' class='head' binderror="errImg"></image>
     <view class='info'>
-      <view class='name'>{{baseInfo.name}}</view>
-      <view class='id'>会员编号{{baseInfo.id}}</view>
-      <view class='phone'>{{baseInfo.mobile}}</view>
+      <view class='name'>{{baseInfo.name||"xxx"}}</view>
+      <view class='id'>会员编号{{baseInfo.id||"xxx"}}</view>
+      <view class='phone'>{{baseInfo.mobile||"xxx"}}</view>
       <view class='type'>
         <view>
           <image src='../../img/vip@2x.png' wx:if='{{baseInfo.is_member===1}}'></image>
@@ -25,22 +25,22 @@
   <view class='money-info'>
     <view class='total'>
       <view>累计收益</view>
-      <view>￥{{moneyInfo.total}}</view>
+      <view>￥{{moneyInfo.total||"-"}}</view>
     </view>
     
     <view class='detail'>
       <view>
-        <text class='blue'>￥{{moneyInfo.zs}}</text>
+        <text class='blue'>￥{{moneyInfo.zs||"-"}}</text>
         <text>推广收益</text>
       </view>
       <view class='line'></view>
       <view>
-        <text class='red'>￥{{moneyInfo.fx}}</text>
+        <text class='red'>￥{{moneyInfo.fx||"-"}}</text>
         <text>会员消费收益</text>
       </view>
       <view class='line'></view>
       <view>
-        <text class='purple'>￥{{moneyInfo.xf}}</text>
+        <text class='purple'>￥{{moneyInfo.xf||"-"}}</text>
         <text>消费返现</text>
       </view>
     </view>

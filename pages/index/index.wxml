@@ -28,7 +28,12 @@
         <!-- <image></image> -->
       </view>
     </view>
-    <swiper class='content-slider' 
+    <view class='content-slider'>
+      <news news-list='{{newsList}}' wx:if='{{now_at_type===0}}'></news>
+      <notice notice-list='{{noticeList}}' wx:if='{{now_at_type===2}}'></notice>
+      <class class-list='{{classList}}' wx:if='{{now_at_type===1}}'></class>
+    </view>
+    <!-- <swiper class='content-slider' 
       current='{{now_at_type===0?0:now_at_type===1?2:1}}'
       bindchange='slide'>
       <swiper-item class='content-slider-item'>
@@ -40,6 +45,6 @@
       <swiper-item class='content-slider-item' wx:if='{{isAgent}}'>
         <class class-list='{{classList}}'></class>
       </swiper-item>
-    </swiper>
+    </swiper> -->
   </view>
 </view>

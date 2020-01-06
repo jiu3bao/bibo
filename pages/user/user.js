@@ -57,47 +57,110 @@ Page({
     moneyInfo:{}
   },
   toset() {
-    wx.navigateTo({
-      url: '/pages/set-user-info/set-user-info',
-      events: {
-        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-        acceptDataFromOpenedPage: function (data) {
-          console.log(data)
+    if (wx.getStorageSync('user') && wx.getStorageSync('user').Token) {
+      wx.navigateTo({
+        url: '/pages/set-user-info/set-user-info',
+        events: {
+          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+          acceptDataFromOpenedPage: function (data) {
+            console.log(data)
+          },
+          someEvent: function (data) {
+            console.log(data)
+          }
         },
-        someEvent: function (data) {
-          console.log(data)
+        success: (res) => {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.baseInfo })
         }
-      },
-      success: (res)=> {
-        // 通过eventChannel向被打开页面传送数据
-        res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.baseInfo })
-      }
-    })
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '注册/登录即可享有会员权利',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+              events: {
+                // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+                acceptDataFromOpenedPage: function (data) {
+                  console.log(data)
+                },
+                someEvent: function (data) {
+                  console.log(data)
+                }
+              },
+              success: (res) => {
+                // 通过eventChannel向被打开页面传送数据
+                res.eventChannel.emit('acceptDataFromOpenerPage', { canBack: true })
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+    
   },
   redirect(e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url,
-      events: {
-        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-        acceptDataFromOpenedPage: function (data) {
-          console.log(data)
+    if (wx.getStorageSync('user') && wx.getStorageSync('user').Token) {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url,
+        events: {
+          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+          acceptDataFromOpenedPage: function (data) {
+            console.log(data)
+          },
+          someEvent: function (data) {
+            console.log(data)
+          }
         },
-        someEvent: function (data) {
-          console.log(data)
+        success: (res) => {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.moneyInfo })
         }
-      },
-      success: (res) => {
-        // 通过eventChannel向被打开页面传送数据
-        res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.moneyInfo })
-      }
-    })
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '注册/登录即可享有会员权利',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+              events: {
+                // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+                acceptDataFromOpenedPage: function (data) {
+                  console.log(data)
+                },
+                someEvent: function (data) {
+                  console.log(data)
+                }
+              },
+              success: (res) => {
+                // 通过eventChannel向被打开页面传送数据
+                res.eventChannel.emit('acceptDataFromOpenerPage', { canBack: true })
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+    
   },
   get_base_info() {
     service('/GetUserInfo', { Token:wx.getStorageSync('user').Token})
       .then(r => {
         if (r.data.error_code===6) {
-          wx.navigateTo({
-            url: '/pages/login/login',
+          // wx.navigateTo({
+          //   url: '/pages/login/login',
+          // })
+          this.setData({
+            baseInfo: { default_head: '../../img/头像.png' }
           })
           return 
         } 
@@ -122,9 +185,13 @@ Page({
     service('/StcBonus', { Token: wx.getStorageSync('user').Token})
       .then(r => {
         if (r.data.error_code === 6) {
-          wx.navigateTo({
-            url: '/pages/login/login',
+          this.setData({
+            baseInfo: { default_head:'../../img/头像.png'}
           })
+          // wx.navigateTo({
+          //   url: '/pages/login/login',
+          // })
+          return 
         }
         if (r.data.error_code !== 0) {
           wx.showToast({
@@ -150,6 +217,19 @@ Page({
   tologin() {
     wx.navigateTo({
       url: '/pages/login/login',
+      events: {
+        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        acceptDataFromOpenedPage: function (data) {
+          console.log(data)
+        },
+        someEvent: function (data) {
+          console.log(data)
+        }
+      },
+      success: (res) => {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', { canBack: true })
+      }
     })
   },
   errImg() {
