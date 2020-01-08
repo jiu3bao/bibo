@@ -26,7 +26,7 @@ Page({
         auth: 1,
         redirect: '/pages/qrcode/qrcode'
       },{
-        name: '推广任务',
+        name: '推广中心',
         img: '../../img/tuiguangrenwu@2x.png',
         auth: 1,
         redirect:'/pages/extension-service/extension-service'
@@ -77,25 +77,28 @@ Page({
     } else {
       wx.showModal({
         title: '提示',
-        content: '注册/登录即可享有会员权利',
+        content: '交费注册成为会员或合伙人后，即可使用',
         success(res) {
           if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/login/login',
-              events: {
-                // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-                acceptDataFromOpenedPage: function (data) {
-                  console.log(data)
-                },
-                someEvent: function (data) {
-                  console.log(data)
-                }
-              },
-              success: (res) => {
-                // 通过eventChannel向被打开页面传送数据
-                res.eventChannel.emit('acceptDataFromOpenerPage', { canBack: true })
-              }
+            wx.switchTab({
+              url: '/pages/join-partner/join-partner',
             })
+            // wx.navigateTo({
+            //   url: '/pages/login/login',
+            //   events: {
+            //     // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+            //     acceptDataFromOpenedPage: function (data) {
+            //       console.log(data)
+            //     },
+            //     someEvent: function (data) {
+            //       console.log(data)
+            //     }
+            //   },
+            //   success: (res) => {
+            //     // 通过eventChannel向被打开页面传送数据
+            //     res.eventChannel.emit('acceptDataFromOpenerPage', { canBack: true })
+            //   }
+            // })
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
@@ -105,7 +108,7 @@ Page({
     
   },
   redirect(e) {
-    if (wx.getStorageSync('user') && wx.getStorageSync('user').Token) {
+    if (wx.getStorageSync('user') && wx.getStorageSync('user').Token && wx.getStorageSync('user').is_member>0) {
       wx.navigateTo({
         url: e.currentTarget.dataset.url,
         events: {
@@ -125,25 +128,28 @@ Page({
     } else {
       wx.showModal({
         title: '提示',
-        content: '注册/登录即可享有会员权利',
+        content: '交费注册成为会员或合伙人后，即可使用',
         success(res) {
           if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/login/login',
-              events: {
-                // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-                acceptDataFromOpenedPage: function (data) {
-                  console.log(data)
-                },
-                someEvent: function (data) {
-                  console.log(data)
-                }
-              },
-              success: (res) => {
-                // 通过eventChannel向被打开页面传送数据
-                res.eventChannel.emit('acceptDataFromOpenerPage', { canBack: true })
-              }
+            wx.switchTab({
+              url: '/pages/join-partner/join-partner',
             })
+            // wx.navigateTo({
+            //   url: '/pages/login/login',
+            //   events: {
+            //     // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+            //     acceptDataFromOpenedPage: function (data) {
+            //       console.log(data)
+            //     },
+            //     someEvent: function (data) {
+            //       console.log(data)
+            //     }
+            //   },
+            //   success: (res) => {
+            //     // 通过eventChannel向被打开页面传送数据
+            //     res.eventChannel.emit('acceptDataFromOpenerPage', { canBack: true })
+            //   }
+            // })
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
@@ -170,7 +176,7 @@ Page({
         }
         r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
         this.setData({
-          baseInfo:r.data.data
+          baseInfo: { ...r.data.data, default_head: '../../img/头像.png'},
         })
       })
       .catch(err=> {
@@ -208,7 +214,7 @@ Page({
       })
       .catch(r => {
         wx.showToast({
-          title: '网络错误',
+          title: err,
           duration: 2000,
           icon: 'none'
         })

@@ -29,7 +29,7 @@ input {
 }
 .submit {
   width:60%;
-  line-height:60rpx;
+  line-height:70rpx;
   margin:40rpx auto;
   color:#fff;
   text-align: center;

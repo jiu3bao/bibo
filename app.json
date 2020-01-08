@@ -49,7 +49,7 @@
         "pagePath": "pages/join-partner/join-partner",
         "iconPath": "/img/jiaru_2.png",
         "selectedIconPath": "/img/jiaru_1.png",
-        "text": "加入合伙人"
+        "text": "加入我们"
       },
       {
         "pagePath": "pages/user/user",

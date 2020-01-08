@@ -57,9 +57,10 @@ Page({
     console.log(e.currentTarget.dataset)
     const item = e.currentTarget.dataset.item
     if (item.to_link.length>0) {
+      console.log(item.to_link.split('?'))
       const id = item.to_link.split('?')[1]
       wx.navigateTo({
-        url: '/pages/goods-detail/goods-detail?id='+id,
+        url: '/pages/goods-detail/goods-detail?'+id,
       })
     }
   },

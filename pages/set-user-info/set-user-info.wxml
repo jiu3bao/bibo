@@ -15,7 +15,7 @@
   <view class='info'>
     <view>
       <view>会员编号</view>
-      <view>{{info.account_name}}</view>
+      <view>{{info.id}}</view>
     </view>
     <view>
       <view>会员到期时间</view>

@@ -136,7 +136,7 @@ Page({
         })
         .catch(err => {
           wx.showToast({
-            title: '网络错误',
+            title: err,
             duration: 2000,
             icon: 'none'
           })
@@ -146,6 +146,7 @@ Page({
   },
   get_order_id() {
     return new Promise((resolve,reject) => {
+      console.log(this.data.id,789798)
       const data = {
         Token: wx.getStorageSync('user').Token,
         goods_id: this.data.id
@@ -238,6 +239,7 @@ Page({
    */
   onLoad: function (options) {
     this.get_detail(options.id)
+    console.log(options,77777)
     this.setData({
       id: options.id
     })

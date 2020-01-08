@@ -136,7 +136,7 @@ Page({
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
     eventChannel.on('acceptDataFromOpenerPage', (data) =>{
       this.setData({
-        head_img: app.globalData.src_url +data.data.head
+        head_img: data.data.head && data.data.head.length>0?app.globalData.src_url +data.data.head:data.data.default_head
       })
       this.setData({
         info: data.data

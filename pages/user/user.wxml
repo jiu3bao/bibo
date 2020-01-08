@@ -45,7 +45,7 @@
       </view>
     </view>
   </view>
-  <view class='function-list' wx:if='{{baseInfo.is_member!==0}}'>
+  <view class='function-list'>
     <view wx:for='{{fnList}}' wx:key='item.name' 
       class='function-item' 
       bindtap='redirect' 
@@ -56,7 +56,7 @@
       <text>{{item.name}}</text>
     </view>
   </view>
-  <view class='tologin' bindtap='tologin'>
+  <!-- <view class='tologin' bindtap='tologin'>
     切换账号
-  </view>
+  </view> -->
 </view>

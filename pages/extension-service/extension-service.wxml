@@ -1,7 +1,7 @@
 <!--pages/goods-detail/goods-detail.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view class='tab'>
+  <!-- <view class='tab'>
     <view class='{{now_at_type===item.type?"ac":""}}' 
         wx:for='{{type}}'
         bindtap="change_type"
@@ -9,7 +9,7 @@
         >
         {{item.name}}
     </view>
-  </view>
+  </view> -->
   <view class='box'>
     <view wx:for='{{notdone_list}}' wx:key='{{item.articles_id}}' 
       data-id="{{item.articles_id}}"
