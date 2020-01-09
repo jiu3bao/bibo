@@ -273,7 +273,13 @@ Page({
           })
           return
         }
-        
+        r.data.data.map(i => {
+          try {
+            i.item_list = JSON.parse(i.item)
+          } catch (e) {
+            // i.item_list = i.item
+          }
+        })
         const { notget, geted } = this.data.payList
         this.setData({
           payList: { notget, geted: [...geted, ...r.data.data] }

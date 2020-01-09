@@ -35,12 +35,12 @@
       </view>
       <view class='line'></view>
       <view>
-        <text class='red'>￥{{moneyInfo.fx||"-"}}</text>
+        <text class='red'>￥{{moneyInfo.xf||"-"}}</text>
         <text>会员消费收益</text>
       </view>
       <view class='line'></view>
       <view>
-        <text class='purple'>￥{{moneyInfo.xf||"-"}}</text>
+        <text class='purple'>￥{{moneyInfo.fx||"-"}}</text>
         <text>消费返现</text>
       </view>
     </view>
@@ -56,7 +56,7 @@
       <text>{{item.name}}</text>
     </view>
   </view>
-  <!-- <view class='tologin' bindtap='tologin'>
+  <view class='tologin' bindtap='tologin'>
     切换账号
-  </view> -->
+  </view>
 </view>

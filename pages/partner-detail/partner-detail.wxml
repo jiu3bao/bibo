@@ -3,7 +3,7 @@
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <view class='baseinfo'>
-    <image class='head' src='{{img_root+info.head}}'></image>
+    <image class='head' src='{{info.head?img_root+info.head:info.default_head}}'></image>
     <view>
       <view class='name'>{{info.name}}<text>会员编号({{info.id}})</text></view>
       <view class='phone'>收益<text class='yellow'>￥{{money}}</text></view>

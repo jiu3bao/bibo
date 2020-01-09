@@ -39,7 +39,6 @@ Page({
             i.type='高级代理'
           }
         })
-        console.log(r.data.data.list)
         this.setData({
           list: [...this.data.list, ...r.data.data.list],
           money: r.data.data.sum_bonus

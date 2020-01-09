@@ -92,7 +92,10 @@ Page({
             signType: r.signType,
             paySign: r.paySign,
             success(res) {
-              console.log(res)
+              wx.showToast({
+                title: '付款成功',
+                duration:3000
+              })
             },
             fail(res) {
               wx.showToast({
@@ -123,7 +126,10 @@ Page({
             signType: r.signType,
             paySign: r.paySign,
             success(res) {
-              console.log(res)
+              wx.showToast({
+                title: '付款成功',
+                duration:3000
+              })
             },
             fail(res) {
               wx.showToast({

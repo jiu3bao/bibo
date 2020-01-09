@@ -10,7 +10,7 @@
     </view>
   </view>
   <view class='info flex' wx:if='{{base_info.id}}'>
-    <image class='head_pic' src='{{src_url+base_info.head}}'></image>
+    <image class='head_pic' src='{{base_info.head.length>0?src_url+base_info.head:base_info.default_head}}'></image>
     <view class='content'>
       <view class='name'>{{base_info.name}}<text>会员编号{{base_info.id}}</text></view>
       <view class='phone'>手机号{{phone}}</view>
@@ -22,7 +22,14 @@
   </view>
   <view class='flex between'>
     <view>日期</view>
-    <view class='blue'>2019-05-06</view>
+    <view class='blue'>
+      {{date}}
+      <!-- <picker mode="date" value="{{date}}" bindchange="set_time">
+        <view class="picker">
+          {{date?date:'尚未选择'}}
+        </view>
+      </picker> -->
+    </view>
   </view>
   <view class='flex between'>
     <view>消费医院</view>
