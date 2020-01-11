@@ -18,7 +18,7 @@ input {
 .contain .button {
   width:90%;
   padding:0;
-  background: #229aff;
+  background:linear-gradient(to right, #3cb5fe , #42d4fd);
   color:#fff;
   text-align: center;
   line-height: 86rpx;

@@ -52,6 +52,11 @@ Page({
         img: '../../img/lianxi@2x.png',
         auth: 1,
         redirect:''
+      } , {
+        name: '设置',
+        img: '../../img/shezhi@2x.png',
+        auth: 1,
+        redirect: '/pages/system-set/system-set'
       }],
     baseInfo:{},
     moneyInfo:{}

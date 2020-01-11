@@ -34,7 +34,7 @@
     <view class='item' wx:if='{{now_at_type ===type[1].type}}' wx:for='{{partnerList}}' wx:key='{{item.id}}' 
       data-id='{{item.id}}'>
       <view bindtap="topartner_detail" data-id='{{item.id}}' data-item='{{item}}'>
-        <image src='{{img_root+item.head}}' class='head_img'></image>
+        <image src='{{item.head?img_root+item.head:item.default_head}}' class='head_img'></image>
         {{item.name}}
         <text class='grey'>会员编号({{item.id}})</text>
         <image src='../../img/hehuoren@2x.png' class='pai'></image>

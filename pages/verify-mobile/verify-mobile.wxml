@@ -1,0 +1,18 @@
+<!--pages/system-set/system-set.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+
+<view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <view class='send'>
+    <view>
+    向手机号<text>({{mobile}})</text>发送验证码
+    </view>
+    <view class='send-btn' bindtap="get_code">{{time===0?"发送":time+"s后重新获取"}}</view>
+  </view>
+  <view class='input'>
+    <view>验证码</view>
+    <input placeholder="请输入验证码" type='number' value='{{code}}' bindinput='set_code'></input>
+  </view>
+  <view class='btn' bindtap="next">
+    下一步
+  </view>
+</view>

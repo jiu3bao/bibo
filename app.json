@@ -28,7 +28,10 @@
     "pages/flow-detail/flow-detail",
     "pages/partner-detail/partner-detail",
     "pages/fail-records/fail-records",
-    "pages/fail-detail/fail-detail"
+    "pages/fail-detail/fail-detail",
+    "pages/system-set/system-set",
+    "pages/verify-mobile/verify-mobile",
+    "pages/change-mobile/change-mobile"
   ],
   "window": {
     "backgroundTextStyle": "light",

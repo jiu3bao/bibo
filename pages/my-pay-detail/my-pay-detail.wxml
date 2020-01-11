@@ -59,7 +59,9 @@
         </view>
         <view>
           <view>项目</view>
-          <view>{{item.item+'-'+item.item_type}}</view>
+          <view>
+            <view wx:for='{{item.item_list}}' wx:for-item='ii' class='blue'>{{ii.item_type+'-'+ii.item}}</view>
+          </view>
         </view>
         <view>
           <view>日期</view>
