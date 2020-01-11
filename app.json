@@ -1,8 +1,11 @@
 {
   "pages": [
+    
+    
     "pages/check-token/check-token",
-    "pages/wallet/wallet",
     "pages/staff-page/staff-page",
+    "pages/wallet/wallet",
+    "pages/employee-login/employee-login",
     "pages/login/login",
     "pages/index/index",
     "pages/logs/logs",
@@ -24,7 +27,7 @@
     "pages/bankcard-list/backcard-list",
     "pages/qrcode/qrcode",
     "pages/set-bank/set-bank",
-    "pages/employee-login/employee-login",
+    
     "pages/flow-detail/flow-detail",
     "pages/partner-detail/partner-detail",
     "pages/fail-records/fail-records",

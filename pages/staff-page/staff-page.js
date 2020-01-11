@@ -25,6 +25,11 @@ Page({
     pic:'',
     base_info:{}
   },
+  set_time(e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
   set_phone(e) {
     this.setData({
       phone:e.detail.value
@@ -46,7 +51,7 @@ Page({
           return 
         }
         this.setData({
-          base_info:r.data.data
+          base_info:{...r.data.data,default_head:'../../img/头像.png'}
         })
         wx.showToast({
           title: '验证成功',
@@ -318,6 +323,10 @@ Page({
   onLoad: function (options) {
     this.get_hos()
     this.get_item_list()
+    const today = new Date()
+    this.setData({
+      date:today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
+    })
   },
 
   /**
