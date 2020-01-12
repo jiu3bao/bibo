@@ -195,7 +195,7 @@ Page({
           })
           .catch(err => {
             wx.showToast({
-              title: '网络错误',
+              title: err,
               duration: 2000,
               icon: 'none'
             })

@@ -18,7 +18,54 @@ Page({
     navbarHeight: app.globalData.navbarHeight,
     detail: {},
     src_url: app.globalData.src_url,
-    id:''
+    id:'',
+    content:[{
+      id:1,
+      name:'亿美会员',
+      text:[
+        '到指定医院整形',
+        '2年内不限项目整形利润全返(只收取材料、麻醉、住院费用)',
+        '最高返现比例可达90%。',
+        '会员享受免费整形同时，还可赚钱',
+        '会员每推荐一名会员，可直接得100元红包',
+        '会员每推荐一名合伙人，可直接得500元现金红包',
+        '无需繁琐经营，平台软件代管里，即可躺着赚钱',
+        '助力推广还可获额外红包'
+      ]
+    },
+    {
+      id: 2,
+      name: '亿美合伙人',
+      text: [
+        '名下会员手术费20%的提成',
+        '推荐合伙人获得25%的奖励',
+        '推荐高级合伙人可获得30%的奖励',
+        '会员整形利润全返，销售无压力',
+        '提供工作管理工具，无需繁琐经营',
+        '平台推广中心专业宣传，只需一键转发',
+        '专业的工作软件，私人销售二维码，自动记录个人名下',
+        '全方位的医美咨询培训提高你的专业技能快速成为行业精英',
+        '名下会员手术排前、提现排前',
+        '充分的晋升空间未来医院掌舵人'
+      ]
+      },
+      {
+        id: 3,
+        name:'亿美城市合伙人',
+        text: [
+          '名下会员手术费30%的提成',
+          '推荐合伙人获得30%的奖励',
+          '推荐高级合伙人可获得30%的奖励',
+          '会员整形利润全返，销售无压力',
+          '提供工作管理工具，无需繁琐经营',
+          '平台推广中心专业宣传，只需一键转发',
+          '专业的工作软件，私人销售二维码，自动记录个人名下',
+          '全方位的医美咨询培训提高你的专业技能快速成为行业精英',
+          '名下会员手术排前、提现排前',
+          '充分的晋升空间未来医院掌舵人'
+        ]
+      }],
+    now_content:{}
   },
   get_detail(id) {
     const data = {
@@ -152,7 +199,6 @@ Page({
   },
   get_order_id() {
     return new Promise((resolve,reject) => {
-      console.log(this.data.id,789798)
       const data = {
         Token: wx.getStorageSync('user').Token,
         goods_id: this.data.id
@@ -245,9 +291,9 @@ Page({
    */
   onLoad: function (options) {
     this.get_detail(options.id)
-    console.log(options,77777)
     this.setData({
-      id: options.id
+      id: options.id,
+      now_content:this.data.content.filter(i => i.id == options.id)[0]
     })
   },
 

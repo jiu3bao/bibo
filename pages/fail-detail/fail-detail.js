@@ -45,7 +45,7 @@ Page({
         return
       }
       wx.showToast({
-        title: 保存成功,
+        title: '保存成功',
         icon: 'none',
         duration: 3000
       })

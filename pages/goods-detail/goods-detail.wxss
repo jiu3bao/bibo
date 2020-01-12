@@ -34,3 +34,41 @@
   text-align: center;
   line-height: 100rpx;
 }
+.tip {
+  width:90%;
+  margin:40rpx auto;
+  padding:30rpx 50rpx;
+  font-size:25rpx;
+  color:#313131;
+  background:rgba(0,125,255,0.1);
+  border: 1rpx solid #2c7bdf;
+  border-radius: 5rpx;
+  box-sizing: border-box;
+}
+.blue {
+  color:#2c7bdf;
+}
+.content {
+  margin-top:20rpx;
+}
+.content .name {
+  font-size:28rpx;
+  font-weight: 600;
+}
+.content .dot {
+  width:10rpx;
+  height:10rpx;
+  border-radius: 50%;
+  background: #2c7bdf;
+  flex-grow: 0;
+  padding:0;
+  margin-right:10rpx;
+}
+.content>view {
+  display: flex;
+  align-items: center;
+  padding:0 60rpx;
+  font-size:24rpx;
+  color:#313131;
+  margin-bottom:10rpx;
+}

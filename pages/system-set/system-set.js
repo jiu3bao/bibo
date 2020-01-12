@@ -21,7 +21,7 @@ Page({
       content: '确定退出登录？',
       success(res) {
         if (res.confirm) {
-          wx.removeStorage('user')
+          wx.removeStorageSync('user')
           wx.navigateBack()
         } else if (res.cancel) {
           console.log('用户点击取消')

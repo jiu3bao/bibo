@@ -2,9 +2,33 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <image src='{{src_url+detail.pic_url}}'></image>
-  <import src="../../wxParse/wxParse.wxml"/>
-  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-
+  <!-- <import src="../../wxParse/wxParse.wxml"/>
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
+  <view class='tip' wx:if='{{id==1}}'>
+    <view>亿美会员全城唯一的整形福利来了</view>
+    <view>变美还赚钱</view>
+    <view><text class='blue'>2980元</text>全城最燃会员整形界的运通黑卡</view>
+    <view>整形享返现最高比例可达90%</view>
+  </view>
+  <view class='tip' wx:if='{{id==2}}'>
+    <view>亿美合伙人</view>
+    <view>投资门槛3万元年回报率10倍</view>
+    <view><text class='blue'>30000元</text>加入我们</view>
+  </view>
+  <view class='tip' wx:if='{{id==3}}'>
+    <view>亿美城市合伙人</view>
+    <view>2020最容易赚钱的投资</view>
+    <view>年薪百万轻松赚</view>
+    <view><text class='blue'>50000元</text>加入</view>
+    
+  </view>
+  <view class='content'>
+    <view class='name'>{{now_content.name}}权益</view>
+    <view wx:for='{{now_content.text}}'>
+      <view class='dot'></view>
+      <view>{{item}}</view>
+    </view>
+  </view>
   <view class='bottom'>
     <view>
       {{detail.name}}

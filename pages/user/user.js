@@ -197,7 +197,8 @@ Page({
       .then(r => {
         if (r.data.error_code === 6) {
           this.setData({
-            baseInfo: { default_head:'../../img/头像.png'}
+            baseInfo: { default_head:'../../img/头像.png'},
+            moneyInfo:{}
           })
           // wx.navigateTo({
           //   url: '/pages/login/login',

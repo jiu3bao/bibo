@@ -15,8 +15,8 @@
       <view class='name'>{{base_info.name}}<text>会员编号{{base_info.id}}</text></view>
       <view class='phone'>手机号{{phone}}</view>
       <view class='flex no-border'>
-        <image src='../../img/vip@2x.png' class='icon'></image>
-        VIP会员
+        <image src='../../img/vip@2x.png' class='icon' wx:if='{{base_info.is_member===1}}'></image>
+        {{base_info.is_member===1?'VIP会员':'普通用户'}}
       </view>
     </view>
   </view>

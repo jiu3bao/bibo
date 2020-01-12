@@ -43,6 +43,7 @@ Page({
           .then(r => {
             if (r.data.error_code !== 0) {
               // console.log(r.data.message)
+              wx.removeStorageSync('user')
               wx.showToast({
                 title: r.data.message,
                 duration: 2000,
@@ -62,7 +63,7 @@ Page({
           })
           .catch(e => {
             wx.showToast({
-              title: '网络错误',
+              title: e,
               duration: 2000,
               icon: 'none'
             })
