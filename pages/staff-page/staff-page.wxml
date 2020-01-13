@@ -37,14 +37,14 @@
       <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital'>
         <view class='blue hos'>
           {{hos.hospital?hos.hospital:'请选择医院'}}
-          <image src='../../img/向下.png' class='down'></image>
+          <image src='../../img/down.png' class='down'></image>
         </view>
       </picker>
     </view>
   </view>
   <view class='flex between'>
     <view>项目</view>
-    <view class='flex red check' bindtap="add_a_item">添加项目<image src='../../img/添加1.png' class='icon'></image></view>
+    <view class='flex red check' bindtap="add_a_item">添加项目<image src='../../img/add1.png' class='icon'></image></view>
   </view>
   <view class='add_item'>
     <view class='flex between bt-none' wx:for='{{add_item}}' wx:key='{{index}}'>
@@ -65,7 +65,7 @@
     
       <view class='flex check bt-none'>
         <input value='{{add_item[index].price}}' data-index='{{index}}' bindinput="input_price" bindblur="count_price" type='digit'></input>
-        <image src='../../img/减少.png' class='icon' data-index='{{index}}' bindtap="delete_a_item"></image>
+        <image src='../../img/reduce.png' class='icon' data-index='{{index}}' bindtap="delete_a_item"></image>
       </view>
     </view>
   </view>
@@ -76,7 +76,7 @@
   </view>
   <view class='convers-pic'>
     <view>证据图</view>
-    <image src='{{pic&&pic.length>0?src_url + pic:"../../img/添加.png"}}'class='pic' bindtap="chooseimage"></image>
+    <image src='{{pic&&pic.length>0?src_url + pic:"../../img/add.png"}}'class='pic' bindtap="chooseimage"></image>
   </view>
   <view class='submit' bindtap="submit">
     提交

@@ -52,7 +52,7 @@ Page({
         name: '联系我们',
         img: '../../img/lianxi@2x.png',
         auth: 1,
-        redirect:''
+        redirect:'/pages/connect/connect'
       } , {
         name: '设置',
         img: '../../img/shezhi@2x.png',
@@ -172,7 +172,7 @@ Page({
           //   url: '/pages/login/login',
           // })
           this.setData({
-            baseInfo: { default_head: '../../img/头像.png' }
+            baseInfo: { default_head: '../../img/default.png' }
           })
           return 
         } 
@@ -182,9 +182,10 @@ Page({
         }
         r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
         const {name,head,sex,birthday,sfzh,wx} = r.data.data
+        console.log({ ...r.data.data, default_head: '../../img/default.png'})
         this.setData({
-          baseInfo: { ...r.data.data, default_head: '../../img/头像.png'},
-          completed:name.length>0&&head/length>0&&sex.length>0&&birthday.length>0&&sfzh.length>0&&wx.length>0
+          baseInfo: { ...r.data.data, default_head: '../../img/default.png'},
+          completed:name.length>0&&head.length>0&&sex.length>0&&birthday.length>0&&sfzh.length>0&&wx.length>0
         })
       })
       .catch(err=> {
@@ -200,7 +201,7 @@ Page({
       .then(r => {
         if (r.data.error_code === 6) {
           this.setData({
-            baseInfo: { default_head:'../../img/头像.png'},
+            // baseInfo: { default_head:'../../img/default.png'},
             moneyInfo:{}
           })
           // wx.navigateTo({
@@ -248,9 +249,9 @@ Page({
     })
   },
   errImg() {
-    this.setData({
-      baseInfo: { ...this.data.baseInfo, default_head:'../../img/头像.png'}
-    })    
+    // this.setData({
+    //   baseInfo: { ...this.data.baseInfo, default_head:'../../img/default.png'}
+    // })    
   },
   /**
    * 生命周期函数--监听页面加载

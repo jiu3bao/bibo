@@ -14,7 +14,7 @@
     </view>
     <view class='zj'>
       <view>上传任务凭证截图</view>
-      <image src='{{pic&&pic.length>0?img_root + pic:"../../img/添加.png"}}' class='pic' bindtap="chooseimage" binderror="errImg"></image>
+      <image src='{{pic&&pic.length>0?img_root + pic:"../../img/add.png"}}' class='pic' bindtap="chooseimage" binderror="errImg"></image>
     </view>
   </view>
 </view>

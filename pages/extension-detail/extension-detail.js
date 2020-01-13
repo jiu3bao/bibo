@@ -259,7 +259,7 @@ Page({
   },
   errImg() {
     this.setData({
-      pic:'../../img/添加.png'
+      pic:'../../img/add.png'
     })
   },
   /**

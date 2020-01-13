@@ -81,7 +81,7 @@ Page({
         return
       }
       r.data.data.map(i => {
-        i.default_head = '../../img/头像.png'
+        i.default_head = '../../img/default.png'
       })
       if(t===0) {
         arr = this.data.vipPayList
@@ -265,7 +265,7 @@ Page({
           return
         }
         r.data.data.map(i => {
-          i.default_head = '../../img/头像.png'
+          i.default_head = '../../img/default.png'
         })
         this.setData({
           vipPayList: r.data.data
@@ -356,7 +356,7 @@ Page({
           return
         }
         r.data.data.map(i => {
-          i.default_head = '../../img/头像.png'
+          i.default_head = '../../img/default.png'
         })
         let arr = []
         if (t === 0) {

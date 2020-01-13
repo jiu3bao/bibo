@@ -4,7 +4,7 @@
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <view class='change_num' bindtap="tochange">
     <view>更改手机号码</view>
-    <image src='../../img/向下.png'></image>
+    <image src='../../img/down.png'></image>
   </view>
   <view class='log_out' bindtap="log_out">
     <image src='../../img/tuichu@2x.png'></image>

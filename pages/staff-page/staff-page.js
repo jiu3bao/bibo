@@ -51,7 +51,7 @@ Page({
           return 
         }
         this.setData({
-          base_info:{...r.data.data,default_head:'../../img/头像.png'}
+          base_info:{...r.data.data,default_head:'../../img/default.png'}
         })
         wx.showToast({
           title: '验证成功',

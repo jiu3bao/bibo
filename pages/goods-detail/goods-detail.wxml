@@ -9,7 +9,7 @@
     <view>推荐1名合伙人奖励金红包500元</view>
     <view>推荐1名高级合伙人奖励金红包1000元</view>
   </view> -->
-  <image src='{{now_content.pic}}'></image>
+  <image src='{{now_content.pic}}' mode="widthFix"></image>
   <view class='tip' wx:if='{{id==2}}'>
     <view>
       <text class='bold'>赋能一</text>

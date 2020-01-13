@@ -5,6 +5,6 @@
   <view class='project' wx:for='{{list}}' wx:key="{{item.id}}"
     data-id='{{item.id}}'
     bindtap="todetail">
-    <image src='{{src_url+item.pic_url}}' ></image>
+    <image src='{{src_url+item.pic_url}}' mode="widthFix"></image>
   </view>
 </view>

@@ -32,7 +32,8 @@
     "pages/system-set/system-set",
     "pages/verify-mobile/verify-mobile",
     "pages/change-mobile/change-mobile",
-    "pages/contract/contract"
+    "pages/contract/contract",
+    "pages/connect/connect"
   ],
   "window": {
     "backgroundTextStyle": "light",

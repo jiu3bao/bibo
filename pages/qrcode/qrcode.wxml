@@ -4,10 +4,10 @@
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <image src='{{qrcode}}'></image>
   <view class='pre' bindtap="prepic" wx:if='{{bg_index!==0}}'>
-    <image src='../../img/向左.png'></image>
+    <image src='../../img/l.png'></image>
   </view>
   <view class='next' bindtap="nextpic" wx:if='{{bg_index!==bg_list.length-1}}'>
-    <image src='../../img/向右.png'></image>
+    <image src='../../img/r.png'></image>
   </view>
   <canvas canvas-id='myCanvas' class='canvas' sytle='width:{{width}}px;height:{{height}}px'></canvas>
   <button bindtap='save_img'>保存图片到相册</button>
