@@ -1,91 +1,8 @@
-<!--pages/goods-detail/goods-detail.wxml-->
+<!--pages/contract/contract.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-<view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <!-- <image src='{{src_url+detail.pic_url}}'></image> -->
-  <!-- <import src="../../wxParse/wxParse.wxml"/>
-  <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
-  <!-- <view class='tip' wx:if='{{id==1}}'>
-    <view>推荐一名新会员奖励红包100元</view>
-    <view>推荐1名合伙人奖励金红包500元</view>
-    <view>推荐1名高级合伙人奖励金红包1000元</view>
-  </view> -->
-  <image src='{{now_content.pic}}'></image>
-  <view class='tip' wx:if='{{id==2}}'>
-    <view>
-      <text class='bold'>赋能一</text>
-      <view>你的客户，我来买单——销售无阻力</view>
-    </view>
-    <view>
-      <text class='bold'>赋能二</text>
-      <view>
-        严选<text class='blue'>高品质</text>医疗机构——把关整形<text class='blue'>安全</text>
-      </view>
-    </view>
-    <view>
-      <text class='bold'>赋能三</text>
-      <view>
-        <text class='blue'>专业医美咨</text>询培训——成为行业精英
-      </view> 
-    </view>
-    <view>
-      <text class='bold'>赋能四</text>
-      <view>
-        所有会员纳入合伙人名下，实时查知会员消费——<text class='blue'>不丢客、不跑单</text>
-      </view>
-    </view>
-    <!-- <view><text class='blue'>30000元</text>加入我们</view> -->
-  </view>
-  <view class='tip' wx:if='{{id==3}}'>
-    <view>
-      <text class='bold'>赋能一</text>
-      <view>你的客户，我来买单——销售无阻力</view>
-    </view>
-    <view>
-      <text class='bold'>赋能二</text>
-      <view>
-        严选<text class='blue'>高品质</text>医疗机构——把关整形<text class='blue'>安全</text>
-      </view>
-    </view>
-    <view>
-      <text class='bold'>赋能三</text>
-      <view>
-        <text class='blue'>专业医美咨</text>询培训——成为行业精英
-      </view> 
-    </view>
-    <view>
-      <text class='bold'>赋能四</text>
-      <view>
-        所有会员纳入合伙人名下，实时查知会员消费——<text class='blue'>不丢客、不跑单</text>
-      </view>
-    </view>
-    <!-- <view><text class='blue'>50000元</text>加入</view> -->
-    
-  </view>
-  <view class='content'>
-    <view class='name'>{{now_content.name}}</view>
-    <view wx:for='{{now_content.text}}'>
-      
-      <view><text class='dot'></text><text class='blue'>{{index+1}}.</text>{{item}}</view>
-    </view>
-     
-  </view>
-  <view class='aa'>
-    <view class='{{has_read?"gou bl":"gou"}}' bindtap="read">{{has_read?'√':''}}</view>
-    <view class='bb' bindtap="tocontract">《用户协议》</view>
-  </view>
-  <view class='bottom'>
-    <view>
-      {{now_content.type}}
-      <text>￥{{detail.price}}</text>
-    </view>
-   
-    <view bindtap="create_order" class='button'>
-      立即加入
-    </view>
-  </view>
-  <view wx:if='{{show_con}}' class='model'>
-    <view class='box'>
-    <view class='con'>
+
+<view class='contain' style='padding-top:{{navbarHeight}}px'> 
+  <view class='con'>
       <view>
         <view class='tt'>会员服务协议</view>
         <view>
@@ -253,10 +170,4 @@
       </view>
       
     </view>
-    <view class='read-btn'>
-      <view>不同意上述协议</view>
-      <view>已阅读上述协议并同意</view>
-    </view>
-    </view>
-  </view>
 </view>
