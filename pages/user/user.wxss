@@ -11,7 +11,8 @@
   margin-bottom:30rpx;
   margin-top:20rpx;
   padding:0 43rpx;
-  background: #fff
+  background: #fff;
+  position: relative;
 }
 
 .head {
@@ -144,4 +145,11 @@
   text-align: center;
   background:linear-gradient(to right, #3cb5fe , #42d4fd);
   border-radius: 30rpx;
+}
+.position {
+  position: absolute;
+  right:50rpx;
+  height:50%;
+  color:#3cb5fe;
+  font-size:24rpx;
 }

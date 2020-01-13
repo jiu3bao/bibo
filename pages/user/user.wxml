@@ -21,6 +21,7 @@
         </view>
       </view>
     </view>
+    <view class='position' wx:if='!completed'>前往完善资料</view>
   </view>
   <view class='money-info'>
     <view class='total'>

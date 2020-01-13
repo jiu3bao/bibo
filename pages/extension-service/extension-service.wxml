@@ -19,14 +19,14 @@
       class='list'>
       <view class='dot' wx:if='{{item.misson_status===-1}}'>1</view>
       <view class='title'>
-        <text>推广任务</text>
+        <text>推广中心</text>
       </view>
-      <!-- <view>将此条信息转发到微信群朋友圈</view> -->
-      <!-- <view>
-        <image src='{{img_root+item.}}'></image>
-      </view> -->
-      <view>{{item.title}}</view>
-      <view>{{item.time}}</view>
+      <view>将此条信息转发到微信群朋友圈</view>
+      <view>
+        <image src='{{img_root+item.pic_url}}'></image>
+      </view>
+      <view class='summary'>{{item.summary}}</view>
+      <!-- <view>{{item.time}}</view> -->
     </view>
     <view wx:for='{{done_list}}' wx:key='{{item.misson_id}}' 
       data-id="{{item.misson_id}}"

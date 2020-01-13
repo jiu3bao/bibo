@@ -15,6 +15,7 @@ Page({
     },
     navbarHeight: app.globalData.navbarHeight,
     src_url: app.globalData.src_url,
+    completed:true,
     fnList:[{
       name:'我的钱包',
       img:'../../img/qianbao@2x.png',
@@ -113,7 +114,7 @@ Page({
     
   },
   redirect(e) {
-    if (wx.getStorageSync('user') && wx.getStorageSync('user').Token && wx.getStorageSync('user').is_member>0) {
+    if (wx.getStorageSync('user') && wx.getStorageSync('user').Token && (wx.getStorageSync('user').is_member>0||type>0)) {
       wx.navigateTo({
         url: e.currentTarget.dataset.url,
         events: {
@@ -180,8 +181,10 @@ Page({
           return 
         }
         r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
+        const {name,head,sex,birthday,sfzh,wx} = r.data.data
         this.setData({
           baseInfo: { ...r.data.data, default_head: '../../img/头像.png'},
+          completed:name.length>0&&head/length>0&&sex.length>0&&birthday.length>0&&sfzh.length>0&&wx.length>0
         })
       })
       .catch(err=> {
