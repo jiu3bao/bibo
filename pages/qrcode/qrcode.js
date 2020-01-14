@@ -84,17 +84,17 @@ Page({
     // 设置矩形宽高
     ctx.strokeRect(0, 0, 400, 200)
     let background = path[0]
+    const top_height = that.data.height - 0
     console.log(that.data.width, that.data.height)
-    ctx.drawImage(background, 0, 0, that.data.width, that.data.height)
+    ctx.drawImage(background, 0, 0, that.data.width, top_height)
     // 设置文字大小
     ctx.setFontSize(24)
     // 设置文字颜色
     ctx.fillStyle = '#fff'
 
-    // const str = "hhhhhh"
-    // ctx.fillText(str, 180, 200)
-    // ctx.fillText('hufisuh', 180, 250)
-    ctx.drawImage(path[1], 180, 400, 150, 150)
+    // const name = wx.getStorageSync('user').name
+    // ctx.fillText(name, 180, top_height+20)
+    ctx.drawImage(path[1], 180, top_height-200, 150, 150)
     console.log(ctx)
     ctx.draw(false, function () {
       wx.canvasToTempFilePath({

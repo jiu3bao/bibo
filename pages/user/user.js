@@ -114,7 +114,7 @@ Page({
     
   },
   redirect(e) {
-    if (wx.getStorageSync('user') && wx.getStorageSync('user').Token && (wx.getStorageSync('user').is_member>0||type>0)) {
+    if (wx.getStorageSync('user') && wx.getStorageSync('user').Token && (this.data.baseInfo.is_member>0||this.data.baseInfo.type>0)) {
       wx.navigateTo({
         url: e.currentTarget.dataset.url,
         events: {
