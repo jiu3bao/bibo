@@ -21,7 +21,7 @@
         </view>
       </view>
     </view>
-    <view class='position' wx:if='{{!completed}}'>前往完善资料</view>
+    <view class='position' wx:if='{{baseInfo.id&&!completed}}'>前往完善资料</view>
     <view class='position' wx:if='{{!baseInfo.id||baseInfo.id.length===0}}' catchtap="tologin">登录/注册</view>
   </view>
   <view class='money-info'>

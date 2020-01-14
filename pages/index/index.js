@@ -20,7 +20,7 @@ Page({
     //
     articleType:[{
       type:0,
-      name:'新闻'
+      name:'众诺动态'
     }, 
     {
       type: 3,

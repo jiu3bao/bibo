@@ -182,7 +182,6 @@ Page({
         }
         r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
         const {name,head,sex,birthday,sfzh,wx} = r.data.data
-        console.log({ ...r.data.data, default_head: '../../img/default.png'})
         this.setData({
           baseInfo: { ...r.data.data, default_head: '../../img/default.png'},
           completed:name.length>0&&head.length>0&&sex.length>0&&birthday.length>0&&sfzh.length>0&&wx.length>0
