@@ -192,6 +192,7 @@ Page({
       this.made_canvas_img(r1)
     })
     .catch(err => {
+      wx.hideLoading()
       wx.showToast({
         title: err,
         duration: 2000,
