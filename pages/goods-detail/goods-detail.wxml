@@ -9,7 +9,7 @@
     <view>推荐1名合伙人奖励金红包500元</view>
     <view>推荐1名高级合伙人奖励金红包1000元</view>
   </view> -->
-  <image src='{{now_content.pic}}' mode="widthFix"></image>
+  <image src='{{now_content.pic}}' mode="widthFix" class='banner'></image>
   <view class='tip' wx:if='{{id==2}}'>
     <view>
       <text class='bold'>赋能一</text>
@@ -76,11 +76,11 @@
   <view class='bottom'>
     <view>
       {{now_content.type}}
-      <text>￥{{detail.price}}</text>
+      <text>￥{{isUpdate?updatePrice:detail.price}}</text>
     </view>
    
     <view bindtap="create_order" class='button'>
-      立即加入
+      {{isUpdate?'立即升级':'立即加入'}}
     </view>
   </view>
   <view wx:if='{{show_con}}' class='model'>
@@ -259,4 +259,5 @@
     </view>
     </view>
   </view>
+  <auth bind:closeshadow='closeshadow' wx:if='{{showShadow}}'></auth>
 </view>

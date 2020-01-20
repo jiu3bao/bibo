@@ -66,7 +66,10 @@ Page({
       }],
     now_content:{},
     show_con:false,
-    has_read:false
+    has_read:false,
+    isUpdate:false,
+    updatePrice:0,
+    showShadow:false
   },
   read() {
     this.setData({
@@ -151,6 +154,7 @@ Page({
       return
     }
     if(wx.getStorageSync('openid')) {
+      const that = this
       this.get_order_id()
         .then(res => {
           return this.get_pay_param(res, wx.getStorageSync('openid'))
@@ -167,6 +171,11 @@ Page({
                 title: '付款成功',
                 duration:3000
               })
+              console.log(that)
+              that.get_userInfo()
+              // this.setData({
+              //   showShadow:true
+              // })
             },
             fail(res) {
               wx.showToast({
@@ -219,7 +228,6 @@ Page({
           })
         })
     }
-    
   },
   get_order_id() {
     return new Promise((resolve,reject) => {
@@ -309,7 +317,29 @@ Page({
         })
     })
   },
-
+  closeshadow(data) {
+    this.setData({
+      showShadow:false
+    })
+  },
+  get_userInfo() {
+    service('/GetUserInfo', { Token:wx.getStorageSync('user').Token})
+    .then(r => {
+      if (r.data.error_code !==0) {
+        reject(r.data.message)
+        return 
+      }
+      const {name,head} = r.data.data
+      if(head.length===0||name.length===0) {
+        this.setData({
+          showShadow:true
+        })
+      }
+    })
+    .catch(e => {
+      console.log(e)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -317,9 +347,36 @@ Page({
     this.get_detail(options.id)
     this.setData({
       id: options.id,
-      now_content:this.data.content.filter(i => i.id == options.id)[0]
+      now_content:this.data.content.filter(i => i.id == options.id)[0],
     })
+    if(options.id==3 && wx.getStorageSync('user').Token) {
+      service('/GetUserInfo',{Token:wx.getStorageSync('user').Token}).then(r => {
+        if(r.data.error_code!==0) {
+          return new Promise((resolve,reject) => {
+            reject()
+          })
+        }
+        if(r.data.data.type===2) {
+          this.setData({
+            isUpdate:true
+          })
+          return service('/GetUpdateAgentFee')
+        }
+        return new Promise((resolve,reject) => {
+          reject()
+        })
+      })
+      .then(r1 => {
+        this.setData({
+          updatePrice:r1.data
+        })
+      })
+      .catch(err => {
+
+      })
+    }
   },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

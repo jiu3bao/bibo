@@ -14,12 +14,15 @@ Page({
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
+    src_url: app.globalData.src_url,
     qrcode:'',
     width:0,
     height:0,
     bg_list:[],
     bg_index:0,
-    qr_local_path:''
+    qr_local_path:'',
+    head:'',
+    name:''
   },
   get_bg() {
     return new Promise((resolve,reject) => {
@@ -84,18 +87,26 @@ Page({
     // 设置矩形宽高
     ctx.strokeRect(0, 0, 400, 200)
     let background = path[0]
-    const top_height = that.data.height - 0
+    const top_height = that.data.height - 150
     console.log(that.data.width, that.data.height)
     ctx.drawImage(background, 0, 0, that.data.width, top_height)
     // 设置文字大小
-    ctx.setFontSize(24)
+    ctx.setFontSize(22)
     // 设置文字颜色
-    ctx.fillStyle = '#fff'
+    ctx.fillStyle = '#000'
 
-    // const name = wx.getStorageSync('user').name
-    // ctx.fillText(name, 180, top_height+20)
-    ctx.drawImage(path[1], 180, top_height-200, 150, 150)
-    console.log(ctx)
+    const name = this.data.name&&this.data.name.length>0?this.data.name:'xxx'
+    ctx.fillText(name, 180, top_height+30)
+    ctx.drawImage(path[1], 20, top_height+15, 120, 120)
+    if(/(http|https):\/\/([\w.]+\/?)\S*/.test(this.data.head)) {
+      this.downLoadImg(this.data.head)
+      .then(p => {
+        ctx.drawImage(p, 180, top_height+15, 80, 80)
+      })
+    } else {
+      ctx.drawImage(this.data.head, 180, top_height+15, 80, 80)
+    }
+    
     ctx.draw(false, function () {
       wx.canvasToTempFilePath({
         canvasId: 'myCanvas',
@@ -174,6 +185,14 @@ Page({
   onLoad: function (options) {
     wx.showLoading()
     const app_info = wx.getSystemInfoSync()
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('acceptDataFromOpenerPage', (data) => {
+      console.log(data.data)
+      this.setData({
+        head:data.data.head,
+        name:data.data.name
+      })
+    })
     this.setData({
       width: app_info.windowWidth,
       height: app_info.windowHeight

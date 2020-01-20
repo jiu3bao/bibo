@@ -136,7 +136,12 @@ Page({
       })
     }
   },
-  onLoad() {
+  onLoad(options) {
+    if( options.query) {
+      const scene = options.query.scene
+      wx.setStorageSync('scene', scene)
+    }
+    
     this.get_banner()
     this.get_article(this.data.now_at_type)
       .then(r => {
