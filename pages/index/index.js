@@ -136,7 +136,14 @@ Page({
       })
     }
   },
-  onLoad() {
+  onLoad(options) {
+    console.log(options)
+    // if(options.scene!==) {
+    //   
+    // }
+    const scene = options.scene
+    wx.setStorageSync('scene', scene)
+    
     this.get_banner()
     this.get_article(this.data.now_at_type)
       .then(r => {

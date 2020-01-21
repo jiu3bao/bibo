@@ -2,9 +2,9 @@
 App({
   onLaunch: function (options) {
     // 判断是否由分享进入小程序
-    console.log(options)
-    const scene = options.query.scene
-    wx.setStorageSync('scene', scene)
+    // console.log(options)
+    // const scene = options.query.scene
+    // wx.setStorageSync('scene', scene)
     // wx.setStorageSync('options', options)
 
     //获取设备顶部窗口的高度（不同设备窗口高度不一样，根据这个来设置自定义导航栏的高度）
@@ -68,7 +68,7 @@ App({
     share: false,  // 分享默认为false
     height: 0,
     navbarHeight:0,
-    src_url: "http://ym.bibo80s.com"
+    src_url: "https://ym.bibo80s.com"
 
   }
 

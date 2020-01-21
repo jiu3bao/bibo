@@ -180,6 +180,13 @@ Page({
   get_reference_info() {
     service('/GetReferenceInfo', { id: wx.getStorageSync('scene')})
     .then(r => {
+      console.log(r)
+      if(r.data.error_code!==0) {
+        this.setData({
+          reference_id:null
+        })
+        return 
+      }
       this.setData({
         reference_info:r.data.data
       })

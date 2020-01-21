@@ -62,6 +62,13 @@
 					"pathName": "pages/check-token/check-token",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "scene=25",
+					"scene": 1048
 				}
 			]
 		}

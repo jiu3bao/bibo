@@ -60,7 +60,8 @@ Page({
         redirect: '/pages/system-set/system-set'
       }],
     baseInfo:{},
-    moneyInfo:{}
+    moneyInfo:{},
+    show_auth:false
   },
   toset() {
     if (wx.getStorageSync('user') && wx.getStorageSync('user').Token) {
@@ -128,7 +129,12 @@ Page({
         },
         success: (res) => {
           // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.moneyInfo })
+          if(e.currentTarget.dataset.url==='/pages/qrcode/qrcode') {
+            res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.baseInfo })
+          } else {
+            res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.moneyInfo })
+          }
+          
         }
       })
     } else {
@@ -170,7 +176,7 @@ Page({
         if (r.data.error_code===6) {
           // wx.navigateTo({
           //   url: '/pages/login/login',
-          // })
+          // })        
           this.setData({
             baseInfo: { default_head: '../../img/default.png' }
           })
@@ -186,6 +192,23 @@ Page({
           baseInfo: { ...r.data.data, default_head: '../../img/default.png'},
           completed:name.length>0&&head.length>0&&sex.length>0&&birthday.length>0&&sfzh.length>0&&wx.length>0
         })
+        console.log(head,name,head.length,name.length)
+        // if(head.length===0||name.length===0) {
+        //   this.setData({
+        //     show_auth:true
+        //   })
+          // console.log(wx)
+          // wx.navigateTo({
+          //   url: '/pages/auth/auth',
+          //   success:(res)=>{
+          //     console.log(res)
+          //    },
+             
+          //   fail:(err)=>{
+          //   console.log(err)
+          //   }
+          // })
+        // }
       })
       .catch(err=> {
         wx.showToast({
@@ -247,10 +270,12 @@ Page({
       }
     })
   },
-  errImg() {
-    // this.setData({
-    //   baseInfo: { ...this.data.baseInfo, default_head:'../../img/default.png'}
-    // })    
+  errImg(e) {
+    if(e.type=="error") {
+      this.setData({
+        baseInfo:{...this.data.baseInfo,head:'../../img/default.png'}
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -272,6 +297,7 @@ Page({
   onShow: function () {
     this.get_base_info()
     this.get_money_info()
+    
   },
 
   /**

@@ -3,7 +3,8 @@
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
   <view class='base-info' bindtap="toset">
-    <image src='{{baseInfo.head&&baseInfo.head.length>0?src_url+baseInfo.head:baseInfo.default_head}}' class='head' binderror="errImg"></image>
+  <!-- {{baseInfo.head&&baseInfo.head.length>0?baseInfo.head:baseInfo.default_head}} -->
+    <image src='{{baseInfo.head&&baseInfo.head.length>0?baseInfo.head:baseInfo.default_head}}' class='head' binderror="errImg"></image>
     <view class='info'>
       <view class='name'>{{baseInfo.name||"xxx"}}</view>
       <view class='id'>会员编号{{baseInfo.id||"xxx"}}</view>
@@ -60,5 +61,21 @@
   </view>
   <!-- <view class='tologin' bindtap='tologin'>
     切换账号
+  </view> -->
+  <!-- <view class='shadow'>
+    <view class='auth'>
+      <view class='h'>微信授权</view>
+      <view class='f'>
+        <image src='../../img/logo.jpg'></image>
+        <view class='a'>众诺亿美申请获得以下权限：</view>
+        <view class='获得你的公开信息（昵称、头像等）'></view>
+        <view>
+          <button>拒绝</button>
+          <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">允许</button>
+        </view>
+        
+      </view>
+      
+    </view>
   </view> -->
 </view>

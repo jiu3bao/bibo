@@ -33,7 +33,8 @@
     "pages/verify-mobile/verify-mobile",
     "pages/change-mobile/change-mobile",
     "pages/contract/contract",
-    "pages/connect/connect"
+    "pages/connect/connect",
+    "pages/auth/auth"
   ],
   "window": {
     "backgroundTextStyle": "light",
