@@ -153,6 +153,7 @@ Page({
       })
       return
     }
+    wx.showLoading({mask:true})
     if(wx.getStorageSync('openid')) {
       const that = this
       this.get_order_id()
@@ -167,31 +168,41 @@ Page({
             signType: r.signType,
             paySign: r.paySign,
             success(res) {
-              wx.showToast({
-                title: '付款成功',
-                duration:3000
+              wx.hideLoading({
+                complete: (res) => {
+                  wx.showToast({
+                    title: '付款成功',
+                    duration:3000
+                  })
+                },
               })
-              console.log(that)
               that.get_userInfo()
-              // this.setData({
-              //   showShadow:true
-              // })
             },
             fail(res) {
-              wx.showToast({
-                title: res,
-                duration: 2000,
-                icon: 'none'
+              wx.hideLoading({
+                complete: (res) => {
+                  wx.showToast({
+                    title: res,
+                    duration: 2000,
+                    icon: 'none'
+                  })
+                },
               })
+              
             }
           })
         })
         .catch(err => {
-          wx.showToast({
-            title: err,
-            duration: 2000,
-            icon: 'none'
+          wx.hideLoading({
+            complete: (res) => {
+              wx.showToast({
+                title: err,
+                duration: 2000,
+                icon: 'none'
+              })
+            },
           })
+          
         })
     } else {
       Promise.all([this.get_order_id(), this.get_openid()])
@@ -206,26 +217,41 @@ Page({
             signType: r.signType,
             paySign: r.paySign,
             success(res) {
-              wx.showToast({
-                title: '付款成功',
-                duration:3000
+              
+              wx.hideLoading({
+                complete: (res) => {
+                  wx.showToast({
+                    title: '付款成功',
+                    duration:3000
+                  })
+                },
               })
             },
             fail(res) {
-              wx.showToast({
-                title: res,
-                duration: 2000,
-                icon: 'none'
+              wx.hideLoading({
+                complete: (res) => {
+                  wx.showToast({
+                    title: res,
+                    duration: 2000,
+                    icon: 'none'
+                  })
+                },
               })
+              
             }
           })
         })
         .catch(err => {
-          wx.showToast({
-            title: err,
-            duration: 2000,
-            icon: 'none'
+          wx.hideLoading({
+            complete: (res) => {
+              wx.showToast({
+                title: err,
+                duration: 2000,
+                icon: 'none'
+              })
+            },
           })
+          
         })
     }
   },

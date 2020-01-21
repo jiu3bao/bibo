@@ -48,7 +48,7 @@ Page({
   },
   get_code() {
     if (this.data.time !== 0) return
-    wx.showLoading()
+    wx.showLoading({mask:true})
     const data = {
       mobile: this.data.mobile
     }

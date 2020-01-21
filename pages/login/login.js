@@ -18,7 +18,7 @@ Page({
     timer:null,
     mobile:'',
     code:'',
-    reference_id: wx.getStorageSync('scene'),
+    reference_id: '',
     reference_info:{},
     canback:false
   },
@@ -45,7 +45,7 @@ Page({
       return 
     }
     if(this.data.time !==0) return
-    wx.showLoading()
+    wx.showLoading({mask:true})
     const data = {
       mobile:this.data.mobile
     }
@@ -101,6 +101,7 @@ Page({
   //登录
   login() {
     const checked = this.check()
+    console.log(this.data.reference_id)
     if(!checked) return 
     const data = {
       mobile:this.data.mobile,
@@ -181,7 +182,10 @@ Page({
     service('/GetReferenceInfo', { id: wx.getStorageSync('scene')})
     .then(r => {
       this.setData({
-        reference_info:r.data.data
+        reference_info:r.data.data,
+        reference_id: wx.getStorageSync('scene')
+      },()=>{
+        console.log(this.data.reference_id)
       })
     })
     .catch(err => {
@@ -197,6 +201,7 @@ Page({
    */
   onLoad: function (options) {
     if (wx.getStorageSync('scene')) {
+      
       this.get_reference_info()
     }
     const eventChannel = this.getOpenerEventChannel()

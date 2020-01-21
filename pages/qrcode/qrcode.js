@@ -66,47 +66,56 @@ Page({
     
   },
   downLoadImg(url) {
-    return new Promise((resolve,reject) => {
-      wx.getImageInfo({
-        src: url,    //请求的网络图片路径
-        success(res) {
-          resolve(res.path)
-        },
-        fail(err) {
-          reject(err)
-        }
+    if(/(http|https):\/\/([\w.]+\/?)\S*/.test(url)) {
+      return new Promise((resolve,reject) => {
+        wx.getImageInfo({
+          src: url,    //请求的网络图片路径
+          success(res) {
+            resolve(res.path)
+          },
+          fail(err) {
+            reject(err)
+          }
+        })
       })
-    })
+    } else {
+      return new Promise((resolve,reject) =>{
+        resolve(url)
+      })
+    }
+    
   },
   made_canvas_img(path) {
     const that = this
     const ctx = wx.createCanvasContext('myCanvas')
     ctx.save()
-    // 设置矩形边框
-    ctx.setStrokeStyle('#fff')
-    // 设置矩形宽高
-    ctx.strokeRect(0, 0, 400, 200)
+    ctx.fillStyle="#FFFFFF";
+    ctx.fillRect(0,0,this.data.width,this.data.height);
+
     let background = path[0]
-    const top_height = that.data.height - 150
+    const top_height = that.data.height * 0.8
+    const bottom_height=this.data.height * 0.2
+    const half_width = this.data.width*0.5
+    const standard_width = bottom_height>half_width?half_width:bottom_height
+    console.log(half_width,top_height)
     console.log(that.data.width, that.data.height)
     ctx.drawImage(background, 0, 0, that.data.width, top_height)
     // 设置文字大小
-    ctx.setFontSize(22)
+    ctx.setFontSize(20)
     // 设置文字颜色
     ctx.fillStyle = '#000'
 
+    ctx.beginPath()
+    ctx.setLineWidth(1)
+    ctx.moveTo(half_width, top_height+10)
+    ctx.lineTo(half_width, this.data.height)
+    ctx.stroke()
     const name = this.data.name&&this.data.name.length>0?this.data.name:'xxx'
-    ctx.fillText(name, 180, top_height+30)
-    ctx.drawImage(path[1], 20, top_height+15, 120, 120)
-    if(/(http|https):\/\/([\w.]+\/?)\S*/.test(this.data.head)) {
-      this.downLoadImg(this.data.head)
-      .then(p => {
-        ctx.drawImage(p, 180, top_height+15, 80, 80)
-      })
-    } else {
-      ctx.drawImage(this.data.head, 180, top_height+15, 80, 80)
-    }
+    console.log(ctx.measureText(name))
+    ctx.fillText(name, half_width+(half_width-ctx.measureText(name).width)/2, top_height+standard_width*0.9)
+    ctx.drawImage(path[1], (half_width-standard_width*0.8)/2, top_height+standard_width*0.1, standard_width*0.8, standard_width*0.8)
     
+    ctx.drawImage(path[2],half_width +(half_width-standard_width*0.6)/2, top_height+standard_width*0.1, standard_width*0.6, standard_width*0.6)
     ctx.draw(false, function () {
       wx.canvasToTempFilePath({
         canvasId: 'myCanvas',
@@ -141,7 +150,7 @@ Page({
   },
   prepic() {
     if (this.data.bg_index===0) return 
-    wx.showLoading()
+    wx.showLoading({mask:true})
     this.setData({
       bg_index: this.data.bg_index-1
     },() =>{
@@ -161,7 +170,7 @@ Page({
   },
   nextpic() {
     if (this.data.bg_index === this.data.bg_list.length-1) return 
-    wx.showLoading()
+    wx.showLoading({mask:true})
     this.setData({
       bg_index: this.data.bg_index + 1
     }, () => {
@@ -183,40 +192,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading()
+    wx.showLoading({mask:true})
     const app_info = wx.getSystemInfoSync()
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', (data) => {
       console.log(data.data)
       this.setData({
-        head:data.data.head,
+        head:data.data.head.length>0?data.data.head:data.data.default_head,
         name:data.data.name
+      },() => {
+        this.setData({
+          width: app_info.windowWidth,
+          height: app_info.windowHeight
+        })
+        Promise.all([this.get_bg(), this.get_qrcode()])
+        .then(r => {
+          this.setData({
+            bg_list:r[0],
+          })
+          return Promise.all([this.downLoadImg(r[0][0].pic_url), this.downLoadImg(r[1]),this.downLoadImg(this.data.head)])
+        })
+        .then(r1 => {
+          this.setData({
+            qr_local_path: r1[1]
+          })
+          this.made_canvas_img(r1)
+        })
+        .catch(err => {
+          wx.showToast({
+            title: err,
+            duration: 2000,
+            icon: 'none'
+          })
+        })
       })
     })
-    this.setData({
-      width: app_info.windowWidth,
-      height: app_info.windowHeight
-    })
-    Promise.all([this.get_bg(), this.get_qrcode()])
-    .then(r => {
-      this.setData({
-        bg_list:r[0],
-      })
-      return Promise.all([this.downLoadImg(r[0][0].pic_url), this.downLoadImg(r[1])])
-    })
-    .then(r1 => {
-      this.setData({
-        qr_local_path: r1[1]
-      })
-      this.made_canvas_img(r1)
-    })
-    .catch(err => {
-      wx.showToast({
-        title: err,
-        duration: 2000,
-        icon: 'none'
-      })
-    })
+    
   },
 
   /**

@@ -2,7 +2,7 @@
 App({
   onLaunch: function (options) {
     // 判断是否由分享进入小程序
-    console.log(options)
+    // console.log(options)
     // const scene = options.query.scene
     // wx.setStorageSync('scene', scene)
     // wx.setStorageSync('options', options)
