@@ -34,9 +34,9 @@ input {
 }
 .flex view {
   position: absolute;
-  line-height:30rpx;
+  line-height:85rpx;
   font-size:22rpx;
-  top:88rpx;
+  top:60rpx;
   right:77rpx;
   padding:0 20rpx;
   border-left:1rpx solid #e6e6e6;

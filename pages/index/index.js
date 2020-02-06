@@ -137,10 +137,6 @@ Page({
     }
   },
   onLoad(options) {
-    console.log(options)
-    // if(options.scene!==) {
-    //   
-    // }
     const scene = options.scene
     wx.setStorageSync('scene', scene)
     

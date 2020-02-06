@@ -81,9 +81,8 @@ Page({
         })
       })
     } else {
-      return new Promise((resolve,reject) => {
-        console.log(url)
-        resolve(url) 
+      return new Promise((resolve,reject) =>{
+        resolve(url)
       })
     }
     
@@ -92,55 +91,62 @@ Page({
     const that = this
     const ctx = wx.createCanvasContext('myCanvas')
     ctx.fillStyle="#FFFFFF";
-    ctx.fillRect(0,0,this.data.width,this.data.height);
-    ctx.save()
-    // 设置矩形边框
-    // ctx.setStrokeStyle('#fff')
-    // 设置矩形宽高
-    // ctx.strokeRect(0, 0, 400, 200)
-    // ctx.rect(0,0,this.data.width,this.data.height)
-    // ctx.setFillStyle('white')
-    // ctx.fillRect(0,0,this.data.width,this.data.height)
-    // ctx.draw()
-    let background = path[0]
-    const top_height = this.data.height - 150
-    ctx.drawImage(background, 0, 0, this.data.width, top_height)
-    // 设置文字大小
-    ctx.setFontSize(22)
-    // 设置文字颜色
-    ctx.fillStyle = '#000'
+    const query = wx.createSelectorQuery()
+    query.select('#bt').boundingClientRect()
+    query.selectViewport().scrollOffset()
+    query.exec(function (res) {
+      console.log(res)
+      const c_height = res[0].top-20
+      ctx.fillRect(0,0,that.data.width,c_height);
+      ctx.save()
+      ctx.fillStyle="#FFFFFF";
+      ctx.fillRect(0,0,that.data.width,c_height);
 
-    const name = this.data.name&&this.data.name.length>0?this.data.name:'xxx'
-    ctx.fillText(name, 180, top_height+120)
-    ctx.drawImage(path[1], 20, top_height+15, 120, 120)
-    ctx.drawImage(path[2], 180,  top_height+15, 60, 60)
-    ctx.beginPath();//开始一个新的路径
-    ctx.moveTo(160,top_height+15);//路径的起点
-    ctx.lineTo(160,that.data.height);//路径的终点
-    ctx.setLineWidth(2)
-    ctx.setStrokeStyle('black')
-    ctx.stroke();//对当前路径进行描边
-    ctx.closePath();//关闭当前路径
-    ctx.draw(false, function () {
-      wx.canvasToTempFilePath({
-        canvasId: 'myCanvas',
-        success (res) {
-          that.setData({
-            qrcode: res.tempFilePath,
-            hidden: false
-          })
-          wx.hideLoading()
-        },
-        fail(err) {
-          wx.showToast({
-            title: err,
-            icon: 'none',
-            duration: 3000
-          })
-          wx.hideLoading()
-        }
+      let background = path[0]
+      const top_height = c_height * 0.8
+      const bottom_height=c_height * 0.2
+      const half_width = that.data.width*0.5
+      const standard_width = bottom_height>half_width?half_width:bottom_height
+      ctx.drawImage(background, 0, 0, that.data.width, top_height)
+      // 设置文字大小
+      ctx.setFontSize(20)
+      // 设置文字颜色
+      ctx.fillStyle = '#000'
+
+      ctx.beginPath()
+      ctx.setLineWidth(1)
+      ctx.moveTo(half_width, top_height+10)
+      ctx.lineTo(half_width, c_height)
+      ctx.stroke()
+      const name = that.data.name&&that.data.name.length>0?that.data.name:'xxx'
+      console.log(ctx.measureText(name))
+      ctx.fillText(name, half_width+(half_width-ctx.measureText(name).width)/2, top_height+standard_width*0.9)
+      ctx.drawImage(path[1], (half_width-standard_width*0.8)/2, top_height+standard_width*0.1, standard_width*0.8, standard_width*0.8)
+      
+      ctx.drawImage(path[2],half_width +(half_width-standard_width*0.6)/2, top_height+standard_width*0.1, standard_width*0.6, standard_width*0.6)
+      ctx.draw(false, function () {
+        wx.canvasToTempFilePath({
+          canvasId: 'myCanvas',
+          success (res) {
+            that.setData({
+              qrcode: res.tempFilePath,
+              hidden: false
+            })
+            wx.hideLoading()
+          },
+          fail(err) {
+            wx.showToast({
+              title: err,
+              icon: 'none',
+              duration: 3000
+            })
+            wx.hideLoading()
+          }
+        })
       })
     })
+
+    
   },
   save_img() {
     wx.saveImageToPhotosAlbum({
@@ -155,7 +161,7 @@ Page({
   },
   prepic() {
     if (this.data.bg_index===0) return 
-    wx.showLoading()
+    wx.showLoading({mask:true})
     this.setData({
       bg_index: this.data.bg_index-1
     },() =>{
@@ -175,7 +181,7 @@ Page({
   },
   nextpic() {
     if (this.data.bg_index === this.data.bg_list.length-1) return 
-    wx.showLoading()
+    wx.showLoading({mask:true})
     this.setData({
       bg_index: this.data.bg_index + 1
     }, () => {
@@ -197,7 +203,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading()
+    wx.showLoading({mask:true})
     const app_info = wx.getSystemInfoSync()
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', (data) => {
@@ -210,24 +216,20 @@ Page({
           width: app_info.windowWidth,
           height: app_info.windowHeight
         })
-        console.log(456456)
         Promise.all([this.get_bg(), this.get_qrcode()])
         .then(r => {
           this.setData({
             bg_list:r[0],
           })
-          return Promise.all([this.downLoadImg(r[0][0].pic_url), this.downLoadImg(r[1]), this.downLoadImg(this.data.head)])
+          return Promise.all([this.downLoadImg(r[0][0].pic_url), this.downLoadImg(r[1]),this.downLoadImg(this.data.head)])
         })
         .then(r1 => {
-          console.log(r1)
           this.setData({
-            qr_local_path: r1[1],
-            head_local_path: r1[2]
+            qr_local_path: r1[1]
           })
           this.made_canvas_img(r1)
         })
         .catch(err => {
-          wx.hideLoading()
           wx.showToast({
             title: err,
             duration: 2000,

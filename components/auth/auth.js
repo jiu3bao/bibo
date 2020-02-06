@@ -49,9 +49,9 @@ Component({
       this.wx_get_info()
       .then(res => {
         const userInfo = res.userInfo
-        console.log(userInfo)
+        console.log(encodeURIComponent(userInfo.nickName))
         const data = {
-          name:userInfo.nickName,
+          name:encodeURIComponent(userInfo.nickName),
           head:userInfo.avatarUrl,
           Token:wx.getStorageSync('user').Token,
         }
@@ -64,7 +64,6 @@ Component({
           })
           return Promise.reject()
         } 
-        console.log(data)
         service('/SetMyInfo',data)//保存获取到的信息
         .then(r => {
           wx.hideLoading()
@@ -75,7 +74,6 @@ Component({
             return
           }
           if(r.data.error_code!==0) {
-            console.log(r.data.message)
             wx.showToast({
               title: r.data.message,
               duration: 2000,

@@ -16,7 +16,7 @@ image {
 }
 button {
   position: relative;
-  bottom:135rpx;
+  bottom:115rpx;
   background: #229aff;
   color:#fff;
 }

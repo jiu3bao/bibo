@@ -33,11 +33,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     this.get_openid()
     .then(r => {
       wx.setStorageSync('openid', r)
       const userinfo = wx.getStorageSync('user')
       if (userinfo.Token) {
+        service('/SetMyInfo',{name:'',
+          head:'',
+          Token:wx.getStorageSync('user').Token,})
         service('/RequestCheckToken',
           { Token: userinfo.Token })
           .then(r => {

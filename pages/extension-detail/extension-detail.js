@@ -77,7 +77,7 @@ Page({
     });
   },
   save_video() {
-    if (this.data.video_list.length===0) return 
+     
     function wxsave(path) {
       return new Promise((resolve,reject) => {
         wx.saveVideoToPhotosAlbum({
@@ -105,7 +105,7 @@ Page({
     })
   },
   save_img() {
-    if (this.data.img_list.length === 0) return 
+    if(this.data.img_list.length === 0 && this.data.video_list.length===0) return
     function wxsave(path) {
       return new Promise((resolve, reject) => {
         wx.saveImageToPhotosAlbum({
@@ -115,21 +115,41 @@ Page({
         })
       })
     }
-    const promisarr = this.data.img_list.map(i => {
-      this.downloadImg(this.data.img_root + i[1])
+    let imgarr =[],videoarr=[]
+    if (this.data.img_list.length !== 0) {
+      imgarr = this.data.img_list.map(i => {
+        this.downloadImg(this.data.img_root + i[1])
+          .then(path => {
+            return wxsave(path)
+          })
+          .catch(e => {
+            console.log(e)
+          })
+      })
+    } 
+    if (this.data.video_list.length!==0) {
+      videoarr = this.data.video_list.map(i => {
+        this.downloadVideo(this.data.img_root + i[1])
         .then(path => {
           return wxsave(path)
         })
-        .catch(e => {
+        .catch(e =>{
           console.log(e)
-        })
-    })
-    Promise.all(promisarr)
+        })   
+      })
+      
+    } 
+    Promise.all([...imgarr,...videoarr])
       .then(r => {
-        console.log('chengg')
+        wx.showToast({
+          title: '保存成功',
+        })
       })
       .catch(e => {
-        console.log(e)
+        wx.showToast({
+          title: e,
+          icon:'none'
+        })
       })
   },
   downloadVideo(path) {

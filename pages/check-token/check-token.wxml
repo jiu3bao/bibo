@@ -1,1 +1,2 @@
 <!--pages/check-token/check-token.wxml-->
+<!-- <auth bind:closeshadow='closeshadow' ></auth> -->

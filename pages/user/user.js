@@ -61,7 +61,7 @@ Page({
       }],
     baseInfo:{},
     moneyInfo:{},
-    show_auth:false
+    showShadow:false
   },
   toset() {
     if (wx.getStorageSync('user') && wx.getStorageSync('user').Token) {
@@ -187,28 +187,20 @@ Page({
           return 
         }
         r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
+        
+        r.data.data.name = decodeURIComponent(r.data.data.name)
+        console.log(789)
         const {name,head,sex,birthday,sfzh,wx} = r.data.data
         this.setData({
           baseInfo: { ...r.data.data, default_head: '../../img/default.png'},
           completed:name.length>0&&head.length>0&&sex.length>0&&birthday.length>0&&sfzh.length>0&&wx.length>0
         })
-        console.log(head,name,head.length,name.length)
-        // if(head.length===0||name.length===0) {
-        //   this.setData({
-        //     show_auth:true
-        //   })
-          // console.log(wx)
-          // wx.navigateTo({
-          //   url: '/pages/auth/auth',
-          //   success:(res)=>{
-          //     console.log(res)
-          //    },
-             
-          //   fail:(err)=>{
-          //   console.log(err)
-          //   }
-          // })
-        // }
+        if(head.length===0||name.length===0&&(r.data.data.is_member>0||r.data.data.baseInfo.type>0)) {
+          console.log('ok')
+          this.setData({
+            showShadow:true
+          })
+        }
       })
       .catch(err=> {
         wx.showToast({
@@ -276,6 +268,43 @@ Page({
         baseInfo:{...this.data.baseInfo,head:'../../img/default.png'}
       })
     }
+  },
+  closeshadow(data) {
+    console.log(444)
+    this.setData({
+      showShadow:false
+    })
+    service('/GetUserInfo', { Token:wx.getStorageSync('user').Token})
+      .then(r => {
+        if (r.data.error_code===6) {
+          // wx.navigateTo({
+          //   url: '/pages/login/login',
+          // })        
+          this.setData({
+            baseInfo: { default_head: '../../img/default.png' }
+          })
+          return 
+        } 
+        if (r.data.error_code !==0) {
+          reject(r.data.message)
+          return 
+        }
+        r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
+        r.data.data.name = decodeURIComponent(r.data.data.name)
+        console.log(789)
+        const {name,head,sex,birthday,sfzh,wx} = r.data.data
+        this.setData({
+          baseInfo: { ...r.data.data, default_head: '../../img/default.png'},
+          completed:name.length>0&&head.length>0&&sex.length>0&&birthday.length>0&&sfzh.length>0&&wx.length>0
+        })
+      })
+      .catch(err=> {
+        wx.showToast({
+          title: err,
+          duration: 2000,
+          icon: 'none'
+        })
+      })
   },
   /**
    * 生命周期函数--监听页面加载

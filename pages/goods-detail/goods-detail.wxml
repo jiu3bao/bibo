@@ -259,5 +259,5 @@
     </view>
     </view>
   </view>
-  <auth bind:closeshadow='closeshadow' wx:if='{{showShadow}}'></auth>
+  <!-- <auth bind:closeshadow='closeshadow' wx:if='{{showShadow}}'></auth> -->
 </view>
