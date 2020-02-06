@@ -49,9 +49,8 @@ Component({
       this.wx_get_info()
       .then(res => {
         const userInfo = res.userInfo
-        console.log(encodeURIComponent(userInfo.nickName))
         const data = {
-          name:encodeURIComponent(userInfo.nickName),
+          name:userInfo.nickName,
           head:userInfo.avatarUrl,
           Token:wx.getStorageSync('user').Token,
         }

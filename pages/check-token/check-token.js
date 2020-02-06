@@ -39,9 +39,9 @@ Page({
       wx.setStorageSync('openid', r)
       const userinfo = wx.getStorageSync('user')
       if (userinfo.Token) {
-        service('/SetMyInfo',{name:'',
-          head:'',
-          Token:wx.getStorageSync('user').Token,})
+        // service('/SetMyInfo',{name:'',
+        //   head:'',
+        //   Token:wx.getStorageSync('user').Token,})
         service('/RequestCheckToken',
           { Token: userinfo.Token })
           .then(r => {

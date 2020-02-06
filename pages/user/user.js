@@ -188,8 +188,7 @@ Page({
         }
         r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
         
-        r.data.data.name = decodeURIComponent(r.data.data.name)
-        console.log(789)
+        // r.data.data.name = decodeURIComponent(r.data.data.name)
         const {name,head,sex,birthday,sfzh,wx} = r.data.data
         this.setData({
           baseInfo: { ...r.data.data, default_head: '../../img/default.png'},
@@ -290,7 +289,7 @@ Page({
           return 
         }
         r.data.data.notover = new Date(r.data.data.member_expire.replace(' ', 'T')).getTime()>Date.now()
-        r.data.data.name = decodeURIComponent(r.data.data.name)
+        // r.data.data.name = decodeURIComponent(r.data.data.name)
         console.log(789)
         const {name,head,sex,birthday,sfzh,wx} = r.data.data
         this.setData({
