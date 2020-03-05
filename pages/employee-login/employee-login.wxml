@@ -14,6 +14,7 @@
     </view>
   </view>
   <view>{{extension_id}}</view>
-  <button bindtap="login">登录</button>
+  <view bindtap="login" class='botton'>登录</view>
+  <!-- <button bindtap="login">登录</button> -->
   <!-- <view class='to' bindtap="toemp">平台用户登录</view> -->
 </view>

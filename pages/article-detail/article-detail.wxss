@@ -1,2 +1,5 @@
 /* pages/article-detail/article-detail.wxss */
 /* @import "/wxParse/wxParse.wxss"; */
+.wxParse-p image {
+  width:100% !important;
+}

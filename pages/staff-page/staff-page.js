@@ -9,7 +9,7 @@ Page({
    */
   data: {
     nvabarData: {
-      showCapsule: 0, //是否显示左上角图标   1表示显示    0表示不显示
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
@@ -23,7 +23,9 @@ Page({
     total_money:0,
     phone:'',
     pic:'',
-    base_info:{}
+    base_info:{},
+    err_text:'',
+    change_id:''
   },
   set_time(e) {
     this.setData({
@@ -41,17 +43,21 @@ Page({
       .then(r => {
         if(r.data.error_code !==0) {
           this.setData({
-            base_info: null
+            base_info: null,
+            err_text:r.data.message
           })
-          wx.showToast({
-            title: r.data.message,
-            icon:'none',
-            duration:3000
+          return 
+        }
+        if(r.data.data.is_member===0) {
+          this.setData({
+            base_info: null,
+            err_text:'非会员'
           })
           return 
         }
         this.setData({
-          base_info:{...r.data.data,default_head:'../../img/default.png'}
+          base_info:{...r.data.data,default_head:'../../img/default.png'},
+          err_text:''
         })
         wx.showToast({
           title: '验证成功',
@@ -59,12 +65,18 @@ Page({
         })
       })
   },
-  get_hos() {
+  get_hos(aa) {
     service('/GetHospitals')
     .then(r => {
       this.setData({
         hos_list:r.data.data
       })
+      if(aa) {
+        const chosed = r.data.data.filter(h => h.hospital = aa)
+        this.setData({
+          hos:chosed[0]
+        })
+      }
     })
   },
   chose_hos(e) {
@@ -93,6 +105,7 @@ Page({
           children:v
         })
       })
+      console.log(arr1,arr2)
       this.setData({
         multiArray: [arr1, arr2[0]],
         item_list:arr
@@ -101,16 +114,19 @@ Page({
   },
   bindMultiPickerChange(e) {
     console.log(e)
+    // if(e.detail.value[0]===)
+    
     const item_index = e.currentTarget.dataset.index 
     const old = this.data.add_item
     const multiIndex = e.detail.value
     console.log(this.data.item_list[multiIndex[0]])
-    const { item, item_type, medical_code, ratio} = { ...this.data.item_list[multiIndex[0]].children[multiIndex[1]]}
-    old[item_index] = { ...old[item_index], item, item_type, medical_code, ratio}
+    const { item, item_type, medical_code, ratio,price} = { ...this.data.item_list[multiIndex[0]].children[multiIndex[1]]}
+    old[item_index] = { ...old[item_index], item, item_type, medical_code, ratio,price}
+    const t = old.reduce((total, curval) => total + parseFloat(curval.price), 0)
     this.setData({
       multiIndex: e.detail.value,
       add_item: old,
-      // total_money: old.reduce((total, curval) => total + curval.price)
+      total_money: t
     })
   },
   //二级联动
@@ -121,16 +137,10 @@ Page({
     };
     data.multiIndex[e.detail.column] = e.detail.value;
     switch (e.detail.column) {
-      case 0: 
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = this.data.item_list[0].children;
-            this.setData({
-              multiArray: data.multiArray
-            })
-            break;
-          case 1:
-            data.multiArray[1] = this.data.item_list[1].children;
+      case 0:  
+        switch (data.multiIndex[0]) {         
+          default:
+            data.multiArray[1] = this.data.item_list[data.multiIndex[0]].children;
             this.setData({
               multiArray: data.multiArray
             })
@@ -248,22 +258,58 @@ Page({
         })
         return 
       }
-      wx.showToast({
-        title: '上传成功',
-        icon: 'none',
-        duration: 3000
-      })
-      this.setData({
-        phone: '',
-        hos: {},
-        pic:'',
-        add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio: '' }],
-        total_money:0,
-        base_info:null
-      })
+      if(this.data.change_id>0) {
+        const data = {
+          Token:wx.getStorageSync('user').Token,
+          id:this.data.change_id,
+        }
+        console.log(data,123123)
+        service('/DeleteProRecord',data)
+        .then(r1 => {
+          wx.showToast({
+            title: '上传成功',
+            icon: 'none',
+            duration: 3000
+          })
+          wx.navigateBack()
+          this.setData({
+            phone: '',
+            hos: {},
+            pic:'',
+            add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio: '' }],
+            total_money:0,
+            base_info:null
+          })
+        })
+        .catch(err => {
+          wx.showToast({
+            title: err,
+            icon:'none'
+          })
+        })
+      } else {
+        wx.showToast({
+          title: '上传成功',
+          icon: 'none',
+          duration: 3000
+        })
+        wx.navigateBack()
+      }
+      
+      // this.setData({
+      //   phone: '',
+      //   hos: {},
+      //   pic:'',
+      //   add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio: '' }],
+      //   total_money:0,
+      //   base_info:null
+      // })
     })
     .catch(err => {
-      
+      wx.showToast({
+        title: err,
+        icon:'none'
+      })
       
     })
   },
@@ -321,8 +367,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get_hos()
     this.get_item_list()
+    if(options.item) {
+      const item = JSON.parse(options.item)
+      const {head,detail,id,item_list,mobile,name,pic_url,time,money,hospital,member_user_id} = item
+      
+      this.get_hos(hospital)
+      console.log(item)
+      
+      this.setData({
+        date:time,
+        base_info:{head,default_head:'../../img/default.png',name,mobile,id:member_user_id},
+        err_text:detail,
+        add_item:item_list,
+        total_money:money,
+        pic:pic_url,
+        change_id:id,
+        phone:mobile,
+      })
+      return 
+    }
+    this.get_hos()
+    
     const today = new Date()
     this.setData({
       date:today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()

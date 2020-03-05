@@ -62,6 +62,10 @@ Page({
       wx.navigateTo({
         url: '/pages/goods-detail/goods-detail?'+id,
       })
+    } else {
+      wx.navigateTo({
+        url: '/pages/class-detail/class-detail?id=' + item.id,
+      })
     }
   },
   change_type(e,type) {

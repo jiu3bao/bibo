@@ -56,7 +56,7 @@ Page({
             }
             if(wx.getStorageSync('user').pop==100) {
               wx.navigateTo({
-                url: '/pages/staff-page/staff-page'
+                url: '/pages/fail-records/fail-records'
               })
             } else {
               wx.switchTab({

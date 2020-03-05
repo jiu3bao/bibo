@@ -17,7 +17,7 @@ App({
       wx.getMenuButtonBoundingClientRect();
       let navBarHeight = (() => { //导航栏高度
         console.log(rect, systemInfo.statusBarHeight)
-        let gap = rect.top - systemInfo.statusBarHeight; //动态计算每台手机状态栏到胶囊按钮间距
+        let gap = rect.top - systemInfo.statusBarHeight+3; //动态计算每台手机状态栏到胶囊按钮间距
         console.log(gap)
         this.globalData.height = 2 * gap + rect.height
         this.globalData.navbarHeight = systemInfo.statusBarHeight + 2 * gap + rect.height

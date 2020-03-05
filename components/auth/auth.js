@@ -44,6 +44,7 @@ Component({
     getUserInfo(e) { 
       wx.showLoading({
         title: '正在授权...',
+        mask: true,
         icon: 'none'
       })
       this.wx_get_info()
@@ -93,8 +94,10 @@ Component({
   
       })
     },
-    close() {
-      this.triggerEvent("closeshadow", true )
+    close(e) {
+      if(e.target.id==='a') {
+        this.triggerEvent("closeshadow", true )
+      }
     }
   }
 })

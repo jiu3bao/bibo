@@ -37,7 +37,7 @@ Component({
       const id = e.currentTarget.dataset.id
       console.log(e)
       wx.navigateTo({
-        url: '/pages/article-detail/article-detail?id=' + id,
+        url: '/pages/class-detail/class-detail?id=' + id,
       })
     },
   }

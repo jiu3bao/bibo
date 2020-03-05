@@ -197,7 +197,7 @@ Page({
         })
         .catch(err => {
           wx.hideLoading({
-            complete: (res) => {
+            complete: (err) => {
               wx.showToast({
                 title: err,
                 duration: 2000,

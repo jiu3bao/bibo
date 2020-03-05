@@ -2,6 +2,12 @@
 page {
   background:#f5f5f5;
 }
+.a {
+  line-height:80rpx;
+  background:#fff;
+  padding-left:50rpx;
+  margin-top:10rpx;
+}
 .send {
   height:120rpx;
   display: flex;

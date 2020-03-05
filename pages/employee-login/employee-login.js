@@ -117,22 +117,23 @@ Page({
           // console.log(r.data.message)
           return
         }
+        if (r.data.data.pop !== 100) {
+          wx.showToast({
+            title: '非员工用户',
+            icon: "none",
+            duration: 3000
+          })
+          return
+        }
         wx.showToast({
           title: '登录成功',
           duration: 2000
         })
-        // if (r.data.data.pop !== 0) {
-        //   wx.showToast({
-        //     title: '非平台用户',
-        //     icon: "none",
-        //     duration: 3000
-        //   })
-        //   return
-        // }
+        
         wx.setStorageSync('user', r.data.data)
 
         wx.navigateTo({
-          url: '/pages/staff-page/staff-page'
+          url: '/pages/fail-records/fail-records'
         })
       })
       .catch(r => {

@@ -1,8 +1,0 @@
-<!--pages/auth/auth.wxml-->
-<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-<view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view class='o'>众诺亿美申请获得以下权限：</view>
-  <view>获得你的公开信息(昵称，头像等)</view>
-  <image src='../../img/logo.jpg'></image>
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">同意授权</button>
-</view>

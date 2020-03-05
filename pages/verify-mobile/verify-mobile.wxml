@@ -2,6 +2,7 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
+  <view class='a'>修改手机号</view>
   <view class='send'>
     <view>
     向手机号<text>({{mobile}})</text>发送验证码
