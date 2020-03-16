@@ -27,7 +27,8 @@
     </view>
     <view>
       <view>电话</view>
-      <input value='{{info.mobile}}' bindinput="set_info" data-type='mobile'></input>
+      <view bindtap="tochangenum">{{info.mobile}}</view>
+      <!-- <input value='{{info.mobile}}' bindinput="set_info" data-type='mobile'></input> -->
     </view>
     <view>
       <view>出生日期</view>

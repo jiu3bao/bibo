@@ -6,7 +6,7 @@
   <!-- {{baseInfo.head&&baseInfo.head.length>0?baseInfo.head:baseInfo.default_head}} -->
     <image src='{{baseInfo.head&&baseInfo.head.length>0?baseInfo.head:baseInfo.default_head}}' class='head' binderror="errImg"></image>
     <view class='info'>
-      <view class='name'>{{baseInfo.name||"xxx"}}</view>
+      <view class='name'>{{(baseInfo.name)||"xxx"}}</view>
       <view class='id'>会员编号{{baseInfo.id||"xxx"}}</view>
       <view class='phone'>{{baseInfo.mobile||"xxx"}}</view>
       <view class='type'>
@@ -78,4 +78,6 @@
       
     </view>
   </view> -->
+  <auth bind:closeshadow='closeshadow' wx:if='{{showShadow}}'></auth>
+
 </view>

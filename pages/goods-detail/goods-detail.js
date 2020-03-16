@@ -174,9 +174,12 @@ Page({
                     title: '付款成功',
                     duration:3000
                   })
+                  wx.switchTab({
+                    url: '/pages/user/user',
+                  })
                 },
               })
-              that.get_userInfo()
+              // that.get_userInfo()
             },
             fail(res) {
               wx.hideLoading({
@@ -194,7 +197,7 @@ Page({
         })
         .catch(err => {
           wx.hideLoading({
-            complete: (res) => {
+            complete: (err) => {
               wx.showToast({
                 title: err,
                 duration: 2000,
@@ -223,6 +226,9 @@ Page({
                   wx.showToast({
                     title: '付款成功',
                     duration:3000
+                  })
+                  wx.switchTab({
+                    url: '/pages/user/user',
                   })
                 },
               })

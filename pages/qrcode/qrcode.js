@@ -21,6 +21,7 @@ Page({
     bg_list:[],
     bg_index:0,
     qr_local_path:'',
+    head_local_path:'',
     head:'',
     name:''
   },
@@ -66,6 +67,7 @@ Page({
     
   },
   downLoadImg(url) {
+    console.log(url)
     if(/(http|https):\/\/([\w.]+\/?)\S*/.test(url)) {
       return new Promise((resolve,reject) => {
         wx.getImageInfo({
@@ -88,54 +90,63 @@ Page({
   made_canvas_img(path) {
     const that = this
     const ctx = wx.createCanvasContext('myCanvas')
-    ctx.save()
     ctx.fillStyle="#FFFFFF";
-    ctx.fillRect(0,0,this.data.width,this.data.height);
+    const query = wx.createSelectorQuery()
+    query.select('#bt').boundingClientRect()
+    query.selectViewport().scrollOffset()
+    query.exec(function (res) {
+      console.log(res)
+      const c_height = res[0].top-20
+      ctx.fillRect(0,0,that.data.width,c_height);
+      ctx.save()
+      ctx.fillStyle="#FFFFFF";
+      ctx.fillRect(0,0,that.data.width,c_height);
 
-    let background = path[0]
-    const top_height = that.data.height * 0.8
-    const bottom_height=this.data.height * 0.2
-    const half_width = this.data.width*0.5
-    const standard_width = bottom_height>half_width?half_width:bottom_height
-    console.log(half_width,top_height)
-    console.log(that.data.width, that.data.height)
-    ctx.drawImage(background, 0, 0, that.data.width, top_height)
-    // 设置文字大小
-    ctx.setFontSize(20)
-    // 设置文字颜色
-    ctx.fillStyle = '#000'
+      let background = path[0]
+      const top_height = c_height * 0.8
+      const bottom_height=c_height * 0.2
+      const half_width = that.data.width*0.5
+      const standard_width = bottom_height>half_width?half_width:bottom_height
+      ctx.drawImage(background, 0, 0, that.data.width, top_height)
+      // 设置文字大小
+      ctx.setFontSize(20)
+      // 设置文字颜色
+      ctx.fillStyle = '#000'
 
-    ctx.beginPath()
-    ctx.setLineWidth(1)
-    ctx.moveTo(half_width, top_height+10)
-    ctx.lineTo(half_width, this.data.height)
-    ctx.stroke()
-    const name = this.data.name&&this.data.name.length>0?this.data.name:'xxx'
-    console.log(ctx.measureText(name))
-    ctx.fillText(name, half_width+(half_width-ctx.measureText(name).width)/2, top_height+standard_width*0.9)
-    ctx.drawImage(path[1], (half_width-standard_width*0.8)/2, top_height+standard_width*0.1, standard_width*0.8, standard_width*0.8)
-    
-    ctx.drawImage(path[2],half_width +(half_width-standard_width*0.6)/2, top_height+standard_width*0.1, standard_width*0.6, standard_width*0.6)
-    ctx.draw(false, function () {
-      wx.canvasToTempFilePath({
-        canvasId: 'myCanvas',
-        success (res) {
-          that.setData({
-            qrcode: res.tempFilePath,
-            hidden: false
-          })
-          wx.hideLoading()
-        },
-        fail(err) {
-          wx.showToast({
-            title: err,
-            icon: 'none',
-            duration: 3000
-          })
-          wx.hideLoading()
-        }
+      ctx.beginPath()
+      ctx.setLineWidth(1)
+      ctx.moveTo(half_width, top_height+10)
+      ctx.lineTo(half_width, c_height)
+      ctx.stroke()
+      const name = that.data.name&&that.data.name.length>0?that.data.name:'xxx'
+      console.log(ctx.measureText(name))
+      ctx.fillText(name, half_width+(half_width-ctx.measureText(name).width)/2, top_height+standard_width*0.9)
+      ctx.drawImage(path[1], (half_width-standard_width*0.8)/2, top_height+standard_width*0.1, standard_width*0.8, standard_width*0.8)
+      
+      ctx.drawImage(path[2],half_width +(half_width-standard_width*0.6)/2, top_height+standard_width*0.1, standard_width*0.6, standard_width*0.6)
+      ctx.draw(false, function () {
+        wx.canvasToTempFilePath({
+          canvasId: 'myCanvas',
+          success (res) {
+            that.setData({
+              qrcode: res.tempFilePath,
+              hidden: false
+            })
+            wx.hideLoading()
+          },
+          fail(err) {
+            wx.showToast({
+              title: err,
+              icon: 'none',
+              duration: 3000
+            })
+            wx.hideLoading()
+          }
+        })
       })
     })
+
+    
   },
   save_img() {
     wx.saveImageToPhotosAlbum({
@@ -156,7 +167,7 @@ Page({
     },() =>{
       this.downLoadImg(this.data.bg_list[this.data.bg_index].pic_url)
       .then(r => {
-        this.made_canvas_img([r, this.data.qr_local_path])
+        this.made_canvas_img([r, this.data.qr_local_path,this.data.head_local_path])
         })
       .catch(err => {
         wx.hideLoading()
@@ -176,7 +187,7 @@ Page({
     }, () => {
       this.downLoadImg(this.data.bg_list[this.data.bg_index].pic_url)
         .then(r => {
-          this.made_canvas_img([r, this.data.qr_local_path])
+          this.made_canvas_img([r, this.data.qr_local_path,this.data.head_local_path])
         })
         .catch(err=> {
           wx.hideLoading()

@@ -178,3 +178,6 @@
   margin-right:20rpx;
   flex-shrink: 0;
 }
+.all-pic {
+  width:100%;
+}

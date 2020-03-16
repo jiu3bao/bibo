@@ -1,6 +1,8 @@
 {
   "pages": [
+    
     "pages/check-token/check-token",
+    "pages/fail-records/fail-records",
     "pages/staff-page/staff-page",
     "pages/wallet/wallet",
     "pages/employee-login/employee-login",
@@ -27,14 +29,13 @@
     "pages/set-bank/set-bank",
     "pages/flow-detail/flow-detail",
     "pages/partner-detail/partner-detail",
-    "pages/fail-records/fail-records",
+    
     "pages/fail-detail/fail-detail",
     "pages/system-set/system-set",
     "pages/verify-mobile/verify-mobile",
     "pages/change-mobile/change-mobile",
     "pages/contract/contract",
-    "pages/connect/connect",
-    "pages/auth/auth"
+    "pages/connect/connect"
   ],
   "window": {
     "backgroundTextStyle": "light",

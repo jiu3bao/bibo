@@ -67,7 +67,7 @@
       
       <view><text class='dot'></text><text class='blue'>{{index+1}}.</text>{{item}}</view>
     </view>
-     
+    <image src='../../img/hylc.png' class='all-pic' mode="widthFix" wx:if='{{id==1}}'></image>
   </view>
   <view class='aa'>
     <view class='{{has_read?"gou bl":"gou"}}' bindtap="read">{{has_read?'√':''}}</view>
@@ -259,5 +259,5 @@
     </view>
     </view>
   </view>
-  <auth bind:closeshadow='closeshadow' wx:if='{{showShadow}}'></auth>
+  <!-- <auth bind:closeshadow='closeshadow' wx:if='{{showShadow}}'></auth> -->
 </view>

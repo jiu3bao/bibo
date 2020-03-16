@@ -9,7 +9,7 @@ Page({
    */
   data: {
     nvabarData: {
-      showCapsule: 0, //是否显示左上角图标   1表示显示    0表示不显示
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
       title: '登录', //导航栏 中间的标题
     },
     navbarHeight: app.globalData.navbarHeight,
@@ -181,6 +181,13 @@ Page({
   get_reference_info() {
     service('/GetReferenceInfo', { id: wx.getStorageSync('scene')})
     .then(r => {
+      console.log(r)
+      if(r.data.error_code!==0) {
+        this.setData({
+          reference_id:null
+        })
+        return 
+      }
       this.setData({
         reference_info:r.data.data,
         reference_id: wx.getStorageSync('scene')

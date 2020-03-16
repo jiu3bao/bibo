@@ -152,7 +152,11 @@ Page({
       nowdate:year+'-'+month+'-'+day
     })
   },
-
+  tochangenum() {
+    wx.navigateTo({
+      url: '/pages/verify-mobile/verify-mobile',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

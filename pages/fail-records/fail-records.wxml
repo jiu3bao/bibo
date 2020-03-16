@@ -1,20 +1,72 @@
 <!--pages/fail-records/fail-records.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view class='item' wx:for='{{list}}' wx:key='{{item.id}}' 
-    data-item='{{item}}'>
-    <view bindtap="to_detail" data-id='{{item.id}}' data-item='{{item}}'>
-      <image src='{{item.head.length>0?img_root+item.head:"../../img/default.png"}}' class='head_img'></image>
-      {{item.name}}
-      <text class='grey'>￥{{item.money}}</text>
-      <image src='../../img/vip@2x.png' class='pai'></image>
+  <view class='clgdj'>
+    <image src='../../img/xiaofeiluru@2x.png' class='aaa' mode="widthFix" bindtap="torecord"></image>
+  </view>
+  <view class='a'>
+    <image src=''></image>
+    审核未通过
+  </view>
+  <view class='md'>
+    <view class='item' wx:for='{{list}}' wx:key='{{item.id}}' 
+      data-item='{{item}}' bindtap="to_detail" data-id='{{item.id}}' data-item='{{item}}'>
+      <view class='top'>
+        <view>
+            <image src='{{item.head.length>0?item.head:"../../img/default.png"}}' class='head_img'></image>
+          {{item.name.length>0?item.name:'xxx'}}
+          
+          <image src='../../img/vip@2x.png' class='pai'></image>
+          <text class='grey'>手机号{{item.mobile}}</text>
+        </view>
+        <view class='grey'>
+          {{item.time}}
+        </view>
+      </view>
+      <view class='r'>
+        审核未通过原因:<text class='red'>{{item.detail}}</text>
+      </view>
     </view>
-      
-    <view class='time'>
-      <view class="blue">{{item.detail}}</view>
-      <!-- <view class='blue'>
-        {{item.member_expire}}
-      </view> -->
+    <!-- <view class='item' wx:for='{{list}}' wx:key='{{item.id}}' 
+      data-item='{{item}}' bindtap="to_detail" data-id='{{item.id}}' data-item='{{item}}'>
+      <view class='top'>
+        <view>
+            <image src='{{item.head.length>0?item.head:"../../img/default.png"}}' class='head_img'></image>
+          {{item.name.length>0?item.length:'xxx'}}
+          
+          <image src='../../img/vip@2x.png' class='pai'></image>
+          <text class='grey'>会员编号{{item.id}}</text>
+        </view>
+        <view class='grey'>
+          {{item.time}}
+        </view>
+      </view>
+      <view class='r'>
+        审核未通过原因:<text class='red'>{{item.detail}}</text>
+      </view>
     </view>
+    <view class='item' wx:for='{{list}}' wx:key='{{item.id}}' 
+      data-item='{{item}}' bindtap="to_detail" data-id='{{item.id}}' data-item='{{item}}'>
+      <view class='top'>
+        <view>
+            <image src='{{item.head.length>0?item.head:"../../img/default.png"}}' class='head_img'></image>
+          {{item.name.length>0?item.length:'xxx'}}
+          
+          <image src='../../img/vip@2x.png' class='pai'></image>
+          <text class='grey'>会员编号{{item.id}}</text>
+        </view>
+        <view class='grey'>
+          {{item.time}}
+        </view>
+      </view>
+      <view class='r'>
+        审核未通过原因:<text class='red'>{{item.detail}}</text>
+      </view>
+    </view> -->
+  </view>
+  
+  <view class='qh'>
+    <image src='../../img/qiehuan@2x.png' bindtap="qh"></image>
+    <view bindtap="qh">切换账号</view>
   </view>
 </view>

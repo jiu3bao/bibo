@@ -10,5 +10,5 @@
     <image src='../../img/r.png'></image>
   </view>
   <canvas canvas-id='myCanvas' class='canvas' sytle='width:{{width}}px;height:{{height}}px'></canvas>
-  <button bindtap='save_img'>保存图片到相册</button>
+  <button bindtap='save_img' id='bt'>保存图片到相册</button>
 </view>

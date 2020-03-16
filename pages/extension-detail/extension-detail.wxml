@@ -9,8 +9,8 @@
   </view>
   <view class='bottom'>
     <view class='save'>
-      <view bindtap="save_video">一键保存视频</view>
-      <view bindtap="save_img">一键保存图片</view>
+      <!-- <view bindtap="save_video">一键保存视频</view> -->
+      <view bindtap="save_img">一键保存到相册</view>
     </view>
     <view class='zj'>
       <view>上传任务凭证截图</view>

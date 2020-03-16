@@ -44,12 +44,12 @@ Component({
     getUserInfo(e) { 
       wx.showLoading({
         title: '正在授权...',
+        mask: true,
         icon: 'none'
       })
       this.wx_get_info()
       .then(res => {
         const userInfo = res.userInfo
-        console.log(userInfo)
         const data = {
           name:userInfo.nickName,
           head:userInfo.avatarUrl,
@@ -64,7 +64,6 @@ Component({
           })
           return Promise.reject()
         } 
-        console.log(data)
         service('/SetMyInfo',data)//保存获取到的信息
         .then(r => {
           wx.hideLoading()
@@ -75,7 +74,6 @@ Component({
             return
           }
           if(r.data.error_code!==0) {
-            console.log(r.data.message)
             wx.showToast({
               title: r.data.message,
               duration: 2000,
@@ -96,8 +94,10 @@ Component({
   
       })
     },
-    close() {
-      this.triggerEvent("closeshadow", true )
+    close(e) {
+      if(e.target.id==='a') {
+        this.triggerEvent("closeshadow", true )
+      }
     }
   }
 })

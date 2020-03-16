@@ -9,7 +9,7 @@ Page({
    */
   data: {
     nvabarData: {
-      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      showCapsule: 0, //是否显示左上角图标   1表示显示    0表示不显示
       title: '我的主页', //导航栏 中间的标题
     },
     // 此页面 页面内容距最顶部的距离
@@ -29,6 +29,10 @@ Page({
     service('/GetFailedProRecordList',data)
     .then(r => {
       if(r.data.error_code===6) {
+        wx.showToast({
+          title: '登录已过期，请重新登录',
+          icon:"none"
+        })
         wx.navigateTo({
           url: "/pages/employee-login/employee-login",
         })
@@ -50,6 +54,7 @@ Page({
       }
       r.data.data.map(item => {
         item.item_list = JSON.parse(item.item)
+        item.time = item.time.split(' ')[0]
       })
       this.setData({
         list: r.data.data
@@ -66,7 +71,17 @@ Page({
   to_detail(e) {
     const item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/pages/fail-detail/fail-detail?item=' + JSON.stringify(item) ,
+      url: '/pages/staff-page/staff-page?item=' + JSON.stringify(item) ,
+    })
+  },
+  torecord() {
+    wx.navigateTo({
+      url: '/pages/staff-page/staff-page',
+    })
+  },
+  qh() {
+    wx.navigateTo({
+      url: '/pages/login/login',
     })
   },
   /**
