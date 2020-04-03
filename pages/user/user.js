@@ -115,7 +115,7 @@ Page({
     
   },
   redirect(e) {
-    if(e.currentTarget.dataset.url==='/pages/qrcode/qrcode') {
+    if(wx.getStorageSync('user') && wx.getStorageSync('user').Token && (e.currentTarget.dataset.url==='/pages/qrcode/qrcode'||e.currentTarget.dataset.url==='/pages/wallet/wallet')) {
       wx.navigateTo({
         url: e.currentTarget.dataset.url,
         events: {
@@ -129,36 +129,74 @@ Page({
         },
         success: (res) => {
           // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.baseInfo })        
+          if(e.currentTarget.dataset.url==='/pages/qrcode/qrcode') {
+            res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.baseInfo })
+          } else {
+            res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.moneyInfo })
+          }
+
         }
       })
     } else {
       if (wx.getStorageSync('user') && wx.getStorageSync('user').Token && (this.data.baseInfo.is_member>0||this.data.baseInfo.type>0)) {
-        wx.navigateTo({
-          url: e.currentTarget.dataset.url,
-          events: {
-            // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-            acceptDataFromOpenedPage: function (data) {
-              console.log(data)
+        if(e.currentTarget.dataset.auth==0&& this.data.baseInfo.type<2) {
+          wx.showModal({
+            title: '提示',
+            content: '交费注册成为合伙人后，即可使用',
+            success(res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/join-partner/join-partner',
+                })
+                // wx.navigateTo({
+                //   url: '/pages/login/login',
+                //   events: {
+                //     // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+                //     acceptDataFromOpenedPage: function (data) {
+                //       console.log(data)
+                //     },
+                //     someEvent: function (data) {
+                //       console.log(data)
+                //     }
+                //   },
+                //   success: (res) => {
+                //     // 通过eventChannel向被打开页面传送数据
+                //     res.eventChannel.emit('acceptDataFromOpenerPage', { canBack: true })
+                //   }
+                // })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        } else {
+          wx.navigateTo({
+            url: e.currentTarget.dataset.url,
+            events: {
+              // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+              acceptDataFromOpenedPage: function (data) {
+                console.log(data)
+              },
+              someEvent: function (data) {
+                console.log(data)
+              }
             },
-            someEvent: function (data) {
-              console.log(data)
+            success: (res) => {
+              // 通过eventChannel向被打开页面传送数据
+              if(e.currentTarget.dataset.url==='/pages/qrcode/qrcode') {
+                res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.baseInfo })
+              } else {
+                res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.moneyInfo })
+              }
+              
             }
-          },
-          success: (res) => {
-            // 通过eventChannel向被打开页面传送数据
-            if(e.currentTarget.dataset.url==='/pages/qrcode/qrcode') {
-              res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.baseInfo })
-            } else {
-              res.eventChannel.emit('acceptDataFromOpenerPage', { data: this.data.moneyInfo })
-            }
-            
-          }
-        })
+          })
+        }
+        
       } else {
         wx.showModal({
           title: '提示',
-          content: '交费注册成为会员或合伙人后，即可使用',
+          content: `交费注册成为${e.currentTarget.dataset.auth==0?'合伙人':'会员或合伙人'}后，即可使用`,
           success(res) {
             if (res.confirm) {
               wx.switchTab({

@@ -53,7 +53,7 @@
       class='function-item' 
       bindtap='redirect' 
       data-url='{{item.redirect}}'
-      wx:if='{{item.auth!==0||baseInfo.type>1}}'>
+      data-auth='{{item.auth}}'>
       <image src='{{item.img}}'
       ></image>
       <text>{{item.name}}</text>

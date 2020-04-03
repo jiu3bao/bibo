@@ -132,57 +132,103 @@ Page({
     })
   },
   apply_money() {
-    if(this.data.money ===0) return 
+    if(this.data.money ===0) return wx.showToast({
+      title: '金额不足',
+      icon:'none'
+    }),false;
     const token = wx.getStorageSync('user').Token
     const data = {
       Token: token
     }
-    service('/AddMoneyApply',data)
-    .then(r => {
-      if (r.data.error_code===6) {
-        wx.navigateTo({
-          url: '/pages/login/login',
+    service('/GetUserInfo', { Token:wx.getStorageSync('user').Token})
+      .then(r => {
+        if (r.data.error_code===6) {
+          wx.showToast({
+            title: r.data.message,
+          })
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })        
+          return 
+        } 
+        if (r.data.error_code !==0) {
+          wx.showToast({
+            title: r.data.message,
+          })
+          return 
+        }
+        if(r.data.data.is_member<=0&&r.data.data.type<=0) {
+          wx.showModal({
+            title: '提示',
+            content: '交费注册成为会员或合伙人后，即可使用',
+            success(res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/join-partner/join-partner',
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+          return 
+        }
+        service('/AddMoneyApply',data)
+        .then(r => {
+          if (r.data.error_code===6) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+            return new Promise((resolve,reject) => 
+            { reject(r.data.message)}
+            )
+          }
+          if(r.data.error_code!==0) {
+            return new Promise((resolve, reject) => { reject(r.data.message) }
+            ) 
+          }
+          return service('/GetUserInfo',{ Token: token})
         })
-        return new Promise((resolve,reject) => 
-        { reject(r.data.message)}
-        )
-      }
-      if(r.data.error_code!==0) {
-        return new Promise((resolve, reject) => { reject(r.data.message) }
-        ) 
-      }
-      return service('/GetUserInfo',{ Token: token})
-    })
-    .then(r1 => {
-      if (r1.data.error_code === 6) {
-        wx.navigateTo({
-          url: '/pages/login/login',
+        .then(r1 => {
+          if (r1.data.error_code === 6) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+            return
+          }
+          if (r1.data.error_code !== 0) {
+            wx.showToast({
+              title: r.data.message,
+              duration: 2000,
+              icon: 'none'
+            })
+            return
+          }
+          wx.showToast({
+            title: '申请成功',
+            duration: 3000
+          })
+          this.setData({
+            money: r1.data.data.money
+          })
         })
-        return
-      }
-      if (r1.data.error_code !== 0) {
+        .catch(err=> {
+          wx.showToast({
+            title: err,
+            duration: 2000,
+            icon: 'none'
+          })
+        })
+      })
+      .catch(err=> {
         wx.showToast({
-          title: r.data.message,
+          title: err,
           duration: 2000,
           icon: 'none'
         })
-        return
-      }
-      wx.showToast({
-        title: '申请成功',
-        duration: 3000
       })
-      this.setData({
-        money: r1.data.data.money
-      })
-    })
-    .catch(err=> {
-      wx.showToast({
-        title: err,
-        duration: 2000,
-        icon: 'none'
-      })
-    })
+    
+    
   },
   to_bank() {
     wx.navigateTo({
