@@ -1,50 +1,6 @@
-<!--index.wxml-->
-<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-<view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <swiper  class='banner-box'
-    current='{{tabBar}}'
-    duration='400'
-    indicator-dots='true'
-    autoplay="true"
-    indicator-color='#999'
-    indicator-active-color='#fff'
-    easing-function='{{"easeInOutCubic"}}'>
-    <swiper-item class='swiper-i' wx:for='{{bannerList}}' wx:key='{{item.id}}'> 
-      <image src='{{src_url+item.pic_url}}' bindtap="todetail" data-item='{{item}}'></image>
-    </swiper-item>
-  </swiper>
-  <view class='article'>
-    <view class='article-type'>
-      <view class='{{now_at_type===item.type?"type-item ac":"type-item"}}' 
-        wx:for='{{articleType}}'
-        bindtap="change_type"
-        data-type='{{item.type}}'
-        wx:if='{{item.type!==1?true:isAgent?true:false}}'
-        >
-        {{item.name}}
-      </view>
-      <view class='more' bindtap="to_more">
-        更多>
-        <!-- <image></image> -->
-      </view>
-    </view>
-    <view class='content-slider'>
-      <news news-list='{{newsList}}' wx:if='{{now_at_type===0}}'></news>
-      <notice notice-list='{{noticeList}}' wx:if='{{now_at_type===2}}'></notice>
-      <class class-list='{{classList}}' wx:if='{{now_at_type===1}}'></class>
-    </view>
-    <!-- <swiper class='content-slider' 
-      current='{{now_at_type===0?0:now_at_type===1?2:1}}'
-      bindchange='slide'>
-      <swiper-item class='content-slider-item'>
-        <news news-list='{{newsList}}'></news>
-      </swiper-item>
-      <swiper-item class='content-slider-item'>
-        <notice notice-list='{{noticeList}}'></notice>
-      </swiper-item>
-      <swiper-item class='content-slider-item' wx:if='{{isAgent}}'>
-        <class class-list='{{classList}}'></class>
-      </swiper-item>
-    </swiper> -->
-  </view>
+<!--pages/index/index.wxml-->
+<view>
+  <Banner bannerList='{{bannerList}}'></Banner>
+  <board></board>
+  <price-ref></price-ref>
 </view>

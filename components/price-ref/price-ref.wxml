@@ -1,0 +1,6 @@
+<!--components/price-ref/price-ref.wxml-->
+<view class='price-ref'>
+  <view>
+    价格查询
+  </view>
+</view>

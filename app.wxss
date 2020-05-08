@@ -1,10 +1,10 @@
 /**app.wxss**/
-pages {
+/* pages {
   position: relative;
   z-index: 9999998;
   background: #fff;
   
-}
+} */
 page {
   height:100%
 }

@@ -1,8 +1,0 @@
-<!--pages/more-class/more-class.wxml-->
-<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-
-<view class='class-box' style='padding-top:{{navbarHeight}}px'>
-  <view class='block'>
-    <class class-list='{{classList}}'></class>
-  </view>
-</view>

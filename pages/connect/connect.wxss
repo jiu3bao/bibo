@@ -1,6 +1,0 @@
-/* pages/connect/connect.wxss */
-.contain {
-}
-.bg {
-  width:100%;
-}

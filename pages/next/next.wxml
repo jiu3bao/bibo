@@ -1,2 +1,0 @@
-<!--pages/next/next.wxml-->
-<nav-bar navbar-data='{{nvabarData}}'></nav-bar>

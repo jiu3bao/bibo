@@ -1,9 +1,0 @@
-<!--pages/article-detail/article-detail.wxml-->
-<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-<view class='contain' style='padding-top:{{navbarHeight}}px'>
-  <view>{{detail.title}}</view>
-  <view>{{detail.time}}</view>
-  <import src="../../wxParse/wxParse.wxml"/>
-  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-</view>
-<!-- <web-view src="{{'https://ym.bibo80s.com/Main/ArticlesDetail?id='+id}}"></web-view> -->

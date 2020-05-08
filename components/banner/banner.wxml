@@ -1,0 +1,15 @@
+<!--components/banner/banner.wxml-->
+<view>
+  <swiper  class='banner-box'
+    duration='400'
+    indicator-dots='true'
+    autoplay="true"
+    indicator-color='#999'
+    indicator-active-color='#fff'
+    easing-function='{{"easeInOutCubic"}}'>
+    <swiper-item class='swiper-i' wx:for='{{bannerList}}' wx:key='{{item.id}}'> 
+      <image src='{{src_url+item.pic_url}}' bindtap="todetail" data-item='{{item}}'></image>
+    </swiper-item>
+  </swiper>
+
+</view>

@@ -1,47 +1,15 @@
 {
   "pages": [
-    
-    "pages/check-token/check-token",
-    "pages/fail-records/fail-records",
-    "pages/staff-page/staff-page",
-    "pages/wallet/wallet",
-    "pages/employee-login/employee-login",
-    "pages/login/login",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/next/next",
-    "pages/more-notice/more-notice",
-    "pages/more-class/more-class",
-    "pages/more-news/more-news",
-    "pages/join-partner/join-partner",
-    "pages/user/user",
-    "pages/set-user-info/set-user-info",
-    "pages/article-detail/article-detail",
-    "pages/goods-detail/goods-detail",
-    "pages/member-manage/member-manage",
-    "pages/class-detail/class-detail",
-    "pages/member-detail/member-detail",
-    "pages/my-pay-detail/my-pay-detail",
-    "pages/extension-service/extension-service",
-    "pages/extension-detail/extension-detail",
-    "pages/bankcard-list/backcard-list",
-    "pages/qrcode/qrcode",
-    "pages/set-bank/set-bank",
-    "pages/flow-detail/flow-detail",
-    "pages/partner-detail/partner-detail",
-    "pages/fail-detail/fail-detail",
-    "pages/system-set/system-set",
-    "pages/verify-mobile/verify-mobile",
-    "pages/change-mobile/change-mobile",
-    "pages/contract/contract",
-    "pages/connect/connect"
+    "pages/hospital/hospital",
+    "pages/crous/crous",
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "众诺亿美",
-    "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [
@@ -49,13 +17,19 @@
         "pagePath": "pages/index/index",
         "iconPath": "/img/shouye_2.png",
         "selectedIconPath": "/img/shouye_1.png",
-        "text": "会员首页"
+        "text": "众诺补贴"
       },
       {
-        "pagePath": "pages/join-partner/join-partner",
+        "pagePath": "pages/hospital/hospital",
         "iconPath": "/img/jiaru_2.png",
         "selectedIconPath": "/img/jiaru_1.png",
-        "text": "加入我们"
+        "text": "严选医院"
+      },
+      {
+        "pagePath": "pages/crous/crous",
+        "iconPath": "/img/jiaru_2.png",
+        "selectedIconPath": "/img/jiaru_1.png",
+        "text": "福利中心"
       },
       {
         "pagePath": "pages/user/user",

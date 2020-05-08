@@ -1,36 +1,20 @@
-// pages/index/index.js
-import service from '../../utils/api.js'
-
+// pages/crous/crous.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    bannerList:[]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getBanner()
+
   },
-  getBanner() {
-    service('/GetBannersList',{})
-    .then(r => {
-      this.setData({
-        bannerList:r.data.data
-      })
-    })
-    .catch(e => {
-      wx.showToast({
-        title: '网络错误',
-        duration: 2000,
-        icon: 'none'
-      })
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

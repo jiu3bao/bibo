@@ -1,6 +1,0 @@
-<!--pages/connect/connect.wxml-->
-<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-
-<view class='contain' style='padding-top:{{navbarHeight}}px'> 
-  <image class='bg' src='../../img/intro.png' mode="widthFix"></image>
-</view>

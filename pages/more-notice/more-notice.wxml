@@ -1,8 +1,0 @@
-<!--pages/more-notice/more-notice.wxml-->
-<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-
-<view class='notice-box' style='padding-top:{{navbarHeight}}px'>
-  <view class='block'>
-    <notice notice-list='{{noticeList}}'></notice>   
-  </view>
-</view>

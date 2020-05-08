@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "nav-bar": "../../components/navbar/navbar",
-    "news": "../../components/news/news"
-  }
-}
