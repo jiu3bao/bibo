@@ -1,11 +1,6 @@
-/* pages/hospital/hospital.wxss */
+/* pages/setdesign/setdesign.wxss */
 page {
   background: #f7f7f7;
-}
-.banner_box {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 20rpx 27rpx;
 }
 .title {
   display: flex;
@@ -26,15 +21,4 @@ page {
   color:#FF504C;
   font-size:23rpx;
   margin-left:17rpx;
-}
-.open_design {
-  display: flex;
-  width: 100%;
-  color: #286E87;
-  font-size:25rpx;
-  height:100rpx;
-  align-items: center;
-  background: #fff;
-  padding: 0 46rpx;
-  border-top: 1px solid #E5E5E5;
 }

@@ -1,6 +1,56 @@
 <!--components/price-ref/price-ref.wxml-->
 <view class='price-ref'>
-  <view>
-    价格查询
+  <view class='title'>
+    <image src='/img/chaxun.png'></image>价格查询
+  </view>
+  <view class='zx_program'>
+    <view class='"item" {{activeType ==item?"active":""}}' 
+    wx:for='{{program_list}}'
+    bindtap="checkitem"
+    data-item='{{item}}'>{{item}}</view>
+  </view>
+  <view class='subject_item' 
+    wx:for='{{subject_list}}'
+    wx:key='name'>
+    <view class='subject_name'>
+      <view>{{item.name}}</view>
+      <view class='fold_btn'
+      bindtap="fold"
+      data-index='{{index}}'>
+        <image src='/img/xiala.png'
+        class='{{item.isfold?"fold_icon":""}}'
+        ></image>
+      </view>
+      
+    </view>
+    <view class='{{item.isfold?"fold_item":""}}'>
+      <view class='subject_detail_item' 
+      wx:for='{{item.subject_detail}}'
+      wx:key='index'>
+        <view class='left'>
+          <image src='/img/zhuuren.png'></image>
+          <view>主任</view>
+        </view>
+        <view class='right'>
+          <view class='masktxt' wx:if='showmask'>
+            加入会员了解全部补贴情况
+            <image src='/img/lijijiaru.png'></image>
+          </view>
+          <view class='one'>
+            <text class='{{showmask?"mask" :""}}'>2000</text>
+            医院优惠价格
+          </view>
+          <view class='two'>
+            <text class='{{showmask?"mask" :""}}'>500</text>
+            补贴金优惠
+          </view>
+          <view class='three'>
+            <text class='{{showmask?"mask" :""}}'>1500</text>
+            优惠后总价格
+          </view>
+        </view>
+      </view>
+    </view>
+    
   </view>
 </view>

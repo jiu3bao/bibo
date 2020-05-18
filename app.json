@@ -1,9 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/hospital/hospital",
     "pages/crous/crous",
+    "pages/setdesign/setdesign",
+    "pages/hospital/hospital",
+    "pages/index/index",
+    
     "pages/user/user"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -15,32 +18,32 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "/img/shouye_2.png",
-        "selectedIconPath": "/img/shouye_1.png",
+        "iconPath": "/img/butie_1.png",
+        "selectedIconPath": "/img/butie_1.png",
         "text": "众诺补贴"
       },
       {
         "pagePath": "pages/hospital/hospital",
-        "iconPath": "/img/jiaru_2.png",
-        "selectedIconPath": "/img/jiaru_1.png",
-        "text": "严选医院"
+        "iconPath": "/img/zixun.png",
+        "selectedIconPath": "/img/zixuna.png",
+        "text": "亿美咨询"
       },
       {
         "pagePath": "pages/crous/crous",
-        "iconPath": "/img/jiaru_2.png",
-        "selectedIconPath": "/img/jiaru_1.png",
+        "iconPath": "/img/fuli.png",
+        "selectedIconPath": "/img/fuli.png",
         "text": "福利中心"
       },
       {
         "pagePath": "pages/user/user",
-        "iconPath": "/img/geren_2.png",
-        "selectedIconPath": "/img/geren_1.png",
+        "iconPath": "/img/gerenzhongxin.png",
+        "selectedIconPath": "/img/gerenzhongxin.png",
         "text": "个人中心"
       }
     ],
-    "backgroundColor": "#f5f5f5",
-    "color": "#bfbfbf",
-    "selectedColor": "#3db3e6"
+    "backgroundColor": "##FFFFFF",
+    "color": "##313131",
+    "selectedColor": "##286E87"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -1,2 +1,21 @@
 <!--pages/hospital/hospital.wxml-->
-<text>pages/hospital/hospital.wxml</text>
+<view>
+  <view class='banner_box'>
+    <Banner bannerList='{{bannerList}}'></Banner>
+  </view>
+  <view class='title'>
+    <image src='/img/chaxun.png'></image>
+    医生展示
+    <text>众诺亿美合作全国300+名医专家</text>
+  </view>
+  <DocList></DocList>
+  <view class='title'>
+    <image src='/img/chaxun.png'></image>
+    我要设计
+  </view>
+  <Design></Design>
+  <view class='open_design' bindtap="to_design">
+    开启我的面部设计
+    <!-- <image></image> -->
+  </view>
+</view>

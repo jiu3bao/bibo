@@ -1,0 +1,11 @@
+<!--components/doc-list/doc-list.wxml-->
+<scroll-view scroll-x='true' class='docbox'>
+  <view class='ss'>
+    <view class='item' wx:for='list'>
+      <image src='/img/yuanzhuang.png'></image>
+      <view>主任-王主任</view>
+    </view>
+  </view>
+  
+</scroll-view>
+

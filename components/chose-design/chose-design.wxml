@@ -1,0 +1,18 @@
+<!--components/chose-design/chose-design.wxml-->
+<view class='design'>
+  <view class='zx_program'>
+    <view class='"item" {{activeType ==item?"active":""}}' 
+    wx:for='{{program_list}}'
+    bindtap="checkitem"
+    data-item='{{item}}'>{{item}}</view>
+  </view>
+  <scroll-view scroll-x='true' class='sub_box'>
+    <view class='ss'>
+      <view wx:for='{{subject_list}}'>
+        <image src='/img/zhuuren.png'></image>
+      </view>
+    </view>
+  </scroll-view>
+  
+</view>
+

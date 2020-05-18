@@ -1,6 +1,6 @@
 /* components/banner/banner.wxss */
 .banner-box {
-  height:460rpx;
+  height:390rpx;
 }
 .swiper-i {
   width:100%;

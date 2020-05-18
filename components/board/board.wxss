@@ -1,1 +1,75 @@
 /* components/board/board.wxss */
+.board {
+  width:100%;
+  height: 185rpx;
+  margin-top:30rpx;
+  padding :0 28rpx;
+  box-sizing: border-box;
+  
+}
+.scroll {
+  width:100%;
+  height:100%;
+  border:1px solid #E5E5E5;
+  border-radius:5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+}
+.left-img {
+  width:137rpx;
+  display: flex;
+  align-items: center;
+  height:93rpx;
+  border-right:1px solid #C3C3C3;
+  flex-shrink: 0;
+}
+.scroll image {
+  height:75rpx;
+  width:97rpx;
+  margin-left: 26rpx;
+}
+.right_container {
+  width:100%;
+  height: 100%;
+  padding: 28rpx 30rpx;
+  box-sizing: border-box;
+}
+.scroll_item {
+  display: flex;
+  align-items: flex-end;
+  font-size: 25rpx;
+  color:#434343;
+  margin-bottom: 18rpx;
+}
+.right_container swiper-item{
+  height:30rpx !important;
+  width: 100%;
+}
+.scroll_item .name {
+  width:40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: flex-end;
+}
+.scroll_item .name text {
+
+}
+.scroll_item .price  {
+  width:40%;
+
+}
+.scroll_item .price text{
+  color:#FD545A
+  
+}
+.scroll_item .time {
+  width:20%;
+  text-align: right;
+  color:#535353;
+  font-size: 17rpx;
+}

@@ -1,0 +1,7 @@
+<!--pages/setdesign/setdesign.wxml-->
+<view>
+  <view class='title'>
+    <image src='/img/chaxun.png'></image>
+    提交资料
+  </view>
+</view>

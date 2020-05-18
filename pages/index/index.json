@@ -3,5 +3,6 @@
     "Banner" : "../../components/banner/banner",
     "price-ref" : "../../components/price-ref/price-ref",
     "board": "../../components/board/board"
-  }
+  },
+  "navigationBarTitleText": "众诺补贴"
 }

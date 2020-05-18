@@ -1,2 +1,29 @@
 <!--pages/crous/crous.wxml-->
-<text>pages/crous/crous.wxml</text>
+<view>
+  <view class='title'>
+    <image src='/img/chaxun.png'></image>
+    附近福利
+  </view>
+  <view class='cours-box'>
+    <view class='item'>
+      <image src='/img/ooo.png'></image>
+      <view class='bottom'>
+        <view class='name'>
+          私人定制护肤美容小气泡福利券
+          <text>1.8km</text>
+        </view>
+        <view class='num'>
+          已领取  183   剩余 927
+        </view>
+        <view class='price'>
+          <view class='real'>
+            <text>￥</text>0
+          </view>
+          <view class='fake'>
+            ￥588
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
