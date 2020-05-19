@@ -1,0 +1,20 @@
+<!--pages/get-success/get-success.wxml-->
+<view class='g_s'>
+  <image src='/img/cgbg.png' class='bg'></image>
+  <view class='top'>
+    <image src='/img/chenggong.png'></image>
+    领取成功
+  </view>
+
+  <view class='code'>
+    <view class='s'>
+      我的领取码：
+    </view>
+    <view>
+      678652
+    </view>
+  </view>
+
+  <view class='backbtn' bindtap="backindex">返回首页</view>
+</view>
+

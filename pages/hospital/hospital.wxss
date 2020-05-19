@@ -38,3 +38,17 @@ page {
   padding: 0 46rpx;
   border-top: 1px solid #E5E5E5;
 }
+.myde {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:100rpx;
+  padding: 0 40rpx 0 46rpx;
+  border-top:1px solid #E5E5E5;
+  color:#286E87;
+  font-size:25rpx;
+  background: #fff;
+}
+.myde:last-child {
+  margin-bottom:30rpx;
+}

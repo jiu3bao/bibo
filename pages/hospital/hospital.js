@@ -16,7 +16,7 @@ Page({
     this.getBanner()
   },
   getBanner() {
-    service('/GetBannersList',{})
+    service('API/GetBannersList',{})
     .then(r => {
       this.setData({
         bannerList:r.data.data

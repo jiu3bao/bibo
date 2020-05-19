@@ -6,6 +6,7 @@
   <view class='zx_program'>
     <view class='"item" {{activeType ==item?"active":""}}' 
     wx:for='{{program_list}}'
+    wx:key='index'
     bindtap="checkitem"
     data-item='{{item}}'>{{item}}</view>
   </view>
@@ -32,7 +33,7 @@
           <view>主任</view>
         </view>
         <view class='right'>
-          <view class='masktxt' wx:if='showmask'>
+          <view class='masktxt' wx:if='{{showmask}}'>
             加入会员了解全部补贴情况
             <image src='/img/lijijiaru.png'></image>
           </view>

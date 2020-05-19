@@ -1,26 +1,56 @@
 <!--pages/crous/crous.wxml-->
 <view>
-  <view class='title'>
+  <view class='title' wx:if='{{nearlist&&nearlist.length>0}}'>
     <image src='/img/chaxun.png'></image>
     附近福利
   </view>
   <view class='cours-box'>
-    <view class='item'>
-      <image src='/img/ooo.png'></image>
+    <view class='item' wx:for='{{nearlist}}'
+      bindtap="todetail"
+      data-id='{{item.id}}'>
+      <image src='{{item.main_pic}}'></image>
       <view class='bottom'>
         <view class='name'>
-          私人定制护肤美容小气泡福利券
-          <text>1.8km</text>
+          {{item.goods_name}}
+          <text>{{item.distance}}</text>
         </view>
         <view class='num'>
-          已领取  183   剩余 927
+          已领取  {{item.sale_count}}   剩余 {{item.inv_count}}
         </view>
         <view class='price'>
           <view class='real'>
-            <text>￥</text>0
+            <text>￥</text>{{item.price}}
           </view>
           <view class='fake'>
-            ￥588
+            ￥{{item.price_local}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='title' wx:if='{{countrylist&&countrylist.length>0}}'>
+    <image src='/img/chaxun.png'></image>
+    全城福利
+  </view>
+   <view class='cours-box'>
+    <view class='item' wx:for='{{countrylist}}'
+      bindtap="todetail"
+      data-id='{{item.id}}'>
+      <image src='{{item.main_pic}}'></image>
+      <view class='bottom'>
+        <view class='name'>
+          {{item.goods_name}}
+          <!-- <text>1.8km</text> -->
+        </view>
+        <view class='num'>
+          已领取  {{item.sale_count}}   剩余 {{item.inv_count}}
+        </view>
+        <view class='price'>
+          <view class='real'>
+            <text>￥</text>{{item.price}}
+          </view>
+          <view class='fake'>
+            ￥{{item.price_local}}
           </view>
         </view>
       </view>

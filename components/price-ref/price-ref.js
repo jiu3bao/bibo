@@ -33,6 +33,12 @@ Component({
       isfold:false,
       subject_detail:[1,1]}]
   },
+  ready() {
+    const ismember = wx.getStorageSync('user').is_member===1
+    this.setData({
+      showmask:!ismember
+    })
+  },
   /**
    * 组件的方法列表
    */

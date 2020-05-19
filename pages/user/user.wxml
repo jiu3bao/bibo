@@ -1,2 +1,26 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view>
+  <image src='/img/ooo.png' class='bg'></image>
+  <swiper class="contain">
+    <block>
+        <swiper-item class='wallet'>
+          <Userhead></Userhead>
+            
+        </swiper-item>
+    </block>
+    <block>
+        <swiper-item>
+  
+        </swiper-item>
+    </block>
+  </swiper>
+  <view class='mycontent'>
+    <view wx:for='{{list}}' class='item'>
+      <image src='/img/chenggong.png'></image>
+      <view>{{item.name}}</view>
+    </view>
+  </view>
+  <view class='kf'>
+    
+  </view>
+</view>

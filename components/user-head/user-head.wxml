@@ -1,0 +1,25 @@
+<!--components/user-head/user-head.wxml-->
+<view class='wallethead'>
+  <image class='left' src='/img/let.png'></image>
+  <view class='center'>
+    <image class='cbg' src='/img/ooo.png'></image>
+    <view class='w_c'>
+      <view class='w_c_t'>
+        <image src='/img/qianbao.png'></image>
+        我的钱包
+      </view>
+      <view class='w_c_c'>
+        <text>￥</text>5000.00
+      </view>
+      <view class='w_c_btn'>
+        <view>提现</view>
+        <view>明细</view>
+      </view>
+      <view class='w_c_b'>
+        <image src='/img/bank.png'></image>
+        我的银行卡 >
+      </view>
+    </view>
+  </view>
+  <image class='right' src='/img/rit.png'></image>
+</view>

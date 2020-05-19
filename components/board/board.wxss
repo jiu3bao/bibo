@@ -45,7 +45,6 @@
   margin-bottom: 18rpx;
 }
 .right_container swiper-item{
-  height:30rpx !important;
   width: 100%;
 }
 .scroll_item .name {

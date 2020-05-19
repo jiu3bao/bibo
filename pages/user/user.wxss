@@ -1,1 +1,36 @@
 /* pages/user/user.wxss */
+page {
+  background:#f7f7f7
+}
+.bg {
+  height:352rpx;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+}
+.contain {
+  margin-top:98rpx;
+  width: 100%;
+}
+.mycontent {
+  display: flex;
+  background: #fff;
+  margin-top:50rpx;
+  width: 100%;
+  flex-wrap: wrap;
+  border:1px solid rgba(220,220,220,1);
+}
+.mycontent .item {
+  width:25%;
+  text-align: center;
+  color:#707070;
+  font-size:20rpx;
+  flex-shrink: 0;
+  padding: 40rpx 0;
+}
+.item  image {
+  width:48rpx;
+  height:48rpx;
+  margin-bottom: 20rpx;
+}

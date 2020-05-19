@@ -1,4 +1,7 @@
 /* pages/crous/crous.wxss */
+page {
+  background:#f7f7f7;
+}
 .title {
   display: flex;
   width:100%;
@@ -28,6 +31,7 @@
   width:100%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 30rpx;
 }
 .item image {
   width:100%;
@@ -61,6 +65,7 @@
   display: flex;
   align-items: flex-end;
   padding-left:32rpx;
+  padding-bottom: 30rpx;
 }
 .real {
   color:#EC6941;

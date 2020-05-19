@@ -1,38 +1,24 @@
-// pages/index/index.js
-import service from '../../utils/api.js'
-
+// pages/get-success/get-success.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    bannerList:[]
-  },
 
+  },
+  backindex() {
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getBanner()
-    const scene = options.scene
-    wx.setStorageSync('scene', scene)
+
   },
-  getBanner() {
-    service('API/GetBannersList',{})
-    .then(r => {
-      this.setData({
-        bannerList:r.data.data
-      })
-    })
-    .catch(e => {
-      wx.showToast({
-        title: '网络错误',
-        duration: 2000,
-        icon: 'none'
-      })
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

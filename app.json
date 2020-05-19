@@ -1,12 +1,14 @@
 {
   "pages": [
+    "pages/checklogin/checklogin",
+    "pages/index/index",
     "pages/crous/crous",
+    "pages/user/user",
+    "pages/get-success/get-success",
+    "pages/crous-detail/crous-detail",
     "pages/setdesign/setdesign",
     "pages/hospital/hospital",
-    "pages/index/index",
-    
-    "pages/user/user"
-    
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,5 +48,10 @@
     "selectedColor": "##286E87"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "为了提供附近的福利，您的位置将被获取"
+    }
+  }
 }

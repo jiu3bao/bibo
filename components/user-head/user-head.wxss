@@ -1,0 +1,81 @@
+/* components/user-head/user-head.wxss */
+.wallethead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:333rpx;
+}
+.left,.right {
+  width:24rpx;
+  height:100%;
+}
+.center {
+  position: relative;
+  width:667rpx;
+}
+.cbg {
+  width:667rpx;
+  height:100%;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.w_c {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding:35rpx 0 57rpx ;
+}
+.w_c_t {
+  display: flex;
+  font-size:25rpx;
+  color:#fff;
+  padding-left:20rpx;
+  align-items: center;
+  margin-bottom:10rpx
+}
+.w_c_t image {
+  width:29rpx;
+  height:23rpx;
+  margin-right: 6rpx;
+}
+.w_c_c {
+  margin:0 auto;
+  color:#fff;
+  font-size:75rpx;
+  text-align: center;
+}
+.w_c_c text {
+  font-size:48rpx;
+}
+.w_c_btn {
+  display: flex;
+  justify-content: center;
+  margin-bottom:18rpx;
+}
+.w_c_btn view{
+  width:120rpx;
+  line-height:38rpx;
+  border:2px solid #F7F7F7;
+  color:#fff;
+  text-align: center;
+  border-radius:6rpx;
+}
+.w_c_btn view:last-child {
+  margin-left:20rpx;
+}
+.w_c_b {
+  width: 100%;
+  height:46rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#1B1B1B;
+  font-size:21rpx;
+}
+.w_c_b image {
+  width:30rpx;
+  height:24rpx;
+  margin-right:15rpx;
+}

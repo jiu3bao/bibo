@@ -18,4 +18,8 @@
     开启我的面部设计
     <!-- <image></image> -->
   </view>
+  <view class='myde'>
+    <view>我的专属设计方案</view>
+    <view>2020-05-02</view>
+  </view>
 </view>

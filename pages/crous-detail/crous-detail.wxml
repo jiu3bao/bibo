@@ -1,0 +1,43 @@
+<!--pages/crous-detail/crous-detail.wxml-->
+<view>
+  <view class='item'>
+    <image src='{{detail.main_pic}}'></image>
+    <view class='bottom'>
+      <view class='name'>
+        {{detail.goods_name}}
+        <text>1.8km</text>
+      </view>
+      <view class='num'>
+        已领取  {{detail.sale_count}}   剩余 {{detail.inv_count}}
+      </view>
+      <view class='price'>
+        <view class='real'>
+          <text>￥</text>{{detail.price}}
+        </view>
+        <view class='fake'>
+          ￥{{detail.price_local}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='title'>
+    <image src='/img/chaxun.png'></image>
+    图文详情
+  </view>
+  <image src='{{img}}' mode='widthFix' style="width:100%" wx:for='{{detail.content_pic}}' wx:for-item='img'>
+  </image>
+  <view class='title'>
+    <image src='/img/chaxun.png'></image>
+    使用规则
+  </view>
+  <view class='rules'>
+    <view class='rules_item' wx:for='{{rules_list}}'>
+      <view class='dot'></view>
+      <view>{{item}}</view>
+    </view>
+  </view>
+  <view class='bb'>
+    <view>￥{{detail.price}}</view>
+    <image src='/img/lijijiaru.png' bindtap="buygoods"></image>
+  </view>
+</view> 

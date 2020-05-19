@@ -1,5 +1,5 @@
 function service(url, data) {
-  const host = 'https://ym.bibo80s.com/API/API'
+  const host = 'https://ym.bibo80s.com/API/'
   return new Promise((resolve, reject) => {
     wx.request({
       url: host + url, //仅为示例，并非真实的接口地址
