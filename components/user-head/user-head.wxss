@@ -12,6 +12,7 @@
 .center {
   position: relative;
   width:667rpx;
+  border-radius: 10rpx;
 }
 .cbg {
   width:667rpx;
@@ -19,6 +20,7 @@
   position: absolute;
   top:0;
   left:0;
+  border-radius: 10rpx;
 }
 .w_c {
   position: relative;

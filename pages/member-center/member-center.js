@@ -1,27 +1,16 @@
-// pages/user/user.js
+// pages/member-center/member-center.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list:[{
-      name:'我的整形',
-      icon:'/img/meirong.png'
-    },{
-      name:'我的二维码',
-      icon:'/img/weibiaoti---2.png'
-    },{
-      name:'我的福利',
-      icon:'/img/shouye-10.png'
-    },{
-      name:'关于我们',
-      icon:'/img/shouye-12.png'
-    },
-    {
-      name:'设置',
-      icon:'/img/shezhi.png'
-    }],
+    has_read:false
+  },
+  read() {
+    this.setData({
+      has_read:!this.data.has_read
+    })
   },
   /**
    * 生命周期函数--监听页面加载

@@ -2,7 +2,7 @@
 <view class='wallethead'>
   <image class='left' src='/img/let.png'></image>
   <view class='center'>
-    <image class='cbg' src='/img/ooo.png'></image>
+    <image class='cbg' src='/img/kapian.png'></image>
     <view class='w_c'>
       <view class='w_c_t'>
         <image src='/img/qianbao.png'></image>

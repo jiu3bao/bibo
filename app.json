@@ -1,14 +1,18 @@
 {
   "pages": [
+    "pages/member-center/member-center",
+    "pages/user/user",
+    "pages/flow-detail/flow/detail",
     "pages/checklogin/checklogin",
     "pages/index/index",
     "pages/crous/crous",
-    "pages/user/user",
     "pages/get-success/get-success",
     "pages/crous-detail/crous-detail",
     "pages/setdesign/setdesign",
     "pages/hospital/hospital",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/user-info/user-info"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

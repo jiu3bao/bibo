@@ -1,6 +1,6 @@
 <!--pages/user/user.wxml-->
 <view>
-  <image src='/img/ooo.png' class='bg'></image>
+  <image src='/img/bg.png' class='bg'></image>
   <swiper class="contain">
     <block>
         <swiper-item class='wallet'>
@@ -16,7 +16,7 @@
   </swiper>
   <view class='mycontent'>
     <view wx:for='{{list}}' class='item'>
-      <image src='/img/chenggong.png'></image>
+      <image src='{{item.icon}}'></image>
       <view>{{item.name}}</view>
     </view>
   </view>
