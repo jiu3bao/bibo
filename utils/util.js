@@ -59,8 +59,35 @@ const countDist =(lat1, lng1, lat2, lng2) => {//纬度1,经度1,纬度2,经度2
       return num;//返回单位:米
   
   }
-
+  const checkLocation =()=> {
+    // let that = this;
+    // //选择位置，需要用户授权
+    // wx.getSetting({
+    //  success(res) {
+    //   if (!res.authSetting['scope.userLocation']) {
+    //    wx.authorize({
+    //     scope: 'scope.userLocation',
+    //     success() {
+    //      wx.showToast({ //这里提示失败原因
+    //       title: '授权成功！',
+    //       duration: 1500
+    //      })
+    //     },
+    //     fail() {
+    //       wx.showToast({ //这里提示失败原因
+    //         title: '授权失败',
+    //         duration: 1500,
+    //         icon:'none'
+    //        })
+    //     //  that.showSettingToast('需要授权位置信息');
+    //     }
+    //    })
+    //   }
+    //  }
+    // })
+   }
 module.exports = {
   formatTime: formatTime,
-  countDist
+  countDist,
+  checkLocation
 }

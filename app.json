@@ -1,8 +1,11 @@
 {
   "pages": [
-    "pages/member-center/member-center",
     "pages/user/user",
-    "pages/flow-detail/flow/detail",
+    "pages/apply-shop/apply-shop",
+    "pages/about-us/about-us",
+    "pages/member-center/member-center",
+    
+    "pages/flow-detail/flow-detail",
     "pages/checklogin/checklogin",
     "pages/index/index",
     "pages/crous/crous",
@@ -11,8 +14,8 @@
     "pages/setdesign/setdesign",
     "pages/hospital/hospital",
     "pages/login/login",
-    "pages/user-info/user-info"
-    
+    "pages/user-info/user-info",
+    "pages/set-sys/set-sys"
   ],
   "window": {
     "backgroundTextStyle": "light",

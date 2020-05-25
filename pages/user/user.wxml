@@ -15,7 +15,7 @@
     </block>
   </swiper>
   <view class='mycontent'>
-    <view wx:for='{{list}}' class='item'>
+    <view wx:for='{{list}}' class='item' bindtap="route2" data-route='{{item.route}}'>
       <image src='{{item.icon}}'></image>
       <view>{{item.name}}</view>
     </view>

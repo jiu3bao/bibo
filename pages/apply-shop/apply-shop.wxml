@@ -1,0 +1,64 @@
+<!--pages/apply-shop/apply-shop.wxml-->
+<view class='a'>
+  <view class='flex'>
+    <view class='l'>上传首页图片</view>
+    <image src='{{main_pic}}' wx:if='{{main_pic&&main_pic.length>0}}' bindtap="openimg" 
+    class='main_pic'
+    data-type='main_pic'
+    mode='aspectFit'></image>
+    <view class='picbtn' bindtap="openimg" data-type='main_pic' wx:else>点击上传</view>
+  </view>
+  <view class='flex'>
+    <view class='l'>
+      商铺名
+    </view>
+    <input bindinput='bindKeyInput' data-type='shop_name' placeholder="请输入"></input>
+  </view>
+  <view class='flex'>
+    <view class='l'>
+      描述
+    </view>
+    <input bindinput='bindKeyInput' data-type='shop_des' placeholder="请输入"></input>
+  </view>
+  <view class='flex'>
+    <view class='l' type='number'>
+      联系电话
+    </view>
+    <input bindinput='bindKeyInput' data-type='tel' placeholder="请输入"></input>
+  </view>
+  <view class='flex'>
+    <view class='l'>
+      地址
+    </view>
+    <view bindtap="choseloc" class='picbtn'>{{add_name?add_name:"选择地址"}}</view>
+  </view>
+</view>
+<view class='flex'>
+  <view class='l'>上传商铺图片</view>
+  <view class='picbtn' bindtap="openimg" data-type='content_pic'>点击上传</view>
+</view>
+<view class='cont_pic'>
+  <view wx:for='{{content_pic}}' class='picitem' wx:key='{{item}}'>
+    <image src='{{item}}'  
+    mode='aspectFit'></image>
+    <view class='float'>
+      <image src='/img/delete.png'
+        bindtap="delete_pic"
+        data-index='{{index}}'></image>
+    </view>
+    
+  </view>
+    
+</view>
+<button bindtap="submit" class='sub'>提交</button>
+
+<view class='mask' wx:if='{{showmask}}'>
+  <view class='b'>
+    请同意获取地址才能使用该功能
+    <view class='bgroup'>
+      <button size='mini' bindtap="close_mask">取消</button>
+      <button size='mini' type='primary' open-type="openSetting">确定</button>
+    </view>
+  </view>
+  
+</view>

@@ -1,0 +1,40 @@
+<!--pages/about-us/about-us.wxml-->
+<view class='b'>
+  <image class='bg' src='/img/cgbg.png'></image>
+  <view class='one'>
+  碧宝医疗科技公司成立于2014年，是一家专注于医疗服务、医疗投资、医疗技术传播、新媒体运营的综合性集团公司。                       
+  </view>
+  <view class='o'>
+    <view>
+      旗下有碧宝————连锁微整形中心
+    </view>
+    <view>
+      碧宝————众诺亿美投资平台
+    </view>
+    <view>
+      碧宝————整形医生集团
+    </view>
+    <view>
+      碧宝————三甲医联体平台
+    </view>
+    <view>
+      碧宝————医美咨询师服务培训中心
+    </view>
+  </view>
+  <view>
+ 公司秉承“一诺千金，专业安全，人人享美”的经营理念，携手高端的医疗整形资源，为爱美人士提供一个集福利、学习、创业为一体的全方位成长平台。                          
+  </view>
+  <view>
+    众诺亿美是公司旗下专注于医美创业与服务的线上平台。2020年先期投资5亿元用于为爱美整形人士提供医美补贴，让广大爱美女性花最少的钱做最美的自己。同时平台将吸纳优秀医美从业者为其提供集医美咨询、创业为一体的培训平台，为广大青年提供新职业机会，为医美行业输送高水准的行业精英，更好的为广大爱美人士提供最专业可靠的服务。未来我们将与您携手共享、共创、共赢美丽事业！
+  </view> 
+  <view class='mail'>
+  公司邮箱：biboznym@163.com
+                            
+  </view>   
+  <image class='qrcode' src='/img/aaaaaa.png'>
+  </image>   
+  <view class='tip'>详情扫码咨询</view>    
+  <button class='btn'>
+    商家入住
+  </button>                
+</view>
