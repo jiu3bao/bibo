@@ -1,0 +1,99 @@
+/* pages/my-shaping/my-shaping.wxss */
+page {
+  background:#f7f7f7;
+}
+.title {
+  display: flex;
+  width:100%;
+  height:33rpx;
+  padding-left:30rpx;
+  color:#434343;
+  font-size:25rpx;
+  align-items: flex-end;
+  margin: 24rpx 0 17rpx 0;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.t-l image {
+  width:7rpx;
+  height:33rpx;
+  margin-right:10rpx;
+}
+.xiala {
+  width:30rpx;
+  height:16rpx;
+}
+.now {
+  background: #fff;
+}
+.now .t {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height:90rpx;
+  padding:0 50rpx 0 45rpx;
+  border-bottom:1px solid rgba(229,229,229,1);
+  font-size:25rpx;
+  color:rgba(49,49,49,1);
+}
+.t text {
+  color:rgba(83,83,83,1);
+}
+.d {
+  padding:20rpx 73rpx 20rpx 79prx;
+  border-bottom:1px solid rgba(229,229,229,1);
+}
+.detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:19rpx;
+  color:rgba(27,27,27,1);
+  height:40rpx;
+}
+.detail view {
+  width:28%;
+  text-align: center;
+}
+.b {
+  color:rgba(85,111,181,1);
+}
+.r {
+  color:rgba(235,104,119,1);
+}
+.b2 {
+  color:rgba(88,108,255,1);
+}
+.pics {
+  padding: 35rpx 0 65rpx 45rpx;
+  font-size:25rpx;
+  color:rgba(49,49,49,1);
+}
+.p-l {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.p-l image{
+  width:139rpx;
+  height:139rpx;
+  border-radius:10rpx;
+  margin-right:55rpx;
+}
+.o-i {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:34rpx 48rpx 33rpx 45rpx;
+  border-bottom:1px solid rgba(229,229,229,1) ;
+  border-top:1px solid rgba(229,229,229,1) ;
+  margin-bottom: 20rpx;
+  font-size:25rpx;
+  background: #fff;
+}
+.o-l {
+  color:#313131;
+  
+}
+.o-l text {
+  color:#535353;
+}

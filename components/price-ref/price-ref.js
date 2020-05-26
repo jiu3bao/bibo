@@ -56,6 +56,18 @@ Component({
       this.setData({
         subject_list:list
       })
+    },
+    tologin() {
+      wx.navigateTo({
+        url: '/packageA/pages/member-center/member-center',
+      })
+      // if(wx.getStorageInfoSync('user').Token) {
+        
+      // } else {
+      //   wx.navigateTo({
+      //     url: '/packageA/pages/login/login',
+      //   })
+      // }
     }
   }
 })

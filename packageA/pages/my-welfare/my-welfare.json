@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "InfoHead":"/components/info-head/info-head"
+  },
+  "navigationBarTitleText": "我的福利"
+}

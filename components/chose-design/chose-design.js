@@ -26,6 +26,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    checkitem(e) {
+      this.setData({
+        activeType:e.currentTarget.dataset.item
+      })
+    }
   }
 })

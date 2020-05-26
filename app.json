@@ -1,21 +1,31 @@
 {
+  "subpackages":[
+    {
+      "root": "packageA",
+      "pages": [
+        "pages/my-welfare-detail/my-welfare-detail",
+        "pages/my-welfare/my-welfare",
+        "pages/my-shaping/my-shaping",
+        "pages/apply-shop/apply-shop",
+        "pages/about-us/about-us",
+        "pages/member-center/member-center",
+        "pages/flow-detail/flow-detail",
+        "pages/get-success/get-success",
+        "pages/crous-detail/crous-detail",
+        "pages/setdesign/setdesign",
+        "pages/login/login",
+        "pages/user-info/user-info",
+        "pages/set-sys/set-sys",
+        "pages/contract/contract"
+      ]
+    }
+  ],
   "pages": [
-    "pages/user/user",
-    "pages/apply-shop/apply-shop",
-    "pages/about-us/about-us",
-    "pages/member-center/member-center",
-    
-    "pages/flow-detail/flow-detail",
     "pages/checklogin/checklogin",
-    "pages/index/index",
-    "pages/crous/crous",
-    "pages/get-success/get-success",
-    "pages/crous-detail/crous-detail",
-    "pages/setdesign/setdesign",
+    "pages/user/user",
     "pages/hospital/hospital",
-    "pages/login/login",
-    "pages/user-info/user-info",
-    "pages/set-sys/set-sys"
+    "pages/index/index",
+    "pages/crous/crous"
   ],
   "window": {
     "backgroundTextStyle": "light",

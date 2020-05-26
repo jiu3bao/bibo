@@ -1,0 +1,17 @@
+<!--components/info-head/info-head.wxml-->
+<view class='head'>
+  <image class='bg' src='/img/ubg.png'></image>
+  <view class='con'>
+    <image class='avatar' src='/img/fuli.png'></image>
+    <view class='right'>
+      <view class='t'>
+        name
+        <image src='/img/kapian.png'></image>
+        <image src='/img/vip.png'></image>
+      </view>
+      <view class='b'>
+        会员号：303030
+      </view>
+    </view>
+  </view>
+</view>

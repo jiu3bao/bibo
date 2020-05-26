@@ -1,0 +1,52 @@
+<!--pages/user-info/user-info.wxml-->
+<InfoHead></InfoHead>
+<view class='a'>
+  <view class='flex'>
+    <view class='l'>真实姓名</view>
+    <input bindinput='bindKeyInput' 
+    value='{{info.name}}' 
+    data-type='name'
+    placeholder="请输入"></input>
+  </view>
+  <view class='flex'>
+    <view class='l'>性别</view>
+    <view class='r' bindtap="opensex">
+      {{info.sex?info.sex:"请选择 >"}}
+    </view>
+  </view>
+  <view class='flex'>
+    <view class='l'>出生日期</view>
+    <view class='r'>
+      <picker mode="date" value="{{info.birthday}}" start="1900-01-01" end="{{nowdate}}" bindchange="set_birthday">
+        <view class="picker">
+          {{info.birthday?info.birthday:'点击选择 >'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class='flex'>
+    <view class='l'>微信号</view>
+    <input bindinput='bindKeyInput' 
+    value='{{info.wx}}'
+    data-type='wx' 
+    placeholder="请输入"></input>
+  </view>
+  <view class='flex'>
+    <view class='l'>手机号</view>
+    <input bindinput='bindKeyInput' 
+    value='{{info.phone}}'
+    data-type='phone' 
+    type='number'
+    placeholder="请输入"></input>
+  </view>
+  <view class='flex'>
+    <view class='l'>验证码</view>
+    <view class='code'>
+      <input type='number' value='{{code}}' bindinput='set_code' placeholder="请输入验证码"></input>
+      <button class='codebtn' bindtap="get_code">
+      {{time===0?"发送":time+"s后重新获取"}}</button>
+    </view>
+      
+  </view>
+</view>
+<button bindtap="submit" class='sub'>保存</button>

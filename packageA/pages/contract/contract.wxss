@@ -1,0 +1,19 @@
+/* pages/contract/contract.wxss */
+.con {
+  width:100%;
+  background: #fff;
+  font-size:24rpx;
+  padding:30rpx 20rpx;
+  box-sizing: border-box;
+}
+.con text {
+  font-weight: 600;
+  text-decoration: underline;
+}
+.con view {
+  padding-left:10rpx;
+  line-height: 50rpx;
+}
+.con .tt {
+  text-align: center;
+}

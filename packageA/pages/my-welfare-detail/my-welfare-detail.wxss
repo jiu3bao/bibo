@@ -1,0 +1,80 @@
+/* pages/my-walfare-detail/my-walfare-detail.wxss */
+page {
+  background: #f7f7f7;
+}
+.code {
+  width:563rpx;
+  height:257rpx;
+  background:rgba(255,255,255,1);
+  border:1px solid rgba(220,220,220,1);
+  border-radius:10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size:25rpx;
+  color:#1B1B1B;
+  margin:30rpx auto;
+}
+.big {
+  color:#313131;
+  font-size:75rpx;
+  margin-top:42rpx;
+}
+.box {
+  background: #fff;
+  
+}
+.t {
+  font-size:23rpx;
+  color:#434343;
+  line-height: 80rpx;
+  border-bottom:1px solid rgba(220,220,220,1);
+  padding-left:56rpx;
+}
+.g {
+  display: flex;
+  border-bottom:1px solid rgba(220,220,220,1);
+  padding:24rpx 0 24rpx 56rpx;
+  align-items: center;
+}
+.g image {
+  width:177rpx;
+  height:177rpx;
+  border-radius:10rpx;
+  margin-right: 23rpx;
+}
+.blue,.name {
+  color:#417A91;
+  font-size:26rpx;
+  font-weight:600;
+}
+.name {
+  color: #4D4D4D;
+  margin-top:12rpx;
+  margin-bottom:35rpx
+}
+.des {
+  font-size:21rpx;
+  color:#898989;
+  margin-bottom:33rpx;
+}
+.time {
+  color: #A0A0A0;
+  font-size:21rpx;
+}
+.f {
+  display: flex;
+  font-size:23rpx;
+  color:rgba(67,67,67,1);
+  height:80rpx;
+  border-bottom:1px solid rgba(220,220,220,1);
+  padding-left:56rpx;
+  align-items: center;
+}
+.green {
+  color:#50C397
+}
+.f view {
+  min-width: 130rpx;
+}

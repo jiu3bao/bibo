@@ -13,6 +13,13 @@ page {
   margin-top:98rpx;
   width: 100%;
 }
+swiper-item {
+  width:90% !important;
+  display: flex;
+  justify-content: center;
+  margin:0 5%;
+  padding:0 5rpx;
+}
 .mycontent {
   display: flex;
   background: #fff;

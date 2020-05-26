@@ -1,0 +1,66 @@
+/* pages/my-welfare/my-welfare.wxss */
+page {
+  background: #f7f7f7;
+}
+.item {
+  background: #fff;
+  margin-bottom: 12rpx;
+}
+.green {
+  color:#50C397;
+}
+.t {
+  height:60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 58rpx 0 56rpx;
+  border-bottom: 1px solid #EFEFEF;
+  font-size:23rpx;
+  color:#434343
+}
+.c {
+  display: flex;
+  align-items: center;
+  padding:23rpx 20rpx 23rpx 50rpx;
+}
+.c image {
+  width:177rpx;
+  height:177rpx;
+  border-radius:10rpx;
+  margin-right:16rpx;
+}
+.r-t {
+  font-size:26rpx;
+  color:#4D4D4D;
+  margin-bottom:13rpx;
+}
+.r-t text {
+  color:#417A91;
+}
+.r-d {
+  font-size:21rpx;
+  color:#898989;
+  margin-bottom:15rpx;
+}
+.r-a {
+  color:#4D4D4D;
+  font-size:21rpx;
+  margin-bottom:15rpx;
+}
+.r-p {
+  color:#898989;
+  font-size:25rpx;
+  margin-bottom:12rpx;
+}
+.r-b {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:21rpx;
+  color: #A0A0A0;
+}
+.orange {
+  color:#EC6941;
+  font-size:22rpx;
+}

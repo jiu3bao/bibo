@@ -35,7 +35,7 @@
         <view class='right'>
           <view class='masktxt' wx:if='{{showmask}}'>
             加入会员了解全部补贴情况
-            <image src='/img/lijijiaru.png'></image>
+            <image src='/img/lijijiaru.png' bindtap="tologin"></image>
           </view>
           <view class='one'>
             <text class='{{showmask?"mask" :""}}'>2000</text>

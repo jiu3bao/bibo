@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "InfoHead":"/components/info-head/info-head"
+  }
+}

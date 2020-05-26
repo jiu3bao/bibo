@@ -1,0 +1,31 @@
+<!--components/user-head-info/user-head-info.wxml-->
+<!--components/user-head/user-head.wxml-->
+<view class='wallethead'>
+  <!-- <image class='left' src='/img/let.png'></image> -->
+  <view class='center'>
+    <image class='cbg' src='/img/kapian.png'></image>
+    <view class='w_c'>
+      <view class='edit' bindtap="toedit">
+        编辑个人资料>
+      </view>
+      <view class='info'>
+        <image src='/img/fuli.png' class='avata'></image>
+        <view class='i-r'>
+          <view>
+            <image src='/img/VIP@2x.png'></image>
+            王丽丽
+          </view>
+          <view class='n'>
+            会员号：348952100
+          </view>
+        </view>
+      </view>
+      <view class='w_c_b'>
+        <image src='/img/meirong.png'></image>
+        <image src='/img/vip.png'></image>
+        vip会员 丨 到期日期：2020-04-04
+      </view>
+    </view>
+  </view>
+  <!-- <image class='right' src='/img/rit.png'></image> -->
+</view>

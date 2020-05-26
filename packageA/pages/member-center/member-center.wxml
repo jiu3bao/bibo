@@ -1,0 +1,47 @@
+<!--pages/member-center/member-center.wxml-->
+<view>
+  <image src='/img/aaaaaa.png' class='m-h'></image>
+  <view class='h'>
+    <view></view>
+    会员专享权益
+    <view></view>
+  </view>
+  <view class='con'>
+    <view>
+      <view>1.	会员年费1980元/年，活动期立减1000元，优惠价980元/年。</view>
+      <view>2.	会员期内整形手术不限次数不限项目，到合作医院均可享受整形补贴。
+      根据项目金额，每次补贴金50%以上。</view>
+      
+      <view>
+      3.	会员拿到平台补贴后，平台有权拍摄证明视频及术前术后对比影像资料，用于推广。</view>
+      <view>4.	平台不收取任何整形费用，不涉及医疗行为，仅做补贴发放。</view>
+      <view>5.	老会员推荐新会员加入，每次给予200元奖励。</view>
+      <view>6.	成为会员后可在平台福利中心，不定期领取各种福利，让您持久美丽。</view>
+      <view>7.	会员对“我的钱包”申请提现，平台将手续5%手续费。</view>                     
+    </view>
+    <view class='indent'>
+      <view class='h2'>服务流程</view>
+      <view>
+      ① 请与您的个人专属咨询师联系，进行项目设计与预约。
+      </view>
+      <view>
+        ② 请按预约时间到合作医院，由众诺亿美管家与医院咨询师接待服务。
+      </view>
+      <view>
+        ③ 术后，众诺亿美管家将记录此次消费信息提交平台审核，会员可在小程序“我的整形” 中查看补贴领取进度。
+      </view>
+      <view>
+      ④ 审核通过后，补贴将在7个工作日内发放到“我的钱包”，会员可随时提现。</view>
+    </view>
+  </view>
+  <view class='tip'>
+    <image src='/img/mmpp.png'></image>
+  </view>
+  <view class='contract'>
+    <view class='gou {{has_read?" bl":""}}' bindtap="read">{{has_read?'√':''}}</view>
+    <view class='r' bindtap="tocontract">已阅读协议</view>
+  </view>
+  <view class='btn' bindtap="tobuy">
+    <image src='/img/mmbb.png'></image>
+  </view>
+</view>

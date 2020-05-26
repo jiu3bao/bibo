@@ -1,43 +1,18 @@
-// pages/user/user.js
+// pages/my-welfare/my-welfare.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list:[{
-      name:'我的整形',
-      icon:'/img/meirong.png',
-      route:'/packageA/pages/my-shaping/my-shaping'
-    },{
-      name:'我的二维码',
-      icon:'/img/weibiaoti---2.png',
-      route:'/packageA/pages/my-welfare/my-welfare'
-    },{
-      name:'我的福利',
-      icon:'/img/shouye-10.png',
-      route:'/packageA/pages/my-welfare/my-welfare'
-    },{
-      name:'关于我们',
-      icon:'/img/shouye-12.png',
-      route:'/packageA/pages/about-us/about-us'
-    },
-    {
-      name:'设置',
-      icon:'/img/shezhi.png',
-      route:'/packageA/pages/set-sys/set-sys'
-    },
-    {
-      name:'我的店铺',
-      icon:'/img/shezhi.png'
-    }],
+
   },
-  route2(e) {
-    console.log(e)
+  todetail() {
     wx.navigateTo({
-      url: e.currentTarget.dataset.route,
+      url: '/packageA/pages/my-welfare-detail/my-walfare-detail',
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -8,6 +8,7 @@
   font-size:25rpx;
   align-items: flex-end;
   margin: 24rpx 0 17rpx 0;
+  box-sizing: border-box;
 }
 .title image {
   width:7rpx;

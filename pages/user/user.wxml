@@ -2,17 +2,18 @@
 <view>
   <image src='/img/bg.png' class='bg'></image>
   <swiper class="contain">
-    <block>
-        <swiper-item class='wallet'>
-          <Userhead></Userhead>
-            
-        </swiper-item>
+    <block class='s-item'>
+      <swiper-item>
+        <UserheadInfo></UserheadInfo>
+      </swiper-item>
     </block>
     <block>
-        <swiper-item>
-  
-        </swiper-item>
+      <swiper-item class='wallet'>
+        <Userhead></Userhead>
+          
+      </swiper-item>
     </block>
+    
   </swiper>
   <view class='mycontent'>
     <view wx:for='{{list}}' class='item' bindtap="route2" data-route='{{item.route}}'>

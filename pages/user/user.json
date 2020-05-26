@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "Userhead" : "../../components/user-head/user-head"
+    "Userhead" : "../../components/user-head/user-head",
+    "UserheadInfo" : "../../components/user-head-info/user-head-info"
   },
   "navigationBarTitleText": "个人中心"
 }

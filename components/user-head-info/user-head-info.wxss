@@ -1,4 +1,4 @@
-/* components/user-head/user-head.wxss */
+/* components/user-head-info/user-head-info.wxss */
 .wallethead {
   display: flex;
   justify-content: space-between;
@@ -29,43 +29,40 @@
   height: 100%;
   padding:35rpx 0 57rpx ;
 }
-.w_c_t {
+.edit {
   display: flex;
-  font-size:25rpx;
-  color:#fff;
-  padding-left:20rpx;
+  font-size:19rpx;
+  justify-content: flex-end;
+  color:#EEEEEE;
+  padding-right:20rpx;
   align-items: center;
   margin-bottom:10rpx
 }
-.w_c_t image {
-  width:29rpx;
-  height:23rpx;
-  margin-right: 6rpx;
-}
-.w_c_c {
-  margin:0 auto;
-  color:#fff;
-  font-size:75rpx;
-  text-align: center;
-}
-.w_c_c text {
-  font-size:48rpx;
-}
-.w_c_btn {
+.info {
   display: flex;
-  justify-content: center;
-  margin-bottom:18rpx;
+  align-items: center;
+  padding-left:70rpx;
+  margin-bottom:65rpx;
 }
-.w_c_btn view{
-  width:120rpx;
-  line-height:38rpx;
-  border:2px solid #F7F7F7;
+.avata {
+  width:117rpx;
+  height:117rpx;
+  border-radius: 50%;
+  margin-right:44rpx;
+}
+.i-r {
   color:#fff;
-  text-align: center;
-  border-radius:6rpx;
+  font-size:29rpx;
 }
-.w_c_btn view:last-child {
-  margin-left:20rpx;
+.i-r image {
+  width:77rpx;
+  height:37rpx;
+  margin-right:12rpx;
+}
+.i-r .n {
+  font-size:25rpx;
+  color:#fff;
+  margin-top:20rpx;
 }
 .w_c_b {
   width: 100%;
@@ -78,7 +75,7 @@
   font-size:21rpx;
 }
 .w_c_b image {
-  width:30rpx;
-  height:24rpx;
+  width:26rpx;
+  height:26rpx;
   margin-right:15rpx;
 }

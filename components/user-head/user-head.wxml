@@ -1,6 +1,6 @@
 <!--components/user-head/user-head.wxml-->
 <view class='wallethead'>
-  <image class='left' src='/img/let.png'></image>
+  <!-- <image class='left' src='/img/let.png'></image> -->
   <view class='center'>
     <image class='cbg' src='/img/kapian.png'></image>
     <view class='w_c'>
@@ -13,7 +13,7 @@
       </view>
       <view class='w_c_btn'>
         <view>提现</view>
-        <view>明细</view>
+        <view bindtap="todetail">明细</view>
       </view>
       <view class='w_c_b'>
         <image src='/img/bank.png'></image>
@@ -21,5 +21,5 @@
       </view>
     </view>
   </view>
-  <image class='right' src='/img/rit.png'></image>
+  <!-- <image class='right' src='/img/rit.png'></image> -->
 </view>

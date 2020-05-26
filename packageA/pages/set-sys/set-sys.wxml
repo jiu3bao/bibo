@@ -1,0 +1,18 @@
+<!--pages/set-sys/set-sys.wxml-->
+<view class='b'>
+  <view class='o'>
+    <image src='/img/meirong.png'></image>
+    退出登录
+  </view>
+  <view  class='o' bindtap="toapply">
+    申请商铺
+  </view>
+  <view class='tip'>
+    <view>
+      客服电话
+    </view>
+    <view>
+      400-7696-8597
+    </view>
+  </view>
+</view>

@@ -1,0 +1,53 @@
+/* pages/about-us/about-us.wxss */
+.b {
+  position: relative;
+  padding:70rpx;
+  color:#434343;
+  font-size:25rpx;
+  line-height: 42rpx;
+  box-sizing: border-box;
+}
+.bg {
+  width:100%;
+  height:100%;
+  z-index:-1;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.ong {
+  
+}
+.o {
+  background:rgba(255,255,255,1);
+  border:2px solid rgba(80, 195, 151, 1);
+  border-radius:10rpx;
+  color: #417A91;
+  font-size: 25rpx;
+  padding: 30rpx 40rpx;
+  margin:30rpx auto;
+}
+.mail {
+  font-size:29rpx;
+  color: #417A91;
+  text-align: center;
+  margin:70rpx 0 50rpx 0
+}
+.qrcode {
+  width:275rpx;
+  height:275rpx;
+  margin: 0 auto;
+  display: block;
+}
+.tip {
+  color: #434343;
+  margin:20rpx auto 60rpx auto;
+  text-align: center;
+}
+.btn {
+  width:343rpx;
+  line-height:52rpx;
+  background:linear-gradient(-7deg,rgba(68,179,154,1),rgba(88,204,129,1));
+  border-radius:26rpx;
+  color:#fff;
+}

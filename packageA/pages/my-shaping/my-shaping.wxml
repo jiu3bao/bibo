@@ -1,0 +1,96 @@
+<!--pages/my-shaping/my-shaping.wxml-->
+<InfoHead></InfoHead>
+<view class='now'>
+  <view class='t'>
+    <view>
+      消费医院：<text>长春医美医院</text>
+    </view>
+    <view>审核中</view>
+  </view>
+  <view class='d'>
+    <view class='detail'>
+      <view>消费项目</view>
+      <view>消费金额</view>
+      <view>补贴金额</view>
+    </view>
+    <view class='detail'>
+      <view class='b'>1.双眼皮</view>
+      <view class='r'>2000</view>
+      <view class='b2'>500</view>
+    </view>
+    <view class='detail'>
+      <view class='b'>1.双眼皮</view>
+      <view class='r'>2000</view>
+      <view class='b2'>500</view>
+    </view>
+    <view class='detail'>
+      <view class='b'>1.双眼皮</view>
+      <view class='r'>2000</view>
+      <view class='b2'>500</view>
+    </view>
+  </view>
+  <view class='t'>
+    消费日期：<text>2020-04-16</text>
+  </view>
+  <view class='pics'>
+    图片证明：
+    <scroll-view scroll-x="true" >
+      <view class='p-l'>
+        <image></image>
+        <image></image>
+        <image></image>
+        <image></image>
+        <image></image>
+      </view>
+      
+    </scroll-view>
+  </view>
+</view>
+<view class='title'>
+  <view class='t-l'>
+    <image src='/img/chaxun.png'></image>历史记录
+  </view>
+  <image src='/img/xiala.png' class='xiala'></image>
+</view>
+
+<view class='old'>
+  <view class='o-i'>
+    <view class='o-l'>
+      <view>
+        消费医院：<text>长春医美医院</text>
+      </view>
+      <view>
+        消费日期：<text>2020-04-16</text>
+      </view>
+    </view>
+    <view class='r'>
+    已发放
+    </view>
+  </view>
+  <view class='o-i'>
+    <view class='o-l'>
+      <view>
+        消费医院：<text>长春医美医院</text>
+      </view>
+      <view>
+        消费日期：<text>2020-04-16</text>
+      </view>
+    </view>
+    <view class='r'>
+    已发放
+    </view>
+  </view>
+  <view class='o-i'>
+    <view class='o-l'>
+      <view>
+        消费医院：<text>长春医美医院</text>
+      </view>
+      <view>
+        消费日期：<text>2020-04-16</text>
+      </view>
+    </view>
+    <view class='r'>
+    已发放
+    </view>
+  </view>
+</view>

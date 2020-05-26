@@ -1,4 +1,4 @@
-// components/user-head/user-head.js
+// components/user-head-info/user-head-info.js
 Component({
   /**
    * 组件的属性列表
@@ -18,9 +18,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    todetail() {
+    toedit() {
+      debugger
       wx.navigateTo({
-        url: '/pages/flow-detail/flow-detail',
+        url: '/packageA/pages/user-info/user-info'
       })
     }
   }
