@@ -16,6 +16,7 @@ page {
   font-size:25rpx;
   align-items: flex-end;
   margin: 24rpx 0 17rpx 0;
+  box-sizing: border-box;
 }
 .title image {
   width:7rpx;
@@ -29,7 +30,6 @@ page {
 }
 .open_design {
   display: flex;
-  width: 100%;
   color: #286E87;
   font-size:25rpx;
   height:100rpx;
@@ -37,6 +37,12 @@ page {
   background: #fff;
   padding: 0 46rpx;
   border-top: 1px solid #E5E5E5;
+  justify-content: space-between;
+  
+}
+.open_design image {
+  width: 42rpx;
+  height:42rpx;
 }
 .myde {
   display: flex;

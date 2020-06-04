@@ -1,0 +1,42 @@
+<!--accompany/pages/my-order-list/my-order-list.wxml-->
+<view class='p'>
+  <view class='tab'>
+    <view class='tabi {{actab===1?"actab":""}}'
+      bindtap="switch"
+      data-type='{{1}}'>
+      我的会员订单
+      <view class='line'></view>
+    </view>
+    <view class='tabi {{actab===2?"actab":""}}'
+      bindtap="switch"
+      data-type='{{2}}'>
+      大厅订单
+      <view class='line'></view>
+    </view> 
+  </view>
+  <view class='vip-lists' wx:if='{{actab===1}}'>
+    <view class='vip-list'>
+      <image src='/img/vip.png'></image>
+      <view class='c-line'></view>
+      <view class='r'>
+        <view class='name'>邹婷 <image src='/img/vip.png'></image><text>vx: zout1239</text></view>
+        <view class='xm'>咨询项目  鼻综合</view>
+        <view class='time'>2020-05-14  17:30</view>
+      </view>
+    </view>
+  </view>
+  <view class='vip-lists' wx:else >
+    <view class='vip-list'>
+      <image src='/img/vip.png'></image>
+      <view class='c-line'></view>
+      <view class='r'>
+        <view class='name'>邹婷 <image src='/img/vip.png'></image><text>vx: zout1239</text>
+        <view class='copy' 
+        bindtap='copyText' data-text="vx: zout1239">复制</view></view>
+        <view class='xm'>咨询项目  鼻综合</view>
+        <view class='time'>2020-05-14  17:30</view>
+      </view>
+    </view>
+  </view>
+</view>
+<tabbar nowtab='{{2}}'></tabbar>

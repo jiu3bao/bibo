@@ -1,41 +1,20 @@
-// pages/hospital/hospital.js
-import service from '../../utils/api.js'
+// accompany/pages/vip-detail/vip-detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    bannerList:[]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getBanner()
+
   },
-  getBanner() {
-    service('API/GetBannersList',{})
-    .then(r => {
-      this.setData({
-        bannerList:r.data.data
-      })
-    })
-    .catch(e => {
-      wx.showToast({
-        title: '网络错误',
-        duration: 2000,
-        icon: 'none'
-      })
-    })
-  },
-  to_design() {
-    wx.navigateTo({url:'/packageA/pages/setdesign/setdesign'})
-  },
-  to_feedback() {
-    wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback'})
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

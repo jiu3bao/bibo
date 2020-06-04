@@ -1,5 +1,5 @@
 {
-  "subpackages":[
+  "subpackages": [
     {
       "root": "packageA",
       "pages": [
@@ -16,7 +16,18 @@
         "pages/login/login",
         "pages/user-info/user-info",
         "pages/set-sys/set-sys",
-        "pages/contract/contract"
+        "pages/contract/contract",
+        "pages/design-feedback/design-feedback"
+      ]
+    },
+    {
+      "root": "accompany",
+      "pages": [
+        "pages/my-vip/my-vip",
+        "pages/my-order-list/my-order-list",
+        "pages/user-center/user-center",
+        "pages/vip-detail/vip-detail",
+        "pages/set-design/set-design"
       ]
     }
   ],
@@ -25,7 +36,8 @@
     "pages/user/user",
     "pages/hospital/hospital",
     "pages/index/index",
-    "pages/crous/crous"
+    "pages/crous/crous",
+    "pages/employee-login/employee-login"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -50,7 +62,7 @@
       {
         "pagePath": "pages/crous/crous",
         "iconPath": "/img/fuli.png",
-        "selectedIconPath": "/img/fuli.png",
+        "selectedIconPath": "/img/fulia.png",
         "text": "福利中心"
       },
       {

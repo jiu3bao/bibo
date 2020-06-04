@@ -8,7 +8,7 @@
       <view class='edit' bindtap="toedit">
         编辑个人资料>
       </view>
-      <view class='info'>
+      <view class='info' wx:if='{{type===1}}'>
         <image src='/img/fuli.png' class='avata'></image>
         <view class='i-r'>
           <view>
@@ -20,10 +20,20 @@
           </view>
         </view>
       </view>
+      <view class='info' wx:else>
+        <image src='/img/fuli.png' class='avata'></image>
+        <view class='i-r'>
+          <view>
+            陪诊-小爱
+          </view>
+          <view class='n'>
+            工号：0028
+          </view>
+        </view>
+      </view>
       <view class='w_c_b'>
-        <image src='/img/meirong.png'></image>
-        <image src='/img/vip.png'></image>
-        vip会员 丨 到期日期：2020-04-04
+        <image src='/img/zxs.png'></image>
+        高级陪诊
       </view>
     </view>
   </view>

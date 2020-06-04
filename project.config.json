@@ -61,15 +61,15 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/index/index",
-					"pathName": "pages/check-token/check-token",
+					"name": "accompany/pages/set-design/set-design",
+					"pathName": "accompany/pages/set-design/set-design",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
+					"id": 1,
+					"name": "pages/employee-login/employee-login",
+					"pathName": "pages/employee-login/employee-login",
 					"query": "scene=25",
 					"scene": 1048
 				}

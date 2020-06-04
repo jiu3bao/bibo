@@ -1,41 +1,52 @@
-// pages/hospital/hospital.js
-import service from '../../utils/api.js'
+// accompany/pages/my-order-list/my-order-list.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    bannerList:[]
+    actab:1
   },
-
+  switch(e) {
+    this.setData({
+      actab:e.currentTarget.dataset.type
+    })
+  },
+  copyText(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success (res) {
+        wx.getClipboardData({
+          success (res) {
+            wx.showToast({
+              title: '复制成功'
+            })
+          },
+          fail(err) {
+            console.error(err)
+            wx.showToast({
+              title: '复制失败',
+              icon:"none"
+            })
+          }
+        })
+      },
+      fail(err) {
+        console.error(err)
+        wx.showToast({
+          title: '复制失败',
+          icon:"none"
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getBanner()
+
   },
-  getBanner() {
-    service('API/GetBannersList',{})
-    .then(r => {
-      this.setData({
-        bannerList:r.data.data
-      })
-    })
-    .catch(e => {
-      wx.showToast({
-        title: '网络错误',
-        duration: 2000,
-        icon: 'none'
-      })
-    })
-  },
-  to_design() {
-    wx.navigateTo({url:'/packageA/pages/setdesign/setdesign'})
-  },
-  to_feedback() {
-    wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback'})
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -47,7 +58,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideHomeButton({
+      success() {
+        
+      }
+    })
   },
 
   /**

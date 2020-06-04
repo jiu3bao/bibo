@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "infohead":"/components/info-head/info-head"
+  },
+  "navigationBarTitleText": "设计方案"
+}

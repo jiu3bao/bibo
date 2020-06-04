@@ -1,0 +1,15 @@
+/* accompany/components/tabbar.wxss */
+.tabbar {
+  height:93rpx;
+  background: #fff;
+  color:#313131;
+  font-size:16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  opacity: .9;
+  flex-shrink: 0;
+}
+.green {
+  color: #417B91;
+}

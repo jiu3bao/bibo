@@ -1,0 +1,16 @@
+<!--accompany/pages/my-vip.wxml-->
+<view class='p'>
+  <view class='search'>
+    <input type="search"></input>
+    <image src='/img/vip.png'></image>
+  </view>
+  <view class='list' wx:for='{{list}}' wx:key='{{index}}'>
+    <image src='/img/bank.png'></image>
+    <view class='right'>
+      <view class='name'>王丽丽 <image src='/img/vip.png'></image></view>
+      <view class='wx'>微信号：348952100</view>
+    </view>
+  </view>
+</view>
+
+<tabbar nowtab='{{1}}'></tabbar>

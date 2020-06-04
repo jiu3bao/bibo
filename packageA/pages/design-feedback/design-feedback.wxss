@@ -1,0 +1,124 @@
+/* packageA/pages/design-feedback/design-feedback.wxss */
+page {
+  background: #f7f7f7;
+}
+.title {
+  display: flex;
+  width:100%;
+  height:33rpx;
+  padding-left:30rpx;
+  color:#434343;
+  font-size:25rpx;
+  align-items: flex-end;
+  margin: 24rpx 0 17rpx 0;
+  box-sizing: border-box;
+}
+.title image {
+  width:7rpx;
+  height:33rpx;
+  margin-right:10rpx;
+}
+.f {
+  border-bottom: 1px solid rgba(229,229,229,1);
+  height:75rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 65rpx 0 45rpx;
+  background: #fff;
+  font-size:25rpx;
+  color:#434343;
+}
+.s {
+  color:#535353
+}
+.subject_name {
+  height:75rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:25rpx;
+  color:#434343;
+  padding:0 83rpx 0 65rpx;
+  border-bottom: 1px solid #E5E5E5;
+}
+.subject_detail_item {
+  display: flex;
+  background: #F9F9F9;
+  height:160rpx;
+  align-items: center;
+  border-bottom: 1px solid #E5E5E5;
+  background: #fff;
+}
+.subject_detail_item .left {
+  width:195rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:#5C629E;
+  font-size:25rpx;
+  border-right:1px solid #E5E5E5;
+  flex-shrink: 0;
+}
+.left image {
+  width:53rpx;
+  height:53rpx;
+  margin-bottom:16rpx;
+}
+.subject_detail_item .right {
+  color:#1B1B1B;
+  font-size:19rpx;
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.right .one,.two,.three {
+  width:30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.one text {
+  color:#556FB5;
+  font-size:30rpx;
+  margin-bottom:15rpx;
+}
+.two text {
+  color:#EB6877;
+  font-size:30rpx;
+  margin-bottom:15rpx;
+}
+.three text {
+  color:#586CFF;
+  font-size:30rpx;
+  margin-bottom:15rpx;
+}
+.card {
+  background: #fff;
+  margin:45rpx auto 65rpx auto;
+  font-size:29rpx;
+  color:#417A91;
+  text-align: center;
+  padding:30rpx 43rpx 22rpx 43rpx;
+  border:3px solid rgba(68,179,154,1);
+  border-radius:26rpx;
+  width: 430rpx;
+}
+.btnb {
+  margin:42rpx auto 55rpx auto;
+}
+.btn {
+  width:343rpx;
+  line-height:52rpx;
+  background:linear-gradient(90deg,rgba(252,106,86,1),rgba(253,156,117,1));
+  border-radius:26rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 23rpx;
+  margin:0 auto 13rpx auto;
+}
+.tips{
+  font-size:21rpx;
+  color:rgba(160,160,160,1);
+  text-align: center;
+}

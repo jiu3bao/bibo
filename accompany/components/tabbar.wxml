@@ -1,0 +1,15 @@
+<!--accompany/components/tabbar.wxml-->
+<view class='tabbar'>
+  <view bindtap="nav" data-type='{{1}}'>
+    <!-- <image src=''></image> -->
+    <view class='{{nowtab===1?"green":""}}'>我的会员</view>
+  </view>
+  <view bindtap="nav" data-type='{{2}}'>
+    <!-- <image src=''></image> -->
+    <view class='{{nowtab===2?"green":""}}'>设计订单</view>
+  </view>
+  <view bindtap="nav" data-type='{{3}}'>
+    <!-- <image src=''></image> -->
+    <view class='{{nowtab===3?"green":""}}'>个人中心</view>
+  </view>
+</view>

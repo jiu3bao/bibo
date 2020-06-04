@@ -1,0 +1,66 @@
+<!--设计师反馈-->
+
+<view class='title'>
+  <image src='/img/chaxun.png'></image>
+  咨询师推荐
+</view>
+<view wx:for='{{subject_list}}'
+    wx:key='name'>
+  <view class='f'>
+    <view>
+      适合做的项目 一
+    </view>
+    <view class='s'>
+      {{item.name}}
+    </view>
+  </view>
+  <view>
+  <view class='subject_detail_item' 
+    wx:for='{{item.subject_detail}}'
+    wx:key='index'>
+      <view class='left'>
+        <image src='/img/zhuuren.png'></image>
+        <view>主任</view>
+      </view>
+      <view class='right'>
+        <view class='one'>
+          <text >2000</text>
+          医院优惠价格
+        </view>
+        <view class='two'>
+          <text>500</text>
+          补贴金优惠
+        </view>
+        <view class='three'>
+          <text>1500</text>
+          优惠后总价格
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='title'>
+  <image src='/img/chaxun.png'></image>
+  术后效果图
+</view>
+<view class='photos'></view>
+<view class='f'>
+  <view>
+    术后恢复期（约）
+  </view>
+  <view class='s'>
+    3个月
+  </view>
+</view>
+<view class='card' wx:if='{{false}}'>
+  <view>预约整形，请联系咨询师微信：</view>    
+  <view>XXXXXX</view>
+</view>
+<view class='btnb'>
+  <view class='btn'>
+    加入会员
+  </view>
+  <view class='tips'>
+    加入会员后联系您的专属咨询师
+  </view>
+</view>

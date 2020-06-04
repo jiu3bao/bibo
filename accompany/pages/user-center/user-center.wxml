@@ -1,0 +1,30 @@
+<!--accompany/pages/user-center/user-center.wxml-->
+<view class='p'>
+  <view >
+    <image src='/img/bg.png' class='bg'></image>
+    <swiper class="contain">
+      <block class='s-item'>
+        <swiper-item>
+          <UserheadInfo type='{{2}}'></UserheadInfo>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='c'>
+    <image src='/img/shezhi.png'></image>
+    设置
+  </view>
+  <view class='qb'>
+    <view class='qrcode'></view>
+    <view class='name'>
+      <image src='/img/bank.png'></image>
+      王小爱
+    </view>
+    <view class='btn'>
+      保存图片
+    </view>
+  </view>
+</view>
+
+
+<tabbar nowtab='{{1}}'></tabbar>

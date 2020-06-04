@@ -22,6 +22,16 @@
     </view>
   </view>
   <view class='kf'>
-    
+    <image class='bg' src='/img/kfbg.png'></image>
+    <view class='c'>
+      <image src='/img/vip.png'></image>
+      <view class='right'>
+        <view >
+          Hi～我是您的专属咨询师：丽丽
+        </view>
+        <view>微信号：YM2888</view>
+      </view>
+      
+    </view>
   </view>
 </view>

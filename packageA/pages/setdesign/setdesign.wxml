@@ -1,7 +1,50 @@
-<!--pages/setdesign/setdesign.wxml-->
+<!--用户提交自己信息-->
 <view>
   <view class='title'>
     <image src='/img/chaxun.png'></image>
     提交资料
   </view>
+  <view class='f btop'>
+    <view>年龄</view>
+    <view>28</view>
+  </view>
+  <view class='photos'>
+  </view>
+  <view class='phos'></view>
+  <view class='info'>
+    <view class='f'>
+      <view>想咨询项目</view>
+      <input placeholder="请输入项目名称"></input>
+    </view>
+    <view class='f'>
+      <view>个人诉求</view>
+      <input placeholder="个人诉求"></input>
+    </view>
+    <view class='f'>
+      <view>是否做过该项目</view>
+      <radio-group bindchange="radioChange" class='rg'>
+        <label class="lg">
+          <view class="rb">
+            <radio value="{{1}}" checked="true"/>
+          </view>
+          <view class="green">是</view>
+        </label>
+        <label class="lg">
+          <view class="rb">
+            <radio value="{{0}}" checked="true"/>
+          </view>
+          <view class="green">否</view>
+        </label>
+      </radio-group>
+    </view>
+    <view class='ta'>
+      <textarea placeholder="请输入该项目的次数、所在医院、价格等"></textarea>
+    </view>
+    <view class='f'>
+      <view>病史、过敏史</view>
+      <input placeholder="请输入您的状况"></input>
+    </view>
+  </view>
+  <view class='btn'>提交给咨询师</view>
+  <view class='tip'>设计方案稍后将发送给您，请耐心等待</view>
 </view>
