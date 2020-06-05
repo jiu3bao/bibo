@@ -1,0 +1,36 @@
+/* components/qrcode/qrcode.wxss */
+.qb {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 1;
+}
+.qrcode {
+  width:389rpx;
+  height:389rpx;
+  border-radius:10rpx;
+  margin-bottom:22rpx
+}
+.name {
+  display: flex;
+  align-items: center;
+  font-size:25rpx;
+  color:rgba(27,27,27,1);
+  margin-bottom: 35rpx;
+}
+.name image {
+  width:55rpx;
+  height:55rpx;
+  border-radius:50%;
+  margin-right:20rpx;
+}
+.btn {
+  width:343rpx;
+  line-height:52rpx;
+  background:linear-gradient(-7deg,rgba(68,179,154,1),rgba(88,204,129,1));
+  border-radius:26rpx;
+  font-size:23rpx;
+  color:rgba(255,255,255,1);
+  text-align: center;
+}

@@ -1,17 +1,58 @@
 // accompany/pages/my-order-list/my-order-list.js
+import service from '../../../utils/api'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    actab:1
+    actab:1,
+    page1:1,
+    page2:1,
+    pageSize:15
   },
+  get_vip_list() {
+    const data = {
+      Token:wx.getStorageSync('user').Token,
+      Page:this.data.page1,
+      PageSize:this.data.pageSize,
+      Param:0
+    }
+    service('ConsultAPI/GetZXSCustomCaseList',data)
+    .then(r => {
+
+    })
+    .catch(err => {
+      wx.showToast({
+        title: '发生错误',
+        icon:'none'
+      })
+    })
+  },
+  get_public_list() {
+    const data = {
+      Token:wx.getStorageSync('user').Token,
+      Page:this.data.page2,
+      PageSize:this.data.pageSize,
+    }
+    service('ConsultAPI/GetPublicCustomCaseList',data)
+    .then(r => {
+
+    })
+    .catch(err => {
+      wx.showToast({
+        title: '发生错误',
+        icon:'none'
+      })
+    })
+  },
+  //切换tab
   switch(e) {
     this.setData({
       actab:e.currentTarget.dataset.type
     })
   },
+  //复制微信号
   copyText(e) {
     wx.setClipboardData({
       data: e.currentTarget.dataset.text,
@@ -44,7 +85,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.get_vip_list()
   },
 
   /**

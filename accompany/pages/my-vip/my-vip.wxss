@@ -22,7 +22,8 @@ page {
 }
 .search input {
   width: 100%;
-  text-indent: 2em;
+  padding-left: 40rpx;
+  font-size:25rpx;
 }
 .search image {
   width:33rpx;

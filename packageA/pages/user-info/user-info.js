@@ -138,6 +138,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      info:{...wx.getStorageSync('user'),iszxs:true}
+    })
     const now = new Date()
     let year = now.getFullYear()
     let month = now.getMonth()+1

@@ -1,0 +1,32 @@
+<!--pages/set-bank/set-bank.wxml-->
+<view class='contain'>
+  <view>
+    <view>
+      银行
+    </view>
+    <picker bindchange='chose_bank' range='{{all_bank}}'>
+      {{bank_name?bank_name:'请选择银行'}}
+    </picker>
+    <!-- <input value='{{bank_name}}' 
+      bindinput='input' data-type='bank_name'
+      placeholder="请输入所属银行"></input> -->
+    
+  </view>
+  <view>
+    <view>
+      银行卡号
+    </view>
+    <input value='{{bank_card}}' bindinput='input' data-type='bank_card'
+      placeholder="请输入银行卡号"></input>
+    
+  </view>
+  <view>
+    <view>
+      姓名
+    </view>
+    <input value='{{account_name}}' bindinput='input' data-type='account_name'
+    placeholder="请输入您的姓名"></input>
+    
+  </view>
+  <view bindtap="save" class='button'>确定</view>
+</view>

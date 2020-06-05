@@ -17,7 +17,9 @@
         "pages/user-info/user-info",
         "pages/set-sys/set-sys",
         "pages/contract/contract",
-        "pages/design-feedback/design-feedback"
+        "pages/design-feedback/design-feedback",
+        "pages/bankcard-list/bankcard-list",
+        "pages/set-bank/set-bank"
       ]
     },
     {

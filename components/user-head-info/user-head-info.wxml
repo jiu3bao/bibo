@@ -9,31 +9,37 @@
         编辑个人资料>
       </view>
       <view class='info' wx:if='{{type===1}}'>
-        <image src='/img/fuli.png' class='avata'></image>
+        <image src='{{info.head||"/img/VIP@2x.png"}}' class='avata'></image>
         <view class='i-r'>
           <view>
-            <image src='/img/VIP@2x.png'></image>
-            王丽丽
+            <image src='/img/VIP@2x.png' wx:if='{{info.is_member===1}}'></image>
+            {{info.name||'XXX'}}
           </view>
           <view class='n'>
-            会员号：348952100
+            会员号：{{info.id||'XXX'}}
           </view>
         </view>
       </view>
       <view class='info' wx:else>
-        <image src='/img/fuli.png' class='avata'></image>
+        <image src='{{info.head}}' class='avata'></image>
         <view class='i-r'>
           <view>
-            陪诊-小爱
+            陪诊-{{info.name}}
           </view>
           <view class='n'>
-            工号：0028
+            工号：{{info.id}}
           </view>
         </view>
       </view>
-      <view class='w_c_b'>
+      
+      <view class='w_c_b' wx:if='{{type===1}}'>
+        <image src='/img/meirong.png' wx:if='{{isshop}}'></image>
+        <image src='/img/vip.png' wx:if='{{info.is_member===1}}'></image>
+        {{info.is_member===1?"vip会员 丨 到期日期："+info.member_expire:"普通用户"}}
+      </view>
+      <view class='w_c_b' wx:else>
         <image src='/img/zxs.png'></image>
-        高级陪诊
+        {{info.pop===20?"普通咨询师":"高级咨询师"}}
       </view>
     </view>
   </view>

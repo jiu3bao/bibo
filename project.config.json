@@ -22,7 +22,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -61,15 +61,15 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "accompany/pages/set-design/set-design",
-					"pathName": "accompany/pages/set-design/set-design",
+					"name": "pages/user/user",
+					"pathName": "pages/user/user",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "pages/employee-login/employee-login",
-					"pathName": "pages/employee-login/employee-login",
+					"name": "accompany/pages/user-center/user-center",
+					"pathName": "accompany/pages/user-center/user-center",
 					"query": "scene=25",
 					"scene": 1048
 				}

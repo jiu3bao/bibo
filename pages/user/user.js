@@ -1,4 +1,5 @@
 // pages/user/user.js
+import service from '../../utils/api'
 Page({
 
   /**
@@ -12,7 +13,7 @@ Page({
     },{
       name:'我的二维码',
       icon:'/img/weibiaoti---2.png',
-      route:'/packageA/pages/my-welfare/my-welfare'
+      route:'aaa'
     },{
       name:'我的福利',
       icon:'/img/shouye-10.png',
@@ -31,12 +32,79 @@ Page({
       name:'我的店铺',
       icon:'/img/shezhi.png'
     }],
+    info:{},
+    isshop:false,
+    moneyInfo:{},
+    showqrcode:false
   },
+  //导航到二级页面
   route2(e) {
-    console.log(e)
-    wx.navigateTo({
-      url: e.currentTarget.dataset.route,
+    if(wx.getStorageSync('user').Token) {
+      if(e.currentTarget.dataset.route=='aaa') {
+        this.setData({
+          showqrcode:true
+        })
+      } else {
+        wx.navigateTo({
+          url: e.currentTarget.dataset.route,
+        })
+      }
+      
+    } else {
+      wx.navigateTo({
+        url: '/packageA/pages/login/login',
+      })      
+    }
+    
+  },
+  //获取商铺信息
+  get_my_shop() {
+    service('ShopAPI/GetMyShop',{Token:wx.getStorageSync('user').Token})
+    .then(r => {
+      if(r.data.data.id) { //有商铺
+        this.setData({
+          isshop:true
+        })
+      }
     })
+  },
+  //获取钱
+  get_money_info() {
+    service('API/StcBonus', { Token: wx.getStorageSync('user').Token})
+      .then(r => {
+        if (r.data.error_code === 6) {
+          this.setData({
+            // baseInfo: { default_head:'../../img/default.png'},
+            moneyInfo:{}
+          })
+          // wx.navigateTo({
+          //   url: '/pages/login/login',
+          // })
+          return 
+        }
+        if (r.data.error_code !== 0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          return
+        }
+        r.data.data.total = (r.data.data.xf + r.data.data.fx + r.data.data.zs).toFixed(2)
+        this.setData({
+          moneyInfo: r.data.data
+        })
+      })
+      .catch(r => {
+        wx.showToast({
+          title: err,
+          duration: 2000,
+          icon: 'none'
+        })
+      })
+  },
+  applyed() {
+    this.get_money_info()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -56,7 +124,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      info:wx.getStorageSync('user')
+    })
+    this.get_my_shop()
+    this.get_money_info()
   },
 
   /**

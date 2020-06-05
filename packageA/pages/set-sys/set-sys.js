@@ -12,6 +12,14 @@ Page({
       url: '/packageA/pages/apply-shop/apply-shop',
     })
   },
+  logout() {
+    wx.removeStorageSync('user')
+    wx.showToast({
+      title: '退出成功',
+      icon:"none"
+    })
+    wx.navigateBack()
+  },
 
   /**
    * 生命周期函数--监听页面加载

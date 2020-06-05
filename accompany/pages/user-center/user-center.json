@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "tabbar":"../components/tabbar",
+    "tabbar":"../../components/tabbar",
     "UserheadInfo":"/components/user-head-info/user-head-info"
   },
   "navigationBarTitleText": "个人中心"

@@ -111,7 +111,7 @@ Page({
           // console.log(r.data.message)
           return
         }
-        if (r.data.data.pop !== 100) {
+        if (r.data.data.pop !== 100 &&r.data.data.pop !==20) {
           wx.showToast({
             title: '非员工用户',
             icon: "none",

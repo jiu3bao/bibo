@@ -1,5 +1,5 @@
 <!--accompany/pages/vip-detail/vip-detail.wxml-->
-<infohead></infohead>
+<infohead info='{{info}}'></infohead>
   <view class='title'>
     <image src='/img/chaxun.png'></image>
     设计方案
@@ -46,9 +46,9 @@
     <view class='t-l'>
       <image src='/img/chaxun.png'></image>历史记录
     </view>
-    <image src='/img/xiala.png' class='xiala'></image>
+    <image src='/img/xiala.png' class='xiala {{isexpand?"rotate":""}}}' bindtap="expand" ></image>
   </view>
-  <view class='old'>
+  <view class="old {{isexpand?'noheight':''}}">
     <view class='o-i'>
       <view class='o-l'>
         <view>

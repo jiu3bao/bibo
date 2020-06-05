@@ -1,0 +1,11 @@
+<!--components/qrcode/qrcode.wxml-->
+<view class='qb'>
+  <view class='qrcode'></view>
+  <view class='name'>
+    <image src='{{info.head}}'></image>
+    {{info.name}}
+  </view>
+  <view class='btn' bindtap="save_img">
+    保存图片
+  </view>
+</view>

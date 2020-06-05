@@ -2,15 +2,15 @@
 <view class='head'>
   <image class='bg' src='/img/ubg.png'></image>
   <view class='con'>
-    <image class='avatar' src='/img/fuli.png'></image>
+    <image class='avatar' src='{{info.head}}'></image>
     <view class='right'>
       <view class='t'>
-        name
+        {{info.name}}
         <image src='/img/kapian.png'></image>
         <image src='/img/vip.png'></image>
       </view>
       <view class='b'>
-        会员号：303030
+        {{info.iszxs?"咨询师号:"+info.id:"会员号:"+info.user_id}}
       </view>
     </view>
   </view>

@@ -5,7 +5,7 @@
     <swiper class="contain">
       <block class='s-item'>
         <swiper-item>
-          <UserheadInfo type='{{2}}'></UserheadInfo>
+          <UserheadInfo type='{{2}}' info='{{info}}'></UserheadInfo>
         </swiper-item>
       </block>
     </swiper>
@@ -17,8 +17,8 @@
   <view class='qb'>
     <view class='qrcode'></view>
     <view class='name'>
-      <image src='/img/bank.png'></image>
-      王小爱
+      <image src='{{info.head}}'></image>
+      {{info.name}}
     </view>
     <view class='btn'>
       保存图片

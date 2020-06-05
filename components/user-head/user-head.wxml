@@ -9,13 +9,13 @@
         我的钱包
       </view>
       <view class='w_c_c'>
-        <text>￥</text>5000.00
+        <text>￥</text>{{moneyInfo.total?moneyInfo.total:0}}
       </view>
       <view class='w_c_btn'>
-        <view>提现</view>
+        <view bindtap="apply_money" >提现</view>
         <view bindtap="todetail">明细</view>
       </view>
-      <view class='w_c_b'>
+      <view class='w_c_b' bindtap="tobank">
         <image src='/img/bank.png'></image>
         我的银行卡 >
       </view>

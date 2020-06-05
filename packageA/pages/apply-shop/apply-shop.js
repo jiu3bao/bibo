@@ -149,8 +149,14 @@ Page({
     })
   },
   submit() {
-    for(let key in this.data) {
-      if(!this.data[key]||this.data[key].length===0) {
+    
+    const {shop_name,shop_des,lng,lat,tel,main_pic,content_pic} = {...this.data}
+    const data = {
+      shop_name,shop_des,lng,lat,tel,main_pic,content_pic
+    }
+    console.log(data)
+    for(let key in data) {
+      if(!data[key]||data[key].length===0) {
         wx.showToast({
           title: '请填写完整信息',
           icon:"none",
@@ -159,7 +165,6 @@ Page({
         return 
       }
     }
-    const {shop_name,shop_des,lng,lat,tel,main_pic,content_pic} = {...this.data}
     const par = {
       shop_name,shop_des,lng,lat,tel,main_pic,content_pic,
       shop_address:this.data.address+this.data.add_name,

@@ -1,44 +1,26 @@
-// accompany/pages/vip-detail/vip-detail.js
-import service from '../../../utils/api'
+// pages/bankcard-list/backcard-list.js
+import service from '../../../utils/api.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    info:{},
-    isexpand:false
+    detail:{}
   },
-
+  toset() {
+    wx.navigateTo({
+      url: '/packageA/pages/set-bank/set-bank',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    this.setData({
-      info:JSON.parse(options.item)
-    })
-    this.get_records(JSON.parse(options.item).user_id)
+    
   },
-  
-  //获取整形记录
-  get_records(id) {
-    const data = {
-      Page:1,
-      PageSize:1000,
-      Token:wx.getStorageSync('user').Token,
-      id:id
-    }
-    service('ConsultAPI/GetCustomMedicalList',data)
-    .then(r => {
 
-    })
-  },
-  expand() {
-    this.setData({
-      isexpand:!this.data.isexpand
-    })
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -50,7 +32,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const { bank_name, bank_card, accout_name } = wx.getStorageSync('user')
+    this.setData({
+      detail: { bank_name, bank_card, accout_name }
+    })
   },
 
   /**

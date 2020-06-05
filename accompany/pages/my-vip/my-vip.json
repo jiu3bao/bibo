@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "tabbar":"../components/tabbar"
+    "tabbar":"../../components/tabbar"
   }
 }

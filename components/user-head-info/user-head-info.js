@@ -7,6 +7,14 @@ Component({
     type:{
       type:Number,
       value:1
+    },
+    info:{
+      type:Object,
+      value:{}
+    },
+    isshop:{
+      type:Boolean,
+      value:false
     }
   },
 
@@ -22,10 +30,16 @@ Component({
    */
   methods: {
     toedit() {
-      debugger
-      wx.navigateTo({
-        url: '/packageA/pages/user-info/user-info'
-      })
+      if(wx.getStorageSync('user').Token) {
+        wx.navigateTo({
+          url: '/packageA/pages/user-info/user-info'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/packageA/pages/login/login',
+        })
+      }
+     
     }
   }
 })

@@ -1,5 +1,5 @@
 <!--pages/user-info/user-info.wxml-->
-<InfoHead></InfoHead>
+<InfoHead info='{{info}}'></InfoHead>
 <view class='a'>
   <view class='flex'>
     <view class='l'>真实姓名</view>
@@ -34,8 +34,8 @@
   <view class='flex'>
     <view class='l'>手机号</view>
     <input bindinput='bindKeyInput' 
-    value='{{info.phone}}'
-    data-type='phone' 
+    value='{{info.mobile}}'
+    data-type='mobile' 
     type='number'
     placeholder="请输入"></input>
   </view>

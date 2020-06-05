@@ -4,19 +4,25 @@
   <swiper class="contain">
     <block class='s-item'>
       <swiper-item>
-        <UserheadInfo></UserheadInfo>
+        <UserheadInfo info="{{info}}" isshop="{{isshop}}"></UserheadInfo>
       </swiper-item>
     </block>
     <block>
       <swiper-item class='wallet'>
-        <Userhead></Userhead>
+        <Userhead moneyInfo="{{moneyInfo}}" bind:applyed='applyed'></Userhead>
           
       </swiper-item>
     </block>
     
   </swiper>
-  <view class='mycontent'>
-    <view wx:for='{{list}}' class='item' bindtap="route2" data-route='{{item.route}}'>
+  <qrcode wx:if='{{showqrcode}}' info="{{info}}"></qrcode>
+  <view class='mycontent' wx:else>
+    <view wx:for='{{list}}' 
+    wx:key='{{item.name}}'
+    wx:if='{{item.name!=="我的店铺" || isshop}}'
+    class='item' 
+    bindtap="route2" 
+    data-route='{{item.route}}'>
       <image src='{{item.icon}}'></image>
       <view>{{item.name}}</view>
     </view>
