@@ -33,13 +33,19 @@
   </view>
   <view class='flex'>
     <view class='l'>手机号</view>
-    <input bindinput='bindKeyInput' 
+    <view class='r'>
+      {{info.mobile}}
+    </view>
+    <!-- <input bindinput='bindKeyInput' 
     value='{{info.mobile}}'
     data-type='mobile' 
     type='number'
-    placeholder="请输入"></input>
+    placeholder="请输入"></input> -->
   </view>
-  <view class='flex'>
+  <!-- <view>
+    <view>修改手机号</view>
+  </view> -->
+  <!-- <view class='flex'>
     <view class='l'>验证码</view>
     <view class='code'>
       <input type='number' value='{{code}}' bindinput='set_code' placeholder="请输入验证码"></input>
@@ -47,6 +53,6 @@
       {{time===0?"发送":time+"s后重新获取"}}</button>
     </view>
       
-  </view>
+  </view> -->
 </view>
 <button bindtap="submit" class='sub'>保存</button>

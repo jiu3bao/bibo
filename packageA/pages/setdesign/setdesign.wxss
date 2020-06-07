@@ -76,3 +76,19 @@ page {
   margin-bottom:33rpx;
   text-align: center;
 }
+.photos {
+  display: flex;
+  align-items: center;
+}
+.photos view {
+  width:170rpx;
+  height:170rpx
+}
+.photos image {
+  width: 100%;
+  height: 100%;
+}
+textarea {
+  width: 100%;
+  height: 100%;
+}

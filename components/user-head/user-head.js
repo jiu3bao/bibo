@@ -23,12 +23,24 @@ Component({
    */
   methods: {
     todetail() {
+      if(!wx.getStorageSync('user').Token) {
+        wx.navigateTo({
+          url: '/packageA/pages/login/login',
+        })
+        return 
+      }
       wx.navigateTo({
         url: '/packageA/pages/flow-detail/flow-detail',
       })
     },
     //申请提现
     apply_money() {
+      if(!wx.getStorageSync('user').Token) {
+        wx.navigateTo({
+          url: '/packageA/pages/login/login',
+        })
+        return 
+      }
       if(this.properties.moneyInfo.total <100) return wx.showToast({
         title: '金额不足',
         icon:'none'
@@ -125,6 +137,12 @@ Component({
     },
     //
     tobank() {
+      if(!wx.getStorageSync('user').Token) {
+        wx.navigateTo({
+          url: '/packageA/pages/login/login',
+        })
+        return 
+      }
       wx.navigateTo({
         url: '/packageA/pages/bankcard-list/bankcard-list',
       })

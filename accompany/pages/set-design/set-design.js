@@ -1,4 +1,5 @@
 // accompany/pages/set-design/set-design.js
+import service from '../../../utils/api'
 Page({
 
   /**
@@ -13,14 +14,59 @@ Page({
       '其他'
     ],
     activeType:'眼部',
-    subject_list:[1,1,1,1,1,1,1,1,1,1]
+    subject_list:[],
+    info:{},
+    casei:{}
   },
-
+  //获取整形大类
+  get_pro_list() {
+    service('/API/GetMedicalItemType')
+    .then(r => {
+      this.setData({
+        program_list:r.data.data
+      },()=>{
+        this.checkitem()
+      })
+      
+    })
+  },
+  //切换大类
+  checkitem(e) {
+    const pro = e?e.currentTarget.dataset.item:this.data.program_list[0]
+    this.setData({
+      activeType:pro
+    })
+    service('API/GetMedicalItemList',{Param:pro})
+    .then(r => {
+      r.data.data.map(i => {
+        i.ischeck = false
+      })
+      this.setData({
+        subject_list:[...r.data.data]
+      })
+      
+    })
+  },
+  //选择小类
+  choseitem(e) {
+    const i = e.currentTarget.dataset.index
+    const arr = this.data.subject_list
+    arr[i].ischeck = !arr[i].ischeck
+    this.setData({
+      subject_list:[...arr]
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.get_pro_list()
+    const casei = JSON.parse(options.casei) 
+    const info = {head:casei.head,name:casei.name,wx:casei.wx,ismember:casei.ismember,id:casei.zxs_id}
+    this.setData({
+      casei:casei,
+      info:info
+    })
   },
 
   /**

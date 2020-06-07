@@ -85,9 +85,50 @@ const countDist =(lat1, lng1, lat2, lng2) => {//纬度1,经度1,纬度2,经度2
     //   }
     //  }
     // })
-   }
+  }
+  const up_img =(path) => {
+    return new Promise((resolve,reject) => {
+      wx.uploadFile({
+        url: 'https://ym.bibo80s.com/Main/UploadFile',
+        filePath: path,
+        name:'img',
+        success(res) {
+          resolve('https://ym.bibo80s.com'+JSON.parse(res.data).file_url)
+        },
+        fail(err) {
+          console.log(err)
+          reject(err)
+        }
+      })
+    })
+  }
+  const returnimg = (count=1) => {
+    return new Promise((resolve,reject) => {
+      wx.chooseImage({
+        count,
+        sizeType: ['compressed'],
+        success(res) {
+          const arr = res.tempFilePaths.map(p => {
+            return up_img(p) 
+          })
+          Promise.all(arr)
+          .then(pics => {
+            resolve(pics)
+          })
+          .catch(err => {
+            reject(err)
+          })
+        },
+        fail(err) {
+          reject(err)
+        }
+      })
+    })
+    
+  }
 module.exports = {
   formatTime: formatTime,
   countDist,
-  checkLocation
+  checkLocation,
+  returnimg
 }

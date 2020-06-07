@@ -1,0 +1,31 @@
+<view class='box'>
+  <view class='t'>
+    <view>核销领取码</view>
+    <input placeholder="请输入领取码"></input>
+  </view>
+  <view class='g'>
+    <image src='/img/let.png'></image>
+    <view>
+      <view class='blue'>
+        亿美医院
+      </view>
+      <view class='name'>
+        眼部年轻化  
+      </view>
+      <view class='des'>
+        女神节大放送管理眼部周围肌肤淡化细纹
+      </view>
+      <view class='time'>
+        2020-04-28
+      </view>
+    </view>
+  </view>
+  <view class='f'>
+    <view>已领取人数</view>
+    <view clas='blue'>200</view>
+  </view>
+  <view class='f'>
+    <view>已接待人数</view>
+    <view class='red'>192</view>
+  </view>
+</view>

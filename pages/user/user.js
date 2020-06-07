@@ -30,7 +30,8 @@ Page({
     },
     {
       name:'我的店铺',
-      icon:'/img/shezhi.png'
+      icon:'/img/shezhi.png',
+      route:'/packageA/pages/shop/shop'
     }],
     info:{},
     isshop:false,
@@ -61,7 +62,7 @@ Page({
   get_my_shop() {
     service('ShopAPI/GetMyShop',{Token:wx.getStorageSync('user').Token})
     .then(r => {
-      if(r.data.data.id) { //有商铺
+      if(r.data.data&&r.data.data.id) { //有商铺
         this.setData({
           isshop:true
         })
@@ -106,6 +107,24 @@ Page({
   applyed() {
     this.get_money_info()
   },
+  get_user_info() {
+    service('/API/GetUserInfo',{Token:wx.getStorageSync('user').Token})
+    .then(r => {
+      this.setData({
+        info:{...r.data.data,Token:wx.getStorageSync('user').Token}
+      },
+      () => {
+        wx.setStorageSync('user', this.data.info)
+      })
+    })
+  },
+  //关闭二维码
+  closecode() {
+    console.log(123)
+    this.setData({
+      showqrcode:false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -124,9 +143,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      info:wx.getStorageSync('user')
-    })
+    this.get_user_info()
     this.get_my_shop()
     this.get_money_info()
   },

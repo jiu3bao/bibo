@@ -72,11 +72,12 @@ page {
 .name image {
   width:28rpx;
   height:28rpx;
-  margin:0 25rpx 0 11rpx;
+  margin:0 0 0 11rpx;
 }
 .name text {
   color: #959595;
   font-size:23rpx;
+  margin-left:25rpx;
 }
 .copy {
   width:57rpx;

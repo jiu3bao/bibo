@@ -6,19 +6,40 @@
   </view>
   <view class='f btop'>
     <view>年龄</view>
-    <view>28</view>
+    <input placeholder='输入年龄' value='{{age}}' type='number' bindinput="input" data-type='age'></input>
+    <!-- <view>28</view> -->
   </view>
   <view class='photos'>
+    <view bindtap='add_pic' data-type='pic'>
+      pic
+      <image src='{{pic}}'></image>
+    </view>
+    <view bindtap='add_pic' data-type='pic45'>
+      pic45
+      <image src='{{pic45}}'></image>
+    </view>
+    <view bindtap='add_pic' data-type='pic90'>
+      pic90
+      <image src='{{pic90}}'></image>
+    </view>
+    <view bindtap='add_pic' data-type='pic45r'>
+      pic45r
+      <image src='{{pic45r}}'></image>
+    </view>
+    <view bindtap='add_pic' data-type='pict'>
+      pict
+      <image src='{{pict}}'></image>
+    </view>
   </view>
   <view class='phos'></view>
   <view class='info'>
     <view class='f'>
       <view>想咨询项目</view>
-      <input placeholder="请输入项目名称"></input>
+      <input placeholder="请输入项目名称" value="{{item_name}}" bindinput="input" data-type='item_name'></input>
     </view>
     <view class='f'>
       <view>个人诉求</view>
-      <input placeholder="个人诉求"></input>
+      <input placeholder="个人诉求" value='{{demand}}' bindinput="input" data-type='demand'></input>
     </view>
     <view class='f'>
       <view>是否做过该项目</view>
@@ -37,14 +58,14 @@
         </label>
       </radio-group>
     </view>
-    <view class='ta'>
-      <textarea placeholder="请输入该项目的次数、所在医院、价格等"></textarea>
+    <view class='ta' wx:if='{{is_done}}'>
+      <textarea placeholder="请输入该项目的次数、所在医院、价格等" value='{{done_item_des}}' bindinput="input" data-type='done_item_des'></textarea>
     </view>
     <view class='f'>
       <view>病史、过敏史</view>
-      <input placeholder="请输入您的状况"></input>
+      <input placeholder="请输入您的状况" value='{{his}}' bindinput="input" data-type='his'></input>
     </view>
   </view>
-  <view class='btn'>提交给咨询师</view>
+  <view class='btn' bindtap="submit">提交给咨询师</view>
   <view class='tip'>设计方案稍后将发送给您，请耐心等待</view>
 </view>

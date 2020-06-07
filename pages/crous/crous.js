@@ -14,7 +14,7 @@ Page({
   todetail(e) {
     const itemid = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/crous-detail/crous-detail?id='+itemid,
+      url: '/packageA/pages/crous-detail/crous-detail?id='+itemid,
     })
   },
   get_list() {

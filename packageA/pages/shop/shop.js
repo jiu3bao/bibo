@@ -1,45 +1,20 @@
-// accompany/pages/vip-detail/vip-detail.js
-import service from '../../../utils/api'
+// packageA/pages/shop/shop.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    info:{},
-    isexpand:false
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const item = JSON.parse(options.item)
-    this.setData({
-      info:item
-    })
-    debugger
-    this.get_records(item.user_id)
-  },
-  
-  //获取整形记录
-  get_records(id) {
-    const data = {
-      Page:1,
-      PageSize:1000,
-      Token:wx.getStorageSync('user').Token,
-      id
-    }
-    service('ConsultAPI/GetCustomMedicalList',data)
-    .then(r => {
 
-    })
   },
-  expand() {
-    this.setData({
-      isexpand:!this.data.isexpand
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

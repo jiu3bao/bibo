@@ -69,8 +69,18 @@ Component({
             title: '保存成功',
             duration:2000
           })
+         },
+         fail(err) {
+          wx.showToast({
+            title: err,
+            duration:2000,
+            icon:'none'
+          })
          }
       })
     },
+    close() {
+      this.triggerEvent('closecode')
+    }
   }
 })

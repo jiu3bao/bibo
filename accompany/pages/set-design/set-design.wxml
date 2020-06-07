@@ -1,5 +1,5 @@
 <!--accompany/pages/set-design/set-design.wxml-->
-<infohead></infohead>
+<infohead info='{{info}}'></infohead>
 <view class='title j-sb'>
   <view class='t-l'>
     <image src='/img/chaxun.png'></image>历史记录
@@ -8,7 +8,7 @@
 </view>
  <view class='f btop'>
     <view>年龄</view>
-    <view>28</view>
+    <view>{{casei.age}}</view>
   </view>
   <view class='photos'>
   </view>
@@ -16,22 +16,22 @@
   <view class='info'>
     <view class='f'>
       <view>想咨询项目</view>
-      <view>鼻综合</view>
+      <view>{{casei.item_name}}</view>
     </view>
     <view class='f'>
       <view>个人诉求</view>
-      <view>鼻梁高一些，缩小鼻翼</view>
+      <view>{{casei.demand}}</view>
     </view>
     <view class='f'>
       <view>是否做过该项目</view>
-      <view>否</view>
+      <view>{{casei.is_done===0?'否':'是'}}</view>
     </view>
     <view class='ta'>
-      <textarea placeholder="请输入该项目的次数、所在医院、价格等" value="已经做过这类项目了，在奕星整形做的，效果不是很理想， 一共消费了八万八。"></textarea>
+      <textarea placeholder="请输入该项目的次数、所在医院、价格等" value="{{casei.done_item_des}}"></textarea>
     </view>
     <view class='f'>
       <view>病史、过敏史</view>
-      <view>没有过敏史</view>
+      <view>{{casei.his}}</view>
     </view>
   </view>
 <view class='title'>
@@ -46,7 +46,7 @@
   data-item='{{item}}'>{{item}}</view>
 </view>
 <view class='list'>
-
+  <view wx:for='{{subject_list}}' class='{{item.ischeck?"ac":""}}' bindtap="choseitem" data-index='{{index}}'>{{item.item}}</view>
 </view>
 <view class='f'>
   <view>项目一</view>
