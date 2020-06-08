@@ -85,9 +85,69 @@ const countDist =(lat1, lng1, lat2, lng2) => {//纬度1,经度1,纬度2,经度2
     //   }
     //  }
     // })
+  }
+  const up_img =(path) => {
+    return new Promise((resolve,reject) => {
+      wx.uploadFile({
+        url: 'https://ym.bibo80s.com/Main/UploadFile',
+        filePath: path,
+        name:'img',
+        success(res) {
+          resolve('https://ym.bibo80s.com'+JSON.parse(res.data).file_url)
+        },
+        fail(err) {
+          console.log(err)
+          reject(err)
+        }
+      })
+    })
+  }
+  const returnimg = (count=1) => {
+    return new Promise((resolve,reject) => {
+      wx.chooseImage({
+        count,
+        sizeType: ['compressed'],
+        success(res) {
+          const arr = res.tempFilePaths.map(p => {
+            return up_img(p) 
+          })
+          Promise.all(arr)
+          .then(pics => {
+            resolve(pics)
+          })
+          .catch(err => {
+            reject(err)
+          })
+        },
+        fail(err) {
+          reject(err)
+        }
+      })
+    })
+    
+  }
+  const toChinesNum = (num)=> {
+    let changeNum = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']; //changeNum[0] = "零"
+    let unit = ["", "十", "百", "千", "万"];
+    num = parseInt(num);
+    let getWan = (temp) => {
+    let strArr = temp.toString().split("").reverse();
+    let newNum = "";
+    for (var i = 0; i < strArr.length; i++) {
+      newNum = (i == 0 && strArr[i] == 0 ? "" : (i > 0 && strArr[i] == 0 && strArr[i - 1] == 0 ? "" : changeNum[strArr[i]] + (strArr[i] == 0 ? unit[0] : unit[i]))) + newNum;
+    }
+     return newNum;
    }
+   let overWan = Math.floor(num / 10000);
+   let noWan = num % 10000;
+   if (noWan.toString().length < 4) noWan = "0" + noWan;
+   return overWan ? getWan(overWan) + "万" + getWan(noWan) : getWan(num);
+}
+
 module.exports = {
   formatTime: formatTime,
   countDist,
-  checkLocation
+  checkLocation,
+  returnimg,
+  toChinesNum
 }

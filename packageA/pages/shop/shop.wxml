@@ -1,0 +1,31 @@
+<view class='box' wx:for='{{goods_list}}'>
+  <view class='t'>
+    <view>核销领取码</view>
+    <input placeholder="请输入领取码" bindinput="input"></input>
+  </view>
+  <view class='g'>
+    <image src='{{item.main_pic}}'></image>
+    <view>
+      <view class='blue'>
+        {{item.shop_name}}
+      </view>
+      <view class='name'>
+        {{item.goods_name}}  
+      </view>
+      <view class='des'>
+        {{item.summary}}
+      </view>
+      <view class='time'>
+        {{item.update_time}}
+      </view>
+    </view>
+  </view>
+  <view class='f'>
+    <view>已领取人数</view>
+    <view clas='blue'>{{item.sale_count}}</view>
+  </view>
+  <view class='f'>
+    <view>已接待人数</view>
+    <view class='red'>192</view>
+  </view>
+</view>

@@ -1,4 +1,5 @@
 // accompany/pages/user-center/user-center.js
+import service from '../../../utils/api'
 Page({
 
   /**
@@ -16,7 +17,17 @@ Page({
       info:wx.getStorageSync('user')
     })
   },
-
+  get_user_info() {
+    service('/API/GetUserInfo',{Token:wx.getStorageSync('user').Token})
+    .then(r => {
+      this.setData({
+        info:{...r.data.data,Token:wx.getStorageSync('user').Token}
+      },
+      () => {
+        wx.setStorageSync('user', this.data.info)
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -28,7 +39,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.get_user_info()
+    wx.hideHomeButton({
+      success() {
+        
+      }
+    })
   },
 
   /**

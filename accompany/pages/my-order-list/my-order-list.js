@@ -9,7 +9,10 @@ Page({
     actab:1,
     page1:1,
     page2:1,
-    pageSize:15
+    pageSize:15,
+    viplist:[],
+    publiclist:[],
+    now:''
   },
   get_vip_list() {
     const data = {
@@ -20,7 +23,14 @@ Page({
     }
     service('ConsultAPI/GetZXSCustomCaseList',data)
     .then(r => {
-
+      r.data.data.map(i => {
+        const time = new Date(i.member_expire)
+        i.ismember=time>this.data.now
+        console.log(time)
+      })
+      this.setData({
+        viplist:[...this.data.viplist,...r.data.data]
+      })
     })
     .catch(err => {
       wx.showToast({
@@ -37,7 +47,13 @@ Page({
     }
     service('ConsultAPI/GetPublicCustomCaseList',data)
     .then(r => {
-
+      r.data.data.map(i => {
+        const time = new Date(i.member_expire)
+        i.ismember=time>this.data.now
+      })
+      this.setData({
+        publiclist:[...this.data.publiclist,...r.data.data]
+      })
     })
     .catch(err => {
       wx.showToast({
@@ -46,11 +62,48 @@ Page({
       })
     })
   },
+  access(e) {
+    const casei = JSON.stringify(e.currentTarget.dataset.case)
+    if(this.data.actab===1) {
+      wx.navigateTo({
+        url: '/accompany/pages/set-design/set-design?casei='+casei,
+      })
+    } else {
+      const caseid = e.currentTarget.dataset.case.custom_case_id
+      const data =  {
+        Token:wx.getStorageSync('user').Token,
+        custom_case_id:caseid
+      }
+      service('/ConsultAPI/ReciveCase',data)
+      .then(r => {
+        wx.navigateTo({
+          url: '/accompany/pages/set-design/set-design?casei='+casei,
+        })
+      })
+      .catch(err => {
+        wx.showToast({
+          title: '发生错误',
+          icon:"none"
+        })
+      })
+    }
+    
+  },
   //切换tab
   switch(e) {
+    const actab = e.currentTarget.dataset.type
     this.setData({
-      actab:e.currentTarget.dataset.type
+      actab:actab
     })
+    if(actab==1) {
+      if(this.data.viplist.length==0) {
+        this.get_vip_list()
+      }
+    } else {
+      if(this.data.publiclist.length==0) {
+        this.get_public_list()
+      }
+    }
   },
   //复制微信号
   copyText(e) {
@@ -85,7 +138,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get_vip_list()
+    console.log(Date.now())
+    
   },
 
   /**
@@ -99,6 +153,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      now:Date.now()
+    })
+    this.get_vip_list()
     wx.hideHomeButton({
       success() {
         

@@ -11,7 +11,7 @@
       我的领取码：
     </view>
     <view>
-      678652
+      {{code}}
     </view>
   </view>
 

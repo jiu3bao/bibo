@@ -48,10 +48,10 @@ Page({
   },
   get_code() {
     if (this.data.time !== 0) return
-    if(!this.data.info.phone||this.data.info.phone.length===0) return 
+    if(!this.data.info.mobile||this.data.info.mobile.length===0) return 
     wx.showLoading({mask:true})
     const data = {
-      mobile: this.data.info.phone
+      mobile: this.data.info.mobile
     }
     service('API/RequestCode', data)
       .then(r => {
@@ -116,7 +116,7 @@ Page({
     .then(r => {
       if (r.data.error_code===6){
         wx.navigateTo({
-          url: '/pages/login/login',
+          url: '/packageA/pages/login/login',
         })
         return
       }

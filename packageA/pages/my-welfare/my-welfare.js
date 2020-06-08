@@ -1,24 +1,32 @@
 // pages/my-welfare/my-welfare.js
+import service from '../../../utils/api'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    info:{},
+    list:[]
   },
   todetail() {
     wx.navigateTo({
       url: '/packageA/pages/my-welfare-detail/my-walfare-detail',
     })
   },
-
+  get_list() {
+    const data = {
+      Token:wx.getStorageSync('user').Token
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
+    this.setData({
+      info:wx.getStorageSync('user')
+    })
+  },  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

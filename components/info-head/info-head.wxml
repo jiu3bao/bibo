@@ -10,7 +10,7 @@
         <image src='/img/vip.png'></image>
       </view>
       <view class='b'>
-        {{info.iszxs?"咨询师号:"+info.id:"会员号:"+info.user_id}}
+        {{info.iszxs?"咨询师号:"+info.id:"会员号:"+info.id}}
       </view>
     </view>
   </view>

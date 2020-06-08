@@ -1,5 +1,5 @@
 <!--pages/my-welfare/my-welfare.wxml-->
-<InfoHead></InfoHead>
+<InfoHead info='{{info}}'></InfoHead>
 
 <view class='item' bindtap="todetail">
   <view class='t'>

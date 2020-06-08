@@ -1,5 +1,5 @@
 <!--pages/my-shaping/my-shaping.wxml-->
-<InfoHead></InfoHead>
+<InfoHead info='{{info}}'></InfoHead>
 <view class='now'>
   <view class='t'>
     <view>

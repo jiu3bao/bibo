@@ -1,0 +1,100 @@
+<!--pages/staff-page/staff-page.wxml-->
+<view class='contain'> 
+  <view class='cao' wx:if='{{!base_info.id}}'>
+    <view>会员查询</view>
+    <view class='o'>
+      <input value="{{phone}}" bindinput="set_phone" placeholder="请输入手机号码"></input>
+      <view bindtap="confiry_phone" class='h'>验证</view>
+    </view>
+  </view>
+  <view class='{{!base_info.id?"disable":""}}'>
+      <view class='info flex' wx:if='{{base_info.id}}'>
+        <image class='head_pic' src='{{base_info.head.length>0?base_info.head:base_info.default_head}}'></image>
+        <view class='content'>
+          <view class='name'>{{base_info.name}}<text>会员手机号{{base_info.id}}</text></view>
+          <view class='phone'>手机号{{phone}}</view>
+          <view class='flex no-border'>
+            <image src='../../img/vip@2x.png' class='icon'></image>
+            VIP会员
+          </view>
+        </view>
+      </view>
+      <view class='flex between'>
+        <view>日期</view>
+        <view class='blue'>
+          {{date}}
+          <!-- <picker mode="date" value="{{date}}" bindchange="set_time">
+            <view class="picker">
+              {{date?date:'尚未选择'}}
+            </view>
+          </picker> -->
+        </view>
+      </view>
+      <view class='flex between'>
+        <view>消费医院</view>
+        <view>
+          <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital' disabled='{{!base_info.id}}'>
+            <view class='blue hos'>
+              {{hos.hospital?hos.hospital:'请选择医院'}}
+              <image src='../../img/down.png' class='down'></image>
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class='flex between'>
+        <view>项目</view>
+        <view class='flex red check' bindtap="{{!base_info.id?'':'add_a_item'}}">添加项目<image src='../../img/add1.png' class='icon'></image></view>
+      </view>
+      <view class='add_item'>
+        <view class='flex between bt-none' wx:for='{{add_item}}' wx:key='{{index}}'>
+          <picker mode="multiSelector" 
+          bindchange="bindMultiPickerChange" 
+          bindcolumnchange="bindMultiPickerColumnChange"
+          bindcancel='cancel_picker'
+          data-index='{{index}}'
+          value="{{multiIndex}}" range="{{multiArray}}" range-key="item"
+          >
+            <view class='blue' wx:if='{{add_item[index].item_type.length>0}}'>
+              {{add_item[index].item_type}}-{{add_item[index].item}}
+            </view>
+            <view wx:else class='blue'>
+              请选择项目
+            </view>
+          </picker>
+        
+          <view class='flex check bt-none'>
+            <input value='{{add_item[index].price}}' data-index='{{index}}' bindinput="input_price" bindblur="count_price" type='digit' disabled="{{!base_info.id}}"></input>
+            <image src='../../img/reduce.png' class='icon' data-index='{{index}}' bindtap="{{!base_info.id?'':'delete_a_item'}}"></image>
+          </view>
+        </view>
+      </view>
+
+      <view class='flex between'>
+        <view>消费总额</view>
+        <view class='blue'>￥{{total_money}}</view>
+      </view>
+      <view class='convers-pic'>
+        <view>证据图</view>
+        <image src='{{pic&&pic.length>0?src_url + pic:"../../img/add.png"}}'class='pic' bindtap="{{!base_info.id?'':'chooseimage'}}"></image>
+      </view>
+  </view>
+
+
+  <view class='err_info' wx:if='{{err_text.length!=0}}'>
+    <image src='../../img/tishi@2x.png'></image>
+    <view>{{err_text}}</view>
+  </view>
+    <view class='submit' bindtap="submit" wx:if='{{base_info.id}}'>
+    提交
+  </view>
+  <!-- <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{multiIndex}}" bindchange="bindMultiPickerChange" data-index='{{index}}'>
+    <picker-view-column>
+      <view wx:for="{{multiArray[0]}}" style="line-height: 50px">{{item.item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{multiArray[1]}}" style="line-height: 50px">{{item.item}}</view>
+    </picker-view-column>
+  </picker-view> -->
+  <!-- <view class='tologin' bindtap="tologin">切换账号</view>
+  <view class='tologin' bindtap="tofail">未通过审核</view> -->
+</view>

@@ -4,9 +4,9 @@
     <image src='/img/chaxun.png'></image>
     设计方案
   </view>
-  <view class='myde' bindtap="to_feedback">
+  <view class='myde' bindtap="to_feedback" wx:for='{{designs}}' wx:key='{{item.custom_case_id}}'>
     <view>Ta的专属设计方案</view>
-    <view>2020-05-02</view>
+    <view>{{item.addtime}}</view>
   </view>
   <view class='title'>
     <image src='/img/chaxun.png'></image>

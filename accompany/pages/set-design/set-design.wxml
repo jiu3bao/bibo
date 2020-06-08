@@ -1,5 +1,5 @@
 <!--accompany/pages/set-design/set-design.wxml-->
-<infohead></infohead>
+<infohead info='{{info}}'></infohead>
 <view class='title j-sb'>
   <view class='t-l'>
     <image src='/img/chaxun.png'></image>历史记录
@@ -8,7 +8,7 @@
 </view>
  <view class='f btop'>
     <view>年龄</view>
-    <view>28</view>
+    <view>{{casei.age}}</view>
   </view>
   <view class='photos'>
   </view>
@@ -16,22 +16,22 @@
   <view class='info'>
     <view class='f'>
       <view>想咨询项目</view>
-      <view>鼻综合</view>
+      <view>{{casei.item_name}}</view>
     </view>
     <view class='f'>
       <view>个人诉求</view>
-      <view>鼻梁高一些，缩小鼻翼</view>
+      <view>{{casei.demand}}</view>
     </view>
     <view class='f'>
       <view>是否做过该项目</view>
-      <view>否</view>
+      <view>{{casei.is_done===0?'否':'是'}}</view>
     </view>
     <view class='ta'>
-      <textarea placeholder="请输入该项目的次数、所在医院、价格等" value="已经做过这类项目了，在奕星整形做的，效果不是很理想， 一共消费了八万八。"></textarea>
+      <textarea placeholder="请输入该项目的次数、所在医院、价格等" value="{{casei.done_item_des}}"></textarea>
     </view>
     <view class='f'>
       <view>病史、过敏史</view>
-      <view>没有过敏史</view>
+      <view>{{casei.his}}</view>
     </view>
   </view>
 <view class='title'>
@@ -40,38 +40,38 @@
   </view>
 </view>
 <view class='zx_program'>
-  <view class='"item" {{activeType ==item?"active":""}}' 
+  <view class='"item" {{activeType ==item.name?"active":""}}' 
   wx:for='{{program_list}}'
   bindtap="checkitem"
-  data-item='{{item}}'>{{item}}</view>
+  data-index='{{index}}'>{{item.name}}</view>
 </view>
-<view class='list'>
-
+<view class='list {{isfold?"fold":""}}'>
+  <view wx:for='{{subject_list}}' class='{{item.ischeck?"ac":""}}' bindtap="choseitem" data-index='{{index}}'>{{item.item}}</view>
 </view>
-<view class='f'>
-  <view>项目一</view>
-  <view>耳软骨鼻综合</view>
+<view class='f' wx:for='{{chosen_item_list}}'>
+  <view>项目{{item.index}}</view>
+  <view>{{item.item}}</view>
 </view>
-<view class='f'>
+<!-- <view class='f'>
   <view>项目二</view>
   <view>耳软骨鼻综合</view>
-</view>
+</view> -->
 <view class='f'>
   <view>其他项目</view>
-  <input placeholder="手动输入"></input>
+  <input placeholder="手动输入" bindinput="input" data-type='item_name'></input>
 </view>
 <view class='ip'>
   <view class='ipi'>
     <view>医院收费 </view>
-    <input placeholder="手动输入"></input>
+    <input placeholder="手动输入" bindinput="input" data-type='price_hospital'></input>
   </view>
   <view class='ipi'>
     <view>补贴金额  </view>
-    <input placeholder="手动输入"></input>
+    <input placeholder="手动输入" bindinput="input" data-type='subsidy'></input>
   </view>
    <view class='ipi'>
     <view>实际花费  </view>
-    <input placeholder="手动输入"></input>
+    <input placeholder="手动输入" bindinput="input" data-type='price_real'></input>
   </view>
 </view>
 <view class='title'>
@@ -80,10 +80,11 @@
   </view>
 </view>
 <view class='upp'>
-  <view class='add-btn'>+</view>
+  <image wx:for='{{img_list}}' wx:key='{{index}}' src="{{item}}"></image>
+  <view class='add-btn' bindtap="addimg">+</view>
 </view>
 <view class='f'>
   <view>手术恢复期</view>
-  <view>3个月</view>
+  <input value='' placeholder="输入恢复期" bindinput="input" data-type='recover_time'></input>
 </view>
-<view class='emit-btn'>提交给用户</view>
+<view class='emit-btn' bindtap="submit">提交给用户</view>

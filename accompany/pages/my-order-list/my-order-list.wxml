@@ -14,27 +14,27 @@
       <view class='line'></view>
     </view> 
   </view>
-  <view class='vip-lists' wx:if='{{actab===1}}'>
-    <view class='vip-list'>
-      <image src='/img/vip.png'></image>
+  <view class='vip-lists' wx:if='{{actab===1}}' >
+    <view class='vip-list' wx:for='{{viplist}}' wx:key="{{item.custom_case_id}}" bindtap="access" data-case='{{item}}'>
+      <image src='{{item.head}}'></image>
       <view class='c-line'></view>
       <view class='r'>
-        <view class='name'>邹婷 <image src='/img/vip.png'></image><text>vx: zout1239</text></view>
-        <view class='xm'>咨询项目  鼻综合</view>
-        <view class='time'>2020-05-14  17:30</view>
+        <view class='name'>{{item.name}} <image src='/img/vip.png'  wx:if='{{item.ismember}}'></image><text>vx: {{item.wx}}</text></view>
+        <view class='xm'>咨询项目  {{item.item_name}}</view>
+        <view class='time'>{{item.addtime}}</view>
       </view>
     </view>
   </view>
   <view class='vip-lists' wx:else >
-    <view class='vip-list'>
-      <image src='/img/vip.png'></image>
+    <view class='vip-list' wx:for='{{publiclist}}' wx:key="{{item.custom_case_id}}" bindtap="access" data-case='{{item}}'>
+      <image src='{{item.head}}'></image>
       <view class='c-line'></view>
       <view class='r'>
-        <view class='name'>邹婷 <image src='/img/vip.png'></image><text>vx: zout1239</text>
+        <view class='name'>{{item.name}} <image src='/img/vip.png' wx:if='{{item.ismember}}'></image><text>vx: {{item.wx}}</text>
         <view class='copy' 
-        bindtap='copyText' data-text="vx: zout1239">复制</view></view>
-        <view class='xm'>咨询项目  鼻综合</view>
-        <view class='time'>2020-05-14  17:30</view>
+        bindtap='copyText' data-text="{{item.wx}}" wx:if='{{item.wx.length>0}}'>复制</view></view>
+        <view class='xm'>咨询项目  {{item.item_name}}</view>
+        <view class='time'>{{item.addtime}}</view>
       </view>
     </view>
   </view>

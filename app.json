@@ -19,7 +19,8 @@
         "pages/contract/contract",
         "pages/design-feedback/design-feedback",
         "pages/bankcard-list/bankcard-list",
-        "pages/set-bank/set-bank"
+        "pages/set-bank/set-bank",
+        "pages/shop/shop"
       ]
     },
     {

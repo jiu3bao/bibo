@@ -7,7 +7,8 @@ Page({
    */
   data: {
     list:[],
-    txt:''
+    txt:'',
+    done_item_list:[]
   },
 
   /**
@@ -64,8 +65,12 @@ Page({
   //导航至详情
   to_detail(e) {
     console.log(e)
+    const userid = e.currentTarget.dataset.item.user_id
+    const belong =this.data.done_item_list.filter(i => {
+      return i.zxs_id==userid
+    })
     wx.navigateTo({
-      url: '/accompany/pages/vip-detail/vip-detail?item='+JSON.stringify(e.currentTarget.dataset.item),
+      url: '/accompany/pages/vip-detail/vip-detail?item='+JSON.stringify(e.currentTarget.dataset.item)+'&design='+JSON.stringify(belong),
     })
   },  
   //获取咨询项目
@@ -78,7 +83,9 @@ Page({
     }
     service('ConsultAPI/GetZXSCustomCaseList',data)
     .then(r => {
-
+      this.setData({
+        done_item_list:r.data.data
+      })
     })
     .catch(err => {
       wx.showToast({

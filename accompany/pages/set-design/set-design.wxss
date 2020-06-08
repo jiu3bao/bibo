@@ -72,9 +72,10 @@ page {
   justify-content: space-around;
   background: #fff;
   border-top:1px solid #F7F7F7;
+  border-bottom:1px solid #F7F7F7;
 }
 .zx_program .item {
-  width:70rpx;
+  min-width:70rpx;
   height:100%;
   box-sizing: border-box;
   display: flex;
@@ -115,6 +116,11 @@ page {
   border-bottom:1px solid rgba(229,229,229,1);
   padding:50rpx
 }
+.upp image {
+  width:139rpx;
+  height:139rpx;
+  margin-right:20rpx;
+}
 .add-btn {
   width:139rpx;
   line-height:139rpx;
@@ -133,4 +139,24 @@ page {
   color: #fff;
   text-align: center;
   margin:33rpx auto;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+}
+.fold {
+  max-height:300rpx;
+  overflow:hidden;
+}
+.list view {
+  padding:10rpx;
+  font-size:25rpx;
+  border:1px solid #e5e5e5;
+  margin:10rpx;
+}
+.list .ac {
+  border-color: #50C397;
+  background: #50C397;
+  color: #fff;
 }

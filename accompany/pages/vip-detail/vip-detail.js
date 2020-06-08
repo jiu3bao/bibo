@@ -7,18 +7,21 @@ Page({
    */
   data: {
     info:{},
-    isexpand:false
+    isexpand:false,
+    designs:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    const item = JSON.parse(options.item)
+    const designs = JSON.parse(options.design)
     this.setData({
-      info:JSON.parse(options.item)
+      info:{...item,id:item.user_id},
+      designs
     })
-    this.get_records(JSON.parse(options.item).user_id)
+    this.get_records(item.user_id)
   },
   
   //获取整形记录
@@ -27,7 +30,7 @@ Page({
       Page:1,
       PageSize:1000,
       Token:wx.getStorageSync('user').Token,
-      id:id
+      id
     }
     service('ConsultAPI/GetCustomMedicalList',data)
     .then(r => {
