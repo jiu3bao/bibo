@@ -30,7 +30,10 @@
         "pages/my-order-list/my-order-list",
         "pages/user-center/user-center",
         "pages/vip-detail/vip-detail",
-        "pages/set-design/set-design"
+        "pages/set-design/set-design",
+        "pages/staff-page/staff-page",
+        "pages/fail-detail/fail-detail",
+        "pages/fail-records/fail-records"
       ]
     }
   ],

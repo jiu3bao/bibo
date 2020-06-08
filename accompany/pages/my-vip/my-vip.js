@@ -27,6 +27,12 @@ Page({
     }
     service('ConsultAPI/GetMyCustomList',data)
     .then(r => {
+      if(r.data.error_code==6) {
+        wx.navigateTo({
+          url: '/pages/employee-login/employee-login',
+        })
+        return
+      }
       r.data.data.map(i => {
         i.isshow = true
       })
@@ -83,6 +89,12 @@ Page({
     }
     service('ConsultAPI/GetZXSCustomCaseList',data)
     .then(r => {
+      if(r.data.error_code==6) {
+        wx.navigateTo({
+          url: '/pages/employee-login/employee-login',
+        })
+        return
+      }
       this.setData({
         done_item_list:r.data.data
       })

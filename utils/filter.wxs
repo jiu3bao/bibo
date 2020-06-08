@@ -4,6 +4,10 @@ var filters = {
 
     return value.toFixed(2) // 此处2为保留两位小数，保留几位小数，这里写几
 
+  },
+
+  formatTime: function(time) {
+    return time.split(' ')[0]
   }
 
 }
@@ -12,5 +16,5 @@ module.exports = {
 
   toFix: filters.toFix,
   toNumber: filters.toNumber,
-
+  formatTime:filters.formatTime
 }

@@ -1,5 +1,5 @@
 // pages/fail-records/fail-records.js
-import service from '../../utils/api.js'
+import service from '../../../utils/api.js'
 
 Page({
 

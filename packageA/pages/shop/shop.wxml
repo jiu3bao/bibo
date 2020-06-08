@@ -1,7 +1,7 @@
 <view class='box' wx:for='{{goods_list}}'>
   <view class='t'>
     <view>核销领取码</view>
-    <input placeholder="请输入领取码" bindinput="input"></input>
+    <input placeholder="请输入领取码" bindinput="input" bindconfirm="getorder"></input>
   </view>
   <view class='g'>
     <image src='{{item.main_pic}}'></image>

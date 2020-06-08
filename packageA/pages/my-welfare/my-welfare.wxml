@@ -1,29 +1,43 @@
 <!--pages/my-welfare/my-welfare.wxml-->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
 <InfoHead info='{{info}}'></InfoHead>
-
-<view class='item' bindtap="todetail">
+<view class='tab'>
+  <view class='tabi {{actab===1?"actab":""}}'
+    bindtap="switch"
+    data-type='{{1}}'>
+    待使用
+    <view class='line'></view>
+  </view>
+  <view class='tabi {{actab===2?"actab":""}}'
+    bindtap="switch"
+    data-type='{{2}}'>
+    已使用
+    <view class='line'></view>
+  </view> 
+</view>
+<view class='item' bindtap="todetail" wx:for='{{list}}' wx:key='{{item.id}}'>
   <view class='t'>
     <view>订单号：542378694-2374</view>
     <view class='green'>待使用</view>
   </view>
   <view class='c'>
-    <image src='/img/let.png'></image>
+    <image src='{{item.goods_pic_url}}'></image>
     <view class='r'>
       <view class='r-t'>
-        眼部年轻化  丨 <text>亿美医院</text>
+        {{item.goods_name}}  丨 <text>{{item.shop_name}}</text>
       </view>
       <view class='r-d'>
-        女神节大放送管理眼部周围肌肤淡化细纹
+        {{item.summary}}
       </view>
       <view class='r-a'>
-        长春市高新区硅谷大街
+        {{item.shop_address}}
       </view>
       <view class='r-p'>
-        ￥0.00
+        ￥{{item.goods_price}}
       </view>
       <view class='r-b'>
-        <view class='orange'>领取码： 560 920</view>
-        <view>2020-04-28</view>
+        <view class='orange'>领取码： {{item.code}}</view>
+        <view>{{filters.formatTime(item.time)}}</view>
       </view>
     </view>
   </view>

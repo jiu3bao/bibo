@@ -4,7 +4,7 @@ page {
 }
 .item {
   background: #fff;
-  margin-bottom: 12rpx;
+  margin-top: 12rpx;
 }
 .green {
   color:#50C397;
@@ -63,4 +63,36 @@ page {
 .orange {
   color:#EC6941;
   font-size:22rpx;
+  margin-right:15rpx;
+}
+.tab {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tabi {
+  width: 50%;
+  line-height: 75rpx;
+  border-top:1px solid #E5E5E5;
+  color: #434343;
+  position: relative;
+  text-align: center;
+  font-size:25rpx;
+}
+.line {
+  position: absolute;
+  width:60rpx;
+  height:6rpx;
+  background:#fff;
+  border-radius:3rpx;
+  left:50%;
+  margin-left: -30rpx;
+  bottom: 0;
+}
+.actab {
+  color:#286E87;
+}
+.actab .line {
+  background:rgba(80,195,151,1);
 }

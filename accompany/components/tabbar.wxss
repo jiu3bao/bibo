@@ -10,6 +10,13 @@
   opacity: .9;
   flex-shrink: 0;
 }
+.tabbar view {
+  text-align: center;
+}
 .green {
   color: #417B91;
+}
+image {
+  width: 40rpx;
+  height: 40rpx;
 }

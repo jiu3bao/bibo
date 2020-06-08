@@ -1,20 +1,27 @@
 // pages/staff-page/staff-page.js
-import service from '../../utils/api.js'
+import service from '../../../utils/api.js'
+import {returnimg} from '../../../utils/util'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    phone:'',
     date:'',
     hos_list:[],
     hos:{},
-    item_list:[],
-    multiIndex:[],
-    add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio:''}],
+    program_list:[
+    ],
+    activeType:'',
+    subject_list:[],
+    isfold:true,
+    casei:{},
+    chosen_item:null,
+    chosen_item_list:[],
     total_money:0,
-    phone:'',
-    pic:'',
+    img_list:[],
     base_info:{},
     err_text:'',
     change_id:''
@@ -30,7 +37,7 @@ Page({
     })
   },
   confiry_phone() {
-    service('/GetUserInfoByMobile',
+    service('API/GetUserInfoByMobile',
       { mobile:this.data.phone})
       .then(r => {
         if(r.data.error_code !==0) {
@@ -48,7 +55,7 @@ Page({
           return 
         }
         this.setData({
-          base_info:{...r.data.data,default_head:'../../img/default.png'},
+          base_info:{...r.data.data,default_head:'/img/default.png'},
           err_text:''
         })
         wx.showToast({
@@ -58,7 +65,7 @@ Page({
       })
   },
   get_hos(aa) {
-    service('/GetHospitals')
+    service('API/GetHospitals')
     .then(r => {
       this.setData({
         hos_list:r.data.data
@@ -76,97 +83,100 @@ Page({
       hos: this.data.hos_list[e.detail.value]
     })
   },
-  get_item_list() {
-    service('/GetMedicalItemList',{})
+  //折叠与否
+  foldlist() {
+    this.setData({
+      isfold:!this.data.isfold
+    })
+  },
+  //获取整形大类
+  get_pro_list() {
+    service('/API/GetMedicalItemType')
     .then(r => {
-      const item_map = new Map()
-      r.data.data.map(i => {
-        if (item_map.has(i.item_type)) {
-          const v = item_map.get(i.item_type)
-          item_map.set(i.item_type,[...v,i])
-        } else {
-          item_map.set(i.item_type, [i])
-        }
+      const arr = r.data.data.map(i => {
+        return {name:i}
       })
-      let arr1 = [],arr2=[],arr=[]
-      item_map.forEach((v,k) => {
-        arr1.push({item:k})
-        arr2.push(v)
-        arr.push({
-          item:k,
-          children:v
-        })
-      })
-      console.log(arr1,arr2)
       this.setData({
-        multiArray: [arr1, arr2[0]],
-        item_list:arr
+        program_list:arr
+      },()=>{
+        this.checkitem()
+      })
+      
+    })
+  },
+  //切换大类
+  checkitem(e) {
+    const index = e?e.currentTarget.dataset.index:0
+    const pro = this.data.program_list[index]
+    if(this.data.activeType == pro.name) {
+      this.foldlist()
+    }
+    this.setData({
+      activeType:pro.name
+    })
+    if(pro.children) {
+      this.setData({
+        subject_list:pro.children
+      }) 
+    } else {
+      service('API/GetMedicalItemList',{Param:pro.name})
+      .then(r => {
+        r.data.data.map(i => {
+          i.ischeck = false
+        })
+        pro.children = r.data.data
+        console.log(this.data.program_list)
+        this.setData({
+          subject_list:[...r.data.data],
+          program_list:[...this.data.program_list]
+        })
+        
+      })
+    }
+    
+  },
+  //选择小类
+  choseitem(e) {
+    const i = e.currentTarget.dataset.index
+    const arr = this.data.subject_list
+    arr[i].ischeck = !arr[i].ischeck
+    this.setData({
+      subject_list:[...arr]
+    })
+    let map;
+    if(!this.data.chosen_item) {
+      map = new Map()
+    } else {
+      map = this.data.chosen_item
+    }
+    
+    if(arr[i].ischeck) {
+      map.set(arr[i].medical_code,arr[i])
+    } else {
+      map.delete(arr[i].medical_code)
+    }
+    const l = [];
+    let count=0
+    for (let [key, value] of map) {
+      l.push(value)
+      count+=value.price
+    }
+    this.setData({
+      chosen_item:map,
+      chosen_item_list:l,
+      total_money:count
+    })
+  },
+  //上传图片
+  addimg() {
+    returnimg(5)
+    .then(r => {
+      this.setData({
+        img_list:[...r]
       })
     })
-  },
-  bindMultiPickerChange(e) {
-    console.log(e)
-    // if(e.detail.value[0]===)
-    
-    const item_index = e.currentTarget.dataset.index 
-    const old = this.data.add_item
-    const multiIndex = e.detail.value
-    console.log(this.data.item_list[multiIndex[0]])
-    const { item, item_type, medical_code, ratio,price} = { ...this.data.item_list[multiIndex[0]].children[multiIndex[1]]}
-    old[item_index] = { ...old[item_index], item, item_type, medical_code, ratio,price}
-    const t = old.reduce((total, curval) => total + parseFloat(curval.price), 0)
-    this.setData({
-      multiIndex: e.detail.value,
-      add_item: old,
-      total_money: t
-    })
-  },
-  //二级联动
-  bindMultiPickerColumnChange(e) {
-    const data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    switch (e.detail.column) {
-      case 0:  
-        switch (data.multiIndex[0]) {         
-          default:
-            data.multiArray[1] = this.data.item_list[data.multiIndex[0]].children;
-            this.setData({
-              multiArray: data.multiArray
-            })
-            break;
-        }
-    }
-  },
-  cancel_picker(e) {
-    this.setData({
-      multiIndex:[]
-    })
-  },
-  input_price(e) {
-    const all_item = this.data.add_item
-    const item = all_item[e.currentTarget.dataset.index]
-    item.price = e.detail.value 
-    this.setData({
-      add_item: all_item
-    })
-  },
-  add_a_item() {
-    const old = this.data.add_item
-    this.setData({
-      add_item: [...old, { item: '', item_type: '', price: 0, medical_code: '', ratio: ''}]
-    })
-  },
-  delete_a_item(e) {
-    const old = this.data.add_item
-    const index = e.currentTarget.dataset.index
-    old.splice(index,1)
-    const t = old.reduce((total, curval) => total + parseFloat(curval.price), 0)
-    this.setData({
-      add_item:old,
-      total_money: t.toFixed(2)
+    .catch(err => {
+      console.log(err)
     })
   },
   count_price() {
@@ -240,7 +250,7 @@ Page({
       item:this.data.add_item,
 
     }
-    service('/AddProRecord',data)
+    service('API/AddProRecord',data)
     .then(r => {
       if(r.data.error_code!==0) {
         wx.showToast({
@@ -256,7 +266,7 @@ Page({
           id:this.data.change_id,
         }
         console.log(data,123123)
-        service('/DeleteProRecord',data)
+        service('API/DeleteProRecord',data)
         .then(r1 => {
           wx.showToast({
             title: '上传成功',
@@ -268,7 +278,6 @@ Page({
             phone: '',
             hos: {},
             pic:'',
-            add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio: '' }],
             total_money:0,
             base_info:null
           })
@@ -287,15 +296,6 @@ Page({
         })
         wx.navigateBack()
       }
-      
-      // this.setData({
-      //   phone: '',
-      //   hos: {},
-      //   pic:'',
-      //   add_item: [{ item: '', item_type: '', price: 0, medical_code: '', ratio: '' }],
-      //   total_money:0,
-      //   base_info:null
-      // })
     })
     .catch(err => {
       wx.showToast({
@@ -347,19 +347,19 @@ Page({
   },
   tologin() {
     wx.navigateTo({
-      url: '/pages/login/login',
+      url: '/packageA/pages/login/login',
     })
   },
   tofail(){
     wx.navigateTo({
-      url: '/pages/fail-records/fail-records',
+      url: '/accompany/pages/fail-records/fail-records',
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get_item_list()
+    this.get_pro_list()
     if(options.item) {
       const item = JSON.parse(options.item)
       const {head,detail,id,item_list,mobile,name,pic_url,time,money,hospital,member_user_id} = item
@@ -371,9 +371,7 @@ Page({
         date:time,
         base_info:{head,default_head:'../../img/default.png',name,mobile,id:member_user_id},
         err_text:detail,
-        add_item:item_list,
         total_money:money,
-        pic:pic_url,
         change_id:id,
         phone:mobile,
       })

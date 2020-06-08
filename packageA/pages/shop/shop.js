@@ -8,6 +8,7 @@ Page({
   data: {
     goods_list:[],
     page:1,
+    code:''
   },
   get_list() {
     const data = {
@@ -19,6 +20,62 @@ Page({
     .then(r => {
       this.setData({
         goods_list:r.data.data
+      })
+    })
+  },
+  input(e) {
+    this.setData({
+      code:e.detail.value
+    })
+  },
+  getorder() {
+    const data = {
+      Token:wx.getStorageSync('user').Token,
+      Param:this.data.code,
+      Page:1,
+      PageSize:5
+    }
+    service('ShopAPI/GetMyShopOrdersByCode',data)
+    .then(r => {
+      if(r.data.error_code==6) {
+        wx.navigateTo({
+          url: '/packageA/pages/login/login',
+        })
+        return 
+      }
+      if(r.data.error_code!=0) {
+        wx.showToast({
+          title: r.data.message,
+          icon:"none"
+        })
+        return 
+      }
+      //存订单号
+    })
+  },
+  cofirm_code(id) {
+    const data = {
+      Token:wx.getStorageSync('user').Token,
+      order_key:id,
+      code:this.data.code
+    }
+    service('ShopAPI/CheckOrderCode',data)
+    .then(r => {
+      if(r.data.error_code==6) {
+        wx.navigateTo({
+          url: '/packageA/pages/login/login',
+        })
+        return 
+      }
+      if(r.data.error_code!=0) {
+        wx.showToast({
+          title: r.data.message,
+          icon:"none"
+        })
+        return 
+      }
+      wx.showToast({
+        title: '核销成功',
       })
     })
   },

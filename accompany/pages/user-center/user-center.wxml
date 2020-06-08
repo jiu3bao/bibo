@@ -27,4 +27,4 @@
 </view>
 
 
-<tabbar nowtab='{{1}}'></tabbar>
+<tabbar nowtab='{{3}}'></tabbar>

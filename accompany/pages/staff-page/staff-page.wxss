@@ -1,10 +1,28 @@
 /* pages/staff-page/staff-page.wxss */
 page {
   font-size:26rpx;
-  background: #f5f5f5
+  background: #f7f7f7
+}
+.search {
+  width: 100%;
+  height:67rpx;
+  border:2px solid rgba(222, 222, 222, 1);
+  border-radius:34rpx;
+  display: flex;
+  align-items: center;
+  margin:28rpx 0;
+}
+.search input {
+  width: 100%;
+  padding-left: 40rpx;
+  font-size:25rpx;
+}
+.search image {
+  width:33rpx;
+  height:33rpx;
+  margin:0 36rpx;
 }
 .cao {
-  background:#fff;
   padding:30rpx;
   border-top:1rpx solid #e6e6e6;
 }
@@ -56,14 +74,6 @@ page {
 
 .disable view{
   filter: grayscale(100%);
-}
-input {
-  border:1rpx solid #dfdfdf;
-  width:200rpx;
-  height:50rpx;
-  margin-right:20rpx;
-  text-align: center;
-  border-radius: 5rpx;
 }
 .submit {
   width:60%;
@@ -154,4 +164,89 @@ input {
   margin-right:20rpx;
   font-size:33rpx;
   text-decoration: underline
+}
+.zx_program {
+  height:76rpx;
+  font-size:25rpx;
+  color:#434343;
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  border-top:1px solid #F7F7F7;
+  border-bottom:1px solid #F7F7F7;
+}
+.zx_program .item {
+  min-width:70rpx;
+  height:100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zx_program .active {
+  color:#286E87;
+  border-bottom: 6rpx solid #50C397;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+}
+.fold {
+  max-height:300rpx;
+  overflow:hidden;
+}
+.list view {
+  padding:10rpx;
+  font-size:25rpx;
+  border:1px solid #e5e5e5;
+  margin:10rpx;
+}
+.list .ac {
+  border-color: #50C397;
+  background: #50C397;
+  color: #fff;
+}
+.upp {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  border-bottom:1px solid rgba(229,229,229,1);
+  padding:50rpx
+}
+.upp image {
+  width:139rpx;
+  height:139rpx;
+  margin-right:20rpx;
+}
+.add-btn {
+  width:139rpx;
+  line-height:139rpx;
+  border:1px solid rgba(220,220,220,1);
+  border-radius:10rpx;
+  font-size: 60rpx;
+  color:#D5D5D5;
+  text-align: center;
+}
+.emit-btn {
+  width:364rpx;
+  line-height:72rpx;
+  background:linear-gradient(-7deg,rgba(68,179,154,1),rgba(88,204,129,1));
+  border-radius:36rpx;
+  font-size:25rpx;
+  color: #fff;
+  text-align: center;
+  margin:33rpx auto;
+}
+.f {
+  border-bottom: 1px solid rgba(229,229,229,1);
+  height:75rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 65rpx 0 45rpx;
+  background: #fff;
+  font-size:25rpx;
+  color:#434343;
 }
