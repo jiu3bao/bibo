@@ -61,6 +61,11 @@ Page({
   get_my_shop() {
     service('ShopAPI/GetMyShop',{Token:wx.getStorageSync('user').Token})
     .then(r => {
+      if(r.data.error_code==6) {
+        wx.removeStorageSync('user')
+        wx.removeStorageSync('shopinfo')
+        return 
+      }
       if(r.data.data.id) { //有商铺
         this.setData({
           isshop:true
