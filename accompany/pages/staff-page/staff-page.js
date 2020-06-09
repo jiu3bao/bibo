@@ -12,6 +12,7 @@ Page({
     date:'',
     hos_list:[],
     hos:{},
+    index:0,
     program_list:[
     ],
     activeType:'',
@@ -20,11 +21,27 @@ Page({
     casei:{},
     chosen_item:null,
     chosen_item_list:[],
+    inputother:false,
     total_money:0,
     img_list:[],
     base_info:{},
+    price:0,
+    item_name:'',
     err_text:'',
     change_id:''
+  },
+  input(e) {
+    const value = e.detail.value 
+    const type= e.currentTarget.dataset.type
+    this.setData({
+      [type]: value
+    })
+  },
+  addprice() {
+    const t = this.data.total_money*1+this.data.price*1
+    this.setData({
+      total_money:t.toFixed(2)
+    })
   },
   set_time(e) {
     this.setData({
@@ -105,7 +122,7 @@ Page({
     })
   },
   //切换大类
-  checkitem(e) {
+  checkitem(e) { 
     const index = e?e.currentTarget.dataset.index:0
     const pro = this.data.program_list[index]
     if(this.data.activeType == pro.name) {
@@ -137,6 +154,7 @@ Page({
   },
   //选择小类
   choseitem(e) {
+    if(!this.data.base_info.id) return 
     const i = e.currentTarget.dataset.index
     const arr = this.data.subject_list
     arr[i].ischeck = !arr[i].ischeck
@@ -157,19 +175,34 @@ Page({
     }
     const l = [];
     let count=0
+    let inputother= false
     for (let [key, value] of map) {
-      l.push(value)
-      count+=value.price
+      if(key==145) {
+        inputother=true
+        count+=this.data.price*1
+      } else {
+        l.push({
+          item:value.item,
+          item_type:value.item_type,
+          price:value.price,
+          medical_code:value.medical_code,
+          ratio:value.ratio
+        })
+        count+=value.price*1
+      }
+      
     }
     this.setData({
       chosen_item:map,
       chosen_item_list:l,
-      total_money:count
+      total_money:count.toFixed(2),
+      inputother
     })
   },
   //上传图片
   addimg() {
-    returnimg(5)
+    if(!this.data.base_info.id) return 
+    returnimg(1)
     .then(r => {
       this.setData({
         img_list:[...r]
@@ -179,77 +212,26 @@ Page({
       console.log(err)
     })
   },
-  count_price() {
-    const old = this.data.add_item
-    const t = old.reduce((total, curval) => total + parseFloat(curval.price),0)
-    this.setData({
-      total_money:t.toFixed(2)
-    })
-  },
-
-  chooseimage() {
-    const that = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      success(res) {
-        console.log(res)
-        that.setData({
-          head_img: res.tempFilePaths
-        })
-        that.up_img(res.tempFilePaths)
-          .then(r => {
-            console.log(r)
-            const i = that.data.info
-            that.setData({
-              pic: JSON.parse(r.data).file_url
-            })
-          })
-          .catch(err => {
-            wx.showToast({
-              title: err,
-              duration: 2000,
-              icon: 'none'
-            })
-          })
-      },
-      fail(err) {
-        wx.showToast({
-          title: '选择图片失败',
-          duration: 2000,
-          icon: 'none'
-        })
-      }
-    })
-  },
-  up_img(path) {
-    console.log(path)
-    return new Promise((resolve, reject) => {
-      wx.uploadFile({
-        url: 'https://ym.bibo80s.com/Main/UploadFile',
-        filePath: path[0],
-        name: 'img',
-        success(res) {
-          resolve(res)
-        },
-        fail(err) {
-          console.log(err)
-          reject(err)
-        }
-      })
-    })
-
-  },
   submit() {
     if (!this.check()) return
+    const l = this.data.chosen_item_list
+    if(this.data.inputother) {
+      l.push({
+        item:'其他',
+        item_type:'其他（名称填写）',
+        price:this.data.price,
+        medical_code:145,
+        ratio:''
+      })
+    }
     const data ={
       Token:wx.getStorageSync('user').Token,
       mobile:this.data.phone,
       hospital_id: this.data.hos.id,
-      pic_url:this.data.pic,
-      item:this.data.add_item,
-
+      pic_url:this.data.img_list[0],
+      item:l,
     }
+    console.log(data)
     service('API/AddProRecord',data)
     .then(r => {
       if(r.data.error_code!==0) {
@@ -327,14 +309,14 @@ Page({
         icon: 'none'
       })
       return false
-    } else if (!this.data.add_item[0].medical_code) {
+    } else if (!this.data.chosen_item_list[0].medical_code) {
       wx.showToast({
         title: '请选择项目',
         duration: 2000,
         icon: 'none'
       })
       return false
-    } else if (!this.data.pic||this.data.pic.length===0) {
+    } else if (!this.data.img_list||this.data.img_list.length===0) {
       wx.showToast({
         title: '请上传证据图',
         duration: 2000,

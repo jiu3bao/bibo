@@ -1,6 +1,6 @@
  <!--pages/staff-page/staff-page.wxml-->
 <view class='contain'> 
-  <view class='cao' wx:if='{{!base_info.id}}'>
+  <view class='cao'>
     <view>会员查询</view>
     <view class='search'>
       <input type="search" value='{{phone}}' bindinput='set_phone' placeholder="请输入会员手机号码"></input>
@@ -9,58 +9,66 @@
   </view>
   <infohead info='{{base_info}}' wx:if='{{base_info.id}}'></infohead>
   <view class='{{!base_info.id?"disable":""}}'>
-      <infohead info='{{base_info}}' wx:if='{{base_info.id}}'></infohead>
-      <view class='flex between'>
-        <view>日期</view>
-        <view class='blue'>
-          {{date}}
-          <!-- <picker mode="date" value="{{date}}" bindchange="set_time">
-            <view class="picker">
-              {{date?date:'尚未选择'}}
-            </view>
-          </picker> -->
-        </view>
+    <view class='flex between'>
+      <view>日期</view>
+      <view class='blue'>
+        {{date}}
+        <!-- <picker mode="date" value="{{date}}" bindchange="set_time">
+          <view class="picker">
+            {{date?date:'尚未选择'}}
+          </view>
+        </picker> -->
       </view>
-      <view class='flex between'>
-        <view>消费医院</view>
-        <view>
-          <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital' disabled='{{!base_info.id}}'>
-            <view class='blue hos'>
-              {{hos.hospital?hos.hospital:'请选择医院'}}
-              <image src='../../img/down.png' class='down'></image>
-            </view>
-          </picker>
-        </view>
+    </view>
+    <view class='flex between'>
+      <view>消费医院</view>
+      <view>
+        <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital' disabled='{{!base_info.id}}'>
+          <view class='blue hos'>
+            {{hos.hospital?hos.hospital:'请选择医院'}}
+            <image src='../../../img/xiala.png' class='down'></image>
+          </view>
+        </picker>
       </view>
-      <view class='flex between'>
-        <view>项目</view>
-        <view class='flex red check' bindtap="{{!base_info.id?'':'add_a_item'}}"><image src='/img/ys.png' class='icon'></image></view>
+    </view>
+    <view class='flex between'>
+      <view>项目</view>
+      <image src='/img/ys.png' class='icon'></image>
+    </view>
+    <view class='zx_program'>
+      <view class='"item" {{activeType ==item.name?"active":""}}' 
+      wx:for='{{program_list}}'
+      bindtap="checkitem"
+      data-index='{{index}}'>{{item.name}}</view>
+    </view>
+    <view class='list {{isfold?"fold":""}}'>
+      <view wx:for='{{subject_list}}' class='{{item.ischeck?"ac":""}}' bindtap="choseitem" data-index='{{index}}'>{{item.item}}</view>
+    </view>
+    <view class='f' wx:for='{{chosen_item_list}}'>
+      <view>{{item.item}}</view>
+      <view>医院收费{{item.price}}</view>
+    </view>
+    <view class='ip' wx:if='{{inputother}}'>
+      <view class='ipi'>
+        <view>其他项目 </view>
+        <input placeholder="手动输入" bindinput="input" data-type='item_name' value="{{item_name}}"></input>
       </view>
-      <view class='zx_program'>
-        <view class='"item" {{activeType ==item.name?"active":""}}' 
-        wx:for='{{program_list}}'
-        bindtap="checkitem"
-        data-index='{{index}}'>{{item.name}}</view>
+      <view class='ipi'>
+        <view>医院收费  </view>
+        <input placeholder="手动输入" bindinput="input" data-type='price' bindblur="addprice" value='{{price}}'></input>
       </view>
-      <view class='list {{isfold?"fold":""}}'>
-        <view wx:for='{{subject_list}}' class='{{item.ischeck?"ac":""}}' bindtap="choseitem" data-index='{{index}}'>{{item.item}}</view>
-      </view>
-      <view class='f' wx:for='{{chosen_item_list}}'>
-        <view>{{item.item}}</view>
-        <view>医院收费{{item.price}}</view>
-      </view>
-
-      <view class='f'>
-        <view>消费总额</view>
-        <view class='blue'>￥{{total_money}}</view>
-      </view>
-      <view class='convers-pic'>
-        <view>证据图</view>
-        <view class='upp'>
-        <image wx:for='{{img_list}}' wx:key='{{index}}' src="{{item}}"></image>
-        <view class='add-btn' bindtap="addimg">+</view>
-      </view>
-      </view>
+    </view>
+    <view class='f'>
+      <view>消费总额</view>
+      <view class='blue'>￥{{total_money}}</view>
+    </view>
+    <view class='convers-pic'>
+      <view>证据图</view>
+      <view class='upp'>
+      <image wx:for='{{img_list}}' wx:key='{{index}}' src="{{item}}"></image>
+      <view class='add-btn' bindtap="addimg">+</view>
+    </view>
+    </view>
   </view>
 
 

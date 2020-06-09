@@ -24,6 +24,7 @@ page {
 }
 .cao {
   padding:30rpx;
+  padding-bottom:0;
   border-top:1rpx solid #e6e6e6;
 }
 .o {
@@ -249,4 +250,26 @@ page {
   background: #fff;
   font-size:25rpx;
   color:#434343;
+}
+.ip {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #fff;
+  padding:35rpx 0;
+}
+.ipi {
+  display: flex;
+  flex-direction: column;
+  font-size:25rpx;
+  color:rgba(49,49,49,1);
+  align-items: center;
+}
+.ipi input {
+  width:139rpx;
+  height:64rpx;
+  border:1px solid rgba(220,220,220,1);
+  border-radius:8rpx;
+  text-align: center;
+  margin-top:26rpx;
 }

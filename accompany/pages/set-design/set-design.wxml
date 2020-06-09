@@ -56,11 +56,11 @@
   <view>项目二</view>
   <view>耳软骨鼻综合</view>
 </view> -->
-<view class='f'>
+<view class='f' wx:if='{{inputother}}'>
   <view>其他项目</view>
   <input placeholder="手动输入" bindinput="input" data-type='item_name'></input>
 </view>
-<view class='ip'>
+<view class='ip' wx:if='{{inputother}}'>
   <view class='ipi'>
     <view>医院收费 </view>
     <input placeholder="手动输入" bindinput="input" data-type='price_hospital'></input>

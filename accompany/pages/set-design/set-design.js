@@ -18,6 +18,7 @@ Page({
     chosen_item:null,
     chosen_item_list:[],
     img_list:[],
+    inputother:false,
     item_name:'',
     price_hospital:'',
     subsidy:'',
@@ -105,14 +106,20 @@ Page({
     }
     const l = [];
     let arr_i = 1;
+    let inputother= false
     for (let [key, value] of map) {
-      value.index = toChinesNum(arr_i) 
-      l.push(value)
-      arr_i++
+      if(key==145) {
+        inputother=true
+      } else {
+        value.index = toChinesNum(arr_i) 
+        l.push(value)
+        arr_i++
+      } 
     }
     this.setData({
       chosen_item:map,
-      chosen_item_list:l
+      chosen_item_list:l,
+      inputother
     })
   },
   //上传图片
@@ -136,7 +143,7 @@ Page({
         price_real:i.ratio
       }
     })
-    if(this.data.item_name.length!==0) {
+    if(this.data.inputother&&this.data.item_name.length!==0) {
       item_list.push({
         item_name:this.data.item_name,
         price_hospital:this.data.price_hospital||0,
