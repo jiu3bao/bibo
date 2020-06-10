@@ -154,7 +154,12 @@ Page({
    */
   onShow: function () {
     this.setData({
-      now:Date.now()
+      now:Date.now(),
+      viplist:[],
+      publiclist:[],
+      page1:1,
+      page2:1
+
     })
     this.get_vip_list()
     wx.hideHomeButton({

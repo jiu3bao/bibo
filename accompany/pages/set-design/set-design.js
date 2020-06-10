@@ -138,9 +138,9 @@ Page({
     const item_list = this.data.chosen_item_list.map(i => {
       return {
         item_name:i.item,
-        price_hospital:i.price,
-        subsidy:i.price*(1-i.ratio),
-        price_real:i.ratio
+        price_hospital:i.price,//医院价格
+        subsidy:i.price*(1-i.ratio),//补贴价格
+        price_real:i.price*i.ratio//实际价格
       }
     })
     if(this.data.inputother&&this.data.item_name.length!==0) {

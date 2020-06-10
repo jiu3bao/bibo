@@ -55,7 +55,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "/img/butie_1.png",
+        "iconPath": "/img/butie.png",
         "selectedIconPath": "/img/butie_1.png",
         "text": "众诺补贴"
       },
@@ -74,7 +74,7 @@
       {
         "pagePath": "pages/user/user",
         "iconPath": "/img/gerenzhongxin.png",
-        "selectedIconPath": "/img/gerenzhongxin.png",
+        "selectedIconPath": "/img/gerenzhongxina.png",
         "text": "个人中心"
       }
     ],

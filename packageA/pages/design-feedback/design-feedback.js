@@ -1,3 +1,5 @@
+import service from "../../../utils/api"
+import {toChinesNum} from '../../../utils/util'
 // packageA/pages/design-feedback/design-feedback.js
 Page({
 
@@ -5,25 +7,62 @@ Page({
    * 页面的初始数据
    */
   data: {
-    subject_list:[{
-      name:'耳软骨鼻综合',
-      isfold:false,
-      subject_detail:[1,1]
-    },{
-      name:'耳软骨鼻综合1',
-      isfold:false,
-      subject_detail:[1,1]
-    },{
-      name:'耳软骨鼻综合2',
-      isfold:false,
-      subject_detail:[1,1]}]
+    subject_list:[],
+    obj:{},
+    ismember:false
   },
-
+  get_solution(id) {
+    const data = {
+      Token:wx.getStorageSync('user').Token,
+      custom_case_id:id
+    }
+    service('ConsultAPI/GetCaseSolution',data)
+    .then(r => {
+      const arr = r.data.data.item_list
+      const m = new Map()
+      arr.map(a => {
+        const n = a.item_name.split('-')
+        const name = n[0]
+        const title = n[1]
+        a.name = name
+        a.title = title
+        if(m.has(name)) {
+          m.get(name).push(a)
+        } else {
+          m.set(name,[a])
+        }
+      })
+      const list = []
+      let index = 1
+      for (let [key, value] of m) {
+        list.push({
+          name:key,
+          index:toChinesNum(index),
+          subject_detail:value
+        })
+        index++
+      }
+      console.log(list)
+      this.setData({
+        subject_list:list,
+        obj:r.data.data
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const caseid = options.caseid
+    this.get_solution(caseid)
+    const now = Date.now()
+    const mem_exp = wx.getStorageSync('user').member_expire
+    const mem_exp_tp = new Date(mem_exp).getTime()
+    console.log(wx.getStorageSync('user').ismember,now,mem_exp_tp)
+    const ismember = wx.getStorageSync('user').is_member && now<mem_exp_tp
+    this.setData({
+      ismember
+    })
   },
 
   /**

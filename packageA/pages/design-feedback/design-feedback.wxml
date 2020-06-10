@@ -8,7 +8,7 @@
     wx:key='name'>
   <view class='f'>
     <view>
-      适合做的项目 一
+      适合做的项目 {{item.index}}
     </view>
     <view class='s'>
       {{item.name}}
@@ -17,23 +17,24 @@
   <view>
   <view class='subject_detail_item' 
     wx:for='{{item.subject_detail}}'
+    wx:for-item='cc'
     wx:key='index'>
       <view class='left'>
         <image src='/img/zhuuren.png'></image>
-        <view>主任</view>
+        <view>{{item.title}}</view>
       </view>
       <view class='right'>
         <view class='one'>
-          <text >2000</text>
-          医院优惠价格
+          <text >{{cc.price_hospital}}</text>
+          医院价格
         </view>
         <view class='two'>
-          <text>500</text>
-          补贴金优惠
+          <text>{{cc.subsidy}}</text>
+          补贴金额
         </view>
         <view class='three'>
-          <text>1500</text>
-          优惠后总价格
+          <text>{{cc.price_real}}</text>
+          实际消费
         </view>
       </view>
     </view>
@@ -49,15 +50,15 @@
     术后恢复期（约）
   </view>
   <view class='s'>
-    3个月
+    {{obj.recover_time}}
   </view>
 </view>
-<view class='card' wx:if='{{false}}'>
+<view class='card' wx:if='{{ismember}}'>
   <view>预约整形，请联系咨询师微信：</view>    
   <view>XXXXXX</view>
 </view>
-<view class='btnb'>
-  <view class='btn'>
+<view class='btnb' wx:else>
+  <view class='btn' bindtap="tobuy">
     加入会员
   </view>
   <view class='tips'>

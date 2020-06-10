@@ -1,6 +1,20 @@
 <!--pages/my-shaping/my-shaping.wxml-->
 <InfoHead info='{{info}}'></InfoHead>
-<view class='now'>
+<view class='tab'>
+  <view class='tabi {{actab===1?"actab":""}}'
+    bindtap="switch"
+    data-type='{{1}}'>
+    未返还订单
+    <view class='line'></view>
+  </view>
+  <view class='tabi {{actab===2?"actab":""}}'
+    bindtap="switch"
+    data-type='{{2}}'>
+    已返还订单
+    <view class='line'></view>
+  </view> 
+</view>
+<view class='now' wx:if='{{actab===1}}'>
   <view class='t'>
     <view>
       消费医院：<text>长春医美医院</text>
@@ -46,14 +60,14 @@
     </scroll-view>
   </view>
 </view>
-<view class='title'>
+<view class='title' wx:if='{{actab===2}}'>
   <view class='t-l'>
     <image src='/img/chaxun.png'></image>历史记录
   </view>
   <image src='/img/xiala.png' class='xiala'></image>
 </view>
 
-<view class='old'>
+<view class='old' wx:if='{{actab===2}}'>
   <view class='o-i'>
     <view class='o-l'>
       <view>

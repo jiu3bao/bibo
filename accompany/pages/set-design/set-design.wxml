@@ -27,7 +27,7 @@
       <view>{{casei.is_done===0?'否':'是'}}</view>
     </view>
     <view class='ta'>
-      <textarea placeholder="请输入该项目的次数、所在医院、价格等" value="{{casei.done_item_des}}"></textarea>
+      <textarea placeholder="请输入该项目的次数、所在医院、价格等" value="{{casei.done_item_des}}" disabled="{{true}}"></textarea>
     </view>
     <view class='f'>
       <view>病史、过敏史</view>

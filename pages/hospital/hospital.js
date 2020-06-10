@@ -6,7 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerList:[]
+    bannerList:[],
+    consult_list:[],
+    page:1,
+    islastpage:false
   },
 
   /**
@@ -14,6 +17,7 @@ Page({
    */
   onLoad: function (options) {
     this.getBanner()
+    
   },
   getBanner() {
     service('API/GetBannersList',{})
@@ -30,11 +34,39 @@ Page({
       })
     })
   },
+  get_consult_list() {
+    if(this.data.islastpage) return 
+    const data = {
+      Token:wx.getStorageSync('user').Token,
+      Page:this.data.page,
+      PageSize:5,
+      status:1
+    }
+    service('ConsultAPI/GetMyCaseList',data)
+    .then(r => {
+      if(r.data.error_code!=0) {
+        wx.showToast({
+          title: r.data.message,
+          icon:'none',
+        })
+        return 
+      }
+      if(r.data.data.length<5) {
+        this.setData({
+          islastpage:true
+        })
+      }
+      this.setData({
+        consult_list:r.data.data
+      })
+    })
+  },
   to_design() {
     wx.navigateTo({url:'/packageA/pages/setdesign/setdesign'})
   },
-  to_feedback() {
-    wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback'})
+  to_feedback(e) {
+    const item = e.currentTarget.dataset.item
+    wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback?caseid='+item.custom_case_id})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -47,7 +79,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.get_consult_list()
   },
 
   /**
@@ -75,7 +107,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      page:this.data.page+1
+    },() => {
+      this.get_consult_list()
+    })
   },
 
   /**

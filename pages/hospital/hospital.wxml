@@ -1,4 +1,6 @@
 <!--pages/hospital/hospital.wxml-->
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
+
 <view>
   <view class='banner_box'>
     <Banner bannerList='{{bannerList}}'></Banner>
@@ -18,8 +20,11 @@
     开启我的面部设计
     <image src='/img/ys.png'></image>
   </view>
-  <view class='myde' bindtap="to_feedback">
+  <view class='myde' bindtap="to_feedback" 
+    wx:for='{{consult_list}}' 
+    wx:key='{{item.custom_case_id}}'
+    data-item='{{item}}'>
     <view>我的专属设计方案</view>
-    <view>2020-05-02</view>
+    <view>{{filters.formatTime(item.addtime)}}</view>
   </view>
 </view>
