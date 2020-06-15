@@ -217,8 +217,8 @@ Page({
     const l = this.data.chosen_item_list
     if(this.data.inputother) {
       l.push({
-        item:'其他',
-        item_type:'其他（名称填写）',
+        item:this.data.item_name,
+        item_type:'其他',
         price:this.data.price,
         medical_code:145,
         ratio:''

@@ -61,8 +61,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "accompany/pages/my-vip/my-vip",
-					"pathName": "accompany/pages/my-vip/my-vip",
+					"name": "accompany/pages/fail-records/fail-records",
+					"pathName": "accompany/pages/fail-records/fail-records",
 					"query": "",
 					"scene": null
 				},

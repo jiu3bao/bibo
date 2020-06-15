@@ -1,4 +1,5 @@
 <!--pages/my-shaping/my-shaping.wxml-->
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
 <InfoHead info='{{info}}'></InfoHead>
 <view class='tab'>
   <view class='tabi {{actab===1?"actab":""}}'
@@ -67,40 +68,14 @@
   <image src='/img/xiala.png' class='xiala'></image>
 </view>
 
-<view class='old' wx:if='{{actab===2}}'>
+<view class='old' wx:if='{{actab===2}}' wx:for='{{end_l}}'>
   <view class='o-i'>
     <view class='o-l'>
       <view>
-        消费医院：<text>长春医美医院</text>
+        消费医院：<text>{{item.hospital}}</text>
       </view>
       <view>
-        消费日期：<text>2020-04-16</text>
-      </view>
-    </view>
-    <view class='r'>
-    已发放
-    </view>
-  </view>
-  <view class='o-i'>
-    <view class='o-l'>
-      <view>
-        消费医院：<text>长春医美医院</text>
-      </view>
-      <view>
-        消费日期：<text>2020-04-16</text>
-      </view>
-    </view>
-    <view class='r'>
-    已发放
-    </view>
-  </view>
-  <view class='o-i'>
-    <view class='o-l'>
-      <view>
-        消费医院：<text>长春医美医院</text>
-      </view>
-      <view>
-        消费日期：<text>2020-04-16</text>
+        消费日期：<text>{{filters.formatTime(item.time)}}</text>
       </view>
     </view>
     <view class='r'>

@@ -9,45 +9,87 @@ Page({
     list:[{
       name:'我的整形',
       icon:'/img/meirong.png',
-      route:'/packageA/pages/my-shaping/my-shaping'
+      route:'/packageA/pages/my-shaping/my-shaping',
+      auto:1,
     },{
       name:'我的二维码',
       icon:'/img/weibiaoti---2.png',
-      route:'aaa'
+      route:'aaa',
+      auto:0,
     },{
       name:'我的福利',
       icon:'/img/shouye-10.png',
-      route:'/packageA/pages/my-welfare/my-welfare'
+      route:'/packageA/pages/my-welfare/my-welfare',
+      auto:1,
     },{
       name:'关于我们',
       icon:'/img/shouye-12.png',
-      route:'/packageA/pages/about-us/about-us'
+      route:'/packageA/pages/about-us/about-us',
+      auto:0,
     },
     {
       name:'设置',
       icon:'/img/shezhi.png',
-      route:'/packageA/pages/set-sys/set-sys'
+      route:'/packageA/pages/set-sys/set-sys',
+      auto:0,
     },
     {
       name:'我的店铺',
-      icon:'/img/shezhi.png',
-      route:'/packageA/pages/shop/shop'
+      icon:'/img/wodedianp.png',
+      route:'/packageA/pages/shop/shop',
+      auto:0,
     }],
     info:{},
     isshop:false,
     moneyInfo:{},
-    showqrcode:false
+    showqrcode:false,
+    kf:{},
+    shop_status:2//默认无店铺，1 是有店铺 2是正在审核店铺
+  },
+  //获取专属咨询师
+  get_kf() {
+    if(wx.getStorageSync('user').Token) {
+      service('ConsultAPI/GetMyZXS',{Token:wx.getStorageSync('user').Token})
+      .then(r => {
+        this.setData({
+          kf:r.data.data
+        })
+      })
+    }
   },
   //导航到二级页面
   route2(e) {
+    const item = e.currentTarget.dataset.item
+    if(item.auth===1) {//会员权限
+      if(wx.getStorageSync('user').is_membe!=1) {
+        wx.showModal({
+          title: '提示',
+          content: '加入会员才能查看此功能，是否加入？',
+          success (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/packageA/pages/login/login',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+        return
+      }
+    }
     if(wx.getStorageSync('user').Token) {
-      if(e.currentTarget.dataset.route=='aaa') {
+      if(item.route=='aaa') {
         this.setData({
           showqrcode:true
         })
       } else {
+        let url=item.route
+        if(item.route === this.data.list[4].route) {
+          url=url+'?status='+this.data.shop_status
+        }
         wx.navigateTo({
-          url: e.currentTarget.dataset.route,
+          url: url,
         })
       }
       
@@ -69,7 +111,8 @@ Page({
       }
       if(r.data.data.id) { //有商铺
         this.setData({
-          isshop:true
+          isshop:r.data.data.status===1,
+          shop_status:r.data.data.status
         })
       }
     })
@@ -151,6 +194,7 @@ Page({
     this.get_user_info()
     this.get_my_shop()
     this.get_money_info()
+    this.get_kf()
   },
 
   /**

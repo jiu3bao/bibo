@@ -122,3 +122,21 @@ page {
   color:rgba(160,160,160,1);
   text-align: center;
 }
+.photos {
+  display: flex;
+  align-items: center;
+  border-bottom:1px solid rgba(229,229,229,1);
+  background: #fff;
+  padding:26rpx 0 40rpx 0;
+  justify-content: space-around;
+}
+.photos view {
+  font-size:25rpx;
+  text-align: center;
+  width: 18%;
+}
+.photos image {
+  width: 100rpx;
+  height:100rpx;
+  margin-top:20rpx;
+}

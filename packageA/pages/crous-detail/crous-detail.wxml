@@ -38,6 +38,6 @@
   </view>
   <view class='bb'>
     <view>￥{{detail.price}}</view>
-    <image src='/img/lijijiaru.png' bindtap="buygoods"></image>
+    <image src='/img/lll.png' bindtap="buygoods"></image>
   </view>
 </view> 

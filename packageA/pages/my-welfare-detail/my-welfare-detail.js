@@ -1,3 +1,5 @@
+import service from "../../../utils/api"
+
 // pages/my-walfare-detail/my-walfare-detail.js
 Page({
 
@@ -5,16 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    info:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const id = options.id 
+    this.get_info(id)
   },
-
+  get_info(id) {
+    service('ShopAPI/GetShopGoodsDetail',{id:id})
+    .then(r => {
+      this.setData({
+        info:r.data.data
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -2,7 +2,7 @@
 <view class='board'>
   <view class='scroll'>
     <view class='left-img'>
-      <image src='/img/butie.png'></image>
+      <image src='/img/zxbt.png'></image>
     </view>
     <!-- <scroll-view class="right_container" scroll-y="true" scroll-with-animation="true" scroll-top='scrolltop'>
       <block wx:for="{{list}}" wx:key='index'>

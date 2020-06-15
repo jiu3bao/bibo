@@ -2,6 +2,7 @@
   "usingComponents": {
     "Userhead" : "../../components/user-head/user-head",
     "UserheadInfo" : "../../components/user-head-info/user-head-info",
+    "extendInfo":"../../components/extend-info/extend-info",
     "qrcode":"../../components/qrcode/qrcode"
   },
   "navigationBarTitleText": "个人中心"

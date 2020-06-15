@@ -18,7 +18,7 @@ Page({
       Page:p,
       PageSize:this.data.pagesize
     }
-    service('/GetFailedProRecordList',data)
+    service('API/GetFailedProRecordList',data)
     .then(r => {
       if(r.data.error_code===6) {
         wx.showToast({
@@ -63,17 +63,17 @@ Page({
   to_detail(e) {
     const item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/pages/staff-page/staff-page?item=' + JSON.stringify(item) ,
+      url: '/accompany/pages/staff-page/staff-page?item=' + JSON.stringify(item) ,
     })
   },
   torecord() {
     wx.navigateTo({
-      url: '/pages/staff-page/staff-page',
+      url: '/accompany/pages/staff-page/staff-page',
     })
   },
   qh() {
     wx.navigateTo({
-      url: '/pages/login/login',
+      url: '/packageA/pages/login/login',
     })
   },
   /**
@@ -94,6 +94,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx.hideHomeButton({
+      success() {
+        
+      }
+    })
     this.setData({
       list: []
     },() => {

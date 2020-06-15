@@ -1,23 +1,22 @@
-<!--components/user-head/user-head.wxml-->
+<!--components/extend-info/extend-info.wxml-->
 <view class='wallethead'>
   <!-- <image class='left' src='/img/let.png'></image> -->
   <view class='center'>
     <image class='cbg' src='/img/kapian.png'></image>
     <view class='w_c'>
       <view class='w_c_t'>
-        <image src='/img/qianbao.png'></image>
-        我的钱包
+        <image src='/img/aaaaaaa.png'></image>
+        我的收益
       </view>
       <view class='w_c_c'>
-        <text>￥</text>{{moneyInfo}}
+        <text>￥</text>{{money}}
       </view>
       <view class='w_c_btn'>
-        <view bindtap="apply_money" >提现</view>
         <view bindtap="todetail">明细</view>
       </view>
-      <view class='w_c_b' bindtap="tobank">
-        <image src='/img/bank.png'></image>
-        我的银行卡 >
+       <view class='w_c_b'>
+        <!-- <image src='/img/bank.png'></image>
+        我的银行卡 > -->
       </view>
     </view>
   </view>

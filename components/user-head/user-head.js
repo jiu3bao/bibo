@@ -6,8 +6,8 @@ Component({
    */
   properties: {
     moneyInfo:{
-      type:Object,
-      value:{}
+      type:Number,
+      value:0
     }
   },
 

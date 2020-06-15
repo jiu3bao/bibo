@@ -34,7 +34,7 @@
   <image class='qrcode' src='/img/aaaaaa.png'>
   </image>   
   <view class='tip'>详情扫码咨询</view>    
-  <button class='btn' bindtap="toapply">
+  <view class='bbb' bindtap="toapply">
     商家入住
-  </button>                
+  </view>            
 </view>

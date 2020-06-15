@@ -15,7 +15,7 @@
     <view class='line'></view>
   </view> 
 </view>
-<view class='item' bindtap="todetail" wx:for='{{list}}' wx:key='{{item.id}}'>
+<view class='item' bindtap="todetail" wx:for='{{list}}' wx:key='{{item.id}}' data-id='{{item.id}}'>
   <view class='t'>
     <view>订单号：542378694-2374</view>
     <view class='green'>待使用</view>

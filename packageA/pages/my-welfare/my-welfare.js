@@ -11,6 +11,8 @@ Page({
     used_l:[],
     page1:1,
     page2:1,
+    islastpage1:false,
+    islastpage2:false,
     list:[],
     actab:1
   },
@@ -36,17 +38,19 @@ Page({
       })
     }
   },
-  todetail() {
+  todetail(e) {
+    const id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/packageA/pages/my-welfare-detail/my-walfare-detail',
+      url: '/packageA/pages/my-welfare-detail/my-welfare-detail?id='+id,
     })
   },
   get_nouse_list() {
+    if(this.data.islastpage1) return 
     const data = {
       Token:wx.getStorageSync('user').Token,
       Param:'1',
       Page:this.data.page1,
-      PageSize:15
+      PageSize:5
     }
     service('ShopAPI/GetUserOrderList',data)
     .then(r => {
@@ -56,6 +60,11 @@ Page({
         })
         return 
       }
+      if(r.data.data.length<5) {
+        this.setData({
+          islastpage1:true
+        })
+      }
       this.setData({
         nouse_l:[...this.data.nouse_l,...r.data.data],
         list:[...this.data.nouse_l,...r.data.data],
@@ -63,11 +72,13 @@ Page({
     })
   },
   get_used_list() {
+    if(this.data.islastpage2) return 
+
     const data = {
       Token:wx.getStorageSync('user').Token,
       Param:'5',
       Page:this.data.page2,
-      PageSize:15
+      PageSize:5
     }
     service('ShopAPI/GetUserOrderList',data)
     .then(r => {
@@ -76,6 +87,11 @@ Page({
           url: '/packageA/pages/login/login',
         })
         return 
+      }
+      if(r.data.data.length<5) {
+        this.setData({
+          islastpage1:true
+        })
       }
       this.setData({
         used_l:[...this.data.used_l,...r.data.data],
@@ -132,7 +148,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.data.actab==1) {
+      this.setData({
+        page1:this.data.page1+1
+      },() => {
+        this.get_nouse_list()
+      })
+    } else {
+      this.setData({
+        page2:this.data.page2+1
+      },() => {
+        this.get_used_list()
+      })
+    }
   },
 
   /**

@@ -5,7 +5,7 @@
     退出登录
   </view>
   <view  class='o' bindtap="toapply">
-    申请商铺
+    {{status==0?'商铺正在审核':status==1?'':'申请商铺'}}
   </view>
   <view class='tip'>
     <view>

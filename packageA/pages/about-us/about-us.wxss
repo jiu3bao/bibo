@@ -44,10 +44,13 @@
   margin:20rpx auto 60rpx auto;
   text-align: center;
 }
-.btn {
+.bbb {
   width:343rpx;
   line-height:52rpx;
   background:linear-gradient(-7deg,rgba(68,179,154,1),rgba(88,204,129,1));
   border-radius:26rpx;
   color:#fff;
+  text-align: center;
+  font-size:23rpx;
+  margin:0 auto;
 }

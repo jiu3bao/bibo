@@ -44,7 +44,28 @@
   <image src='/img/chaxun.png'></image>
   术后效果图
 </view>
-<view class='photos'></view>
+<view class='photos'>
+  <view wx:if='{{obj.pic.length>0}}'>
+    正面照 
+    <image src='{{obj.pic}}'></image>
+  </view>
+  <view wx:if='{{obj.pic45.length>0}}'>
+    侧面45°左
+    <image src='{{obj.pic45}}'></image>
+  </view>
+  <view wx:if='{{obj.pic45r.length>0}}'>
+    侧面45°右
+    <image src='{{obj.pic45r}}'></image>
+  </view>
+  <view wx:if='{{obj.pic90.length>0}}'>
+     侧面90°
+    <image src='{{obj.pic90}}'></image>
+  </view>
+  <view wx:if='{{obj.pict.length>0}}'>
+    仰头照
+    <image src='{{obj.pict}}'></image>
+  </view>
+</view>
 <view class='f'>
   <view>
     术后恢复期（约）

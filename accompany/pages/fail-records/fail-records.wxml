@@ -1,7 +1,7 @@
 <!--pages/fail-records/fail-records.wxml-->
 <view class='contain'>
   <view class='clgdj'>
-    <image src='../../img/xiaofeiluru@2x.png' class='aaa' mode="widthFix" bindtap="torecord"></image>
+    <image src='/img/xiaofeiluru@2x.png' class='aaa' mode="widthFix" bindtap="torecord"></image>
   </view>
   <view class='a'>
     <image src=''></image>

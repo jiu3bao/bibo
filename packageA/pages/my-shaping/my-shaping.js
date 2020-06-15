@@ -69,7 +69,7 @@ Page({
     const data ={
       Page:this.data.page2,
       PageSize:15,
-      Param:1,
+      Param:2,
       Token: wx.getStorageSync('user').Token
     }
     service('API/GetMyMedicalRecordList', data)
@@ -96,7 +96,7 @@ Page({
         }
       })
       this.setData({
-        end_l:r.data.data
+        end_l:[...this.data.end_l,...r.data.data]
       })
     })
   },

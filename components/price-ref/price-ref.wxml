@@ -31,11 +31,11 @@
       wx:for-item="cs"
       wx:key='{{index}}'>
         <view class='left'>
-          <image src='/img/zhuuren.png'></image>
+          <image src="{{cs.title=='院长专家'?'/img/yuanzhuang.png':'/img/zhuuren.png'}}"></image>
           <view>{{cs.title}}</view>
         </view>
         <view class='right'>
-          <view class='masktxt' wx:if='{{showmask&&cs.title!=="主任"}}'>
+          <view class='masktxt' wx:if='{{showmask&&cs.title==="院长专家"}}'>
             加入会员了解全部补贴情况
             <image src='/img/lijijiaru.png' bindtap="tologin"></image>
           </view>
