@@ -1,15 +1,15 @@
 <!--components/chose-design/chose-design.wxml-->
 <view class='design'>
   <view class='zx_program'>
-    <view class='"item" {{activeType ==item?"active":""}}' 
+    <view class='"item" {{activeType ==item.name?"active":""}}' 
     wx:for='{{program_list}}'
     bindtap="checkitem"
-    data-item='{{item}}'>{{item}}</view>
+    data-item='{{item}}'>{{item.name}}</view>
   </view>
   <scroll-view scroll-x='true' class='sub_box'>
     <view class='ss'>
       <view wx:for='{{subject_list}}'>
-        <image src='/img/zhuuren.png'></image>
+        <image src='{{item.pic_url}}'></image>
       </view>
     </view>
   </scroll-view>

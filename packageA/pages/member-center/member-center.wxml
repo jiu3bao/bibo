@@ -42,6 +42,6 @@
     <view class='r' bindtap="tocontract">已阅读协议</view>
   </view>
   <view class='btn' bindtap="tobuy">
-    <image src='/img/mmbb.png'></image>
+    <image src='/img/mmbb.png' mode="widthFix"></image>
   </view>
 </view>

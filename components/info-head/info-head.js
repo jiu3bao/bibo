@@ -7,6 +7,10 @@ Component({
     info:{
       type:Object,
       value:{}
+    },
+    isshop:{
+      type:Boolean,
+      value:0
     }
   },
 

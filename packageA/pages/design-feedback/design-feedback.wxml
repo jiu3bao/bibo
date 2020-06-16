@@ -20,8 +20,8 @@
     wx:for-item='cc'
     wx:key='index'>
       <view class='left'>
-        <image src='/img/zhuuren.png'></image>
-        <view>{{item.title}}</view>
+        <image src="{{item.title!='院长'?'/img/zhuuren.png':'/img/yuanzhuang.png'}}"></image>
+        <view>{{cc.title}}</view>
       </view>
       <view class='right'>
         <view class='one'>
@@ -46,23 +46,18 @@
 </view>
 <view class='photos'>
   <view wx:if='{{obj.pic.length>0}}'>
-    正面照 
     <image src='{{obj.pic}}'></image>
   </view>
   <view wx:if='{{obj.pic45.length>0}}'>
-    侧面45°左
     <image src='{{obj.pic45}}'></image>
   </view>
   <view wx:if='{{obj.pic45r.length>0}}'>
-    侧面45°右
     <image src='{{obj.pic45r}}'></image>
   </view>
   <view wx:if='{{obj.pic90.length>0}}'>
-     侧面90°
     <image src='{{obj.pic90}}'></image>
   </view>
   <view wx:if='{{obj.pict.length>0}}'>
-    仰头照
     <image src='{{obj.pict}}'></image>
   </view>
 </view>
@@ -74,10 +69,23 @@
     {{obj.recover_time}}
   </view>
 </view>
-<view class='card' wx:if='{{ismember}}'>
+<view class='kf' wx:if='{{kf}}'>
+  <image class='bg' src='/img/kfbg.png'></image>
+  <view class='c'>
+    <image src='{{kf.head}}'></image>
+    <view class='right'>
+      <view >
+        Hi～我是您的专属咨询师：{{kf.name}}
+      </view>
+      <view>微信号：{{kf.wx}}</view>
+    </view>
+    
+  </view>
+</view>
+<!-- <view class='card' wx:if='{{ismember}}'>
   <view>预约整形，请联系咨询师微信：</view>    
   <view>XXXXXX</view>
-</view>
+</view> -->
 <view class='btnb' wx:else>
   <view class='btn' bindtap="tobuy">
     加入会员

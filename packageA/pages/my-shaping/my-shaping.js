@@ -12,7 +12,9 @@ Page({
     noend_l:[],
     end_l:[],
     page1:1,
-    page2:1
+    page2:1,
+    islastpage1:false,
+    islastpage2:false,
   },
   //切换tab
   switch(e) {
@@ -31,9 +33,10 @@ Page({
     }
   },
   get_noend() {
+    if(this.data.islastpage1) return
     const data ={
       Page:this.data.page1,
-      PageSize:15,
+      PageSize:5,
       Param:0,
       Token: wx.getStorageSync('user').Token
     }
@@ -60,15 +63,21 @@ Page({
           // i.item_list = i.item
         }
       })
+      if(r.data.data.length<5) {
+        this.setData({
+          islastpage1:true
+        })
+      }
       this.setData({
-        noend_l:r.data.data
+        noend_l:[...this.data.noend_l,...r.data.data]
       })
     })
   },
   get_end() {
+    if(this.data.islastpage2) return 
     const data ={
       Page:this.data.page2,
-      PageSize:15,
+      PageSize:5,
       Param:2,
       Token: wx.getStorageSync('user').Token
     }
@@ -95,6 +104,11 @@ Page({
           // i.item_list = i.item
         }
       })
+      if(r.data.data.length<5) {
+        this.setData({
+          islastpage2:true
+        })
+      }
       this.setData({
         end_l:[...this.data.end_l,...r.data.data]
       })
@@ -149,7 +163,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.data.actab==1) {
+      this.setData({
+        page1:this.data.page1+1
+      },() => {
+        this.get_noend()
+      })
+    } else {
+      this.setData({
+        page2:this.data.page2+1
+      },() => {
+        this.get_end()
+      })
+    }
   },
 
   /**

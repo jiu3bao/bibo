@@ -43,7 +43,7 @@ Page({
     isshop:false,
     moneyInfo:{},
     showqrcode:false,
-    kf:{},
+    kf:null,
     shop_status:2//默认无店铺，1 是有店铺 2是正在审核店铺
   },
   //获取专属咨询师
@@ -54,6 +54,10 @@ Page({
         this.setData({
           kf:r.data.data
         })
+      })
+    } else {
+      this.setData({
+        kf:null
       })
     }
   },
@@ -109,7 +113,7 @@ Page({
         wx.removeStorageSync('shopinfo')
         return 
       }
-      if(r.data.data.id) { //有商铺
+      if(r.data.data) { //有商铺
         this.setData({
           isshop:r.data.data.status===1,
           shop_status:r.data.data.status

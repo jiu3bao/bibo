@@ -82,5 +82,4 @@ page {
 }
 .btn image{
   width:100%;
-  height:120rpx;
 }

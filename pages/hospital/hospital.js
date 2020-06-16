@@ -27,6 +27,7 @@ Page({
       })
     })
     .catch(e => {
+      console.error(e)
       wx.showToast({
         title: '网络错误',
         duration: 2000,
@@ -44,6 +45,7 @@ Page({
     }
     service('ConsultAPI/GetMyCaseList',data)
     .then(r => {
+      if(r.data.error_code==6) return 
       if(r.data.error_code!=0) {
         wx.showToast({
           title: r.data.message,
@@ -61,6 +63,7 @@ Page({
       })
     })
   },
+
   to_design() {
     wx.navigateTo({url:'/packageA/pages/setdesign/setdesign'})
   },

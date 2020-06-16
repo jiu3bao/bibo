@@ -231,7 +231,6 @@ Page({
       pic_url:this.data.img_list[0],
       item:l,
     }
-    console.log(data)
     service('API/AddProRecord',data)
     .then(r => {
       if(r.data.error_code!==0) {

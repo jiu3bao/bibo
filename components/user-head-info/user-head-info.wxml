@@ -9,7 +9,7 @@
         编辑个人资料>
       </view>
       <view class='info' wx:if='{{type===1}}'>
-        <image src='{{info.head||"/img/VIP@2x.png"}}' class='avata'></image>
+        <image src='{{info.head||"/img/default.png"}}' class='avata'></image>
         <view class='i-r'>
           <view>
             <image src='/img/VIP@2x.png' wx:if='{{info.is_member===1}}'></image>

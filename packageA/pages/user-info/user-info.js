@@ -139,7 +139,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      info:{...wx.getStorageSync('user'),iszxs:true}
+      info:{...wx.getStorageSync('user')}
     })
     const now = new Date()
     let year = now.getFullYear()

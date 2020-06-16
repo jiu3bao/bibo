@@ -25,6 +25,7 @@ page {
 }
 .now {
   background: #fff;
+  margin-top:30rpx;
 }
 .now .t {
   display: flex;
@@ -49,7 +50,7 @@ page {
   align-items: center;
   font-size:19rpx;
   color:rgba(27,27,27,1);
-  height:40rpx;
+  padding:15rpx 0;
 }
 .detail view {
   width:28%;
@@ -72,6 +73,7 @@ page {
 .p-l {
   display: flex;
   flex-wrap: nowrap;
+  margin-top:20rpx;
 }
 .p-l image{
   width:139rpx;

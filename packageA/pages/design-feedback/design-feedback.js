@@ -9,7 +9,8 @@ Page({
   data: {
     subject_list:[],
     obj:{},
-    ismember:false
+    ismember:false,
+    kf:{}
   },
   get_solution(id) {
     const data = {
@@ -49,10 +50,21 @@ Page({
       })
     })
   },
+  get_zxs() {
+    if(wx.getStorageSync('user').Token) {
+      service('ConsultAPI/GetMyZXS',{Token:wx.getStorageSync('user').Token})
+      .then(r => {
+        this.setData({
+          kf:r.data.data
+        })
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.get_zxs()
     const caseid = options.caseid
     this.get_solution(caseid)
     const now = Date.now()

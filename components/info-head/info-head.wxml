@@ -2,14 +2,15 @@
 <view class='head'>
   <image class='bg' src='/img/ubg.png'></image>
   <view class='con'>
-    <image class='avatar' src='{{info.head}}'></image>
+    <image class='avatar' src='{{info.head.length>0?info.head:"/img/default.png"}}'></image>
     <view class='right'>
       <view class='t'>
-        {{info.name}}
-        <image src='/img/kapian.png'></image>
-        <image src='/img/vip.png'></image>
+        {{info.name||'XXX'}}
+        <image wx:if='{{isshop}}' src='/img/shang@2x.png'></image>
+        <image src='/img/vip.png'  wx:if='{{info.is_member===1}}'></image>
       </view>
       <view class='b'>
+      {{info.iszxs}}
         {{info.iszxs?"咨询师号:"+info.id:"会员号:"+info.id}}
       </view>
     </view>
