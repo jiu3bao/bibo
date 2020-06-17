@@ -28,3 +28,4 @@
     <view>{{filters.formatTime(item.addtime)}}</view>
   </view>
 </view>
+<KF></KF>

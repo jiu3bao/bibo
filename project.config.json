@@ -22,7 +22,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -68,8 +68,8 @@
 				},
 				{
 					"id": 1,
-					"name": "pages/user/user",
-					"pathName": "pages/user/user",
+					"name": "packageA/pages/setdesign/setdesign",
+					"pathName": "packageA/pages/setdesign/setdesign",
 					"query": "scene=25",
 					"scene": 1048
 				}

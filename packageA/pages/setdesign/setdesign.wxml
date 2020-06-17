@@ -11,23 +11,24 @@
   </view>
   <view class='photos'>
     <view bindtap='add_pic' data-type='pic'>
-      pic
+       正面照 
+
       <image src='{{pic}}'></image>
     </view>
     <view bindtap='add_pic' data-type='pic45'>
-      pic45
+      侧面45°左
       <image src='{{pic45}}'></image>
     </view>
     <view bindtap='add_pic' data-type='pic90'>
-      pic90
+      侧面90复
       <image src='{{pic90}}'></image>
     </view>
     <view bindtap='add_pic' data-type='pic45r'>
-      pic45r
+      侧面45°右
       <image src='{{pic45r}}'></image>
     </view>
     <view bindtap='add_pic' data-type='pict'>
-      pict
+      仰头照
       <image src='{{pict}}'></image>
     </view>
   </view>

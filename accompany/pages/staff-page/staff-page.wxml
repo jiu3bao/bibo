@@ -4,7 +4,7 @@
     <view>会员查询</view>
     <view class='search'>
       <input type="search" value='{{phone}}' bindinput='set_phone' placeholder="请输入会员手机号码"></input>
-      <image src='/img/vip.png' bindtap="confiry_phone"></image>
+      <image src='/img/sousuo5@2x.png' bindtap="confiry_phone"></image>
     </view>
   </view>
   <infohead info='{{base_info}}' wx:if='{{base_info.id}}'></infohead>

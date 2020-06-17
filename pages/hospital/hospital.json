@@ -2,8 +2,8 @@
   "usingComponents": {
     "Banner" : "../../components/banner/banner",
     "DocList" : "../../components/doc-list/doc-list",
-    "Design" : "../../components/chose-design/chose-design"
-
+    "Design" : "../../components/chose-design/chose-design",
+    "KF":"../../components/kf/kf"
   },
   "navigationBarTitleText": "亿美咨询" 
 }

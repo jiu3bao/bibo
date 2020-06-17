@@ -1,0 +1,7 @@
+<!--components/kf/kf.wxml-->
+<view class='box'>
+  <button class='inner' bindtap="tokf" open-type="contact">
+    <image src='/img/kfff.png'></image>
+    在线客服
+  </button>
+</view>

@@ -22,6 +22,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    todetail(e) {
+      const item = e.currentTarget.dataset.item
+      if(item.to_link==1) {
+        wx.navigateTo({
+          url: '/packageA/pages/member-center/member-center',
+        })
+      }
+    }
   }
 })

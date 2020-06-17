@@ -2,7 +2,7 @@
 <view class='p'>
   <view class='search'>
     <input type="search" value='{{txt}}' bindinput='bindKeyInput'></input>
-    <image src='/img/vip.png' bindtap="search"></image>
+    <image src='/img/sousuo5@2x.png' bindtap="search"></image>
   </view>
   <view class='list' wx:for='{{list}}' wx:key='{{index}}' wx:if='{{item.isshow}}'
   bindtap="to_detail" data-item='{{item}}'>

@@ -52,9 +52,13 @@ Page({
             } else {
               this.is_shop()
             }
-            if(wx.getStorageSync('user').pop==100) {
-              wx.navigateTo({
-                url: '/pages/fail-records/fail-records'
+            if(wx.getStorageSync('isemployee')==100) {
+              wx.reLaunch({
+                url: '/accompany/pages/fail-records/fail-records'
+              })
+            } else if(wx.getStorageSync('isemployee')==20||wx.getStorageSync('isemployee')==21) {
+              wx.reLaunch({
+                url: '/accompany/pages/my-vip/my-vip'
               })
             } else {
               wx.switchTab({

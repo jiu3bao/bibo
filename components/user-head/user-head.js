@@ -94,7 +94,7 @@ Component({
               return new Promise((resolve, reject) => { reject(r.data.message) }
               ) 
             }
-            return service('/GetUserInfo',{ Token: token})
+            return service('API/GetUserInfo',{ Token: token})
           })
           .then(r1 => {
             if (r1.data.error_code === 6) {

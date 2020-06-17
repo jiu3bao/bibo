@@ -30,18 +30,18 @@ Page({
     })
   },
   submit() {
-    for(let k in this.data) {
-      if(!this.data[k] || this.data[k].length==0) {
-        if(k=='is_done' ||(k=='done_item_des'&&!this.data.is_done)) {
+    // for(let k in this.data) {
+      // if(!this.data[k] || this.data[k].length==0) {
+      //   if(k=='is_done' ||(k=='done_item_des'&&!this.data.is_done)) {
 
-        }  else {
-          wx.showToast({
-            title: '请填写完整信息',
-            icon:'none'
-          })
-        }
-      }
-    }
+      //   }  else {
+      //     wx.showToast({
+      //       title: '请填写完整信息',
+      //       icon:'none'
+      //     })
+      //   }
+      // }
+    // }
     const data = {...this.data,Token:wx.getStorageSync('user').Token}
     delete data.__webviewId__
     service('/ConsultAPI/AddCustomCase',data)

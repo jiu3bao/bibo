@@ -140,6 +140,11 @@ Page({
       .then(r => {
         r.data.data.map(i => {
           i.ischeck = false
+          this.data.chosen_item_list.map(old => {
+            if(i.medical_code==old.medical_code) {
+              i.ischeck = true
+            }
+          })
         })
         pro.children = r.data.data
         console.log(this.data.program_list)
@@ -224,6 +229,7 @@ Page({
         ratio:''
       })
     }
+    debugger
     const data ={
       Token:wx.getStorageSync('user').Token,
       mobile:this.data.phone,
@@ -346,8 +352,19 @@ Page({
       const {head,detail,id,item_list,mobile,name,pic_url,time,money,hospital,member_user_id} = item
       
       this.get_hos(hospital)
-      console.log(item)
-      
+      const c_map = new Map()
+      const c_item = item_list.filter(i => {
+        c_map.set(i.medical_code,i)
+        if(i.medical_code==145) {
+          this.setData({
+            item_name:i.item,
+            price:i.price,
+            inputother:true
+          })
+        } else {
+          return i
+        }
+      })
       this.setData({
         date:time,
         base_info:{head,default_head:'../../img/default.png',name,mobile,id:member_user_id},
@@ -355,6 +372,9 @@ Page({
         total_money:money,
         change_id:id,
         phone:mobile,
+        img_list:[pic_url],
+        chosen_item:c_map,
+        chosen_item_list:c_item
       })
       return 
     }

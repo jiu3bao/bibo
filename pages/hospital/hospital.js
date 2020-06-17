@@ -41,7 +41,6 @@ Page({
       Token:wx.getStorageSync('user').Token,
       Page:this.data.page,
       PageSize:5,
-      status:1
     }
     service('ConsultAPI/GetMyCaseList',data)
     .then(r => {
@@ -69,6 +68,16 @@ Page({
   },
   to_feedback(e) {
     const item = e.currentTarget.dataset.item
+    if(item.status==0) {
+      wx.showModal({
+        title: '提示',
+        content: '该方案暂无咨询师回复，请稍候',
+        success (res) {
+          
+        }
+      })
+      return
+    }
     wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback?caseid='+item.custom_case_id})
   },
   /**

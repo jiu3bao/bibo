@@ -41,15 +41,15 @@
           </view>
           <view class='one'>
             <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{cs.price}}</text>
-            医院优惠价格
+            医院收费
           </view>
           <view class='two'>
             <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{filters.toFix(cs.price*(1-cs.ratio))}}</text>
-            补贴金优惠
+            补贴金额
           </view>
           <view class='three'>
             <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{filters.toFix(cs.price*cs.ratio)}}</text>
-            优惠后总价格
+            实际收费
           </view>
         </view>
       </view>

@@ -10,34 +10,34 @@ Page({
       name:'我的整形',
       icon:'/img/meirong.png',
       route:'/packageA/pages/my-shaping/my-shaping',
-      auto:1,
+      auth:1,
     },{
       name:'我的二维码',
       icon:'/img/weibiaoti---2.png',
       route:'aaa',
-      auto:0,
+      auth:0,
     },{
       name:'我的福利',
       icon:'/img/shouye-10.png',
       route:'/packageA/pages/my-welfare/my-welfare',
-      auto:1,
+      auth:1,
     },{
       name:'关于我们',
       icon:'/img/shouye-12.png',
       route:'/packageA/pages/about-us/about-us',
-      auto:0,
+      auth:0,
     },
     {
       name:'设置',
       icon:'/img/shezhi.png',
       route:'/packageA/pages/set-sys/set-sys',
-      auto:0,
+      auth:0,
     },
     {
       name:'我的店铺',
       icon:'/img/wodedianp.png',
       route:'/packageA/pages/shop/shop',
-      auto:0,
+      auth:0,
     }],
     info:{},
     isshop:false,
@@ -64,7 +64,7 @@ Page({
   //导航到二级页面
   route2(e) {
     const item = e.currentTarget.dataset.item
-    if(item.auth===1) {//会员权限
+    if(item.auth==1) {//会员权限
       if(wx.getStorageSync('user').is_membe!=1) {
         wx.showModal({
           title: '提示',
@@ -72,7 +72,7 @@ Page({
           success (res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '/packageA/pages/login/login',
+                url: '/packageA/pages/member-center/member-center',
               })
             } else if (res.cancel) {
               console.log('用户点击取消')
