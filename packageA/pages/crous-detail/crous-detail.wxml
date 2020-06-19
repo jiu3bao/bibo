@@ -26,14 +26,14 @@
   </view>
   <image src='{{img}}' mode='widthFix' style="width:100%" wx:for='{{detail.content_pic}}' wx:for-item='img'>
   </image>
-  <view class='title'>
+  <!-- <view class='title'>
     <image src='/img/chaxun.png'></image>
     使用规则
-  </view>
+  </view> -->
   <view class='rules'>
-    <view class='rules_item' wx:for='{{rules_list}}'>
+    <view class='rules_item'>
       <view class='dot'></view>
-      <view>{{item}}</view>
+      <view>{{detail.txt}}</view>
     </view>
   </view>
   <view class='bb'>

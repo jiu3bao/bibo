@@ -1,13 +1,14 @@
 <!--pages/set-sys/set-sys.wxml-->
 <view class='b'>
   <view class='o' bindtap='logout'>
-    <image src='/img/meirong.png'></image>
+    <image src='/img/tuichu@2x.png'></image>
     退出登录
   </view>
   <view  class='o' bindtap="toapply">
     {{status==0?'商铺正在审核':status==1?'':'申请商铺'}}
   </view>
   <view class='tip'>
+    <image src='/img/kfbg.png' class='bg'></image>
     <view>
       客服电话
     </view>

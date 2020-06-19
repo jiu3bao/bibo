@@ -1,35 +1,32 @@
+<!--accompany/pages/member-info/member-info.wxml-->
 <!--pages/user-info/user-info.wxml-->
-<InfoHead info='{{info}}' bindtap='uphead'></InfoHead>
+<InfoHead info='{{info}}'></InfoHead>
 <view class='a'>
   <view class='flex'>
     <view class='l'>真实姓名</view>
-    <input bindinput='bindKeyInput' 
+    <input disabled="true"
     value='{{info.name}}' 
-    data-type='name'
-    placeholder="请输入"></input>
+    data-type='name'></input>
   </view>
   <view class='flex'>
     <view class='l'>性别</view>
-    <view class='r' bindtap="opensex">
-      {{info.sex?info.sex:"请选择 >"}}
+    <view class='r'>
+      {{info.sex?info.sex:""}}
     </view>
   </view>
   <view class='flex'>
     <view class='l'>出生日期</view>
     <view class='r'>
-      <picker mode="date" value="{{info.birthday}}" start="1900-01-01" end="{{nowdate}}" bindchange="set_birthday">
-        <view class="picker">
-          {{info.birthday?info.birthday:'点击选择 >'}}
-        </view>
-      </picker>
+      <view class="picker">
+        {{info.birthday?info.birthday:''}}
+      </view>
     </view>
   </view>
   <view class='flex'>
     <view class='l'>微信号</view>
-    <input bindinput='bindKeyInput' 
+    <input disabled="true"
     value='{{info.wx}}'
-    data-type='wx' 
-    placeholder="请输入"></input>
+    data-type='wx' ></input>
   </view>
   <view class='flex'>
     <view class='l'>手机号</view>
@@ -55,4 +52,4 @@
       
   </view> -->
 </view>
-<button bindtap="submit" class='sub'>保存</button>
+

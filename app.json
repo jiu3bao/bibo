@@ -33,7 +33,8 @@
         "pages/set-design/set-design",
         "pages/staff-page/staff-page",
         "pages/fail-detail/fail-detail",
-        "pages/fail-records/fail-records"
+        "pages/fail-records/fail-records",
+        "pages/member-info/member-info"
       ]
     }
   ],

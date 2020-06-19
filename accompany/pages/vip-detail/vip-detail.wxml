@@ -1,5 +1,6 @@
 <!--accompany/pages/vip-detail/vip-detail.wxml-->
-<infohead info='{{info}}'></infohead>
+<wxs module="filters" src="../../../utils/filter.wxs"></wxs>
+<infohead info='{{info}}' bindtap='touserinfo'></infohead>
   <view class='title'>
     <image src='/img/chaxun.png'></image>
     设计方案
@@ -8,7 +9,7 @@
     <view>Ta的专属设计方案</view>
     <view>{{item.addtime}}</view>
   </view>
-  <view class='title'>
+  <!-- <view class='title'>
     <image src='/img/chaxun.png'></image>
     整形记录
   </view>
@@ -41,47 +42,21 @@
         <view class='b2'>500</view>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class='title j-sb'>
     <view class='t-l'>
-      <image src='/img/chaxun.png'></image>历史记录
+      <image src='/img/chaxun.png'></image>整形记录
     </view>
-    <image src='/img/xiala.png' class='xiala {{isexpand?"rotate":""}}}' bindtap="expand" ></image>
+    <!-- <image src='/img/xiala.png' class='xiala {{isexpand?"rotate":""}}}' bindtap="expand" ></image> -->
   </view>
   <view class="old {{isexpand?'noheight':''}}">
-    <view class='o-i'>
+    <view class='o-i' wx:for='{{shape_list}}' wx:key='{{item.id}}'>
       <view class='o-l'>
         <view>
-          消费医院：<text>长春医美医院</text>
+          消费医院：<text>{{item.hospital}}</text>
         </view>
         <view>
-          消费日期：<text>2020-04-16</text>
-        </view>
-      </view>
-      <view class='r'>
-      已发放
-      </view>
-    </view>
-    <view class='o-i'>
-      <view class='o-l'>
-        <view>
-          消费医院：<text>长春医美医院</text>
-        </view>
-        <view>
-          消费日期：<text>2020-04-16</text>
-        </view>
-      </view>
-      <view class='r'>
-      已发放
-      </view>
-    </view>
-    <view class='o-i'>
-      <view class='o-l'>
-        <view>
-          消费医院：<text>长春医美医院</text>
-        </view>
-        <view>
-          消费日期：<text>2020-04-16</text>
+          消费日期：<text>{{filters.formatTime(item.time)}}</text>
         </view>
       </view>
       <view class='r'>

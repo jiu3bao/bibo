@@ -67,8 +67,15 @@ page {
   border-radius:36rpx;
   color:#fff;
   font-size:25rpx;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin:30rpx auto 20rpx auto;
+}
+.btn image {
+  width: 37rpx;
+  height:37rpx;
+  margin-right:16rpx;
 }
 .tip {
   font-size:19rpx;

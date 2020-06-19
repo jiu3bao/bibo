@@ -1,6 +1,6 @@
 // pages/user-info/user-info.js
 import service from '../../../utils/api.js'
-
+import {returnimg} from '../../../utils/util.js'
 Page({
 
   /**
@@ -12,6 +12,16 @@ Page({
     code:'',
     time:0,
     timer:null
+  },
+  uphead() {
+    returnimg()
+    .then(r => {
+      this.setData({
+        info:{...this.data.info,
+          head: r[0]
+        }
+      })
+    })
   },
   bindKeyInput(e) {
     const type = e.currentTarget.dataset.type

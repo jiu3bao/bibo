@@ -119,7 +119,7 @@ Page({
           })
           return
         }
-        wx.setStorageSync('isemployee', true)
+        wx.setStorageSync('isemployee', r.data.data.pop)
         wx.showToast({
           title: '登录成功',
           duration: 2000
@@ -127,11 +127,11 @@ Page({
         
         wx.setStorageSync('user', r.data.data)
         if(r.data.data.pop==100) {//陪诊
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/accompany/pages/fail-records/fail-records'
           })
         } else {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/accompany/pages/my-vip/my-vip'
           })
         }

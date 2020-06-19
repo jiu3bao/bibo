@@ -68,8 +68,8 @@
 				},
 				{
 					"id": 1,
-					"name": "packageA/pages/setdesign/setdesign",
-					"pathName": "packageA/pages/setdesign/setdesign",
+					"name": "pages/employee-login/employee-login",
+					"pathName": "pages/employee-login/employee-login",
 					"query": "scene=25",
 					"scene": 1048
 				}

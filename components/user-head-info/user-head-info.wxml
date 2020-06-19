@@ -38,7 +38,7 @@
         {{info.is_member===1?"vip会员 丨 到期日期："+info.member_expire:"普通用户"}}
       </view>
       <view class='w_c_b' wx:else>
-        <image src='/img/zxs.png'></image>
+        <image src="{{info.pop===20?'/img/zuanshi.png':'/img/zxs.png'}}"></image>
         {{info.pop===20?"普通咨询师":"高级咨询师"}}
       </view>
     </view>

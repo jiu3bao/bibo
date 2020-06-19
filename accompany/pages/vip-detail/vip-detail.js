@@ -8,7 +8,10 @@ Page({
   data: {
     info:{},
     isexpand:false,
-    designs:[]
+    designs:[],
+    page:1,
+    islastpage:false,
+    shape_list:[]
   },
 
   /**
@@ -20,21 +23,32 @@ Page({
     this.setData({
       info:{...item,id:item.user_id},
       designs
-    })
-    this.get_records(item.user_id)
+    },() => {
+      this.get_records()
+    })  
+    
   },
   
   //获取整形记录
-  get_records(id) {
+  get_records() {
+    if(this.data.islastpage) return
     const data = {
-      Page:1,
-      PageSize:1000,
+      Page:this.data.page,
+      PageSize:5,
       Token:wx.getStorageSync('user').Token,
-      id
+      id:this.data.info.id
     }
     service('ConsultAPI/GetCustomMedicalList',data)
     .then(r => {
-
+      this.setData({
+        shape_list:[...this.data.shape_list,...r.data.data]
+      })
+    })
+  },
+  //查看会员详情
+  touserinfo() {
+    wx.navigateTo({
+      url: '/accompany/pages/member-info/member-info?info='+ JSON.stringify(this.data.info),
     })
   },
   expand() {
@@ -81,7 +95,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      page:this.data.page+1
+    },() => {
+      this.get_records()
+    })
   },
 
   /**

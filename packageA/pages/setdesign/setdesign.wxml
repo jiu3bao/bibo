@@ -67,6 +67,8 @@
       <input placeholder="请输入您的状况" value='{{his}}' bindinput="input" data-type='his'></input>
     </view>
   </view>
-  <view class='btn' bindtap="submit">提交给咨询师</view>
+  <view class='btn' bindtap="submit">
+  <image src='/img/ssj.png'></image>
+  提交给咨询师</view>
   <view class='tip'>设计方案稍后将发送给您，请耐心等待</view>
 </view>

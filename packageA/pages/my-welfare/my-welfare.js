@@ -39,9 +39,9 @@ Page({
     }
   },
   todetail(e) {
-    const id = e.currentTarget.dataset.id
+    const item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/packageA/pages/my-welfare-detail/my-welfare-detail?id='+id,
+      url: '/packageA/pages/my-welfare-detail/my-welfare-detail?item='+JSON.stringify(item) ,
     })
   },
   get_nouse_list() {

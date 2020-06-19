@@ -36,6 +36,7 @@ swiper-item {
   align-items: center;
   color:rgba(112,112,112,1);
   margin-top:38rpx;
+  margin-bottom:38rpx;
 }
 .c image {
   width:49rpx;

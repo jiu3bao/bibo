@@ -130,3 +130,6 @@ page {
 .actab .line {
   background:rgba(80,195,151,1);
 }
+.green {
+  color:#54C786
+}

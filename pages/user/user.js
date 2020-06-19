@@ -65,7 +65,7 @@ Page({
   route2(e) {
     const item = e.currentTarget.dataset.item
     if(item.auth==1) {//会员权限
-      if(wx.getStorageSync('user').is_membe!=1) {
+      if(wx.getStorageSync('user').is_member!=1) {
         wx.showModal({
           title: '提示',
           content: '加入会员才能查看此功能，是否加入？',

@@ -35,7 +35,7 @@ Page({
         this.get_order_id()
         .then(res => {
           if(this.data.detail.price==0) {
-            console.log(res)
+            wx.hideLoading()
             wx.navigateTo({
               url: '/packageA/pages/get-success/get-success?code='+res.code,
             })
@@ -44,7 +44,8 @@ Page({
           this.get_pay_param(res.order_id, wx.getStorageSync('openid'))
         })
         .catch(err => {
-          console.log(err)
+          wx.hideLoading()
+          console.error(err)
           wx.showToast({
             title: err,
             icon:"none"
@@ -52,6 +53,7 @@ Page({
         })
       }
     } else {
+      wx.hideLoading()
       wx.navigateTo({
         url: '/packageA/pages/login/login',
         events: {

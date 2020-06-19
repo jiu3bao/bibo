@@ -35,7 +35,7 @@
   <view class='kf' wx:if='{{!showqrcode&&kf}}'>
     <image class='bg' src='/img/kfbg.png'></image>
     <view class='c'>
-      <image src='{{kf.head}}'></image>
+      <image src='{{kf.head||"/img/kftx.png"}}'></image>
       <view class='right'>
         <view >
           Hi～我是您的专属咨询师：{{kf.name}}

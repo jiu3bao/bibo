@@ -14,8 +14,11 @@
     <image src='/img/shezhi.png'></image>
     设置
   </view>
-  <view class='qb'>
-    <view class='qrcode'></view>
+  <qrcode info="{{info}}"></qrcode>
+  <!-- <view class='qb'>
+    <view class='qrcode'>
+        
+    </view>
     <view class='name'>
       <image src='{{info.head}}'></image>
       {{info.name}}
@@ -23,7 +26,7 @@
     <view class='btn'>
       保存图片
     </view>
-  </view>
+  </view> -->
 </view>
 
 
