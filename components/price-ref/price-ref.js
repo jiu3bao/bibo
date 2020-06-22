@@ -84,10 +84,9 @@ Component({
           })
           const c_arr = []
           for (let [key, value] of map) {
-            c_arr.push({name:key,children:value})
+            c_arr.push({name:key,children:value,isfold:true})
           }
           pro.children = c_arr
-          console.log(this.data.program_list)
           this.setData({
             subject_list:c_arr,
             program_list:[...this.data.program_list]

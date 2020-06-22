@@ -10,7 +10,7 @@
       </block>
     </swiper>
   </view>
-  <view class='c'>
+  <view class='c'  bindtap="toset">
     <image src='/img/shezhi.png'></image>
     设置
   </view>

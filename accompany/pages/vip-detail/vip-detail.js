@@ -56,6 +56,20 @@ Page({
       isexpand:!this.data.isexpand
     })
   },
+  to_feedback(e) {
+    const item = e.currentTarget.dataset.item
+    if(item.status==0) {
+      wx.showModal({
+        title: '提示',
+        content: '该方案暂无咨询师回复，请稍候',
+        success (res) {
+          
+        }
+      })
+      return
+    }
+    wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback?caseid='+item.custom_case_id})
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

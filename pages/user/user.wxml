@@ -1,21 +1,20 @@
 <!--pages/user/user.wxml-->
 <view>
   <image src='/img/bg.png' class='bg'></image>
-  <swiper class="contain">
-    <block class='s-item'>
-      <swiper-item>
-        <UserheadInfo info="{{info}}" isshop="{{isshop}}"></UserheadInfo>
+  <swiper class="contain" current='{{1}}'>
+    <block>
+      <swiper-item class='wallet'>
+        <Userhead moneyInfo="{{info.money}}" bind:applyed='applyed' class='ff'></Userhead>  
+      </swiper-item>
+    </block>
+    <block class='s-item' >
+      <swiper-item bindtap='tobuy'>
+        <UserheadInfo info="{{info}}" isshop="{{isshop}}" class='ff'></UserheadInfo>
       </swiper-item>
     </block>
     <block>
       <swiper-item class='wallet'>
-        <Userhead moneyInfo="{{info.money}}" bind:applyed='applyed'></Userhead>
-          
-      </swiper-item>
-    </block>
-    <block>
-      <swiper-item class='wallet'>
-        <extendInfo money='{{moneyInfo.fx+moneyInfo.zs}}'></extendInfo>  
+        <extendInfo money='{{moneyInfo.fx+moneyInfo.zs}}' class='ff'></extendInfo>  
       </swiper-item>
     </block>
     

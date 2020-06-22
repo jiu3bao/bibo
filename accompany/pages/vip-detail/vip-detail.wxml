@@ -5,7 +5,7 @@
     <image src='/img/chaxun.png'></image>
     设计方案
   </view>
-  <view class='myde' bindtap="to_feedback" wx:for='{{designs}}' wx:key='{{item.custom_case_id}}'>
+  <view class='myde' bindtap="to_feedback" wx:for='{{designs}}' wx:key='{{item.custom_case_id}}' data-item='{{item}}'>
     <view>Ta的专属设计方案</view>
     <view>{{item.addtime}}</view>
   </view>

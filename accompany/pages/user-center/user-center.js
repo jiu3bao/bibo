@@ -28,6 +28,11 @@ Page({
       })
     })
   },
+  toset() {
+    wx.navigateTo({
+      url: '/packageA/pages/set-sys/set-sys?showapply=0',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

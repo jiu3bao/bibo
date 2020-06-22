@@ -1,4 +1,5 @@
 <!--components/board/board.wxml-->
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
 <view class='board'>
   <view class='scroll'>
     <view class='left-img'>
@@ -13,13 +14,15 @@
         </view>
       </block>
     </scroll-view> -->
-    <swiper class="right_container" vertical="true" autoplay="true" circular="true" interval="3000" display-multiple-items='3'>
-      <block wx:for="{{list}}">
+    <swiper class="right_container" vertical="true" autoplay="true" circular="true" interval="3000" display-multiple-items='{{list.length>3?3:list.length}}'>
+      <block wx:for="{{list}}" wx:key='{{index}}'>
           <swiper-item>
-            <view data-id="{{item.id}}" class="scroll_item">
-              <view class='name'>{{item.name}}<text>{{item.id}}</text></view>
-              <view class='price'>补贴金<text>{{item.price}}</text></view>
-              <view class='time'>{{item.time}}</view>
+            <view data-id="{{index}}" class="scroll_item">
+              <view class='name'>{{item.name}}
+                <!-- <text>{{item.id}}</text> -->
+              </view>
+              <view class='price'>补贴金<text>{{item.subsidy}}</text></view>
+              <view class='time'>{{filters.formatTime(item.time)}}</view>
             </view>
           </swiper-item>
       </block>

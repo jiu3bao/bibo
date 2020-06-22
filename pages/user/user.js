@@ -177,6 +177,12 @@ Page({
       showqrcode:false
     })
   },
+  tobuy() {
+    if(wx.getStorageSync('user').is_member==1) return
+    wx.navigateTo({
+      url: '/packageA/pages/member-center/member-center',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

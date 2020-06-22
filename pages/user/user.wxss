@@ -15,11 +15,14 @@ page {
   width: 100%;
 }
 swiper-item {
-  width:90% !important;
+  width:86% !important;
   display: flex;
   justify-content: center;
-  margin:0 5%;
-  padding:0 5rpx;
+  margin:0 7%;
+  padding:0;
+}
+.ff {
+  width:96%;
 }
 .mycontent {
   display: flex;

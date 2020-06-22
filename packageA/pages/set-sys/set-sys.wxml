@@ -4,8 +4,12 @@
     <image src='/img/tuichu@2x.png'></image>
     退出登录
   </view>
-  <view  class='o' bindtap="toapply">
-    {{status==0?'商铺正在审核':status==1?'':'申请商铺'}}
+  <view class='o' bindtap='toem'>
+    <image src='/img/tuichu@2x.png'></image>
+    员工登录（测试用）
+  </view>
+  <view  class='o' bindtap="toapply" wx:if='{{showapply==1}}'>
+    {{status==0?'商铺正在审核':status==1?'':'申请商铺'}} {{showapply}}
   </view>
   <view class='tip'>
     <image src='/img/kfbg.png' class='bg'></image>
