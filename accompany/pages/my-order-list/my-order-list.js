@@ -25,7 +25,7 @@ Page({
     .then(r => {
       r.data.data.map(i => {
         const time = new Date(i.member_expire)
-        i.ismember=time>this.data.now
+        i.ismember=(time>this.data.now)+''
         console.log(time)
       })
       this.setData({
@@ -49,7 +49,7 @@ Page({
     .then(r => {
       r.data.data.map(i => {
         const time = new Date(i.member_expire)
-        i.ismember=time>this.data.now
+        i.ismember=(time>this.data.now)+''
       })
       this.setData({
         publiclist:[...this.data.publiclist,...r.data.data]
@@ -64,9 +64,23 @@ Page({
   },
   access(e) {
     const casei = JSON.stringify(e.currentTarget.dataset.case)
+    console.log(casei)
     if(this.data.actab===1) {
       wx.navigateTo({
         url: '/accompany/pages/set-design/set-design?casei='+casei,
+        events: {
+          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+          acceptDataFromOpenedPage: function (data) {
+            console.log(data)
+          },
+          someEvent: function (data) {
+            console.log(data)
+          }
+        },
+        success: (res) => {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('setcasei', e.currentTarget.dataset.case)
+        }
       })
     } else {
       const caseid = e.currentTarget.dataset.case.custom_case_id
@@ -78,6 +92,19 @@ Page({
       .then(r => {
         wx.navigateTo({
           url: '/accompany/pages/set-design/set-design?casei='+casei,
+          events: {
+            // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+            acceptDataFromOpenedPage: function (data) {
+              console.log(data)
+            },
+            someEvent: function (data) {
+              console.log(data)
+            }
+          },
+          success: (res) => {
+            // 通过eventChannel向被打开页面传送数据
+            res.eventChannel.emit('setcasei', e.currentTarget.dataset.case)
+          }
         })
       })
       .catch(err => {

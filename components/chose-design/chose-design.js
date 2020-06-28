@@ -15,7 +15,9 @@ Component({
     program_list:[
     ],
     activeType:'眼部',
-    subject_list:[1,1,1,1,1,1,1,1,1,1]
+    subject_list:[1,1,1,1,1,1,1,1,1,1],
+    showbigpic:false,
+    imgsrc:''
   },
   created() {
     this.get_example()
@@ -24,6 +26,19 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    openimg(e) {
+      const url = e.currentTarget.dataset.src 
+      this.setData({
+        showbigpic:true,
+        imgsrc:url
+      })
+    },
+    closeimg() {
+      this.setData({
+        showbigpic:false,
+        imgsrc:''
+      })
+    },
     checkitem(e) {
       this.setData({
         activeType:e.currentTarget.dataset.item.name,

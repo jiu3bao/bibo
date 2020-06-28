@@ -10,7 +10,8 @@
   width:389rpx;
   height:389rpx;
   border-radius:10rpx;
-  margin-bottom:22rpx
+  margin-bottom:22rpx;
+  /* margin-top:30rpx */
 }
 .name {
   display: flex;

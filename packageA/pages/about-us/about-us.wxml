@@ -31,10 +31,10 @@
   公司邮箱：biboznym@163.com
                             
   </view>   
-  <image class='qrcode' src='/img/eee.png'>
+  <image class='qrcode' src='/img/eee.jpg'>
   </image>   
   <view class='tip'>详情扫码咨询</view>    
-  <view class='bbb' bindtap="toapply">
+  <!-- <view class='bbb' bindtap="toapply">
     商家入住
-  </view>            
+  </view>             -->
 </view>

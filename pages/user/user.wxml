@@ -19,7 +19,10 @@
     </block>
     
   </swiper>
-  <qrcode wx:if='{{showqrcode}}' info="{{info}}" bind:closecode='closecode'></qrcode>
+  <view wx:if='{{showqrcode}}' class='qrqr'>
+    <image src='/img/add1.png' class='ccc' bindtap="closecode"></image>
+    <qrcode  info="{{info}}" bind:closecode='closecode'></qrcode>
+  </view>
   <view class='mycontent' wx:else>
     <view wx:for='{{list}}' 
     wx:key='{{item.name}}'

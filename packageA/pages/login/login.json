@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "Auth":"../../../components/auth/auth"
+  },
   "navigationBarTitleText": "登录/注册"
 }

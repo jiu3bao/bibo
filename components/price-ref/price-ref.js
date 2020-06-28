@@ -31,11 +31,19 @@ Component({
   created() {
     this.get_pro_list()
   },
-  ready() {
-    const ismember = wx.getStorageSync('user').is_member===1
-    this.setData({
-      showmask:!ismember
-    })
+  pageLifetimes: {
+    show: function() {
+      const ismember = wx.getStorageSync('user').is_member===1
+      this.setData({
+        showmask:!ismember
+      })
+    },
+    hide: function() {
+      // 页面被隐藏
+    },
+    resize: function(size) {
+      // 页面尺寸变化
+    }
   },
   /**
    * 组件的方法列表

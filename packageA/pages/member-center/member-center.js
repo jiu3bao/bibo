@@ -65,6 +65,7 @@ Page({
                   title: '付款成功',
                   duration:3000
                 })
+                debugger
                 wx.switchTab({
                   url: '/pages/user/user',
                 })

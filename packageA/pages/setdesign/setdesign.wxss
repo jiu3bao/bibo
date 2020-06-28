@@ -89,6 +89,7 @@ page {
   background:#fff;
   padding:25rpx;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(220,220,220,1);
 }
 .photos view {
   width:120rpx;
@@ -104,6 +105,9 @@ page {
   border:1px solid rgba(220,220,220,1);
   border-radius:10rpx;
   margin-top:20rpx;
+}
+.mb-25 {
+  margin-bottom: 25rpx;
 }
 textarea {
   width: 100%;

@@ -23,4 +23,5 @@
     </view>
   </view>
   <view bindtap="login" class='botton'>登录/注册</view>
+  <Auth wx:if='{{showauth}}' bind:closeshadow='closeshadow'></Auth>
 </view>

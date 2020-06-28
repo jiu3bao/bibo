@@ -56,7 +56,7 @@ Page({
   search() {
     const list=this.data.list.map(i => {
       console.log(this.regTxt(i.name))
-      i.isshow = this.regTxt(i.name) || this.regTxt(i.wx?i.wx:null)
+      i.isshow = this.regTxt(i.name?i.name:null) || this.regTxt(i.wx?i.wx:null) || this.regTxt(i.user_id?i.user_id:null) || this.regTxt(i.mobile?i.mobile:null)
       return i 
     })
     this.setData({
@@ -65,7 +65,6 @@ Page({
   },
   //匹配字符
   regTxt(txt) {
-    console.log(this.data.txt,txt)
     return !this.data.txt || this.data.txt.length ==0 || (txt && txt.indexOf(this.data.txt)>=0)
   },
   //导航至详情
@@ -73,7 +72,7 @@ Page({
     console.log(e)
     const userid = e.currentTarget.dataset.item.user_id
     const belong =this.data.done_item_list.filter(i => {
-      return i.zxs_id==userid
+      return i.custom_case_id==userid
     })
     wx.navigateTo({
       url: '/accompany/pages/vip-detail/vip-detail?item='+JSON.stringify(e.currentTarget.dataset.item)+'&design='+JSON.stringify(belong),

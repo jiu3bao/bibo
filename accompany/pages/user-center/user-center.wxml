@@ -2,10 +2,20 @@
 <view class='p'>
   <view >
     <image src='/img/bg.png' class='bg'></image>
-    <swiper class="contain">
-      <block class='s-item'>
-        <swiper-item>
-          <UserheadInfo type='{{2}}' info='{{info}}'></UserheadInfo>
+    <swiper class="contain" current='{{1}}'>
+      <block>
+        <swiper-item class='wallet'>
+          <Userhead moneyInfo="{{info.money}}" bind:applyed='applyed' class='ff'></Userhead>  
+        </swiper-item>
+      </block>
+      <block class='s-item' >
+        <swiper-item bindtap='tobuy'>
+          <UserheadInfo info="{{info}}" isshop="{{false}}" class='ff'></UserheadInfo>
+        </swiper-item>
+      </block>
+      <block>
+        <swiper-item class='wallet'>
+          <extendInfo money='{{moneyInfo.fx+moneyInfo.zs}}' class='ff'></extendInfo>  
         </swiper-item>
       </block>
     </swiper>

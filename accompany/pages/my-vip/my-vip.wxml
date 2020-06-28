@@ -1,7 +1,7 @@
 <!--accompany/pages/my-vip.wxml-->
 <view class='p'>
   <view class='search'>
-    <input type="search" value='{{txt}}' bindinput='bindKeyInput'></input>
+    <input type="search" value='{{txt}}' bindinput='bindKeyInput' confirm-type='搜索' bindconfirm='search'></input>
     <image src='/img/sousuo5@2x.png' bindtap="search"></image>
   </view>
   <view class='list' wx:for='{{list}}' wx:key='{{index}}' wx:if='{{item.isshow}}'

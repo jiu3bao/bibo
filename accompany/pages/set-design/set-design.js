@@ -191,11 +191,14 @@ Page({
    */
   onLoad: function (options) {
     this.get_pro_list()
-    const casei = JSON.parse(options.casei) 
-    const info = {head:casei.head,name:casei.name,wx:casei.wx,ismember:casei.ismember,id:casei.zxs_id}
-    this.setData({
-      casei:casei,
-      info:info
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('setcasei', (casei) => {
+      debugger
+      const info = {head:casei.head,name:casei.name,wx:casei.wx,ismember:casei.ismember,id:casei.zxs_id}
+      this.setData({
+        casei:casei,
+        info:info
+      })
     })
   },
 

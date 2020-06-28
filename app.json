@@ -48,7 +48,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "众诺亿美",
     "navigationBarTextStyle": "black"
   },
@@ -79,9 +79,9 @@
         "text": "个人中心"
       }
     ],
-    "backgroundColor": "##FFFFFF",
-    "color": "##313131",
-    "selectedColor": "##286E87"
+    "backgroundColor": "#FFFFFF",
+    "color": "#313131",
+    "selectedColor": "#286E87"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

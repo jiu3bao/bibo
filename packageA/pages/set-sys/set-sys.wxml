@@ -9,7 +9,7 @@
     员工登录（测试用）
   </view>
   <view  class='o' bindtap="toapply" wx:if='{{showapply==1}}'>
-    {{status==0?'商铺正在审核':status==1?'':'申请商铺'}} {{showapply}}
+    {{status==0?'商铺正在审核':status==1?'商铺申请成功':'申请商铺'}}
   </view>
   <view class='tip'>
     <image src='/img/kfbg.png' class='bg'></image>

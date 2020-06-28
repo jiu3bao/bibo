@@ -2,7 +2,7 @@
 <infohead info='{{info}}'></infohead>
 <view class='title j-sb'>
   <view class='t-l'>
-    <image src='/img/chaxun.png'></image>历史记录
+    <image src='/img/chaxun.png'></image>设计需求
   </view>
   <image src='/img/xiala.png' class='xiala'></image>
 </view>
@@ -11,8 +11,27 @@
     <view>{{casei.age}}</view>
   </view>
   <view class='photos'>
+    <view bindtap='add_pic' data-type='pic'>
+       正面照 
+      <image src='{{casei.pic}}'></image>
+    </view>
+    <view bindtap='add_pic' data-type='pic45'>
+      侧面45°左
+      <image src='{{casei.pic45}}'></image>
+    </view>
+    <view bindtap='add_pic' data-type='pic90'>
+      侧面90复
+      <image src='{{casei.pic90}}'></image>
+    </view>
+    <view bindtap='add_pic' data-type='pic45r'>
+      侧面45°右
+      <image src='{{casei.pic45r}}'></image>
+    </view>
+    <view bindtap='add_pic' data-type='pict'>
+      仰头照
+      <image src='{{casei.pict}}'></image>
+    </view>
   </view>
-  <view class='phos'></view>
   <view class='info'>
     <view class='f'>
       <view>想咨询项目</view>

@@ -9,10 +9,12 @@
   <scroll-view scroll-x='true' class='sub_box'>
     <view class='ss'>
       <view wx:for='{{subject_list}}'>
-        <image src='{{item.pic_url}}'></image>
+        <image src='{{item.pic_url}}' bindtap="openimg" data-src='{{item.pic_url}}'></image>
       </view>
     </view>
   </scroll-view>
-  
+  <view class="cover-view" wx:if='{{showbigpic}}' class='cover-view' bindtap="closeimg">
+    <image src='{{imgsrc}}'></image>
+  </view>
 </view>
 

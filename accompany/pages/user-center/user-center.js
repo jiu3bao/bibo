@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info:{}
+    info:{},
+    moneyInfo:{},
   },
 
   /**
@@ -16,6 +17,44 @@ Page({
     this.setData({
       info:wx.getStorageSync('user')
     })
+  },
+  //获取钱
+  get_money_info() {
+    service('API/StcBonus', { Token: wx.getStorageSync('user').Token})
+      .then(r => {
+        if (r.data.error_code === 6) {
+          this.setData({
+            // baseInfo: { default_head:'../../img/default.png'},
+            moneyInfo:{}
+          })
+          // wx.navigateTo({
+          //   url: '/pages/login/login',
+          // })
+          return 
+        }
+        if (r.data.error_code !== 0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+          return
+        }
+        r.data.data.total = (r.data.data.xf + r.data.data.fx + r.data.data.zs).toFixed(2)
+        this.setData({
+          moneyInfo: r.data.data
+        })
+      })
+      .catch(r => {
+        wx.showToast({
+          title: err,
+          duration: 2000,
+          icon: 'none'
+        })
+      })
+  },
+  applyed() {
+    this.get_money_info()
   },
   get_user_info() {
     service('/API/GetUserInfo',{Token:wx.getStorageSync('user').Token})
@@ -45,6 +84,7 @@ Page({
    */
   onShow: function () {
     this.get_user_info()
+    this.get_money_info()
     wx.hideHomeButton({
       success() {
         

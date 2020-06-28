@@ -10,6 +10,28 @@
     <!-- <view>28</view> -->
   </view>
   <view class='photos'>
+    <view>
+       正面照(示例)
+      <image src='{{pic}}'></image>
+    </view>
+    <view>
+      侧面45°左(示例)
+      <image src='{{pic45}}'></image>
+    </view>
+    <view>
+      侧面90复(示例)
+      <image src='{{pic90}}'></image>
+    </view>
+    <view >
+      侧面45°右(示例)
+      <image></image>
+    </view>
+    <view>
+      仰头照(示例)
+      <image src='{{pict}}'></image>
+    </view>
+  </view>
+  <view class='photos mb-25'>
     <view bindtap='add_pic' data-type='pic'>
        正面照 
 
@@ -32,7 +54,6 @@
       <image src='{{pict}}'></image>
     </view>
   </view>
-  <view class='phos'></view>
   <view class='info'>
     <view class='f'>
       <view>想咨询项目</view>

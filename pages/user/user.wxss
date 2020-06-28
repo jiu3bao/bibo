@@ -80,3 +80,15 @@ swiper-item {
 .right view:last-child {
   margin-top:19rpx;
 }
+.qrqr {
+  margin-top:30rpx;
+  position: relative;
+}
+.qrqr .ccc {
+  width:60rpx;
+  height:60rpx;
+  transform: rotate(45deg);
+  position: absolute;
+  top:10prx;
+  right:10rpx;
+}

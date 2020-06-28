@@ -14,7 +14,8 @@ Page({
     code:'',
     reference_id: '',
     reference_info:{},
-    canback:false
+    canback:false,
+    showauth:false
   },
   //双向绑定
   set_mobile(e) {
@@ -119,6 +120,44 @@ Page({
         })
         wx.setStorageSync('user', r.data.data)
         this.is_shop()
+        if(r.data.data.head.length==0) {
+          this.setData({
+            showauth:true
+          })
+        } else {
+          if(this.data.canback) {
+            wx.navigateBack()
+          } else {
+            wx.switchTab({
+              url: '/pages/index/index'
+            })
+          }
+        }
+  
+      })
+      .catch(r => {
+        wx.showToast({
+          title: '网络错误',
+          duration: 2000,
+          icon: 'none'
+        })
+      })
+  },
+  closeshadow(data) {
+    this.setData({
+      showauth:false
+    })
+    service('API/GetUserInfo', { Token:wx.getStorageSync('user').Token})
+      .then(r => {
+        if (r.data.error_code !==0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+        }
+        const info={...r.data.data,Token:wx.getStorageSync('user').Token}
+        wx.setStorageSync('user', info)
         if(this.data.canback) {
           wx.navigateBack()
         } else {
@@ -126,12 +165,10 @@ Page({
             url: '/pages/index/index'
           })
         }
-        
-        
       })
-      .catch(r => {
+      .catch(err=> {
         wx.showToast({
-          title: '网络错误',
+          title: err,
           duration: 2000,
           icon: 'none'
         })

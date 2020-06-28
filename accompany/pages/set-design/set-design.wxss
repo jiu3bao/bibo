@@ -160,3 +160,26 @@ page {
   background: #50C397;
   color: #fff;
 }
+.photos {
+  display: flex;
+  align-items: center;
+  background:#fff;
+  padding:25rpx;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(220,220,220,1);
+}
+.photos view {
+  width:120rpx;
+  text-align: center;
+  color: #313131;
+  font-size: 25rpx;
+  
+}
+.photos image {
+  width: 100%;
+  height:120rpx;
+  background:rgba(238,238,238,1);
+  border:1px solid rgba(220,220,220,1);
+  border-radius:10rpx;
+  margin-top:20rpx;
+}
