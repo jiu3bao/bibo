@@ -29,7 +29,7 @@ Component({
         return 
       }
       wx.navigateTo({
-        url: '/packageA/pages/flow-detail/flow-detail',
+        url: '/packageA/pages/flow-detail/flow-detail?tg=true',
       })
     },
   }

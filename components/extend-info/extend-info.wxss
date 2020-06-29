@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   height:333rpx;
-  width:667rpx;
+  width:100%;
 }
 .left,.right {
   width:24rpx;
@@ -13,12 +13,12 @@
 }
 .center {
   position: relative;
-  width:667rpx;
+  width:100%;
   border-radius: 10rpx;
 }
 .cbg {
-  width:667rpx;
-  height:100%;
+  width:100% !important;
+  height:100% !important;
   position: absolute;
   top:0;
   left:0;
@@ -66,7 +66,7 @@
   border-radius:6rpx;
 }
 .w_c_btn view:last-child {
-  margin-left:20rpx;
+  /* margin-left:20rpx; */
 }
 .w_c_b {
   width: 100%;

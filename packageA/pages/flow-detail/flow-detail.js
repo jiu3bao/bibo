@@ -11,7 +11,8 @@ Page({
     list:[],
     page:1,
     pagesize:120,
-    islastpage:false
+    islastpage:false,
+    istuiguang:false
   },
   get_list(p) {
     const data = {
@@ -45,6 +46,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      istuiguang:options.tg
+    })
     this.get_list(1)
     .then(r => {
       this.setData({

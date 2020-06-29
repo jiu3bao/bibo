@@ -72,7 +72,7 @@ Page({
     console.log(e)
     const userid = e.currentTarget.dataset.item.user_id
     const belong =this.data.done_item_list.filter(i => {
-      return i.custom_case_id==userid
+      return i.user_id==userid
     })
     wx.navigateTo({
       url: '/accompany/pages/vip-detail/vip-detail?item='+JSON.stringify(e.currentTarget.dataset.item)+'&design='+JSON.stringify(belong),

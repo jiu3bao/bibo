@@ -15,7 +15,7 @@
       </block>
       <block>
         <swiper-item class='wallet'>
-          <extendInfo money='{{moneyInfo.fx+moneyInfo.zs}}' class='ff'></extendInfo>  
+          <extendInfo money='{{moneyInfo.zs}}' class='ff'></extendInfo>  
         </swiper-item>
       </block>
     </swiper>

@@ -6,7 +6,7 @@
     <view class='w_c'>
       <view class='w_c_t'>
         <image src='/img/aaaaaaa.png'></image>
-        我的收益
+        我的推广收益
       </view>
       <view class='w_c_c'>
         <text>￥</text>{{money}}

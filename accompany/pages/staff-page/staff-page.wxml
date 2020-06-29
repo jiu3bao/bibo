@@ -7,7 +7,7 @@
       <image src='/img/sousuo5@2x.png' bindtap="confiry_phone"></image>
     </view>
   </view>
-  <infohead info='{{base_info}}' wx:if='{{base_info.id}}'></infohead>
+  <infohead info='{{base_info}}' wx:if='{{base_info.id}}' bindtap='tomem'></infohead>
   <view class='{{!base_info.id?"disable":""}}'>
     <view class='flex between'>
       <view>日期</view>
@@ -73,7 +73,7 @@
 
 
   <view class='err_info' wx:if='{{err_text.length!=0}}'>
-    <image src='../../img/tishi@2x.png'></image>
+    <image src='/img/tishi@2x.png'></image>
     <view>{{err_text}}</view>
   </view>
   <view class='emit-btn' bindtap="submit">提交</view>

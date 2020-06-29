@@ -1,5 +1,5 @@
 <!--accompany/pages/set-design/set-design.wxml-->
-<infohead info='{{info}}'></infohead>
+<infohead info='{{info}}' bindtap='tomem'></infohead>
 <view class='title j-sb'>
   <view class='t-l'>
     <image src='/img/chaxun.png'></image>设计需求

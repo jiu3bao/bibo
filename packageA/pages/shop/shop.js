@@ -8,34 +8,36 @@ Page({
   data: {
     goods_list:[],
     page:1,
-    code:''
+    code:'',
+    islastpage:false
   },
-  get_list() {
-    const data = {
-      Page:this.data.page,
-      PageSize:15,
-      Token:wx.getStorageSync('user').Token
-    }
-    service('ShopAPI/GetMyShopGoods',data)
-    .then(r => {
-      this.setData({
-        goods_list:r.data.data
-      })
-    })
-  },
+  // get_list() {
+  //   const data = {
+  //     Page:this.data.page,
+  //     PageSize:15,
+  //     Token:wx.getStorageSync('user').Token
+  //   }
+  //   service('ShopAPI/GetMyShopGoods',data)
+  //   .then(r => {
+  //     this.setData({
+  //       goods_list:r.data.data
+  //     })
+  //   })
+  // },
   input(e) {
     this.setData({
       code:e.detail.value
     })
   },
-  getorder() {
+  get_list() {
+    if(this.data.islastpage) return 
     const data = {
       Token:wx.getStorageSync('user').Token,
-      Param:this.data.code,
+      Param:4,
       Page:1,
       PageSize:5
     }
-    service('ShopAPI/GetMyShopOrdersByCode',data)
+    service('ShopAPI/GetMyShopOrders',data)
     .then(r => {
       if(r.data.error_code==6) {
         wx.navigateTo({
@@ -50,7 +52,25 @@ Page({
         })
         return 
       }
+      if(r.data.data.length<5) {
+        this.setData({
+          islastpage:true
+        })
+      }
+      this.setData({
+        goods_list:[...this.data.goods_list,...r.data.data]
+      })
       //存订单号
+    })
+  },
+  getorder() {
+    const data = {
+      Token:wx.getStorageSync('user').Token,
+      Param:this.data.code,
+    }
+    service('ShopAPI/GetMyShopOrdersByCode',data)
+    .then(r => {
+      
     })
   },
   cofirm_code(id) {
@@ -125,7 +145,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      page:this.data.page+1
+    },()=> {
+      this.get_list()
+    })
   },
 
   /**

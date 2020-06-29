@@ -33,7 +33,7 @@
       </view>
       
       <view class='w_c_b' wx:if='{{type===1}}'>
-        <image src='/img/meirong.png' wx:if='{{isshop}}'></image>
+        <image src='/img/shang@2x.png' wx:if='{{isshop}}'></image>
         <image src='/img/vip.png' wx:if='{{info.is_member===1}}'></image>
         {{info.is_member===1?"vip会员 丨 到期日期："+info.member_expire:"普通用户"}}
       </view>

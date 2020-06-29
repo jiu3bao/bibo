@@ -1,6 +1,6 @@
 <!--pages/flow-detail/flow-detail.wxml-->
 <view class='contain'>
-  <view class='list' wx:for="{{list}}">
+  <view class='list' wx:for="{{list}}" wx:if='{{!istuiguang||item.source===2}}'>
     <view>
       <view>{{item.text}}</view>
       <view class='time'>{{item.time}}</view>

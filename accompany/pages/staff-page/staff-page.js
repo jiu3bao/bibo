@@ -58,6 +58,10 @@ Page({
       { mobile:this.data.phone})
       .then(r => {
         if(r.data.error_code !==0) {
+          wx.showToast({
+            title: r.data.message,
+            icon:'none'
+          })
           this.setData({
             base_info: null,
             err_text:r.data.message
@@ -65,6 +69,10 @@ Page({
           return 
         }
         if(r.data.data.is_member===0) {
+          wx.showToast({
+            title: r.data.message,
+            icon:'none'
+          })
           this.setData({
             base_info: null,
             err_text:'非会员'
@@ -340,6 +348,11 @@ Page({
   tofail(){
     wx.navigateTo({
       url: '/accompany/pages/fail-records/fail-records',
+    })
+  },
+  tomem() {
+    wx.navigateTo({
+      url:'../member-info/member-info?info='+JSON.stringify(this.data.base_info)
     })
   },
   /**

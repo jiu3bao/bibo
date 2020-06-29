@@ -2,6 +2,12 @@
 page {
   background: #f7f7f7;
 }
+.btn {
+  padding:15rpx 60rpx;
+  background:linear-gradient(-7deg,rgba(68,179,154,1),rgba(88,204,129,1));
+  border-radius:36rpx;
+  color:#fff
+}
 .box {
   background: #fff;
   border-top:1px solid rgba(220,220,220,1);
