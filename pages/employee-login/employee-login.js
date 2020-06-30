@@ -13,7 +13,8 @@ Page({
     mobile: '',
     code: '',
     reference_id: wx.getStorageSync('scene'),
-    reference_info: {}
+    reference_info: {},
+    showauth:false
   },
   //双向绑定
   set_mobile(e) {
@@ -126,6 +127,45 @@ Page({
         })
         
         wx.setStorageSync('user', r.data.data)
+        if(r.data.data.head.length==0) {
+          this.setData({
+            showauth:true
+          })
+        } else {
+          if(r.data.data.pop==100) {//陪诊
+            wx.redirectTo({
+              url: '/accompany/pages/fail-records/fail-records'
+            })
+          } else {
+            wx.redirectTo({
+              url: '/accompany/pages/my-vip/my-vip'
+            })
+          }
+        }  
+      })
+      .catch(r => {
+        wx.showToast({
+          title: '发生错误',
+          duration: 2000,
+          icon: 'none'
+        })
+      })
+  },
+  closeshadow(data) {
+    this.setData({
+      showauth:false
+    })
+    service('API/GetUserInfo', { Token:wx.getStorageSync('user').Token})
+      .then(r => {
+        if (r.data.error_code !==0) {
+          wx.showToast({
+            title: r.data.message,
+            duration: 2000,
+            icon: 'none'
+          })
+        }
+        const info={...r.data.data,Token:wx.getStorageSync('user').Token}
+        wx.setStorageSync('user', info)
         if(r.data.data.pop==100) {//陪诊
           wx.redirectTo({
             url: '/accompany/pages/fail-records/fail-records'
@@ -135,11 +175,10 @@ Page({
             url: '/accompany/pages/my-vip/my-vip'
           })
         }
-        
       })
-      .catch(r => {
+      .catch(err=> {
         wx.showToast({
-          title: '网络错误',
+          title: err,
           duration: 2000,
           icon: 'none'
         })

@@ -15,7 +15,25 @@ Page({
     page2:1,
     islastpage1:false,
     islastpage2:false,
+    showbigpic:false,
   },
+  openimg(e) {
+    const url = e.currentTarget.dataset.src 
+    wx.previewImage({
+      current:url,
+      urls: [url],
+    })
+    // this.setData({
+    //   showbigpic:true,
+    //   imgsrc:url
+    // })
+  },
+  // closeimg() {
+  //   this.setData({
+  //     showbigpic:false,
+  //     imgsrc:''
+  //   })
+  // },
   //切换tab
   switch(e) {
     const actab = e.currentTarget.dataset.type

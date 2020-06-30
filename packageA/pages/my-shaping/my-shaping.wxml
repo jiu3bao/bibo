@@ -15,7 +15,7 @@
     <view class='line'></view>
   </view> 
 </view>
-<view class='now' wx:if='{{actab===1}}' wx:for='{{noend_l}}'>
+<view class='now' wx:if='{{actab===1}}' wx:for='{{noend_l}}' wx:key='id'>
   <view class='t'>
     <view>
       消费医院：<text>{{item.hospital}}</text>
@@ -28,7 +28,7 @@
       <view>消费金额</view>
       <view>补贴金额</view>
     </view>
-    <view class='detail' wx:for='{{item.item_list}}' wx:for-item='oo' wx:for-index='ii'>
+    <view class='detail' wx:for='{{item.item_list}}' wx:for-item='oo' wx:for-index='ii' wx:key='medical_code'>
       <view class='b'>{{ii+1}}.{{oo.item}}</view>
       <view class='r'>{{oo.price}}</view>
       <view class='b2'>{{filters.toFix(oo.price*oo.ratio)}}</view>
@@ -41,7 +41,7 @@
     图片证明：
     <scroll-view scroll-x="true" >
       <view class='p-l'>
-        <image src='{{item.pic_url}}'></image>
+        <image src='{{item.pic_url}}' bindtap="openimg" data-src='{{item.pic_url}}'></image>
       </view>
       
     </scroll-view>
@@ -53,8 +53,42 @@
   </view>
   <!-- <image src='/img/xiala.png' class='xiala'></image> -->
 </view>
-
-<view class='old' wx:if='{{actab===2}}' wx:for='{{end_l}}'>
+<view class='now' wx:if='{{actab===2}}' wx:for='{{end_l}}' wx:key='id'>
+  <view class='t'>
+    <view>
+      消费医院：<text>{{item.hospital}}</text>
+    </view>
+    <view>已返还</view>
+  </view>
+  <view class='d'>
+    <view class='detail'>
+      <view>消费项目</view>
+      <view>消费金额</view>
+      <view>补贴金额</view>
+    </view>
+    <view class='detail' wx:for='{{item.item_list}}' wx:for-item='oo' wx:for-index='ii' wx:key='medical_code'>
+      <view class='b'>{{ii+1}}.{{oo.item}}</view>
+      <view class='r'>{{oo.price}}</view>
+      <view class='b2'>{{filters.toFix(oo.price*oo.ratio)}}</view>
+    </view>
+  </view>
+  <view class='t'>
+    消费日期：<text>{{filters.formatTime(item.time)}}</text>
+  </view>
+  <view class='pics'>
+    图片证明：
+    <scroll-view scroll-x="true" >
+      <view class='p-l'>
+        <image src='{{item.pic_url}}' bindtap="openimg" data-src='{{item.pic_url}}'></image>
+      </view>
+      
+    </scroll-view>
+  </view>
+</view>
+<!-- <view class="cover-view" wx:if='{{showbigpic}}' class='cover-view' bindtap="closeimg">
+  <image src='{{imgsrc}}' mode='widthFix'></image>
+</view> -->
+<!-- <view class='old' wx:if='{{actab===2}}' wx:for='{{end_l}}'>
   <view class='o-i'>
     <view class='o-l'>
       <view>
@@ -68,4 +102,4 @@
     已发放
     </view>
   </view>
-</view>
+</view> -->

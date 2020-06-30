@@ -1,4 +1,5 @@
 {
   "usingComponents": {
+    "Auth":"../../components/auth/auth"
   }
 }

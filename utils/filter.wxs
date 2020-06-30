@@ -7,13 +7,12 @@ var filters = {
   },
 
   formatTime: function(time) {
-    return time.split(' ')[0]
+    return time?time.split(' ')[0]:''
   }
 
 }
 
 module.exports = {
-
   toFix: filters.toFix,
   toNumber: filters.toNumber,
   formatTime:filters.formatTime

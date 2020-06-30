@@ -61,7 +61,9 @@
     </view>
     <view class='f'>
       <view>个人诉求</view>
-      <input placeholder="个人诉求" value='{{demand}}' bindinput="input" data-type='demand'></input>
+    </view>
+    <view class='ta'>
+      <textarea placeholder="请输入个人诉求" value='{{demand}}' bindinput="input" data-type='demand'></textarea>
     </view>
     <view class='f'>
       <view>是否做过该项目</view>
@@ -85,7 +87,9 @@
     </view>
     <view class='f'>
       <view>病史、过敏史</view>
-      <input placeholder="请输入您的状况" value='{{his}}' bindinput="input" data-type='his'></input>
+    </view>
+    <view class='ta'>
+      <textarea placeholder="请输入您的状况" value='{{his}}' bindinput="input" data-type='his'></textarea>
     </view>
   </view>
   <view class='btn' bindtap="submit">

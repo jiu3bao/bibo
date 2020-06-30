@@ -53,10 +53,14 @@ Component({
     },
     openimg(e) {
       const url = e.currentTarget.dataset.src 
-      this.setData({
-        showbigpic:true,
-        imgsrc:url
+      wx.previewImage({
+        current:url,
+        urls: [url],
       })
+      // this.setData({
+      //   showbigpic:true,
+      //   imgsrc:url
+      // })
     },
     closeimg() {
       this.setData({

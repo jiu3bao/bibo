@@ -158,6 +158,7 @@ Page({
   },
   applyed() {
     this.get_money_info()
+    this.get_user_info()
   },
   get_user_info() {
     service('/API/GetUserInfo',{Token:wx.getStorageSync('user').Token})

@@ -5,8 +5,8 @@
   <view class='center'>
     <image class='cbg' src='/img/kapian.png'></image>
     <view class='w_c'>
-      <view class='edit' bindtap="toedit">
-        编辑个人资料>
+      <view class='edit' catchtap="toedit">
+        {{loged?'编辑个人资料>':'登录/注册'}}
       </view>
       <view class='info' wx:if='{{type===1}}'>
         <image src='{{info.head||"/img/default.png"}}' class='avata'></image>

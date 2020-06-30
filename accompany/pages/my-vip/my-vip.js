@@ -15,8 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.get_list()
-    this.get_item()
+    
   },
   //获取会员列表
   get_list() {
@@ -83,7 +82,7 @@ Page({
     const data = {
       Token:wx.getStorageSync('user').Token,
       Page:1,
-      PageSize:1000,
+      PageSize:100000,
       Param:1
     }
     service('ConsultAPI/GetZXSCustomCaseList',data)
@@ -116,6 +115,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.get_list()
+    this.get_item()
     wx.hideHomeButton({
       success() {
         

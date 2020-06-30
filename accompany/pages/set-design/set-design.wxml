@@ -11,23 +11,23 @@
     <view>{{casei.age}}</view>
   </view>
   <view class='photos'>
-    <view bindtap='add_pic' data-type='pic'>
+    <view bindtap='openimg' data-type='pic'>
        正面照 
       <image src='{{casei.pic}}'></image>
     </view>
-    <view bindtap='add_pic' data-type='pic45'>
+    <view bindtap='openimg' data-type='pic45'>
       侧面45°左
       <image src='{{casei.pic45}}'></image>
     </view>
-    <view bindtap='add_pic' data-type='pic90'>
+    <view bindtap='openimg' data-type='pic90'>
       侧面90复
       <image src='{{casei.pic90}}'></image>
     </view>
-    <view bindtap='add_pic' data-type='pic45r'>
+    <view bindtap='openimg' data-type='pic45r'>
       侧面45°右
       <image src='{{casei.pic45r}}'></image>
     </view>
-    <view bindtap='add_pic' data-type='pict'>
+    <view bindtap='openimg' data-type='pict'>
       仰头照
       <image src='{{casei.pict}}'></image>
     </view>
@@ -39,7 +39,9 @@
     </view>
     <view class='f'>
       <view>个人诉求</view>
-      <view>{{casei.demand}}</view>
+    </view>
+    <view class='ta'>
+      <textarea value="{{casei.demand}}" disabled="{{true}}" placeholder="请输入个人诉求"></textarea>
     </view>
     <view class='f'>
       <view>是否做过该项目</view>
@@ -50,7 +52,9 @@
     </view>
     <view class='f'>
       <view>病史、过敏史</view>
-      <view>{{casei.his}}</view>
+    </view>
+    <view class='ta'>
+      <textarea value="{{casei.his}}" disabled="{{true}}" placeholder="请输入个人情况"></textarea>
     </view>
   </view>
 <view class='title'>
@@ -82,15 +86,15 @@
 <view class='ip' wx:if='{{inputother}}'>
   <view class='ipi'>
     <view>医院收费 </view>
-    <input placeholder="手动输入" bindinput="input" data-type='price_hospital'></input>
+    <input placeholder="手动输入" bindinput="input" data-type='price_hospital' type="number"></input>
   </view>
   <view class='ipi'>
     <view>补贴金额  </view>
-    <input placeholder="手动输入" bindinput="input" data-type='subsidy'></input>
+    <input placeholder="手动输入" bindinput="input" data-type='subsidy' type="number"></input>
   </view>
    <view class='ipi'>
     <view>实际花费  </view>
-    <input placeholder="手动输入" bindinput="input" data-type='price_real'></input>
+    <input placeholder="手动输入" bindinput="input" data-type='price_real' type="number"></input>
   </view>
 </view>
 <view class='title'>

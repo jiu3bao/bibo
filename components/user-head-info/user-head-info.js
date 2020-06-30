@@ -22,9 +22,15 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    loged:true
   },
-
+  pageLifetimes:{
+    show() {
+      this.setData({
+        loged:!!wx.getStorageSync('user').Token
+      })
+    }
+  },
   /**
    * 组件的方法列表
    */

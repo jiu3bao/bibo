@@ -13,8 +13,8 @@
       </view>
     </view>
   </scroll-view>
-  <view class="cover-view" wx:if='{{showbigpic}}' class='cover-view' bindtap="closeimg">
+  <!-- <view class="cover-view" wx:if='{{showbigpic}}' class='cover-view' bindtap="closeimg">
     <image src='{{imgsrc}}'></image>
-  </view>
+  </view> -->
 </view>
 

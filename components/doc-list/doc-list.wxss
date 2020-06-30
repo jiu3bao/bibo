@@ -28,7 +28,7 @@
 .item:last-child {
   padding-right:50rpx;
 }
-.cover-view{
+/* .cover-view{
   position: fixed;
   top:0;
   left:0;
@@ -43,4 +43,4 @@
 .cover-view image {
   min-width: 50%;
   max-width:80%;
-}
+} */

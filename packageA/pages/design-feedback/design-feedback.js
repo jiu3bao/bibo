@@ -10,7 +10,9 @@ Page({
     subject_list:[],
     obj:{},
     ismember:false,
-    kf:{}
+    kf:{},
+    is_mem:true,
+    showbigpic:false,
   },
   get_solution(id) {
     const data = {
@@ -60,6 +62,19 @@ Page({
       })
     }
   },
+  openimg(e) {
+    const url = e.currentTarget.dataset.src 
+    wx.previewImage({
+      current:url,
+      urls: [url],
+    })
+  },
+  // closeimg() {
+  //   this.setData({
+  //     showbigpic:false,
+  //     imgsrc:''
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -73,7 +88,8 @@ Page({
     console.log(wx.getStorageSync('user').ismember,now,mem_exp_tp)
     const ismember = wx.getStorageSync('user').is_member && now<mem_exp_tp
     this.setData({
-      ismember
+      ismember,
+      is_mem:!options.is_zxs
     })
   },
 

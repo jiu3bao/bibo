@@ -6,8 +6,8 @@
       <view>{{item.doctor_name}}</view>
     </view>
   </view>
-  <view class="cover-view" wx:if='{{showbigpic}}' class='cover-view' bindtap="closeimg">
+  <!-- <view class="cover-view" wx:if='{{showbigpic}}' class='cover-view' bindtap="closeimg">
     <image src='{{imgsrc}}' mode='widthFix'></image>
-  </view>
+  </view> -->
 </scroll-view>
 

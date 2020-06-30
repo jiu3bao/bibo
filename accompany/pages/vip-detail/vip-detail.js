@@ -11,7 +11,8 @@ Page({
     designs:[],
     page:1,
     islastpage:false,
-    shape_list:[]
+    shape_list:[],
+    showbigpic:false,
   },
 
   /**
@@ -28,7 +29,23 @@ Page({
     })  
     
   },
-  
+  openimg(e) {
+    const url = e.currentTarget.dataset.src 
+    // this.setData({
+    //   showbigpic:true,
+    //   imgsrc:url
+    // })
+    wx.previewImage({
+      current:url,
+      urls: [url],
+    })
+  },
+  // closeimg() {
+  //   this.setData({
+  //     showbigpic:false,
+  //     imgsrc:''
+  //   })
+  // },
   //获取整形记录
   get_records() {
     if(this.data.islastpage) return
@@ -38,8 +55,21 @@ Page({
       Token:wx.getStorageSync('user').Token,
       id:this.data.info.id
     }
+    
     service('ConsultAPI/GetCustomMedicalList',data)
     .then(r => {
+      r.data.data.map(i => {
+        try {
+          i.item_list = JSON.parse(i.item)
+        } catch (e) {
+          // i.item_list = i.item
+        }
+      })
+      if(r.data.data.length<5) {
+        this.setData({
+          islastpage:true
+        })
+      }
       this.setData({
         shape_list:[...this.data.shape_list,...r.data.data]
       })
@@ -68,7 +98,7 @@ Page({
       })
       return
     }
-    wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback?caseid='+item.custom_case_id})
+    wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback?caseid='+item.custom_case_id+'&is_zxs=true'})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

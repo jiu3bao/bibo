@@ -91,7 +91,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.get_consult_list()
+    this.setData({
+      islastpage:false
+    },() => {
+      this.get_consult_list()
+    })
+    
   },
 
   /**

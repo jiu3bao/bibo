@@ -28,17 +28,21 @@ Component({
   methods: {
     openimg(e) {
       const url = e.currentTarget.dataset.src 
-      this.setData({
-        showbigpic:true,
-        imgsrc:url
+      wx.previewImage({
+        current:url,
+        urls: [url],
       })
+      // this.setData({
+      //   showbigpic:true,
+      //   imgsrc:url
+      // })
     },
-    closeimg() {
-      this.setData({
-        showbigpic:false,
-        imgsrc:''
-      })
-    },
+    // closeimg() {
+    //   this.setData({
+    //     showbigpic:false,
+    //     imgsrc:''
+    //   })
+    // },
     checkitem(e) {
       this.setData({
         activeType:e.currentTarget.dataset.item.name,

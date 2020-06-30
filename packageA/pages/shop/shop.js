@@ -34,7 +34,7 @@ Page({
     const data = {
       Token:wx.getStorageSync('user').Token,
       Param:4,
-      Page:1,
+      Page:this.data.page,
       PageSize:5
     }
     service('ShopAPI/GetMyShopOrders',data)
@@ -67,10 +67,24 @@ Page({
     const data = {
       Token:wx.getStorageSync('user').Token,
       Param:this.data.code,
+      Page:1,
+      PageSize:1
     }
     service('ShopAPI/GetMyShopOrdersByCode',data)
     .then(r => {
-      
+      if(r.data.data[0].id) {
+        debugger
+        const item = r.data.data[0]
+        item.code=this.data.code
+        wx.navigateTo({
+          url: '/packageA/pages/my-welfare-detail/my-welfare-detail?item='+JSON.stringify(item)+'&showbtn=true',
+        })
+      } else {
+        wx.showToast({
+          title: '未查询到该订单，请与客户核实',
+          icon:"none"
+        })
+      }
     })
   },
   cofirm_code(id) {

@@ -225,19 +225,18 @@ Page({
       console.log(err)
     })
   },
-  submit() {
-    if (!this.check()) return
+  submit() { 
     const l = this.data.chosen_item_list
-    if(this.data.inputother) {
-      l.push({
-        item:this.data.item_name,
-        item_type:'其他',
-        price:this.data.price,
-        medical_code:145,
-        ratio:''
-      })
-    }
-    debugger
+    // if(this.data.inputother) {
+    //   l.push({
+    //     item:this.data.item_name,
+    //     item_type:'其他',
+    //     price:this.data.price,
+    //     medical_code:145,
+    //     ratio:''
+    //   })
+    // }
+    if (!this.check()) return
     const data ={
       Token:wx.getStorageSync('user').Token,
       mobile:this.data.phone,
@@ -260,7 +259,6 @@ Page({
           Token:wx.getStorageSync('user').Token,
           id:this.data.change_id,
         }
-        console.log(data,123123)
         service('API/DeleteProRecord',data)
         .then(r1 => {
           wx.showToast({

@@ -41,7 +41,7 @@ Component({
         })
         return 
       }
-      if(this.properties.moneyInfo.total <100) return wx.showToast({
+      if(this.properties.moneyInfo <100) return wx.showToast({
         title: '金额不足',
         icon:'none'
       }),false;

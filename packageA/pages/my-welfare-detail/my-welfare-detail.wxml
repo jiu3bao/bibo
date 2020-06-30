@@ -2,7 +2,7 @@
 <wxs module="filters" src="../../../utils/filter.wxs"></wxs>
 
 <view class='code'>
-  <view>我的领取码：</view>
+  <view>{{showbtn?'':'我的'}}领取码：</view>
   <view class='big'>{{info.code}}</view>
 </view>
 
@@ -44,3 +44,5 @@
     </view>
   </view>
 </view>
+<view class='hxbtn {{info.status==1?"":"disabled"}}' wx:if='{{showbtn}}' bindtap="hx">核销</view>
+

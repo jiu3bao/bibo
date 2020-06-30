@@ -14,6 +14,7 @@
   </view>
   <view>{{extension_id}}</view>
   <view bindtap="login" class='botton'>登录</view>
+  <Auth wx:if='{{showauth}}' bind:closeshadow='closeshadow'></Auth>
   <!-- <button bindtap="login">登录</button> -->
   <!-- <view class='to' bindtap="toemp">平台用户登录</view> -->
 </view>

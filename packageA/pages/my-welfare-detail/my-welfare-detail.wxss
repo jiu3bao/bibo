@@ -78,3 +78,17 @@ page {
 .f view {
   min-width: 130rpx;
 }
+.hxbtn {
+  padding: 15rpx 0;
+  background: linear-gradient(-7deg,rgba(68,179,154,1),rgba(88,204,129,1));
+  border-radius: 36rpx;
+  color: #fff;
+  width: 300rpx;
+  text-align: center;
+  margin: 30rpx auto;
+
+}
+.disabled {
+  -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+  filter: grayscale(100%);
+}

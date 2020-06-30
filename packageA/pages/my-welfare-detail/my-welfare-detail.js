@@ -7,17 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info:{}
+    info:{},
+    showbtn:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    debugger
     const item = options.item 
     this.setData({
-      info:JSON.parse(item)
+      info:JSON.parse(item),
+      showbtn:options.showbtn
     })
     // this.get_info(id)
   },
@@ -28,6 +29,42 @@ Page({
         info:r.data.data
       })
     })
+  },
+  hx() {
+    if(this.data.info.status!=1) return
+    const _this = this
+    wx.showModal({
+      title: '已和客户确认领取码',
+      content: '确认核销？',
+      success (res) {
+        if (res.confirm) {
+          const data = {
+            Token:wx.getStorageSync('user').Token,
+            order_key:_this.data.info.order_key,
+            code:_this.data.info.code
+          }
+          service('ShopAPI/CheckOrderCode',data)
+          .then(r => {
+            if(r.data.error_code!==0) {
+              wx.showToast({
+                title: r.data.message,
+                icon:'none'
+              })
+              return 
+            }
+            wx.showToast({
+              title: '核销成功',
+            })
+            _this.setData({
+              info:{..._this.data.info,status:2}
+            })
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

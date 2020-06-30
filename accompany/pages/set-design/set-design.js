@@ -25,6 +25,20 @@ Page({
     price_real:'',
     recover_time:''
   },
+  openimg(e) {
+    const type =e.currentTarget.dataset.type
+    const list = [
+      this.data.casei.pic,
+      this.data.casei.pic45,
+      this.data.casei.pic90,
+      this.data.casei.pic45r,
+      this.data.casei.pict]
+    console.log(this.data.casei[type])
+    wx.previewImage({
+      current:this.data.casei[type],
+      urls: list,
+    })
+  },
   input(e) {
     const value = e.detail.value 
     const type= e.currentTarget.dataset.type
@@ -143,6 +157,7 @@ Page({
         price_real:i.price*i.ratio//实际价格
       }
     })
+    debugger
     if(this.data.inputother&&this.data.item_name.length!==0) {
       item_list.push({
         item_name:this.data.item_name,
@@ -198,7 +213,6 @@ Page({
     this.get_pro_list()
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('setcasei', (casei) => {
-      debugger
       const info = {head:casei.head,name:casei.name,wx:casei.wx,ismember:casei.ismember,id:casei.zxs_id}
       this.setData({
         casei:casei,

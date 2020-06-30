@@ -32,7 +32,7 @@
       <view class='r'>
         <view class='name'>{{item.name}} <image src='/img/vip.png' wx:if='{{item.ismember}}'></image><text>vx: {{item.wx}}</text>
         <view class='copy' 
-        bindtap='copyText' data-text="{{item.wx}}" wx:if='{{item.wx.length>0}}'>复制</view></view>
+        bindtap='copyText' data-text="{{item.wx}}" wx:if='{{false}}'>复制</view></view>
         <view class='xm'>咨询项目  {{item.item_name}}</view>
         <view class='time'>{{item.addtime}}</view>
       </view>

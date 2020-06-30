@@ -20,7 +20,9 @@ Page({
       title: '退出成功',
       icon:"none"
     })
-    wx.navigateBack()
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
   },
   toem() {
     wx.navigateTo({
