@@ -11,7 +11,7 @@
   <view class='{{!base_info.id?"disable":""}}'>
     <view class='flex between'>
       <view>日期</view>
-      <view class='blue'>
+      <view class=''>
         {{date}}
         <!-- <picker mode="date" value="{{date}}" bindchange="set_time">
           <view class="picker">
@@ -24,7 +24,7 @@
       <view>消费医院</view>
       <view>
         <picker value="{{index}}" range="{{hos_list}}" bindchange='chose_hos' range-key='hospital' disabled='{{!base_info.id}}'>
-          <view class='blue hos'>
+          <view class='hos'>
             {{hos.hospital?hos.hospital:'请选择医院'}}
             <image src='../../../img/xiala.png' class='down'></image>
           </view>
@@ -60,7 +60,7 @@
         <input placeholder="手动输入" bindinput="input" data-type='price' bindblur="addprice" value='{{price}}'></input>
       </view>
     </view>
-    <view class='f'>
+    <view class='f tt'>
       <view>消费总额</view>
       <view class='blue'>￥{{total_money}}</view>
     </view>

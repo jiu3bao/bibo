@@ -176,8 +176,7 @@ page {
   width:120rpx;
   text-align: center;
   color: #313131;
-  font-size: 25rpx;
-  
+  font-size: 25rpx; 
 }
 .photos image {
   width: 100%;

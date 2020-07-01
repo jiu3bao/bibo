@@ -9,7 +9,8 @@ Page({
     bannerList:[],
     consult_list:[],
     page:1,
-    islastpage:false
+    islastpage:false,
+    isfold:true
   },
 
   /**
@@ -35,12 +36,12 @@ Page({
       })
     })
   },
-  get_consult_list() {
+  get_consult_list(size) {
     if(this.data.islastpage) return 
     const data = {
       Token:wx.getStorageSync('user').Token,
       Page:this.data.page,
-      PageSize:5,
+      PageSize:size,
     }
     service('ConsultAPI/GetMyCaseList',data)
     .then(r => {
@@ -58,7 +59,7 @@ Page({
         })
       }
       this.setData({
-        consult_list:r.data.data
+        consult_list:[...this.data.consult_list,...r.data.data]
       })
     })
   },
@@ -80,6 +81,11 @@ Page({
     }
     wx.navigateTo({url:'/packageA/pages/design-feedback/design-feedback?caseid='+item.custom_case_id})
   },
+  expand() {
+    this.setData({
+      isfold:!this.data.isfold
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -92,9 +98,11 @@ Page({
    */
   onShow: function () {
     this.setData({
-      islastpage:false
+      islastpage:false,
+      page:1,
+      consult_list:[]
     },() => {
-      this.get_consult_list()
+      this.get_consult_list(1000)
     })
     
   },
@@ -124,11 +132,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.setData({
-      page:this.data.page+1
-    },() => {
-      this.get_consult_list()
-    })
+    // this.setData({
+    //   page:this.data.page+1
+    // },() => {
+    //   this.get_consult_list()
+    // })
   },
 
   /**

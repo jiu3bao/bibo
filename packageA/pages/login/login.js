@@ -119,6 +119,7 @@ Page({
           duration: 2000
         })
         wx.setStorageSync('user', r.data.data)
+        wx.removeStorageSync('isemployee')
         this.is_shop()
         if(r.data.data.head.length==0) {
           this.setData({

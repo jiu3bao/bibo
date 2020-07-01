@@ -5,6 +5,34 @@
   <view class='banner_box'>
     <Banner bannerList='{{bannerList}}'></Banner>
   </view>
+ 
+  <view class='title'>
+    <image src='/img/chaxun.png'></image>
+    我要设计
+  </view>
+  <view class='open_design' bindtap="to_design">
+    开启我的面部设计
+    <image src='/img/ys.png'></image>
+  </view>
+  <view class='title j-sb'>
+    <view class='t-l'>
+      <image src='/img/chaxun.png'></image>我的设计方案
+    </view>
+    <image src='/img/xiala.png' class='xiala {{isfold?"fold_img":""}}' bindtap="expand"></image>
+  </view>
+  <view class='{{isfold?"foldmyde":""}}' >
+      <view class='myde {{isfold?"foldmyde":""}}' bindtap="to_feedback" 
+      wx:for='{{consult_list}}' 
+      wx:key='custom_case_id'
+      wx:if='{{item.status==="1"}}'
+      data-item='{{item}}'>
+      <view class='wy'>
+        我的专属设计方案--
+        <text class='axb'>{{item.item_name}}dafsadfasdfasdfasdfasdfasdfasdfasdfasdfsdfasdfasdfasdf</text>
+        </view>
+      <view>{{filters.formatTime(item.addtime)}}</view>
+    </view>
+  </view>
   <view class='title'>
     <image src='/img/chaxun.png'></image>
     医生展示
@@ -13,19 +41,9 @@
   <DocList></DocList>
   <view class='title'>
     <image src='/img/chaxun.png'></image>
-    我要设计
+    案例展示
   </view>
   <Design></Design>
-  <view class='open_design' bindtap="to_design">
-    开启我的面部设计
-    <image src='/img/ys.png'></image>
-  </view>
-  <view class='myde' bindtap="to_feedback" 
-    wx:for='{{consult_list}}' 
-    wx:key='{{item.custom_case_id}}'
-    data-item='{{item}}'>
-    <view>我的专属设计方案</view>
-    <view>{{filters.formatTime(item.addtime)}}</view>
-  </view>
+  
 </view>
 <KF></KF>

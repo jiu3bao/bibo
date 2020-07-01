@@ -1,5 +1,57 @@
 <!--设计师反馈-->
-
+<view class='title j-sb'>
+  <view class='t-l'>
+    <image src='/img/chaxun.png'></image>设计需求
+  </view>
+  <!-- <image src='/img/xiala.png' class='xiala'></image> -->
+</view>
+<!-- <view class='photos'>
+  <view bindtap='openimg' data-type='pic' data-src='{{obj.pic}}'>
+      正面照 
+    <image src='{{obj.pic}}'></image>
+  </view>
+  <view bindtap='openimg' data-type='pic45' data-src='{{obj.pic}}'>
+    侧面45°左
+    <image src='{{obj.pic45}}'></image>
+  </view>
+  <view bindtap='openimg' data-type='pic90' data-src='{{obj.pic}}'>
+    侧面90复
+    <image src='{{obj.pic90}}'></image>
+  </view>
+  <view bindtap='openimg' data-type='pic45r' data-src='{{obj.pic}}'>
+    侧面45°右
+    <image src='{{obj.pic45r}}'></image>
+  </view>
+  <view bindtap='openimg' data-type='pict' data-src='{{obj.pic}}'>
+    仰头照
+    <image src='{{obj.pict}}'></image>
+  </view>
+</view> -->
+<view class='info'>
+  <view class='f'>
+    <view>想咨询项目</view>
+    <view>{{obj.item_name}}</view>
+  </view>
+  <view class='f'>
+    <view>个人诉求</view>
+  </view>
+  <view class='ta'>
+    <textarea value="{{obj.demand}}" disabled="{{true}}" placeholder="请输入个人诉求"></textarea>
+  </view>
+  <!-- <view class='f'>
+    <view>是否做过该项目</view>
+    <view>{{casei.is_done===0?'否':'是'}}</view>
+  </view> -->
+  <!-- <view class='ta'>
+    <textarea placeholder="请输入该项目的次数、所在医院、价格等" value="{{casei.done_item_des}}" disabled="{{true}}"></textarea>
+  </view> -->
+  <!-- <view class='f'>
+    <view>病史、过敏史</view>
+  </view>
+  <view class='ta'>
+    <textarea value="{{casei.his}}" disabled="{{true}}" placeholder="请输入个人情况"></textarea>
+  </view>-->
+</view> 
 <view class='title'>
   <image src='/img/chaxun.png'></image>
   咨询师推荐
@@ -73,12 +125,12 @@
   <view class='kf' wx:if='{{kf}}'>
     <image class='bg' src='/img/kfbg.png'></image>
     <view class='c'>
-      <image src='{{kf.head||"/img/kftx.png"}}'></image>
+      <image src='{{obj.zxs_head||"/img/kftx.png"}}'></image>
       <view class='right'>
         <view >
-          Hi～我是您的专属咨询师：{{kf.name}}
+          Hi～我是您的专属咨询师：{{obj.zxs_name}}
         </view>
-        <view>微信号：{{kf.wx}}</view>
+        <view>微信号：{{obj.zxs_wx}}</view>
       </view>
       
     </view>

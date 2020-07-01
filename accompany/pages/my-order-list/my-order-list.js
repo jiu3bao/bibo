@@ -9,12 +9,15 @@ Page({
     actab:1,
     page1:1,
     page2:1,
+    islastpage1:false,
+    islastpage2:false,
     pageSize:15,
     viplist:[],
     publiclist:[],
     now:''
   },
   get_vip_list() {
+    if(this.islastpage1) return
     const data = {
       Token:wx.getStorageSync('user').Token,
       Page:this.data.page1,
@@ -28,6 +31,11 @@ Page({
         i.ismember=(time>this.data.now)+''
         console.log(time)
       })
+      if(r.data.data.length<this.data.pageSize) {
+        this.setData({
+          islastpage1:true
+        })
+      }
       this.setData({
         viplist:[...this.data.viplist,...r.data.data]
       })
@@ -40,6 +48,7 @@ Page({
     })
   },
   get_public_list() {
+    if(this.islastpage2) return
     const data = {
       Token:wx.getStorageSync('user').Token,
       Page:this.data.page2,
@@ -51,6 +60,11 @@ Page({
         const time = new Date(i.member_expire)
         i.ismember=(time>this.data.now)+''
       })
+      if(r.data.data.length<this.data.pageSize) {
+        this.setData({
+          islastpage1:true
+        })
+      }
       this.setData({
         publiclist:[...this.data.publiclist,...r.data.data]
       })
@@ -185,7 +199,9 @@ Page({
       viplist:[],
       publiclist:[],
       page1:1,
-      page2:1
+      page2:1,
+      islastpage1:false,
+      islastpage2:false
 
     })
     this.get_vip_list()
@@ -221,7 +237,20 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.data.actab==1) {
+      this.setData({
+        page1:this.page1+1
+      },() => {
+        this.get_vip_list()
+      })
+      
+    } else {
+      this.setData({
+        page2:this.page2+1
+      },() => {
+        this.get_public_list()
+      })
+    }
   },
 
   /**

@@ -256,7 +256,6 @@ Page({
         ratio:''
       })
     }
-    debugger
     if (!this.check()) return
     const data ={
       Token:wx.getStorageSync('user').Token,
