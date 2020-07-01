@@ -1,46 +1,22 @@
-// pages/set-sys/set-sys.js
+// packageA/pages/apply-success/apply-success.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    status:2,
-    showapply:1
+
   },
-  toapply() {
-    if(this.data.status ==0) return 
-    wx.navigateTo({
-      url: '/packageA/pages/apply-shop/apply-shop',
-    })
-  },
-  logout() {
-    wx.removeStorageSync('user')
-    wx.showToast({
-      title: '退出成功',
-      icon:"none"
-    })
-    wx.reLaunch({
+  backindex() {
+    wx.switchTab({
       url: '/pages/index/index',
-    })
-  },
-  toem() {
-    wx.navigateTo({
-      url: '/pages/employee-login/employee-login',
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.showapply) {
-      this.setData({
-        showapply:options.showapply
-      })
-    }
-    this.setData({
-      status:options.status
-    })
+
   },
 
   /**

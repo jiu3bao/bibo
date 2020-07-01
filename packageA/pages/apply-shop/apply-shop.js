@@ -18,6 +18,24 @@ Page({
     content_pic:[],
     showmask:false
   },
+  get_shop_info() {
+    service('ShopAPI/GetMyShop',{Token:wx.getStorageSync('user').Token})
+    .then(r => {
+      if(r.data.error_code==6) {
+        wx.removeStorageSync('user')
+        wx.removeStorageSync('shopinfo')
+        return 
+      }
+      if(r.data.data) { //有商铺
+        const {shop_name,shop_des,tel,lng,lat,shop_address,content_pic} = r.data.data
+        this.setData({
+          shop_name,shop_des,tel,lng,lat,content_pic,
+          add_name:shop_address,
+          // address:shop_address
+        })
+      }
+    })
+  },
   openimg(e) {
     const type = e.currentTarget.dataset.type
     this.chooseimage(type)
@@ -152,7 +170,7 @@ Page({
     
     const {shop_name,shop_des,lng,lat,tel,main_pic,content_pic} = {...this.data}
     const data = {
-      shop_name,shop_des,lng,lat,tel,main_pic,content_pic
+      shop_name,shop_des,lng,lat,tel,content_pic
     }
     console.log(data)
     for(let key in data) {
@@ -166,7 +184,7 @@ Page({
       }
     }
     const par = {
-      shop_name,shop_des,lng,lat,tel,main_pic,content_pic,
+      shop_name,shop_des,lng,lat,tel,content_pic,main_pic,
       shop_address:this.data.address+this.data.add_name,
       Token:wx.getStorageSync('user').Token,
 
@@ -180,7 +198,9 @@ Page({
         wx.showToast({
           title: '提交成功',
         })
-        wx.navigateBack()
+        wx.reLaunch({
+          url: '/packageA/pages/apply-success/apply-success',
+        })
       } else {
         wx.showToast({
           title: '发生错误',
@@ -201,7 +221,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.get_shop_info()
   },
 
   /**

@@ -1,0 +1,11 @@
+<!--packageA/pages/apply-success/apply-success.wxml-->
+<view class='g_s'>
+  <image src='/img/cgbg.png' class='bg'></image>
+  <view class='top'>
+    <image src='/img/chenggong.png'></image>
+    申请成功
+    
+  </view>
+  
+  <view class='backbtn' bindtap="backindex">返回首页</view>
+</view>

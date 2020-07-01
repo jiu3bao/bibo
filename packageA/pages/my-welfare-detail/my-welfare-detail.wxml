@@ -8,7 +8,7 @@
 
 <view class='box'>
   <view class='t'>
-    订单号：{{info.order_key}}
+    订单号：{{info.id}}
   </view>
   <view class='g'>
     <image src='{{info.goods_pic_url}}'></image>
@@ -31,7 +31,7 @@
     <view>商家</view>
     <view>{{info.shop_name}}</view>
   </view>
-  <view class='f'>
+  <view class='f' bindtap="openmap">
     <view>领取地址</view>
     <view>{{info.shop_address}}</view>
   </view>

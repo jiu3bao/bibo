@@ -15,6 +15,7 @@ const formatNumber = n => {
 }
 
 const countDist =(lat1, lng1, lat2, lng2) => {//纬度1,经度1,纬度2,经度2
+    if(lat1==lat2&& lng1==lng2) return 0
 
       var f = ((lat1 + lat2) / 2) * Math.PI / 180.0;
   
@@ -46,13 +47,13 @@ const countDist =(lat1, lng1, lat2, lng2) => {//纬度1,经度1,纬度2,经度2
   
       w = Math.atan(Math.sqrt(s / c));
   
-      r = Math.sqrt(s * c) / w;
+      r = w!=0?Math.sqrt(s * c) / w:0;
   
       d = 2 * w * a;
   
       h1 = (3 * r - 1) / 2 / c;
   
-      h2 = (3 * r + 1) / 2 / s;
+      h2 = s=!0?(3 * r + 1) / 2 / s:0;
   
       var num = d * (1 + fl * (h1 * sf * (1 - sg) - h2 * (1 - sf) * sg))
   

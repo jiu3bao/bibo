@@ -1,30 +1,30 @@
 <!--pages/apply-shop/apply-shop.wxml-->
 <view class='a'>
-  <view class='flex'>
+  <!-- <view class='flex'>
     <view class='l'>上传首页图片</view>
     <image src='{{main_pic}}' wx:if='{{main_pic&&main_pic.length>0}}' bindtap="openimg" 
     class='main_pic'
     data-type='main_pic'
     mode='aspectFit'></image>
     <view class='picbtn' bindtap="openimg" data-type='main_pic' wx:else>点击上传</view>
-  </view>
+  </view> -->
   <view class='flex'>
     <view class='l'>
       商铺名
     </view>
-    <input bindinput='bindKeyInput' data-type='shop_name' placeholder="请输入"></input>
+    <input bindinput='bindKeyInput' data-type='shop_name' placeholder="请输入" value="{{shop_name}}"></input>
   </view>
   <view class='flex'>
     <view class='l'>
-      描述
+      说明
     </view>
-    <input bindinput='bindKeyInput' data-type='shop_des' placeholder="请输入"></input>
+    <input bindinput='bindKeyInput' data-type='shop_des' placeholder="请输入" value="{{shop_des}}"></input>
   </view>
   <view class='flex'>
     <view class='l' type='number'>
       联系电话
     </view>
-    <input bindinput='bindKeyInput' data-type='tel' placeholder="请输入"></input>
+    <input bindinput='bindKeyInput' data-type='tel' placeholder="请输入" value="{{tel}}"></input>
   </view>
   <view class='flex'>
     <view class='l'>

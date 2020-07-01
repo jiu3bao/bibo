@@ -8,6 +8,7 @@ Page({
    */
   data: {
     detail:{},
+    dis:'',
     rules_list:[
       '借记卡哈萨克京哈双方均可获得首发'
     ,
@@ -17,10 +18,30 @@ Page({
     ,
       '和我iu一日无恶意'
     ],
+    showmap:false
+  },
+  openmap() {
+    wx.openLocation({
+      latitude:this.data.detail.lat,
+      longitude: this.data.detail.lng,
+      name:this.data.detail.shop_name,
+      address:this.data.detail.shop_address
+    })
+    // this.setData({
+    //   showmap:true,
+    //   markers:[{
+    //     id: 1,
+    //     latitude: this.data.detail.lat,
+    //     longitude: this.data.detail.lng,
+    //   }]
+    // })
   },
   get_detail(id) {
     service('ShopAPI/GetShopGoodsDetail',{id})
     .then(r => {
+      if(r.data.data.lat===0&&r.data.data.lng===0) {
+        
+      }
       this.setData({
         detail:r.data.data
       })
@@ -187,6 +208,9 @@ Page({
    */
   onLoad: function (options) {
     const id = options.id  
+    this.setData({
+      dis:options.dis||''
+    })
     this.get_detail(id)
   },
 

@@ -46,7 +46,9 @@
     </view>
     <view class='f' wx:for='{{chosen_item_list}}'>
       <view>{{item.item}}</view>
-      <view>医院收费{{item.price}}</view>
+      <view>医院收费
+        <input value="{{item.price}}" bindinput="caonimaya" type="number" data-item='{{item}}'></input>
+      </view>
     </view>
     <view class='ip' wx:if='{{inputother}}'>
       <view class='ipi'>

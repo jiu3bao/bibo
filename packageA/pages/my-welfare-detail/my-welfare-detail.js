@@ -10,7 +10,14 @@ Page({
     info:{},
     showbtn:false
   },
-
+  openmap() {
+    wx.openLocation({
+      latitude:this.data.info.lat,
+      longitude: this.data.info.lng,
+      name:this.data.info.shop_name,
+      address:this.data.info.shop_address
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

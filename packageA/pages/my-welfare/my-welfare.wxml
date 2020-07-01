@@ -17,8 +17,8 @@
 </view>
 <view class='item' bindtap="todetail" wx:for='{{list}}' wx:key='{{item.id}}' data-item='{{item}}'>
   <view class='t'>
-    <view>订单号：542378694-2374</view>
-    <view class='green'>待使用</view>
+    <view>订单号：{{item.id}}</view>
+    <view class='green'>{{item.status===1?'待使用':'已使用'}}</view>
   </view>
   <view class='c'>
     <image src='{{item.goods_pic_url}}'></image>
@@ -29,8 +29,8 @@
       <view class='r-d'>
         {{item.summary}}
       </view>
-      <view class='r-a'>
-        {{item.shop_address}}
+      <view class='r-a' bindtap="openmap">
+        <image src='/img/sadd.png'></image>{{item.shop_address}}
       </view>
       <view class='r-p'>
         ￥{{item.goods_price}}

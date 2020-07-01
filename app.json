@@ -20,7 +20,8 @@
         "pages/design-feedback/design-feedback",
         "pages/bankcard-list/bankcard-list",
         "pages/set-bank/set-bank",
-        "pages/shop/shop"
+        "pages/shop/shop",
+        "pages/apply-success/apply-success"
       ]
     },
     {

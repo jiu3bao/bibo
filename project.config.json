@@ -61,15 +61,15 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "accompany/pages/my-vip/my-vip",
-					"pathName": "accompany/pages/my-vip/my-vip",
+					"name": "accompany/pages/staff-page/staff-page",
+					"pathName": "accompany/pages/staff-page/staff-page",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "pages/user/user",
-					"pathName": "pages/user/user",
+					"name": "packageA/pages/apply-shop/apply-shop",
+					"pathName": "packageA/pages/apply-shop/apply-shop",
 					"query": "scene=25",
 					"scene": 1048
 				}

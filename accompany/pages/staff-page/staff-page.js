@@ -30,6 +30,22 @@ Page({
     err_text:'',
     change_id:''
   },
+  caonimaya(e) {
+    const item = e.currentTarget.dataset.item 
+    item.price = e.detail.value
+    const arr = this.data.chosen_item_list
+    let count = 0
+    arr.map(i => {
+      if(i.medical_code==item.medical_code) {
+        i.price = item.price
+      }
+      count+=i.price *1
+    })
+    this.setData({
+      chosen_item_list:arr,
+      total_money:count
+    })
+  },
   input(e) {
     const value = e.detail.value 
     const type= e.currentTarget.dataset.type
@@ -38,7 +54,11 @@ Page({
     })
   },
   addprice() {
-    const t = this.data.total_money*1+this.data.price*1
+    let count =0
+    this.data.chosen_item_list.map(i => {
+      count+=i.price*1
+    })
+    const t = count*1+this.data.price*1
     this.setData({
       total_money:t.toFixed(2)
     })
@@ -203,8 +223,8 @@ Page({
         })
         count+=value.price*1
       }
-      
     }
+    console.log(l)
     this.setData({
       chosen_item:map,
       chosen_item_list:l,
@@ -227,15 +247,16 @@ Page({
   },
   submit() { 
     const l = this.data.chosen_item_list
-    // if(this.data.inputother) {
-    //   l.push({
-    //     item:this.data.item_name,
-    //     item_type:'其他',
-    //     price:this.data.price,
-    //     medical_code:145,
-    //     ratio:''
-    //   })
-    // }
+    if(this.data.inputother) {
+      l.push({
+        item:this.data.item_name,
+        item_type:'其他',
+        price:this.data.price,
+        medical_code:145,
+        ratio:''
+      })
+    }
+    debugger
     if (!this.check()) return
     const data ={
       Token:wx.getStorageSync('user').Token,

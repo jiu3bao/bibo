@@ -16,6 +16,9 @@ Page({
     list:[],
     actab:1
   },
+  openmap() {
+    
+  },
   //切换tab
   switch(e) {
     const actab = e.currentTarget.dataset.type

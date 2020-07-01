@@ -5,8 +5,11 @@
     <view class='bottom'>
       <view class='name'>
         {{detail.goods_name}}
-        <text>1.8km</text>
+        <text>{{dis?dis:''}}</text>
       </view>
+      <view class='num' bindtap="openmap">
+        <image src='/img/sadd.png'></image>
+        商家地址：{{detail.shop_address}}</view>
       <view class='num'>
         已领取  {{detail.sale_count}}   剩余 {{detail.inv_count}}
       </view>
@@ -41,3 +44,6 @@
     <image src='/img/lll.png' bindtap="buygoods"></image>
   </view>
 </view> 
+<map id="map" longitude="{{detail.lng}}" latitude="{{detail.lat}}" scale="14" controls="{{controls}}" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" show-location style="width: 100%; height: 100%;"
+wx:if='{{showmap}}'></map>
+<view class='closemap' wx:if='{{showmap}}'>关闭地图</view>

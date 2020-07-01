@@ -48,6 +48,10 @@ page {
   font-size:21rpx;
   margin-bottom:15rpx;
 }
+.r-a image {
+  width:30rpx;
+  height:35rpx;
+}
 .r-p {
   color:#898989;
   font-size:25rpx;

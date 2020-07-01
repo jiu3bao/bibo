@@ -13,8 +13,9 @@ Page({
   },
   todetail(e) {
     const itemid = e.currentTarget.dataset.id
+    const dis = e.currentTarget.dataset.dis
     wx.navigateTo({
-      url: '/packageA/pages/crous-detail/crous-detail?id='+itemid,
+      url: '/packageA/pages/crous-detail/crous-detail?id='+itemid+'&dis='+dis,
     })
   },
   get_list() {
@@ -65,15 +66,18 @@ Page({
         const country = []
         list.map(item => {
           if(item.lat===0&&item.lng===0) {
+            item.distance=''
             country.push(item)
             return 
           }
+          debugger
           const dis = countDist(item.lat,item.lng,loc.lat,loc.lng)/1000
           console.log(dis)
           if(dis<=10) {
             item.distance = dis<1?(dis*1000).toFixed(2)+'m':dis.toFixed(2)+'km'
             near.push(item)
           } else {
+            item.distance = dis.toFixed(2)+'km'
             country.push(item)
           }
         })

@@ -2,6 +2,22 @@
 page {
   background: #f7f7f7;
 }
+#map {
+  position: fixed;
+  top:0;
+  left:0
+}
+.closemap {
+  position: fixed;
+  top:20rpx;
+  left:20rpx;
+  background: rgba(0,0,0,.3);
+  color: #fff;
+  width:200rpx;
+  line-height:80rpx;
+  text-align: center;
+  font-size:25rpx;
+}
 .item {
   width:100%;
   display: flex;
@@ -33,6 +49,10 @@ page {
   font-size:25rpx;
   margin-top:17rpx;
   padding-left:28rpx;
+}
+.num image {
+  width:30rpx;
+  height:35rpx;
 }
 .price {
   display: flex;
