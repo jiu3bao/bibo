@@ -36,6 +36,17 @@ Page({
     //   }]
     // })
   },
+  makePhoneCall() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.detail.tel,
+      success:function(){
+        console.log('拨打成功')
+      },
+      fail:function(){
+        console.log('拨打失败')
+      }
+    })
+  },  
   get_detail(id) {
     service('ShopAPI/GetShopGoodsDetail',{id})
     .then(r => {
@@ -157,11 +168,11 @@ Page({
         return
       }
       wx.requestPayment({
-        timeStamp: r.timestamp,
-        nonceStr: r.nonceStr,
-        package:  'prepay_id=' +r.prepay_id ,
-        signType: r.signType,
-        paySign: r.paySign,
+        timeStamp: r.data.data.timestamp,
+        nonceStr: r.data.data.nonceStr,
+        package:  'prepay_id=' +r.data.data.prepay_id ,
+        signType: r.data.data.signType,
+        paySign: r.data.data.paySign,
         success() {
           wx.hideLoading({
             complete: () => {
@@ -170,7 +181,7 @@ Page({
                 duration:3000
               })
               wx.navigateTo({
-                url: '/packageA/pages/get-success/get-success',
+                url: '/packageA/pages/my-welfare/my-welfare',
               })
             },
           })

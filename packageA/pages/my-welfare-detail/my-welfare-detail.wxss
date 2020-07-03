@@ -92,3 +92,14 @@ page {
   -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
   filter: grayscale(100%);
 }
+.f image {
+  width:30rpx;
+  height:35rpx;
+}
+.add {
+  word-break: break-all;
+}
+.tel {
+  color:#417A91;
+  text-decoration: underline;
+}

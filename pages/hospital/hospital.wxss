@@ -63,7 +63,7 @@ page {
   white-space:nowrap
 }
 .myde:last-child {
-  margin-bottom:30rpx;
+  /* margin-bottom:30rpx; */
 }
 .axb {
   color:#313131
@@ -75,12 +75,11 @@ page {
 .j-sb {
   justify-content: space-between;
 }
-.title image,.t-l image {
+/* .expand_btn image{
   width:7rpx;
   height:33rpx;
-  margin-right:10rpx;
-}
-.title .xiala {
+} */
+.expand_btn image {
   width:30rpx;
   height:16rpx;
 }
@@ -91,4 +90,11 @@ page {
 .foldmyde {
   height:100rpx;
   overflow:hidden;
+}
+.expand_btn {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:60rpx;
 }

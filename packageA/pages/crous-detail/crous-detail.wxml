@@ -10,6 +10,8 @@
       <view class='num' bindtap="openmap">
         <image src='/img/sadd.png'></image>
         商家地址：{{detail.shop_address}}</view>
+      <view class='num tel' bindtap="makePhoneCall">
+        联系电话：{{detail.tel}}</view>
       <view class='num'>
         已领取  {{detail.sale_count}}   剩余 {{detail.inv_count}}
       </view>

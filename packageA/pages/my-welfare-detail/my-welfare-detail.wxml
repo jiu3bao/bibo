@@ -33,7 +33,13 @@
   </view>
   <view class='f' bindtap="openmap">
     <view>领取地址</view>
-    <view>{{info.shop_address}}</view>
+    <view class='add'><image src='/img/sadd.png'></image>
+    {{info.shop_address}}
+    </view>
+  </view>
+  <view class='f'>
+    <view>联系电话</view>
+    <view bindtap="makePhoneCall" class='tel'>{{info.mobile}}</view>
   </view>
   <view class='f'>
     <view>

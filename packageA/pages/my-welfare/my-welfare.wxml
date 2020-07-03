@@ -30,7 +30,8 @@
         {{item.summary}}
       </view>
       <view class='r-a' bindtap="openmap">
-        <image src='/img/sadd.png'></image>{{item.shop_address}}
+        <!-- <image src='/img/sadd.png'></image> -->
+        {{item.shop_address}}
       </view>
       <view class='r-p'>
         ￥{{item.goods_price}}

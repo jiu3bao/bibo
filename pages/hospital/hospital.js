@@ -58,8 +58,11 @@ Page({
           islastpage:true
         })
       }
+      const arr = r.data.data.filter(i => {
+        return i.status ==='1'
+      })
       this.setData({
-        consult_list:[...this.data.consult_list,...r.data.data]
+        consult_list:[...this.data.consult_list,...arr]
       })
     })
   },

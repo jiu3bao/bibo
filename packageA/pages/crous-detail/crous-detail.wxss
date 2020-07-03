@@ -130,3 +130,7 @@ page {
   width:213rpx;
   height:100%;
 }
+.tel {
+  color:#417A91;
+  text-decoration: underline;
+}
