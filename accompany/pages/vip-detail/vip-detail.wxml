@@ -65,7 +65,8 @@
       <view class='detail' wx:for='{{item.item_list}}' wx:for-item='oo' wx:for-index='ii' wx:key='medical_code'>
         <view class='b'>{{ii+1}}.{{oo.item}}</view>
         <view class='r'>{{oo.price}}</view>
-        <view class='b2'>{{filters.toFix(oo.price*oo.ratio)}}</view>
+        <view class='b2'>{{oo.cost}}</view>
+        <!-- <view class='b2'>{{filters.toFix(oo.price*oo.ratio)}}</view> -->
       </view>
     </view>
     <view class='t'>

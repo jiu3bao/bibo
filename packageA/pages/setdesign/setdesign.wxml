@@ -19,7 +19,7 @@
       <image src='{{pic45}}'></image>
     </view>
     <view>
-      侧面90复(示例)
+      侧面90°(示例)
       <image src='{{pic90}}'></image>
     </view>
     <view >
@@ -42,7 +42,7 @@
       <image src='{{pic45}}'></image>
     </view>
     <view bindtap='add_pic' data-type='pic90'>
-      侧面90复
+      侧面90°
       <image src='{{pic90}}'></image>
     </view>
     <view bindtap='add_pic' data-type='pic45r'>

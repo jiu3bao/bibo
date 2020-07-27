@@ -1,8 +1,11 @@
 <!--components/doc-list/doc-list.wxml-->
-<scroll-view scroll-x='true' class='docbox' scroll-left='{{left}}' bindscrolltolower='backleft'>
+<scroll-view scroll-x='true' class='docbox' scroll-left='{{left}}' bindscrolltolower='backleft'
+bindtouchstart="stopscroll" bindtouchend="restart"
+bindscroll='recordx'>
   <view class='ss'>
     <view class='item' wx:for='{{list}}' wx:key='{{item.doctor_name}}'>
-      <image src='{{item.pic_url}}' bindtap="openimg" data-src='{{item.pic_url}}'></image>
+      <image src='{{item.pic_url}}'
+      bindtap="openimg" data-src='{{item.pic_url}}'></image>
       <view>{{item.doctor_name}}</view>
     </view>
   </view>

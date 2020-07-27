@@ -129,15 +129,16 @@ page {
   background: #fff;
   padding:26rpx 0 40rpx 0;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .photos view {
   font-size:25rpx;
   text-align: center;
-  width: 18%;
+  width: 50%;
 }
 .photos image {
-  width: 100rpx;
-  height:100rpx;
+  width: 300rpx;
+  height:300rpx;
   margin-top:20rpx;
 }
 .kf {
@@ -227,18 +228,4 @@ page {
   height: 190rpx;
   padding:33rpx 45rpx;
   box-sizing: border-box;
-}
-.photos view {
-  width:120rpx;
-  text-align: center;
-  color: #313131;
-  font-size: 25rpx; 
-}
-.photos image {
-  width: 100%;
-  height:120rpx;
-  background:rgba(238,238,238,1);
-  border:1px solid rgba(220,220,220,1);
-  border-radius:10rpx;
-  margin-top:20rpx;
 }

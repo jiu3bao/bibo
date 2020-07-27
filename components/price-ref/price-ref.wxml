@@ -44,11 +44,13 @@
             医院收费
           </view>
           <view class='two'>
-            <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{filters.toFix(cs.price*(1-cs.ratio))}}</text>
+            <!-- <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{filters.toFix(cs.price*(1-cs.ratio))}}</text> -->
+            <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{cs.price-cs.cost}}</text>
             补贴金额
           </view>
           <view class='three'>
-            <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{filters.toFix(cs.price*cs.ratio)}}</text>
+            <!-- <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{filters.toFix(cs.price*cs.ratio)}}</text> -->
+            <text class='{{showmask&&cs.title==="院长专家"?"mask" :""}}'>{{cs.cost}}</text>
             实际收费
           </view>
         </view>

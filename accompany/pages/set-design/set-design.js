@@ -153,8 +153,8 @@ Page({
       return {
         item_name:i.item,
         price_hospital:i.price,//医院价格
-        subsidy:i.price*(1-i.ratio),//补贴价格
-        price_real:i.price*i.ratio//实际价格
+        subsidy:i.price-i.cost,//),//补贴价格
+        price_real:i.cost//i.price*i.ratio//实际价格
       }
     })
     debugger

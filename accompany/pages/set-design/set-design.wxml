@@ -20,7 +20,7 @@
     <image src='{{casei.pic45}}'></image>
   </view>
   <view bindtap='openimg' data-type='pic90'>
-    侧面90复
+    侧面90°
     <image src='{{casei.pic90}}'></image>
   </view>
   <view bindtap='openimg' data-type='pic45r'>

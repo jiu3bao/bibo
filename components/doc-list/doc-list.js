@@ -17,11 +17,17 @@ Component({
     showbigpic:false,
     imgsrc:'',
     left:0,
-    timer:null
+    timer:null,
+    x:0
   },
   created() {
     this.get_list()
-    this.scrolling()
+    // this.scrolling()
+  },
+  pageLifetimes:{
+    show() {
+      // this.restart()
+    }
   },
   /**
    * 组件的方法列表
@@ -31,17 +37,53 @@ Component({
       const timer = setInterval(() => {
         if(this.data.showbigpic) return 
         this.setData({
-          left:this.data.left+10
+          left:this.data.left+1
         })
-      },500)
+      },50)
       this.setData({
         timer
       })
     },
+    stopscroll(e) {
+      // if(e.target.dataset.src) {
+      //   const url = e.target.dataset.src
+      //   wx.previewImage({
+      //     current:url,
+      //     urls: [url],
+      //   })
+      // }
+      // clearInterval(this.data.timer)
+      // this.setData({
+      //   timer:null
+      // })
+    },
+    restart() {
+      // if(this.data.timer) {
+      //   clearInterval(this.data.timer)
+      //   this.setData({
+      //     timer:null
+      //   },() => {
+      //     this.scrolling()
+      //   })
+      // } else {
+      //   this.scrolling()
+      // }
+      
+    },
+    recordx(e) {
+      // if(this.data.timer) return 
+      // console.log(e)
+      // this.setData({
+      //   left:e.detail.scrollLeft
+      // })
+    },
     backleft() {
-      this.setData({
-        left:0
-      })
+      // if(this.data.timer) {
+      //   this.setData({
+      //     left:0
+      //   })
+      // }
+      
     },
     get_list() {
       service('API/GetDoctorShow')
@@ -51,6 +93,9 @@ Component({
         })
       })
     },
+    // catchtouch(e) {
+    //   console.log(e)
+    // },
     openimg(e) {
       const url = e.currentTarget.dataset.src 
       wx.previewImage({

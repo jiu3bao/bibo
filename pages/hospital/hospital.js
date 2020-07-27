@@ -68,7 +68,24 @@ Page({
   },
 
   to_design() {
-    wx.navigateTo({url:'/packageA/pages/setdesign/setdesign'})
+    if(wx.getStorageSync('user').Token) {
+      wx.navigateTo({url:'/packageA/pages/setdesign/setdesign'})
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '尚未登录，是否登录？',
+        success (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/packageA/pages/login/login',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+    
   },
   to_feedback(e) {
     const item = e.currentTarget.dataset.item
