@@ -16,7 +16,12 @@ Component({
     list:[],
   },
   created() {
-    this.get_list()
+    
+  },
+  pageLifetimes:{
+    show() {
+      this.get_list()
+    }
   },
   /**
    * 组件的方法列表

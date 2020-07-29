@@ -47,11 +47,20 @@ Page({
     }
     wx.showLoading({mask:true})
     if(wx.getStorageSync('openid')){
+      // wx.showToast({
+      //   title: 'start',
+      // })
       this.get_order_id()
       .then(res => {
+        // wx.showToast({
+        //   title: 'getorderid',
+        // })
         return this.get_pay_param(res, wx.getStorageSync('openid'))
       })
       .then(r => {
+        // wx.showToast({
+        //   title: r.prepay_id,
+        // })
         wx.requestPayment({
           timeStamp: r.timestamp,
           nonceStr: r.nonceStr,
@@ -65,7 +74,6 @@ Page({
                   title: '付款成功',
                   duration:3000
                 })
-                debugger
                 wx.switchTab({
                   url: '/pages/user/user',
                 })
@@ -95,6 +103,10 @@ Page({
             })
           },
         })
+      })
+    } else {
+      wx.showToast({
+        title: '无openid',
       })
     }
   },

@@ -71,6 +71,7 @@ Component({
         activeType:pro.name
       })
       if(pro.children) {
+        
         this.setData({
           subject_list:pro.children
         }) 

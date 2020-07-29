@@ -73,6 +73,12 @@ Page({
         list:[...this.data.nouse_l,...r.data.data],
       })
     })
+    .catch(e => {
+      wx.showToast({
+        title: '发生错误，请联系管理员',
+        icon:'none'
+      })
+    })
   },
   get_used_list() {
     if(this.data.islastpage2) return 

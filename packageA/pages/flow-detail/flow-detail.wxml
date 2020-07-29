@@ -3,6 +3,7 @@
   <view class='list' wx:for="{{list}}" wx:if='{{!istuiguang||item.source===2}}'>
     <view>
       <view>{{item.text}}</view>
+      <view class='ss'>(来自--{{item.from_user_name}})</view>
       <view class='time'>{{item.time}}</view>
     </view>
     <view class='{{item.bonus>0?"blue":"red"}}'>
